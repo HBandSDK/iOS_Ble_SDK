@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPTestFatigueController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="fatigueStateLabel" destination="vd3-7p-kf5" id="XG9-a6-ZsR"/>
+                <outlet property="testFatigueBtn" destination="4yo-ha-BDT" id="8zD-dn-lE8"/>
+                <outlet property="testFatigueProgressLabel" destination="fbT-ug-HcF" id="Gsh-Mm-Ys6"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="疲劳度状态:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vd3-7p-kf5">
+                    <rect key="frame" x="40" y="120" width="295" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="sKl-rs-Tvd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试进度:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbT-ug-HcF">
+                    <rect key="frame" x="40" y="166" width="295" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Pmh-ph-hTe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yo-ha-BDT">
+                    <rect key="frame" x="147" y="217" width="80" height="30"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Qak-1B-iz3"/>
+                        <constraint firstAttribute="width" constant="80" id="Rat-ia-W2y"/>
+                    </constraints>
+                    <state key="normal" title="开始测试"/>
+                    <connections>
+                        <action selector="startTestFatigueAction:" destination="-1" eventType="touchUpInside" id="tz3-iW-QnV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fbT-ug-HcF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="AU8-gE-eMP"/>
+                <constraint firstAttribute="trailing" secondItem="vd3-7p-kf5" secondAttribute="trailing" constant="40" id="CYG-Fh-bBD"/>
+                <constraint firstItem="vd3-7p-kf5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="QWM-ae-nR4"/>
+                <constraint firstItem="vd3-7p-kf5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="120" id="UX3-yk-z5c"/>
+                <constraint firstItem="4yo-ha-BDT" firstAttribute="top" secondItem="fbT-ug-HcF" secondAttribute="bottom" constant="30" id="WAi-BX-75m"/>
+                <constraint firstItem="4yo-ha-BDT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bHO-2b-zLR"/>
+                <constraint firstAttribute="trailing" secondItem="fbT-ug-HcF" secondAttribute="trailing" constant="40" id="jlz-ym-RPr"/>
+                <constraint firstItem="fbT-ug-HcF" firstAttribute="top" secondItem="vd3-7p-kf5" secondAttribute="bottom" constant="25" id="qoz-1v-Joa"/>
+            </constraints>
+            <point key="canvasLocation" x="26.5" y="52.5"/>
+        </view>
+    </objects>
+</document>

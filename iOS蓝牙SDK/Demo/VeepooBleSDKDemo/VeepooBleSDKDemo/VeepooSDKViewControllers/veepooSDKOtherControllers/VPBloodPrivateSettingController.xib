@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPBloodPrivateSettingController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="bloodModeSegControl" destination="eEE-LX-NRI" id="uMa-Cs-jGH"/>
+                <outlet property="bloodSettingBtn" destination="SeZ-PZ-YeT" id="cet-jx-b6r"/>
+                <outlet property="calibrationProgressLabel" destination="feG-t7-idd" id="Xqt-bK-Eh7"/>
+                <outlet property="diastolicLabel" destination="JSd-2L-Nqq" id="nYL-bd-ybp"/>
+                <outlet property="diastolicSlider" destination="ksp-pa-tza" id="Hby-mc-grO"/>
+                <outlet property="modeLabel" destination="ubC-e9-Z9r" id="0i3-Q6-5r5"/>
+                <outlet property="systolicLabel" destination="RUN-FI-UG7" id="0je-Ab-DzZ"/>
+                <outlet property="systolicSlider" destination="Tg9-mY-5tr" id="URU-8z-ZRP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="高压:81" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUN-FI-UG7">
+                    <rect key="frame" x="16" y="94" width="80" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="zuY-so-dia"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="81" minValue="81" maxValue="209" translatesAutoresizingMaskIntoConstraints="NO" id="Tg9-mY-5tr">
+                    <rect key="frame" x="102" y="88" width="259" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="tcy-Xj-swJ"/>
+                    </constraints>
+                    <connections>
+                        <action selector="settingBloodValueAction:" destination="-1" eventType="valueChanged" id="K2S-A3-KIi"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="低压:46" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSd-2L-Nqq">
+                    <rect key="frame" x="16" y="148" width="80" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="46" minValue="46" maxValue="179" translatesAutoresizingMaskIntoConstraints="NO" id="ksp-pa-tza">
+                    <rect key="frame" x="102" y="142" width="259" height="31"/>
+                    <connections>
+                        <action selector="settingBloodValueAction:" destination="-1" eventType="valueChanged" id="AZP-KS-4TX"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="模式:通用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubC-e9-Z9r">
+                    <rect key="frame" x="16" y="196" width="80" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eEE-LX-NRI">
+                    <rect key="frame" x="104" y="191" width="127" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="TEe-uc-IIu"/>
+                        <constraint firstAttribute="width" constant="127" id="f7z-Mj-Ap0"/>
+                    </constraints>
+                    <segments>
+                        <segment title="通用"/>
+                        <segment title="私人"/>
+                    </segments>
+                    <connections>
+                        <action selector="choiceBloodTestModeAction:" destination="-1" eventType="valueChanged" id="RCC-Or-4d6"/>
+                    </connections>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SeZ-PZ-YeT">
+                    <rect key="frame" x="16" y="249" width="343" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="2aI-Zk-dKA"/>
+                    </constraints>
+                    <state key="normal" title="开始设置"/>
+                    <connections>
+                        <action selector="startSettingBloodModeAction:" destination="-1" eventType="touchUpInside" id="sD6-vP-4YK"/>
+                    </connections>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="动态校准进度:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feG-t7-idd">
+                    <rect key="frame" x="16" y="333" width="343" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="52" id="2hi-gb-Ffu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="RUN-FI-UG7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="1Cm-gn-pv7"/>
+                <constraint firstItem="JSd-2L-Nqq" firstAttribute="leading" secondItem="RUN-FI-UG7" secondAttribute="leading" id="1nF-CF-veE"/>
+                <constraint firstItem="feG-t7-idd" firstAttribute="top" secondItem="SeZ-PZ-YeT" secondAttribute="bottom" constant="40" id="3Fq-Ba-WuB"/>
+                <constraint firstItem="eEE-LX-NRI" firstAttribute="centerY" secondItem="ubC-e9-Z9r" secondAttribute="centerY" id="6kt-eQ-z3W"/>
+                <constraint firstAttribute="trailing" secondItem="SeZ-PZ-YeT" secondAttribute="trailing" constant="16" id="6mi-v6-4g1"/>
+                <constraint firstItem="eEE-LX-NRI" firstAttribute="leading" secondItem="ksp-pa-tza" secondAttribute="leading" id="9ts-6y-xMt"/>
+                <constraint firstItem="Tg9-mY-5tr" firstAttribute="leading" secondItem="RUN-FI-UG7" secondAttribute="trailing" constant="8" id="AQ9-By-6Jl"/>
+                <constraint firstItem="feG-t7-idd" firstAttribute="trailing" secondItem="SeZ-PZ-YeT" secondAttribute="trailing" id="B7A-2m-ngV"/>
+                <constraint firstItem="ksp-pa-tza" firstAttribute="height" secondItem="Tg9-mY-5tr" secondAttribute="height" id="J9U-wd-AG9"/>
+                <constraint firstItem="ksp-pa-tza" firstAttribute="centerY" secondItem="JSd-2L-Nqq" secondAttribute="centerY" id="M4Q-ue-IzI"/>
+                <constraint firstItem="JSd-2L-Nqq" firstAttribute="trailing" secondItem="RUN-FI-UG7" secondAttribute="trailing" id="Mog-5A-O8Z"/>
+                <constraint firstItem="RUN-FI-UG7" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="Ms4-2W-IH3"/>
+                <constraint firstItem="JSd-2L-Nqq" firstAttribute="height" secondItem="RUN-FI-UG7" secondAttribute="height" id="O8I-3n-QG9"/>
+                <constraint firstAttribute="trailing" secondItem="Tg9-mY-5tr" secondAttribute="trailing" constant="16" id="Tvv-7v-pnR"/>
+                <constraint firstItem="ksp-pa-tza" firstAttribute="trailing" secondItem="Tg9-mY-5tr" secondAttribute="trailing" id="UMe-QE-0gS"/>
+                <constraint firstItem="JSd-2L-Nqq" firstAttribute="top" secondItem="Tg9-mY-5tr" secondAttribute="bottom" constant="30" id="VVp-vv-WYy"/>
+                <constraint firstItem="SeZ-PZ-YeT" firstAttribute="top" secondItem="eEE-LX-NRI" secondAttribute="bottom" constant="30" id="Vp6-pn-cbX"/>
+                <constraint firstItem="ubC-e9-Z9r" firstAttribute="top" secondItem="JSd-2L-Nqq" secondAttribute="bottom" constant="30" id="Yd4-gJ-o6r"/>
+                <constraint firstItem="ubC-e9-Z9r" firstAttribute="height" secondItem="JSd-2L-Nqq" secondAttribute="height" id="Yie-PG-eLy"/>
+                <constraint firstItem="ksp-pa-tza" firstAttribute="leading" secondItem="Tg9-mY-5tr" secondAttribute="leading" id="aJh-9g-DaM"/>
+                <constraint firstItem="SeZ-PZ-YeT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="puv-iN-9hY"/>
+                <constraint firstItem="Tg9-mY-5tr" firstAttribute="centerY" secondItem="RUN-FI-UG7" secondAttribute="centerY" id="to6-C0-CLf"/>
+                <constraint firstItem="ubC-e9-Z9r" firstAttribute="leading" secondItem="JSd-2L-Nqq" secondAttribute="leading" id="u6z-1u-9KY"/>
+                <constraint firstItem="feG-t7-idd" firstAttribute="leading" secondItem="SeZ-PZ-YeT" secondAttribute="leading" id="vEe-T4-NF1"/>
+                <constraint firstItem="ubC-e9-Z9r" firstAttribute="trailing" secondItem="JSd-2L-Nqq" secondAttribute="trailing" id="wbG-s5-1h4"/>
+            </constraints>
+            <point key="canvasLocation" x="-69.5" y="-25.5"/>
+        </view>
+    </objects>
+</document>

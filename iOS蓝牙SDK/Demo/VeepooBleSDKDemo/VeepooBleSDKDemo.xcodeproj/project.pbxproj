@@ -1,0 +1,725 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707B09F1E72504A00207523 /* VPSettingBrightController.swift */; };
+		6707B0A21E72504A00207523 /* VPSettingBrightController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6707B0A01E72504A00207523 /* VPSettingBrightController.xib */; };
+		672E08321E5D36ED00F60750 /* VPTestBloodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08301E5D36ED00F60750 /* VPTestBloodController.swift */; };
+		672E08331E5D36ED00F60750 /* VPTestBloodController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672E08311E5D36ED00F60750 /* VPTestBloodController.xib */; };
+		672E08381E5D5CAE00F60750 /* VPTestSleepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08361E5D5CAE00F60750 /* VPTestSleepController.swift */; };
+		672E08391E5D5CAE00F60750 /* VPTestSleepController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672E08371E5D5CAE00F60750 /* VPTestSleepController.xib */; };
+		672E08461E5E813300F60750 /* VPTestStepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08441E5E813300F60750 /* VPTestStepController.swift */; };
+		672E08471E5E813300F60750 /* VPTestStepController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672E08451E5E813300F60750 /* VPTestStepController.xib */; };
+		672E084C1E5EC2FE00F60750 /* VPTakePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E084A1E5EC2FE00F60750 /* VPTakePhotoController.swift */; };
+		672E084D1E5EC2FE00F60750 /* VPTakePhotoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672E084B1E5EC2FE00F60750 /* VPTakePhotoController.xib */; };
+		672E085A1E5ED92F00F60750 /* VPDFUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08581E5ED92F00F60750 /* VPDFUController.swift */; };
+		672E085B1E5ED92F00F60750 /* VPDFUController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672E08591E5ED92F00F60750 /* VPDFUController.xib */; };
+		675052221E553CDD008D45BC /* VPBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675052211E553CDD008D45BC /* VPBaseNavigationController.swift */; };
+		675052261E553F3F008D45BC /* VPRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675052241E553F3F008D45BC /* VPRootViewController.swift */; };
+		675052271E553F3F008D45BC /* VPRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 675052251E553F3F008D45BC /* VPRootViewController.xib */; };
+		6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6750522A1E557517008D45BC /* VPScanDeviceViewController.swift */; };
+		67640D491E55C22E008D9D71 /* VPMessageRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D481E55C22E008D9D71 /* VPMessageRemindViewController.swift */; };
+		67640D4C1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D4B1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift */; };
+		67640D4F1E56CA04008D9D71 /* VPOterFunctionSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D4E1E56CA04008D9D71 /* VPOterFunctionSettingController.swift */; };
+		67640D531E56D248008D9D71 /* VPSyncPersonalInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D511E56D248008D9D71 /* VPSyncPersonalInformationController.swift */; };
+		67640D541E56D248008D9D71 /* VPSyncPersonalInformationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67640D521E56D248008D9D71 /* VPSyncPersonalInformationController.xib */; };
+		67640D571E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D551E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift */; };
+		67640D581E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67640D561E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib */; };
+		67640D5B1E56EFA9008D9D71 /* VPLongSeatSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D591E56EFA9008D9D71 /* VPLongSeatSettingController.swift */; };
+		67640D5C1E56EFA9008D9D71 /* VPLongSeatSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67640D5A1E56EFA9008D9D71 /* VPLongSeatSettingController.xib */; };
+		67640D601E57E346008D9D71 /* VPAlarmClockSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D5E1E57E346008D9D71 /* VPAlarmClockSettingController.swift */; };
+		678368A11E5814A600C3BCB8 /* VPHeartAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6783689F1E5814A600C3BCB8 /* VPHeartAlarmController.swift */; };
+		678368A21E5814A600C3BCB8 /* VPHeartAlarmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 678368A01E5814A600C3BCB8 /* VPHeartAlarmController.xib */; };
+		678368A71E58264A00C3BCB8 /* VPTestHeartController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678368A51E58264A00C3BCB8 /* VPTestHeartController.swift */; };
+		678368A81E58264A00C3BCB8 /* VPTestHeartController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 678368A61E58264A00C3BCB8 /* VPTestHeartController.xib */; };
+		678368AC1E58363200C3BCB8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678368AB1E58363200C3BCB8 /* StringExtension.swift */; };
+		6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */; };
+		6786EDC0214B620C00E03882 /* VPSettingScreenDurationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */; };
+		6786EDD2214BB0CB00E03882 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6786EDD1214BB0CA00E03882 /* VeepooBleSDK.framework */; };
+		679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */; };
+		679EA6B31EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */; };
+		67A4D34A1F71101A00DBB53E /* VPSettingScreenStyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */; };
+		67A4D34B1F71101A00DBB53E /* VPSettingScreenStyleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A4D3491F71101A00DBB53E /* VPSettingScreenStyleController.xib */; };
+		67B64E441EDFB5E8000549D6 /* VPTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B64E431EDFB5E8000549D6 /* VPTest.m */; };
+		67B889EC1EFBAFBE00214EC5 /* ZCUIView+setRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B889EB1EFBAFBE00214EC5 /* ZCUIView+setRect.swift */; };
+		67CA3B581EF25AB500203D20 /* VPDeviceCountDownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */; };
+		67CA3B591EF25AB500203D20 /* VPDeviceCountDownController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */; };
+		67CA3B5B1EF2649700203D20 /* VPCountDownSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA3B5A1EF2649700203D20 /* VPCountDownSelectView.swift */; };
+		67CA3B6E1EF363C100203D20 /* VPDeviceNewAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA3B6D1EF363C100203D20 /* VPDeviceNewAlarmController.swift */; };
+		67CA3B731EF3783A00203D20 /* VPNewAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA3B711EF3783A00203D20 /* VPNewAlarmCell.swift */; };
+		67CA3B741EF3783A00203D20 /* VPNewAlarmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67CA3B721EF3783A00203D20 /* VPNewAlarmCell.xib */; };
+		67CA7E351EF3BAD5000D8745 /* VPEditNewAlarmController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA7E331EF3BAD5000D8745 /* VPEditNewAlarmController.swift */; };
+		67CA7E361EF3BAD5000D8745 /* VPEditNewAlarmController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67CA7E341EF3BAD5000D8745 /* VPEditNewAlarmController.xib */; };
+		67CB1CAB1E52D26E00805649 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CB1CAA1E52D26E00805649 /* AppDelegate.swift */; };
+		67CB1CB21E52D26E00805649 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67CB1CB11E52D26E00805649 /* Assets.xcassets */; };
+		67CB1CB51E52D26E00805649 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67CB1CB31E52D26E00805649 /* LaunchScreen.storyboard */; };
+		67FC22951E6560860029DED3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 67FC22941E6560860029DED3 /* MBProgressHUD.m */; };
+		67FC22B11E67FC660029DED3 /* VPRaiseHandSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FC22AF1E67FC660029DED3 /* VPRaiseHandSettingController.swift */; };
+		67FC22B21E67FC660029DED3 /* VPRaiseHandSettingController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67FC22B01E67FC660029DED3 /* VPRaiseHandSettingController.xib */; };
+		67FC22B51E6810F70029DED3 /* VPModifyPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FC22B31E6810F70029DED3 /* VPModifyPasswordController.swift */; };
+		67FC22B61E6810F70029DED3 /* VPModifyPasswordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67FC22B41E6810F70029DED3 /* VPModifyPasswordController.xib */; };
+		67FC22BA1E68FBEE0029DED3 /* VPTestOxygenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FC22B81E68FBEE0029DED3 /* VPTestOxygenController.swift */; };
+		67FC22BB1E68FBEE0029DED3 /* VPTestOxygenController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67FC22B91E68FBEE0029DED3 /* VPTestOxygenController.xib */; };
+		67FC22BF1E68FF7D0029DED3 /* VPTestFatigueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FC22BD1E68FF7D0029DED3 /* VPTestFatigueController.swift */; };
+		67FC22C01E68FF7D0029DED3 /* VPTestFatigueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67FC22BE1E68FF7D0029DED3 /* VPTestFatigueController.xib */; };
+		AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeepooBleSDKDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
+		6707B09F1E72504A00207523 /* VPSettingBrightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingBrightController.swift; sourceTree = "<group>"; };
+		6707B0A01E72504A00207523 /* VPSettingBrightController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPSettingBrightController.xib; sourceTree = "<group>"; };
+		672E08301E5D36ED00F60750 /* VPTestBloodController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestBloodController.swift; sourceTree = "<group>"; };
+		672E08311E5D36ED00F60750 /* VPTestBloodController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestBloodController.xib; sourceTree = "<group>"; };
+		672E08361E5D5CAE00F60750 /* VPTestSleepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestSleepController.swift; sourceTree = "<group>"; };
+		672E08371E5D5CAE00F60750 /* VPTestSleepController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestSleepController.xib; sourceTree = "<group>"; };
+		672E08441E5E813300F60750 /* VPTestStepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestStepController.swift; sourceTree = "<group>"; };
+		672E08451E5E813300F60750 /* VPTestStepController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestStepController.xib; sourceTree = "<group>"; };
+		672E084A1E5EC2FE00F60750 /* VPTakePhotoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTakePhotoController.swift; sourceTree = "<group>"; };
+		672E084B1E5EC2FE00F60750 /* VPTakePhotoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTakePhotoController.xib; sourceTree = "<group>"; };
+		672E08581E5ED92F00F60750 /* VPDFUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDFUController.swift; sourceTree = "<group>"; };
+		672E08591E5ED92F00F60750 /* VPDFUController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPDFUController.xib; sourceTree = "<group>"; };
+		675052211E553CDD008D45BC /* VPBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBaseNavigationController.swift; sourceTree = "<group>"; };
+		675052241E553F3F008D45BC /* VPRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPRootViewController.swift; sourceTree = "<group>"; };
+		675052251E553F3F008D45BC /* VPRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPRootViewController.xib; sourceTree = "<group>"; };
+		6750522A1E557517008D45BC /* VPScanDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPScanDeviceViewController.swift; sourceTree = "<group>"; };
+		67640D481E55C22E008D9D71 /* VPMessageRemindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPMessageRemindViewController.swift; sourceTree = "<group>"; };
+		67640D4B1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBaseFunctionRemindController.swift; sourceTree = "<group>"; };
+		67640D4E1E56CA04008D9D71 /* VPOterFunctionSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPOterFunctionSettingController.swift; sourceTree = "<group>"; };
+		67640D511E56D248008D9D71 /* VPSyncPersonalInformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSyncPersonalInformationController.swift; sourceTree = "<group>"; };
+		67640D521E56D248008D9D71 /* VPSyncPersonalInformationController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPSyncPersonalInformationController.xib; sourceTree = "<group>"; };
+		67640D551E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBloodPrivateSettingController.swift; sourceTree = "<group>"; };
+		67640D561E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPBloodPrivateSettingController.xib; sourceTree = "<group>"; };
+		67640D591E56EFA9008D9D71 /* VPLongSeatSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPLongSeatSettingController.swift; sourceTree = "<group>"; };
+		67640D5A1E56EFA9008D9D71 /* VPLongSeatSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPLongSeatSettingController.xib; sourceTree = "<group>"; };
+		67640D5E1E57E346008D9D71 /* VPAlarmClockSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPAlarmClockSettingController.swift; sourceTree = "<group>"; };
+		6783689F1E5814A600C3BCB8 /* VPHeartAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPHeartAlarmController.swift; sourceTree = "<group>"; };
+		678368A01E5814A600C3BCB8 /* VPHeartAlarmController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPHeartAlarmController.xib; sourceTree = "<group>"; };
+		678368A51E58264A00C3BCB8 /* VPTestHeartController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestHeartController.swift; sourceTree = "<group>"; };
+		678368A61E58264A00C3BCB8 /* VPTestHeartController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestHeartController.xib; sourceTree = "<group>"; };
+		678368AB1E58363200C3BCB8 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingScreenDurationController.swift; sourceTree = "<group>"; };
+		6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingScreenDurationController.xib; sourceTree = "<group>"; };
+		6786EDD1214BB0CA00E03882 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
+		679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPFemaleSelectView.swift; sourceTree = "<group>"; };
+		679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingFemaleRelatedController.swift; sourceTree = "<group>"; };
+		67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingScreenStyleController.swift; sourceTree = "<group>"; };
+		67A4D3491F71101A00DBB53E /* VPSettingScreenStyleController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPSettingScreenStyleController.xib; sourceTree = "<group>"; };
+		67B64E421EDFB5E8000549D6 /* VPTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPTest.h; sourceTree = "<group>"; };
+		67B64E431EDFB5E8000549D6 /* VPTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPTest.m; sourceTree = "<group>"; };
+		67B889EB1EFBAFBE00214EC5 /* ZCUIView+setRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ZCUIView+setRect.swift"; sourceTree = "<group>"; };
+		67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceCountDownController.swift; sourceTree = "<group>"; };
+		67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPDeviceCountDownController.xib; sourceTree = "<group>"; };
+		67CA3B5A1EF2649700203D20 /* VPCountDownSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPCountDownSelectView.swift; sourceTree = "<group>"; };
+		67CA3B6D1EF363C100203D20 /* VPDeviceNewAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceNewAlarmController.swift; sourceTree = "<group>"; };
+		67CA3B711EF3783A00203D20 /* VPNewAlarmCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPNewAlarmCell.swift; sourceTree = "<group>"; };
+		67CA3B721EF3783A00203D20 /* VPNewAlarmCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPNewAlarmCell.xib; sourceTree = "<group>"; };
+		67CA7E331EF3BAD5000D8745 /* VPEditNewAlarmController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPEditNewAlarmController.swift; sourceTree = "<group>"; };
+		67CA7E341EF3BAD5000D8745 /* VPEditNewAlarmController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPEditNewAlarmController.xib; sourceTree = "<group>"; };
+		67CB1CA71E52D26E00805649 /* VeepooBleSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeepooBleSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67CB1CAA1E52D26E00805649 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		67CB1CB11E52D26E00805649 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		67CB1CB41E52D26E00805649 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		67CB1CB61E52D26E00805649 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67CB1CBE1E52D49D00805649 /* VeepooBleSDK-Brigding-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "VeepooBleSDK-Brigding-Header.h"; path = "VeepooBleSDKDemo/VeepooBleSDK-Brigding-Header.h"; sourceTree = "<group>"; };
+		67FC22931E6560860029DED3 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		67FC22941E6560860029DED3 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		67FC22AF1E67FC660029DED3 /* VPRaiseHandSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPRaiseHandSettingController.swift; sourceTree = "<group>"; };
+		67FC22B01E67FC660029DED3 /* VPRaiseHandSettingController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPRaiseHandSettingController.xib; sourceTree = "<group>"; };
+		67FC22B31E6810F70029DED3 /* VPModifyPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPModifyPasswordController.swift; sourceTree = "<group>"; };
+		67FC22B41E6810F70029DED3 /* VPModifyPasswordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPModifyPasswordController.xib; sourceTree = "<group>"; };
+		67FC22B81E68FBEE0029DED3 /* VPTestOxygenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestOxygenController.swift; sourceTree = "<group>"; };
+		67FC22B91E68FBEE0029DED3 /* VPTestOxygenController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestOxygenController.xib; sourceTree = "<group>"; };
+		67FC22BD1E68FF7D0029DED3 /* VPTestFatigueController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestFatigueController.swift; sourceTree = "<group>"; };
+		67FC22BE1E68FF7D0029DED3 /* VPTestFatigueController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestFatigueController.xib; sourceTree = "<group>"; };
+		8ADCC1E39C7B06805F3E9386 /* Pods-VeepooBleSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeepooBleSDKDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VeepooBleSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		67CB1CA41E52D26E00805649 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
+				6786EDD2214BB0CB00E03882 /* VeepooBleSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		67057F991E655D830084D6AB /* VeepooTools */ = {
+			isa = PBXGroup;
+			children = (
+				67FC22931E6560860029DED3 /* MBProgressHUD.h */,
+				67FC22941E6560860029DED3 /* MBProgressHUD.m */,
+			);
+			path = VeepooTools;
+			sourceTree = "<group>";
+		};
+		675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				675052211E553CDD008D45BC /* VPBaseNavigationController.swift */,
+			);
+			path = VeepooBleSDKBaseViewController;
+			sourceTree = "<group>";
+		};
+		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				67640D501E56CF2E008D9D71 /* veepooSDKOtherControllers */,
+				675052241E553F3F008D45BC /* VPRootViewController.swift */,
+				675052251E553F3F008D45BC /* VPRootViewController.xib */,
+				6750522A1E557517008D45BC /* VPScanDeviceViewController.swift */,
+				67640D481E55C22E008D9D71 /* VPMessageRemindViewController.swift */,
+				67640D4B1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift */,
+				67640D4E1E56CA04008D9D71 /* VPOterFunctionSettingController.swift */,
+				678368A51E58264A00C3BCB8 /* VPTestHeartController.swift */,
+				678368A61E58264A00C3BCB8 /* VPTestHeartController.xib */,
+				672E08301E5D36ED00F60750 /* VPTestBloodController.swift */,
+				672E08311E5D36ED00F60750 /* VPTestBloodController.xib */,
+				67FC22B81E68FBEE0029DED3 /* VPTestOxygenController.swift */,
+				67FC22B91E68FBEE0029DED3 /* VPTestOxygenController.xib */,
+				67FC22BD1E68FF7D0029DED3 /* VPTestFatigueController.swift */,
+				67FC22BE1E68FF7D0029DED3 /* VPTestFatigueController.xib */,
+				672E08361E5D5CAE00F60750 /* VPTestSleepController.swift */,
+				672E08371E5D5CAE00F60750 /* VPTestSleepController.xib */,
+				672E08441E5E813300F60750 /* VPTestStepController.swift */,
+				672E08451E5E813300F60750 /* VPTestStepController.xib */,
+				672E08581E5ED92F00F60750 /* VPDFUController.swift */,
+				672E08591E5ED92F00F60750 /* VPDFUController.xib */,
+			);
+			path = VeepooSDKViewControllers;
+			sourceTree = "<group>";
+		};
+		67640D501E56CF2E008D9D71 /* veepooSDKOtherControllers */ = {
+			isa = PBXGroup;
+			children = (
+				67CA7E311EF386F6000D8745 /* veepooSDKOtherSubControllers */,
+				67640D511E56D248008D9D71 /* VPSyncPersonalInformationController.swift */,
+				67640D521E56D248008D9D71 /* VPSyncPersonalInformationController.xib */,
+				67640D551E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift */,
+				67640D561E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib */,
+				67640D591E56EFA9008D9D71 /* VPLongSeatSettingController.swift */,
+				67640D5A1E56EFA9008D9D71 /* VPLongSeatSettingController.xib */,
+				67FC22AF1E67FC660029DED3 /* VPRaiseHandSettingController.swift */,
+				67FC22B01E67FC660029DED3 /* VPRaiseHandSettingController.xib */,
+				67640D5E1E57E346008D9D71 /* VPAlarmClockSettingController.swift */,
+				6783689F1E5814A600C3BCB8 /* VPHeartAlarmController.swift */,
+				678368A01E5814A600C3BCB8 /* VPHeartAlarmController.xib */,
+				672E084A1E5EC2FE00F60750 /* VPTakePhotoController.swift */,
+				672E084B1E5EC2FE00F60750 /* VPTakePhotoController.xib */,
+				67FC22B31E6810F70029DED3 /* VPModifyPasswordController.swift */,
+				67FC22B41E6810F70029DED3 /* VPModifyPasswordController.xib */,
+				6707B09F1E72504A00207523 /* VPSettingBrightController.swift */,
+				6707B0A01E72504A00207523 /* VPSettingBrightController.xib */,
+				679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */,
+				67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */,
+				67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */,
+				67CA3B6D1EF363C100203D20 /* VPDeviceNewAlarmController.swift */,
+				67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */,
+				67A4D3491F71101A00DBB53E /* VPSettingScreenStyleController.xib */,
+				6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */,
+				6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */,
+			);
+			path = veepooSDKOtherControllers;
+			sourceTree = "<group>";
+		};
+		678368AA1E58361400C3BCB8 /* VeepooExtension */ = {
+			isa = PBXGroup;
+			children = (
+				678368AB1E58363200C3BCB8 /* StringExtension.swift */,
+				67B889EB1EFBAFBE00214EC5 /* ZCUIView+setRect.swift */,
+			);
+			path = VeepooExtension;
+			sourceTree = "<group>";
+		};
+		6786EDD0214BB0CA00E03882 /* 0.0.1.0 */ = {
+			isa = PBXGroup;
+			children = (
+				6786EDD1214BB0CA00E03882 /* VeepooBleSDK.framework */,
+			);
+			path = 0.0.1.0;
+			sourceTree = "<group>";
+		};
+		679A218A1EF103A200518B15 /* VeepooViews */ = {
+			isa = PBXGroup;
+			children = (
+				679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */,
+				67CA3B5A1EF2649700203D20 /* VPCountDownSelectView.swift */,
+			);
+			path = VeepooViews;
+			sourceTree = "<group>";
+		};
+		67CA3B701EF3774700203D20 /* VPTabelViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				67CA3B711EF3783A00203D20 /* VPNewAlarmCell.swift */,
+				67CA3B721EF3783A00203D20 /* VPNewAlarmCell.xib */,
+			);
+			path = VPTabelViewCells;
+			sourceTree = "<group>";
+		};
+		67CA7E311EF386F6000D8745 /* veepooSDKOtherSubControllers */ = {
+			isa = PBXGroup;
+			children = (
+				67CA7E331EF3BAD5000D8745 /* VPEditNewAlarmController.swift */,
+				67CA7E341EF3BAD5000D8745 /* VPEditNewAlarmController.xib */,
+			);
+			path = veepooSDKOtherSubControllers;
+			sourceTree = "<group>";
+		};
+		67CB1C9E1E52D26E00805649 = {
+			isa = PBXGroup;
+			children = (
+				67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */,
+				67CB1CA81E52D26E00805649 /* Products */,
+				67CB1CBE1E52D49D00805649 /* VeepooBleSDK-Brigding-Header.h */,
+				E04CD0EEF90AE6C14CB53AB6 /* Pods */,
+				D7CAD296DC5D9076F1028FA8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		67CB1CA81E52D26E00805649 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				67CB1CA71E52D26E00805649 /* VeepooBleSDKDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
+			isa = PBXGroup;
+			children = (
+				6786EDD0214BB0CA00E03882 /* 0.0.1.0 */,
+				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
+				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
+				67057F991E655D830084D6AB /* VeepooTools */,
+				67CA3B701EF3774700203D20 /* VPTabelViewCells */,
+				679A218A1EF103A200518B15 /* VeepooViews */,
+				67CB1CAA1E52D26E00805649 /* AppDelegate.swift */,
+				678368AA1E58361400C3BCB8 /* VeepooExtension */,
+				67CB1CB11E52D26E00805649 /* Assets.xcassets */,
+				67CB1CB31E52D26E00805649 /* LaunchScreen.storyboard */,
+				67CB1CB61E52D26E00805649 /* Info.plist */,
+				67B64E421EDFB5E8000549D6 /* VPTest.h */,
+				67B64E431EDFB5E8000549D6 /* VPTest.m */,
+			);
+			path = VeepooBleSDKDemo;
+			sourceTree = "<group>";
+		};
+		D7CAD296DC5D9076F1028FA8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E04CD0EEF90AE6C14CB53AB6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8ADCC1E39C7B06805F3E9386 /* Pods-VeepooBleSDKDemo.debug.xcconfig */,
+				2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		67CB1CA61E52D26E00805649 /* VeepooBleSDKDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67CB1CB91E52D26E00805649 /* Build configuration list for PBXNativeTarget "VeepooBleSDKDemo" */;
+			buildPhases = (
+				9008D6A8C6EF4C9C4EB3BC08 /* [CP] Check Pods Manifest.lock */,
+				67CB1CA31E52D26E00805649 /* Sources */,
+				67CB1CA41E52D26E00805649 /* Frameworks */,
+				67CB1CA51E52D26E00805649 /* Resources */,
+				386793E3EB2AC5A868B17AF0 /* [CP] Embed Pods Frameworks */,
+				46EC06BBC82DCEBB3DEC2071 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VeepooBleSDKDemo;
+			productName = VeepooBleSDKDemo;
+			productReference = 67CB1CA71E52D26E00805649 /* VeepooBleSDKDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		67CB1C9F1E52D26E00805649 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = VP;
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = veepoo;
+				TargetAttributes = {
+					67CB1CA61E52D26E00805649 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4E8S34J8UT;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 67CB1CA21E52D26E00805649 /* Build configuration list for PBXProject "VeepooBleSDKDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 67CB1C9E1E52D26E00805649;
+			productRefGroup = 67CB1CA81E52D26E00805649 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				67CB1CA61E52D26E00805649 /* VeepooBleSDKDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		67CB1CA51E52D26E00805649 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67FC22C01E68FF7D0029DED3 /* VPTestFatigueController.xib in Resources */,
+				678368A81E58264A00C3BCB8 /* VPTestHeartController.xib in Resources */,
+				67CB1CB51E52D26E00805649 /* LaunchScreen.storyboard in Resources */,
+				67FC22B61E6810F70029DED3 /* VPModifyPasswordController.xib in Resources */,
+				67640D541E56D248008D9D71 /* VPSyncPersonalInformationController.xib in Resources */,
+				67CA7E361EF3BAD5000D8745 /* VPEditNewAlarmController.xib in Resources */,
+				675052271E553F3F008D45BC /* VPRootViewController.xib in Resources */,
+				67CB1CB21E52D26E00805649 /* Assets.xcassets in Resources */,
+				672E08391E5D5CAE00F60750 /* VPTestSleepController.xib in Resources */,
+				67CA3B741EF3783A00203D20 /* VPNewAlarmCell.xib in Resources */,
+				67640D581E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib in Resources */,
+				672E08471E5E813300F60750 /* VPTestStepController.xib in Resources */,
+				672E08331E5D36ED00F60750 /* VPTestBloodController.xib in Resources */,
+				67CA3B591EF25AB500203D20 /* VPDeviceCountDownController.xib in Resources */,
+				678368A21E5814A600C3BCB8 /* VPHeartAlarmController.xib in Resources */,
+				6707B0A21E72504A00207523 /* VPSettingBrightController.xib in Resources */,
+				67FC22B21E67FC660029DED3 /* VPRaiseHandSettingController.xib in Resources */,
+				67640D5C1E56EFA9008D9D71 /* VPLongSeatSettingController.xib in Resources */,
+				67A4D34B1F71101A00DBB53E /* VPSettingScreenStyleController.xib in Resources */,
+				672E084D1E5EC2FE00F60750 /* VPTakePhotoController.xib in Resources */,
+				672E085B1E5ED92F00F60750 /* VPDFUController.xib in Resources */,
+				6786EDC0214B620C00E03882 /* VPSettingScreenDurationController.xib in Resources */,
+				67FC22BB1E68FBEE0029DED3 /* VPTestOxygenController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		386793E3EB2AC5A868B17AF0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/Zip/Zip.framework",
+				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		46EC06BBC82DCEBB3DEC2071 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9008D6A8C6EF4C9C4EB3BC08 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VeepooBleSDKDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		67CB1CA31E52D26E00805649 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */,
+				672E08461E5E813300F60750 /* VPTestStepController.swift in Sources */,
+				672E08321E5D36ED00F60750 /* VPTestBloodController.swift in Sources */,
+				67640D571E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift in Sources */,
+				67FC22BA1E68FBEE0029DED3 /* VPTestOxygenController.swift in Sources */,
+				67B64E441EDFB5E8000549D6 /* VPTest.m in Sources */,
+				67CA7E351EF3BAD5000D8745 /* VPEditNewAlarmController.swift in Sources */,
+				67CA3B581EF25AB500203D20 /* VPDeviceCountDownController.swift in Sources */,
+				679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */,
+				67B889EC1EFBAFBE00214EC5 /* ZCUIView+setRect.swift in Sources */,
+				675052221E553CDD008D45BC /* VPBaseNavigationController.swift in Sources */,
+				678368A11E5814A600C3BCB8 /* VPHeartAlarmController.swift in Sources */,
+				6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */,
+				679EA6B31EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift in Sources */,
+				67640D4C1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift in Sources */,
+				67CA3B731EF3783A00203D20 /* VPNewAlarmCell.swift in Sources */,
+				675052261E553F3F008D45BC /* VPRootViewController.swift in Sources */,
+				67FC22951E6560860029DED3 /* MBProgressHUD.m in Sources */,
+				6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */,
+				67FC22B11E67FC660029DED3 /* VPRaiseHandSettingController.swift in Sources */,
+				678368A71E58264A00C3BCB8 /* VPTestHeartController.swift in Sources */,
+				67A4D34A1F71101A00DBB53E /* VPSettingScreenStyleController.swift in Sources */,
+				67640D5B1E56EFA9008D9D71 /* VPLongSeatSettingController.swift in Sources */,
+				67FC22B51E6810F70029DED3 /* VPModifyPasswordController.swift in Sources */,
+				672E08381E5D5CAE00F60750 /* VPTestSleepController.swift in Sources */,
+				67CA3B6E1EF363C100203D20 /* VPDeviceNewAlarmController.swift in Sources */,
+				67FC22BF1E68FF7D0029DED3 /* VPTestFatigueController.swift in Sources */,
+				672E084C1E5EC2FE00F60750 /* VPTakePhotoController.swift in Sources */,
+				678368AC1E58363200C3BCB8 /* StringExtension.swift in Sources */,
+				67CB1CAB1E52D26E00805649 /* AppDelegate.swift in Sources */,
+				672E085A1E5ED92F00F60750 /* VPDFUController.swift in Sources */,
+				67640D531E56D248008D9D71 /* VPSyncPersonalInformationController.swift in Sources */,
+				67640D601E57E346008D9D71 /* VPAlarmClockSettingController.swift in Sources */,
+				67640D4F1E56CA04008D9D71 /* VPOterFunctionSettingController.swift in Sources */,
+				67CA3B5B1EF2649700203D20 /* VPCountDownSelectView.swift in Sources */,
+				67640D491E55C22E008D9D71 /* VPMessageRemindViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		67CB1CB31E52D26E00805649 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67CB1CB41E52D26E00805649 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		67CB1CB71E52D26E00805649 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		67CB1CB81E52D26E00805649 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		67CB1CBA1E52D26E00805649 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8ADCC1E39C7B06805F3E9386 /* Pods-VeepooBleSDKDemo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4E8S34J8UT;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VeepooBleSDKDemo",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/VeepooBleSDKDemo/0.0.0.1",
+					"$(PROJECT_DIR)/VeepooBleSDKDemo/0.0.1.0",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VeepooBleSDKDemo/VeepooBleSDK-Brigding-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		67CB1CBB1E52D26E00805649 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 4E8S34J8UT;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VeepooBleSDKDemo",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/VeepooBleSDKDemo/0.0.0.1",
+					"$(PROJECT_DIR)/VeepooBleSDKDemo/0.0.1.0",
+				);
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VeepooBleSDKDemo/VeepooBleSDK-Brigding-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		67CB1CA21E52D26E00805649 /* Build configuration list for PBXProject "VeepooBleSDKDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67CB1CB71E52D26E00805649 /* Debug */,
+				67CB1CB81E52D26E00805649 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67CB1CB91E52D26E00805649 /* Build configuration list for PBXNativeTarget "VeepooBleSDKDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67CB1CBA1E52D26E00805649 /* Debug */,
+				67CB1CBB1E52D26E00805649 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 67CB1C9F1E52D26E00805649 /* Project object */;
+}

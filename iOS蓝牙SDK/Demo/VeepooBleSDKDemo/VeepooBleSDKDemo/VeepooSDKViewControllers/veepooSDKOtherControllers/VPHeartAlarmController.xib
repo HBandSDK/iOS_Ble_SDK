@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPHeartAlarmController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="heartAlarmStateLabel" destination="d0x-89-eij" id="g0R-dl-wQG"/>
+                <outlet property="heartMaxLabel" destination="2uz-s2-VgQ" id="tmH-7c-tdF"/>
+                <outlet property="heartMaxSlider" destination="3Ei-i0-ykH" id="tVE-we-k0K"/>
+                <outlet property="heartMinLabel" destination="9pl-TZ-dhD" id="rnf-gk-ExB"/>
+                <outlet property="heartMinSlider" destination="SsS-ab-CIG" id="CGI-QK-Q9a"/>
+                <outlet property="heartStateSegControl" destination="mqh-la-vd7" id="YWc-jI-C84"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="心率上限:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uz-s2-VgQ">
+                    <rect key="frame" x="16" y="94" width="102" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="EXE-ps-w7p"/>
+                        <constraint firstAttribute="width" constant="102" id="yVr-kU-KIO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="80" minValue="80" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="3Ei-i0-ykH">
+                    <rect key="frame" x="124" y="90" width="237" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="gyk-M6-JBU"/>
+                    </constraints>
+                    <connections>
+                        <action selector="heartSliderChangeValueAction:" destination="-1" eventType="valueChanged" id="cDT-PP-04D"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="心率下限:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pl-TZ-dhD">
+                    <rect key="frame" x="16" y="140" width="102" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="30" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="SsS-ab-CIG">
+                    <rect key="frame" x="124" y="136" width="237" height="31"/>
+                    <connections>
+                        <action selector="heartSliderChangeValueAction:" destination="-1" eventType="valueChanged" id="G3T-bB-fN5"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="状态:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0x-89-eij">
+                    <rect key="frame" x="16" y="186" width="102" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mqh-la-vd7">
+                    <rect key="frame" x="126" y="182" width="121" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="ZGn-qp-wMB"/>
+                        <constraint firstAttribute="width" constant="121" id="ciR-do-zWb"/>
+                    </constraints>
+                    <segments>
+                        <segment title="关闭"/>
+                        <segment title="开启"/>
+                    </segments>
+                    <connections>
+                        <action selector="heartStateChangeAction:" destination="-1" eventType="valueChanged" id="Qne-tx-bo6"/>
+                    </connections>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LgT-PO-Tbj">
+                    <rect key="frame" x="16" y="240" width="343" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="VMy-8C-Dfk"/>
+                    </constraints>
+                    <state key="normal" title="开始设置"/>
+                    <connections>
+                        <action selector="startSettingHeartAlarmAction:" destination="-1" eventType="touchUpInside" id="Ekb-mF-asK"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="d0x-89-eij" firstAttribute="height" secondItem="9pl-TZ-dhD" secondAttribute="height" id="4zz-rt-37a"/>
+                <constraint firstAttribute="trailing" secondItem="3Ei-i0-ykH" secondAttribute="trailing" constant="16" id="5uh-Ao-3LS"/>
+                <constraint firstItem="mqh-la-vd7" firstAttribute="centerY" secondItem="d0x-89-eij" secondAttribute="centerY" id="7GK-zi-7l1"/>
+                <constraint firstItem="9pl-TZ-dhD" firstAttribute="trailing" secondItem="2uz-s2-VgQ" secondAttribute="trailing" id="Dj9-Nc-KhD"/>
+                <constraint firstItem="2uz-s2-VgQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="HHP-bv-YJd"/>
+                <constraint firstItem="3Ei-i0-ykH" firstAttribute="centerY" secondItem="2uz-s2-VgQ" secondAttribute="centerY" id="HLD-EE-PbB"/>
+                <constraint firstItem="d0x-89-eij" firstAttribute="top" secondItem="9pl-TZ-dhD" secondAttribute="bottom" constant="25" id="JMG-bC-CBF"/>
+                <constraint firstAttribute="trailing" secondItem="LgT-PO-Tbj" secondAttribute="trailing" constant="16" id="KOc-qH-17b"/>
+                <constraint firstItem="SsS-ab-CIG" firstAttribute="centerY" secondItem="9pl-TZ-dhD" secondAttribute="centerY" id="NJ8-xD-txO"/>
+                <constraint firstItem="d0x-89-eij" firstAttribute="trailing" secondItem="9pl-TZ-dhD" secondAttribute="trailing" id="RVT-tX-wgc"/>
+                <constraint firstItem="LgT-PO-Tbj" firstAttribute="top" secondItem="mqh-la-vd7" secondAttribute="bottom" constant="30" id="ULo-PH-ZFd"/>
+                <constraint firstItem="3Ei-i0-ykH" firstAttribute="leading" secondItem="2uz-s2-VgQ" secondAttribute="trailing" constant="8" id="XgM-F7-QVi"/>
+                <constraint firstItem="9pl-TZ-dhD" firstAttribute="height" secondItem="2uz-s2-VgQ" secondAttribute="height" id="a3p-yB-1hO"/>
+                <constraint firstItem="2uz-s2-VgQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="hnT-Us-mdE"/>
+                <constraint firstItem="SsS-ab-CIG" firstAttribute="leading" secondItem="3Ei-i0-ykH" secondAttribute="leading" id="o4q-JH-R3P"/>
+                <constraint firstItem="9pl-TZ-dhD" firstAttribute="top" secondItem="2uz-s2-VgQ" secondAttribute="bottom" constant="25" id="sIx-RA-2KQ"/>
+                <constraint firstItem="LgT-PO-Tbj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="tGF-YU-3fk"/>
+                <constraint firstItem="mqh-la-vd7" firstAttribute="leading" secondItem="SsS-ab-CIG" secondAttribute="leading" id="vEJ-Vv-Zbb"/>
+                <constraint firstItem="SsS-ab-CIG" firstAttribute="trailing" secondItem="3Ei-i0-ykH" secondAttribute="trailing" id="vbr-aW-ilW"/>
+                <constraint firstItem="9pl-TZ-dhD" firstAttribute="leading" secondItem="2uz-s2-VgQ" secondAttribute="leading" id="yt7-gP-e8w"/>
+                <constraint firstItem="d0x-89-eij" firstAttribute="leading" secondItem="9pl-TZ-dhD" secondAttribute="leading" id="zO9-v9-gIB"/>
+            </constraints>
+            <point key="canvasLocation" x="36.5" y="59.5"/>
+        </view>
+    </objects>
+</document>

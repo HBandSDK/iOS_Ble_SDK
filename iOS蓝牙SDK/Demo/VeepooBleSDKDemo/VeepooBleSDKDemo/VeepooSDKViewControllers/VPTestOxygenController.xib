@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPTestOxygenController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="currentOxygenValueLabel" destination="o1b-fC-IMR" id="ZFf-Jp-93Y"/>
+                <outlet property="currentRateValueLabel" destination="sp0-Zs-hfz" id="F3c-4M-OGf"/>
+                <outlet property="testOxygenBtn" destination="0g8-Qz-wwF" id="m77-yC-Z4h"/>
+                <outlet property="testRateBtn" destination="wgQ-X1-LWm" id="7D8-rP-ADg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前血氧:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o1b-fC-IMR">
+                    <rect key="frame" x="40" y="120" width="295" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="0Ed-O4-nUF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0g8-Qz-wwF">
+                    <rect key="frame" x="151" y="181" width="72" height="30"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Ocq-QX-JvC"/>
+                        <constraint firstAttribute="width" constant="72" id="vjL-42-dMQ"/>
+                    </constraints>
+                    <state key="normal" title="开始测试"/>
+                    <state key="selected" title="结束测试"/>
+                    <connections>
+                        <action selector="startTestOxygenAction:" destination="-1" eventType="touchUpInside" id="4Pl-l8-ahR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgQ-X1-LWm">
+                    <rect key="frame" x="151" y="341" width="72" height="30"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="开始测试"/>
+                    <state key="selected" title="结束测试"/>
+                    <connections>
+                        <action selector="startTestRateAction:" destination="-1" eventType="touchUpInside" id="QyL-ex-abs"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前呼吸率:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sp0-Zs-hfz">
+                    <rect key="frame" x="40" y="291" width="200" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="CYA-d0-xKa"/>
+                        <constraint firstAttribute="width" constant="200" id="bNm-kE-qt1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="o1b-fC-IMR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="120" id="1c3-9k-18P"/>
+                <constraint firstAttribute="trailing" secondItem="o1b-fC-IMR" secondAttribute="trailing" constant="40" id="Ewa-eg-1DF"/>
+                <constraint firstItem="sp0-Zs-hfz" firstAttribute="top" secondItem="o1b-fC-IMR" secondAttribute="bottom" constant="150" id="HQN-4F-pku"/>
+                <constraint firstItem="0g8-Qz-wwF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Mdc-aT-B0X"/>
+                <constraint firstItem="wgQ-X1-LWm" firstAttribute="width" secondItem="0g8-Qz-wwF" secondAttribute="width" id="Mjz-Zy-rL1"/>
+                <constraint firstItem="sp0-Zs-hfz" firstAttribute="leading" secondItem="o1b-fC-IMR" secondAttribute="leading" id="Sjs-M5-GmX"/>
+                <constraint firstItem="wgQ-X1-LWm" firstAttribute="top" secondItem="0g8-Qz-wwF" secondAttribute="bottom" constant="130" id="UDy-4d-PdX"/>
+                <constraint firstItem="wgQ-X1-LWm" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="hIM-vy-WYE"/>
+                <constraint firstItem="o1b-fC-IMR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="rWb-ff-PWc"/>
+                <constraint firstItem="wgQ-X1-LWm" firstAttribute="height" secondItem="0g8-Qz-wwF" secondAttribute="height" id="u12-Cw-SNV"/>
+                <constraint firstItem="0g8-Qz-wwF" firstAttribute="top" secondItem="o1b-fC-IMR" secondAttribute="bottom" constant="40" id="yt3-KH-LT7"/>
+            </constraints>
+            <point key="canvasLocation" x="26.5" y="52.5"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPLongSeatSettingController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="endHourLabel" destination="7Uk-A0-DaG" id="3K8-zv-lQS"/>
+                <outlet property="endHourSlider" destination="E0a-fk-ahJ" id="oAG-nc-ott"/>
+                <outlet property="endMinuteLabel" destination="iUN-0x-eo5" id="qVv-R0-d1P"/>
+                <outlet property="endMinuteSlider" destination="4XX-mf-2MJ" id="siu-F2-Sl2"/>
+                <outlet property="howLongRemindLabel" destination="jpG-u3-saa" id="UqG-5g-Awa"/>
+                <outlet property="howLongRemindSlider" destination="YrJ-w2-1ln" id="85e-lE-zJ0"/>
+                <outlet property="startHourLabel" destination="MLz-no-10E" id="XOp-ac-JOc"/>
+                <outlet property="startHourSlider" destination="S1c-uS-2pc" id="fOk-Ya-A98"/>
+                <outlet property="startMinuteLabel" destination="eBV-hb-JSp" id="lYu-K7-hxy"/>
+                <outlet property="startMinuteSlider" destination="XlJ-l9-au5" id="Bh0-z5-YGR"/>
+                <outlet property="stateLabel" destination="WZv-07-X7R" id="Yly-J6-15H"/>
+                <outlet property="stateSegControl" destination="koH-gl-E6g" id="JwZ-lw-yro"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起始小时：0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="MLz-no-10E">
+                    <rect key="frame" x="16" y="94" width="90" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="alm-1Z-RVj"/>
+                        <constraint firstAttribute="height" constant="21" id="hQI-dx-AMh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="23" translatesAutoresizingMaskIntoConstraints="NO" id="S1c-uS-2pc">
+                    <rect key="frame" x="112" y="90" width="249" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="C2a-Mp-Aag"/>
+                    </constraints>
+                    <connections>
+                        <action selector="sliderValueChangedAction:" destination="-1" eventType="valueChanged" id="naT-6S-iLh"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起始分钟：0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="eBV-hb-JSp">
+                    <rect key="frame" x="16" y="140" width="90" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="59" translatesAutoresizingMaskIntoConstraints="NO" id="XlJ-l9-au5">
+                    <rect key="frame" x="112" y="136" width="249" height="31"/>
+                    <connections>
+                        <action selector="sliderValueChangedAction:" destination="-1" eventType="valueChanged" id="ZHJ-d8-cDz"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="结束小时：0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="7Uk-A0-DaG">
+                    <rect key="frame" x="16" y="186" width="90" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="23" translatesAutoresizingMaskIntoConstraints="NO" id="E0a-fk-ahJ">
+                    <rect key="frame" x="112" y="182" width="249" height="31"/>
+                    <connections>
+                        <action selector="sliderValueChangedAction:" destination="-1" eventType="valueChanged" id="1Kg-MZ-Gmc"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="结束分钟：0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="iUN-0x-eo5">
+                    <rect key="frame" x="16" y="232" width="90" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="59" translatesAutoresizingMaskIntoConstraints="NO" id="4XX-mf-2MJ">
+                    <rect key="frame" x="112" y="228" width="249" height="31"/>
+                    <connections>
+                        <action selector="sliderValueChangedAction:" destination="-1" eventType="valueChanged" id="DfM-X8-AX8"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="多久提醒：0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="jpG-u3-saa">
+                    <rect key="frame" x="16" y="278" width="90" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="YrJ-w2-1ln">
+                    <rect key="frame" x="112" y="274" width="249" height="31"/>
+                    <connections>
+                        <action selector="sliderValueChangedAction:" destination="-1" eventType="valueChanged" id="boh-AL-nNT"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="状态：关闭" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="WZv-07-X7R">
+                    <rect key="frame" x="16" y="324" width="90" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="koH-gl-E6g">
+                    <rect key="frame" x="114" y="321" width="127" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="127" id="NvB-vJ-lld"/>
+                        <constraint firstAttribute="height" constant="28" id="h4m-fv-VjG"/>
+                    </constraints>
+                    <segments>
+                        <segment title="关闭"/>
+                        <segment title="开启"/>
+                    </segments>
+                    <connections>
+                        <action selector="stateChangedAction:" destination="-1" eventType="valueChanged" id="yik-jA-clO"/>
+                    </connections>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YD1-bR-wqa">
+                    <rect key="frame" x="16" y="379" width="343" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="sBr-5X-Rva"/>
+                    </constraints>
+                    <state key="normal" title="开始设置"/>
+                    <connections>
+                        <action selector="startSettingLongseatAction:" destination="-1" eventType="touchUpInside" id="gRb-T9-g0T"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="MLz-no-10E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="0YF-BQ-9h8"/>
+                <constraint firstItem="WZv-07-X7R" firstAttribute="top" secondItem="jpG-u3-saa" secondAttribute="bottom" constant="25" id="0uP-aD-Cj8"/>
+                <constraint firstItem="eBV-hb-JSp" firstAttribute="centerX" secondItem="MLz-no-10E" secondAttribute="centerX" id="2rh-jE-Vh3"/>
+                <constraint firstItem="XlJ-l9-au5" firstAttribute="trailing" secondItem="S1c-uS-2pc" secondAttribute="trailing" id="4on-kh-y8e"/>
+                <constraint firstItem="WZv-07-X7R" firstAttribute="height" secondItem="jpG-u3-saa" secondAttribute="height" id="4xV-cR-ybP"/>
+                <constraint firstItem="4XX-mf-2MJ" firstAttribute="leading" secondItem="E0a-fk-ahJ" secondAttribute="leading" id="6T8-65-IvJ"/>
+                <constraint firstItem="YrJ-w2-1ln" firstAttribute="height" secondItem="4XX-mf-2MJ" secondAttribute="height" id="6oi-bn-xtb"/>
+                <constraint firstItem="E0a-fk-ahJ" firstAttribute="leading" secondItem="XlJ-l9-au5" secondAttribute="leading" id="7AW-dj-ec1"/>
+                <constraint firstItem="7Uk-A0-DaG" firstAttribute="height" secondItem="eBV-hb-JSp" secondAttribute="height" id="7Zv-LM-scu"/>
+                <constraint firstItem="E0a-fk-ahJ" firstAttribute="trailing" secondItem="XlJ-l9-au5" secondAttribute="trailing" id="8aE-bu-xgC"/>
+                <constraint firstItem="eBV-hb-JSp" firstAttribute="height" secondItem="MLz-no-10E" secondAttribute="height" id="B5e-MR-eK6"/>
+                <constraint firstItem="WZv-07-X7R" firstAttribute="width" secondItem="jpG-u3-saa" secondAttribute="width" id="C6I-EI-c70"/>
+                <constraint firstItem="4XX-mf-2MJ" firstAttribute="height" secondItem="E0a-fk-ahJ" secondAttribute="height" id="CNe-gr-OmG"/>
+                <constraint firstItem="XlJ-l9-au5" firstAttribute="centerY" secondItem="eBV-hb-JSp" secondAttribute="centerY" id="F3E-2m-ty8"/>
+                <constraint firstItem="koH-gl-E6g" firstAttribute="centerY" secondItem="WZv-07-X7R" secondAttribute="centerY" id="Gbh-z3-DQN"/>
+                <constraint firstItem="E0a-fk-ahJ" firstAttribute="centerY" secondItem="7Uk-A0-DaG" secondAttribute="centerY" id="GgA-Xj-BfL"/>
+                <constraint firstItem="MLz-no-10E" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="94" id="Gvb-zJ-B8C"/>
+                <constraint firstItem="7Uk-A0-DaG" firstAttribute="top" secondItem="eBV-hb-JSp" secondAttribute="bottom" constant="25" id="H6o-fR-8JZ"/>
+                <constraint firstItem="jpG-u3-saa" firstAttribute="width" secondItem="iUN-0x-eo5" secondAttribute="width" id="IPR-6c-QLT"/>
+                <constraint firstItem="S1c-uS-2pc" firstAttribute="leading" secondItem="MLz-no-10E" secondAttribute="trailing" constant="8" id="Qd9-M5-hFS"/>
+                <constraint firstItem="4XX-mf-2MJ" firstAttribute="centerY" secondItem="iUN-0x-eo5" secondAttribute="centerY" id="TBw-Lc-HNF"/>
+                <constraint firstItem="YrJ-w2-1ln" firstAttribute="leading" secondItem="4XX-mf-2MJ" secondAttribute="leading" id="TI3-RR-5va"/>
+                <constraint firstItem="jpG-u3-saa" firstAttribute="height" secondItem="iUN-0x-eo5" secondAttribute="height" id="U7w-iC-fjM"/>
+                <constraint firstItem="iUN-0x-eo5" firstAttribute="centerX" secondItem="7Uk-A0-DaG" secondAttribute="centerX" id="Vld-WM-u9i"/>
+                <constraint firstItem="iUN-0x-eo5" firstAttribute="width" secondItem="7Uk-A0-DaG" secondAttribute="width" id="WsP-Ua-k2h"/>
+                <constraint firstAttribute="trailing" secondItem="S1c-uS-2pc" secondAttribute="trailing" constant="16" id="Xfi-jk-7Me"/>
+                <constraint firstItem="S1c-uS-2pc" firstAttribute="centerY" secondItem="MLz-no-10E" secondAttribute="centerY" id="XhN-p1-tWD"/>
+                <constraint firstItem="eBV-hb-JSp" firstAttribute="top" secondItem="MLz-no-10E" secondAttribute="bottom" constant="25" id="YIn-PB-TfY"/>
+                <constraint firstItem="YrJ-w2-1ln" firstAttribute="trailing" secondItem="4XX-mf-2MJ" secondAttribute="trailing" id="ZEl-Ri-DAX"/>
+                <constraint firstItem="jpG-u3-saa" firstAttribute="top" secondItem="iUN-0x-eo5" secondAttribute="bottom" constant="25" id="a3V-W9-p5Z"/>
+                <constraint firstItem="eBV-hb-JSp" firstAttribute="width" secondItem="MLz-no-10E" secondAttribute="width" id="c1z-Ug-wJL"/>
+                <constraint firstItem="koH-gl-E6g" firstAttribute="leading" secondItem="YrJ-w2-1ln" secondAttribute="leading" id="cCK-zk-kL6"/>
+                <constraint firstItem="YD1-bR-wqa" firstAttribute="top" secondItem="koH-gl-E6g" secondAttribute="bottom" constant="30" id="dHn-nU-oBt"/>
+                <constraint firstItem="iUN-0x-eo5" firstAttribute="top" secondItem="7Uk-A0-DaG" secondAttribute="bottom" constant="25" id="eAw-3l-RTY"/>
+                <constraint firstItem="7Uk-A0-DaG" firstAttribute="width" secondItem="eBV-hb-JSp" secondAttribute="width" id="eLK-mB-QIT"/>
+                <constraint firstItem="7Uk-A0-DaG" firstAttribute="centerX" secondItem="eBV-hb-JSp" secondAttribute="centerX" id="fAe-eI-IKJ"/>
+                <constraint firstItem="YrJ-w2-1ln" firstAttribute="centerY" secondItem="jpG-u3-saa" secondAttribute="centerY" id="gKD-mz-Uhb"/>
+                <constraint firstItem="XlJ-l9-au5" firstAttribute="leading" secondItem="S1c-uS-2pc" secondAttribute="leading" id="hUj-WR-e6J"/>
+                <constraint firstAttribute="trailing" secondItem="YD1-bR-wqa" secondAttribute="trailing" constant="16" id="huh-Nf-wnQ"/>
+                <constraint firstItem="WZv-07-X7R" firstAttribute="centerX" secondItem="jpG-u3-saa" secondAttribute="centerX" id="oCH-49-t2D"/>
+                <constraint firstItem="jpG-u3-saa" firstAttribute="centerX" secondItem="iUN-0x-eo5" secondAttribute="centerX" id="r3C-yX-JY1"/>
+                <constraint firstItem="4XX-mf-2MJ" firstAttribute="trailing" secondItem="E0a-fk-ahJ" secondAttribute="trailing" id="rdz-c9-SLA"/>
+                <constraint firstItem="XlJ-l9-au5" firstAttribute="height" secondItem="S1c-uS-2pc" secondAttribute="height" id="sYH-BR-bNj"/>
+                <constraint firstItem="E0a-fk-ahJ" firstAttribute="height" secondItem="XlJ-l9-au5" secondAttribute="height" id="uGr-jx-W8S"/>
+                <constraint firstItem="iUN-0x-eo5" firstAttribute="height" secondItem="7Uk-A0-DaG" secondAttribute="height" id="vK6-SE-LMU"/>
+                <constraint firstItem="YD1-bR-wqa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="wwL-xJ-xCW"/>
+            </constraints>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+</document>
