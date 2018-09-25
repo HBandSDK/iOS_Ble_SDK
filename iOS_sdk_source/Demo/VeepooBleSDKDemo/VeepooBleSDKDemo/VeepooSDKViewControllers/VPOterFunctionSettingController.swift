@@ -9,14 +9,14 @@
 import UIKit
 
 class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate , UITableViewDataSource{
-
+    
     let otherFunctionSettingCellID = "otherFunctionSettingCellID"
     
     var otherFunctionSettingTableView: UITableView?
     
     let otherFunctions = ["同步个人信息","闹钟设置","血压私人模式设置","久坐提醒设置","心率报警设置","拍照功能","与手机配对","翻腕亮屏","修改密码","亮度调节","女性设置","倒计时功能","新闹钟设置","彩屏样式设置","亮屏时长"]
     
-    let otherControllers = ["VPSyncPersonalInformationController","VPAlarmClockSettingController","VPBloodPrivateSettingController","VPLongSeatSettingController","VPHeartAlarmController","VPTakePhotoController","与手机配对","VPRaiseHandSettingController","VPModifyPasswordController","VPSettingBrightController","VPSettingFemaleRelatedController","VPDeviceCountDownController","VPDeviceNewAlarmController","VPSettingScreenStyleController"]
+    let otherControllers = ["VPSyncPersonalInformationController","VPAlarmClockSettingController","VPBloodPrivateSettingController","VPLongSeatSettingController","VPHeartAlarmController","VPTakePhotoController","与手机配对","VPRaiseHandSettingController","VPModifyPasswordController","VPSettingBrightController","VPSettingFemaleRelatedController","VPDeviceCountDownController","VPDeviceNewAlarmController","VPSettingScreenStyleController","VPSettingScreenDurationController"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         // Do any additional setup after loading the view.
         // Do any additional setup after loading the view.
     }
-
+    
     func settingBaseFunctionRemindFarilure(sender: UISwitch) {
         sender.isOn = !sender.isOn
     }
