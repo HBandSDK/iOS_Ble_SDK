@@ -181,6 +181,7 @@
  NSDictionary *riginalDic = @{
  VPOxygenTimeKey:currentPackageTime,
  VPOxygenValueKey:oxygenValue,
+ //没有下边的字段
  VPApneaResultKey:apneaResult,
  VPIsHypoxiaKey:isHypoxia,
  VPHypoxiaTimeKey:hypoxiaTime,
@@ -196,7 +197,7 @@
 + (NSArray *)veepooSDKGetDeviceOxygenDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
 
 /**
- 获取设备的某一天的hrv数据
+ 获取设备的某一天的hrv数据，没有此功能
  
  @param queryDate 要查询的日期格式为2015-02-05
  @param tableID 设备的mac地址，获取哪个设备的数据
