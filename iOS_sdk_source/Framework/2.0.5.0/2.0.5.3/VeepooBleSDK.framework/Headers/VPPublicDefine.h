@@ -80,6 +80,7 @@ typedef NS_ENUM(NSInteger, VPReadDeviceBaseDataState) {//读取设备基本数�
     VPReadDeviceBaseDataStart = 0, //开始读取数据
     VPReadDeviceBaseDataReading = 1, //读取中
     VPReadDeviceBaseDataComplete,//读取全部完成
+    VPReadDeviceBaseDataInvalid,//SDK不提供使用
 };
 
 #pragma mark -- 基本功能设置的状态
@@ -165,6 +166,7 @@ typedef NS_ENUM(NSInteger,VPTestOxygenState) {//测试血氧过程中的状态�
     VPTestOxygenStateNoFunction = 5,//设备没有血氧功能
     VPTestOxygenStateCalibration = 6,//血氧校准中
     VPTestOxygenStateCalibrationComplete = 7,//血氧校准完成
+    VPTestOxygenStateInvalid = 8,//血氧功能暂时不可用
 };
 
 typedef NS_ENUM(NSInteger,VPTestBreathingRateState) {//测试呼吸率过程中的状态变化
