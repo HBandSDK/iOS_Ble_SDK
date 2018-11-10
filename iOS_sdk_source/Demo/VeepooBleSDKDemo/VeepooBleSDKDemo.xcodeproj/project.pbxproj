@@ -23,6 +23,9 @@
 		675052261E553F3F008D45BC /* VPRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675052241E553F3F008D45BC /* VPRootViewController.swift */; };
 		675052271E553F3F008D45BC /* VPRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 675052251E553F3F008D45BC /* VPRootViewController.xib */; };
 		6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6750522A1E557517008D45BC /* VPScanDeviceViewController.swift */; };
+		6757E2892196DA850019E8B4 /* VPTapTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757E2872196DA7F0019E8B4 /* VPTapTestViewController.swift */; };
+		6757E28A2196DA850019E8B4 /* VPTapTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6757E2882196DA840019E8B4 /* VPTapTestViewController.xib */; };
+		6757E28C2196DBB20019E8B4 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6757E28B2196DBB20019E8B4 /* VeepooBleSDK.framework */; };
 		67640D491E55C22E008D9D71 /* VPMessageRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D481E55C22E008D9D71 /* VPMessageRemindViewController.swift */; };
 		67640D4C1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D4B1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift */; };
 		67640D4F1E56CA04008D9D71 /* VPOterFunctionSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D4E1E56CA04008D9D71 /* VPOterFunctionSettingController.swift */; };
@@ -40,7 +43,6 @@
 		678368AC1E58363200C3BCB8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678368AB1E58363200C3BCB8 /* StringExtension.swift */; };
 		6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */; };
 		6786EDC0214B620C00E03882 /* VPSettingScreenDurationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */; };
-		6786EDD2214BB0CB00E03882 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6786EDD1214BB0CA00E03882 /* VeepooBleSDK.framework */; };
 		679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */; };
 		679EA6B31EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */; };
 		67A4D34A1F71101A00DBB53E /* VPSettingScreenStyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */; };
@@ -88,6 +90,9 @@
 		675052241E553F3F008D45BC /* VPRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPRootViewController.swift; sourceTree = "<group>"; };
 		675052251E553F3F008D45BC /* VPRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPRootViewController.xib; sourceTree = "<group>"; };
 		6750522A1E557517008D45BC /* VPScanDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPScanDeviceViewController.swift; sourceTree = "<group>"; };
+		6757E2872196DA7F0019E8B4 /* VPTapTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTapTestViewController.swift; sourceTree = "<group>"; };
+		6757E2882196DA840019E8B4 /* VPTapTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTapTestViewController.xib; sourceTree = "<group>"; };
+		6757E28B2196DBB20019E8B4 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		67640D481E55C22E008D9D71 /* VPMessageRemindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPMessageRemindViewController.swift; sourceTree = "<group>"; };
 		67640D4B1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBaseFunctionRemindController.swift; sourceTree = "<group>"; };
 		67640D4E1E56CA04008D9D71 /* VPOterFunctionSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPOterFunctionSettingController.swift; sourceTree = "<group>"; };
@@ -105,7 +110,6 @@
 		678368AB1E58363200C3BCB8 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingScreenDurationController.swift; sourceTree = "<group>"; };
 		6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingScreenDurationController.xib; sourceTree = "<group>"; };
-		6786EDD1214BB0CA00E03882 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPFemaleSelectView.swift; sourceTree = "<group>"; };
 		679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingFemaleRelatedController.swift; sourceTree = "<group>"; };
 		67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingScreenStyleController.swift; sourceTree = "<group>"; };
@@ -147,7 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
-				6786EDD2214BB0CB00E03882 /* VeepooBleSDK.framework in Frameworks */,
+				6757E28C2196DBB20019E8B4 /* VeepooBleSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +232,8 @@
 				67A4D3491F71101A00DBB53E /* VPSettingScreenStyleController.xib */,
 				6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */,
 				6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */,
+				6757E2872196DA7F0019E8B4 /* VPTapTestViewController.swift */,
+				6757E2882196DA840019E8B4 /* VPTapTestViewController.xib */,
 			);
 			path = veepooSDKOtherControllers;
 			sourceTree = "<group>";
@@ -241,12 +247,12 @@
 			path = VeepooExtension;
 			sourceTree = "<group>";
 		};
-		6786EDD0214BB0CA00E03882 /* 0.0.1.0 */ = {
+		6786EDD0214BB0CA00E03882 /* 2.0.6.0 */ = {
 			isa = PBXGroup;
 			children = (
-				6786EDD1214BB0CA00E03882 /* VeepooBleSDK.framework */,
+				6757E28B2196DBB20019E8B4 /* VeepooBleSDK.framework */,
 			);
-			path = 0.0.1.0;
+			path = 2.0.6.0;
 			sourceTree = "<group>";
 		};
 		679A218A1EF103A200518B15 /* VeepooViews */ = {
@@ -298,7 +304,7 @@
 		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				6786EDD0214BB0CA00E03882 /* 0.0.1.0 */,
+				6786EDD0214BB0CA00E03882 /* 2.0.6.0 */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
 				67057F991E655D830084D6AB /* VeepooTools */,
@@ -419,6 +425,7 @@
 				672E084D1E5EC2FE00F60750 /* VPTakePhotoController.xib in Resources */,
 				672E085B1E5ED92F00F60750 /* VPDFUController.xib in Resources */,
 				6786EDC0214B620C00E03882 /* VPSettingScreenDurationController.xib in Resources */,
+				6757E28A2196DA850019E8B4 /* VPTapTestViewController.xib in Resources */,
 				67FC22BB1E68FBEE0029DED3 /* VPTestOxygenController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +505,7 @@
 				67B64E441EDFB5E8000549D6 /* VPTest.m in Sources */,
 				67CA7E351EF3BAD5000D8745 /* VPEditNewAlarmController.swift in Sources */,
 				67CA3B581EF25AB500203D20 /* VPDeviceCountDownController.swift in Sources */,
+				6757E2892196DA850019E8B4 /* VPTapTestViewController.swift in Sources */,
 				679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */,
 				67B889EC1EFBAFBE00214EC5 /* ZCUIView+setRect.swift in Sources */,
 				675052221E553CDD008D45BC /* VPBaseNavigationController.swift in Sources */,
@@ -660,6 +668,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/VeepooBleSDKDemo/0.0.0.1",
 					"$(PROJECT_DIR)/VeepooBleSDKDemo/0.0.1.0",
+					"$(PROJECT_DIR)/VeepooBleSDKDemo/2.0.6.0",
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
@@ -686,6 +695,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/VeepooBleSDKDemo/0.0.0.1",
 					"$(PROJECT_DIR)/VeepooBleSDKDemo/0.0.1.0",
+					"$(PROJECT_DIR)/VeepooBleSDKDemo/2.0.6.0",
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;

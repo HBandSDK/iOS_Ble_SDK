@@ -179,24 +179,32 @@
  @param tableID 设备的mac地址，获取哪个设备的数据
  @return 获取一天血氧数据的数组，数组内是每一分钟的字典，格式如下
  NSDictionary *riginalDic = @{
+ //时间
  VPOxygenTimeKey:currentPackageTime,
+ //血氧值
  VPOxygenValueKey:oxygenValue,
+ //没有下边的字段
+ //呼吸暂停结果，0没有，1有
  VPApneaResultKey:apneaResult,
  VPIsHypoxiaKey:isHypoxia,
+ //低氧时间
  VPHypoxiaTimeKey:hypoxiaTime,
  VPHypopneaKey:hypopnea,
+ //心脏负荷
  VPCardiacLoadKey:cardiacLoad,
  VPHRVKey:HRV,
+ //运动量
  VPSportValueKey:sportValue,
  VPHeartValueKey:heartValue,
  VPStepValueKey:stepValue,
+ //呼吸率
  VPRespirationRateKey:respirationRate,
  VPTemp1Key:temp1};
  */
 + (NSArray *)veepooSDKGetDeviceOxygenDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
 
 /**
- 获取设备的某一天的hrv数据
+ 获取设备的某一天的hrv数据，没有此功能
  
  @param queryDate 要查询的日期格式为2015-02-05
  @param tableID 设备的mac地址，获取哪个设备的数据

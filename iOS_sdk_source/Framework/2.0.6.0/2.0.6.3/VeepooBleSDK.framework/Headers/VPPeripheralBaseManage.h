@@ -29,6 +29,9 @@
 //接收手环查找手机的回调，可以设置这个属性进行监听，设备查找手机过程中每4秒回调一次，使用者在接收回调后可以播放一个3秒钟的音频
 @property (nonatomic, copy) void(^ReceiveDeviceSearchIphoneCommand)(void);
 
+//当手环被敲击后主动接收，type暂时不用管，只要有回调就证明设备被敲击了，type为01代表单击，02代表双击。
+@property (nonatomic, copy) void(^ReceiveTapDeviceAlarm)(int type);
+
 //接收SOS求救信息后回调，接收到求救信息如何操作，App内部可根据自定义场景设置
 @property (nonatomic, copy) void(^ReceiveDeviceSOSCommand)(void);
 
@@ -38,8 +41,7 @@
 - (void)veepooSDKSendUpdateFirmCommand;
 
 /**
- 内部调用
- 仅供调试GSensor的参数使用，没有此需求的不用管，一般不会被用到
+ GSensor，特定开发使用
  注意：调试GSensor的时候要把正常的计步测试关闭掉，不然GSensor不会有返回值
  @param start 开始还是结束
  @param gSensorTestResult 测试的结果回调，key：totalSteps总的记步数，x y z分别代表轴上的当前参数
