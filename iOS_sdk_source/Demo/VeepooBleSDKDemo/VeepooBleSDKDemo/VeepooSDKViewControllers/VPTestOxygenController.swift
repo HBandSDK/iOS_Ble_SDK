@@ -9,7 +9,7 @@
 import UIKit
 
 class VPTestOxygenController: UIViewController {
-
+    
     @IBOutlet weak var currentOxygenValueLabel: UILabel!
     @IBOutlet weak var currentRateValueLabel: UILabel!
     
@@ -22,7 +22,7 @@ class VPTestOxygenController: UIViewController {
         let arr = VPDataBaseOperation.veepooSDKGetDeviceRunningData(withDate: nil, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func startTestOxygenAction(_ sender: UIButton) {
         if VPBleCentralManage.sharedBleManager().peripheralModel.oxygenType == 0 {//先判断一下是否有这个功能
             _ = AppDelegate.showHUD(message: "手环没有血氧功能", hudModel: MBProgressHUDModeText, showView: view)
@@ -57,6 +57,8 @@ class VPTestOxygenController: UIViewController {
                     weakSelf.currentOxygenValueLabel.text = "校准进度:" + String(oxygenValue) + "%"
                 case .calibrationComplete: //校准完成
                     weakSelf.currentOxygenValueLabel.text = "校准进度:" + String(oxygenValue) + "%"
+                default:
+                    break
                 }
             }else {
                 if testOxygenState == .over {
@@ -112,5 +114,5 @@ class VPTestOxygenController: UIViewController {
     deinit {//销毁的时候关闭血氧测试
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestOxygenStart(false, testResult: nil)
     }
-
+    
 }

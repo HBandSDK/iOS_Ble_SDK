@@ -50,7 +50,7 @@ class VPRootViewController: UIViewController {
         //从2.0之后，要多加一步操作,下边两句任选其一，第一个是已经封装了SDK的，第二种是没有封装到数据库的，优点是自己对数据进行操作比较灵活
         VPBleCentralManage.sharedBleManager().isLogEnable = true
         VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()
-//        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
+        //        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
         
         
         unowned let weakSelf = self
@@ -115,10 +115,10 @@ class VPRootViewController: UIViewController {
         textLabel.zc_height = 50
         textLabel.zc_centerX = 50
         textLabel.zc_centerY = 300
-//        view.addSubview(textLabel)
+        //        view.addSubview(textLabel)
         
     }
-
+    
     
     /// 设备验证密码成功后的操作
     func deviceVerifyPasswordSuccessful() {//设备验证密码成功
@@ -164,32 +164,34 @@ class VPRootViewController: UIViewController {
                 hud.labelText = progressString
             case .complete://读取数据完成
                 hud.labelText = "读取完成"
-//                hud.hide(true, afterDelay: 1.0)
-//                self?.readOxygenData()
+                hud.hide(true, afterDelay: 1.0)
+                self?.readOxygenData()
+            default:
+                break
             }
         }
         
-//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readSleepData(withDayNumber: 1) { (sleepArray) in
-//            guard  let sleepArray = sleepArray  else {
-//                return
-//            }
-//            print(sleepArray)
-//        }
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readSleepData(withDayNumber: 1) { (sleepArray) in
+            guard  let sleepArray = sleepArray  else {
+                return
+            }
+            print(sleepArray)
+        }
         
-//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readBasicData(withDayNumber: 1, maxPackage: 1) { (heartArray, totalPackage, currentPackage) in
-//            guard  let heartArray = heartArray  else {
-//                return
-//            }
-//            print(heartArray)
-//        }
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readBasicData(withDayNumber: 1, maxPackage: 1) { (heartArray, totalPackage, currentPackage) in
+            guard  let heartArray = heartArray  else {
+                return
+            }
+            print(heartArray)
+        }
         
-//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readDeviceRunningData(withBlockNumber: 0) { (deviceRunningDict, totalPackage, currentPackage) in
-//            if currentPackage >= totalPackage {
-//                print(deviceRunningDict ?? "没有运动数据")
-//            }else {
-//                print("totalPackage:\(totalPackage) currentPackage:\(currentPackage)")
-//            }
-//        }
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readDeviceRunningData(withBlockNumber: 0) { (deviceRunningDict, totalPackage, currentPackage) in
+            if currentPackage >= totalPackage {
+                print(deviceRunningDict ?? "没有运动数据")
+            }else {
+                print("totalPackage:\(totalPackage) currentPackage:\(currentPackage)")
+            }
+        }
     }
     
     /// 确认设备已经断开连接后的操作
@@ -217,7 +219,7 @@ class VPRootViewController: UIViewController {
             stepTimer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.startRealTimeStep), userInfo: nil, repeats: true)
         }
         unowned let weakSelf = self
-        VPDataBaseOperation .veepooSDKGetStepData(withDate: 0.getOneDayDateString(), andTableID: veepooBleManager.peripheralModel.deviceAddress, changeUserStature: 175) { (stepDict) in
+        VPDataBaseOperation .veepooSDKGetStepData(withDate: 0.getOneDayDateString(), andTableID: veepooBleManager.peripheralModel.deviceAddress, changeUserStature: veepooBleManager.peripheralModel.deviceStature) { (stepDict) in
             
             guard  let deviceStepDict = stepDict  else {
                 return
@@ -267,7 +269,7 @@ class VPRootViewController: UIViewController {
         
         self.navigationController?.pushViewController(controller.init(), animated: true)
     }
-
+    
     /// 销毁定时器操作
     func DestroyStepTimer() {
         guard let stepTimer1 = stepTimer else {
@@ -278,7 +280,7 @@ class VPRootViewController: UIViewController {
     }
     
     func readOxygenData() {
-       let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
+        let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSdkStartReadDeviceOxygenData {[weak self] (readDeviceBaseDataState, totalDay, currentReadDayNumber, readCurrentDayProgress) in
             switch readDeviceBaseDataState {
             case .start: //开始读取数据
@@ -289,11 +291,13 @@ class VPRootViewController: UIViewController {
                 hud.labelText = progressString
             case .complete://读取数据完成
                 hud.labelText = "读取完成"
-//                hud.hide(true, afterDelay: 1.0)
+                //                hud.hide(true, afterDelay: 1.0)
                 self?.readHrvData()
-                }
+            default:
+                break
             }
         }
+    }
     func readHrvData() {
         let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSdkStartReadDeviceHrvData { (readDeviceBaseDataState, totalDay, currentReadDayNumber, readCurrentDayProgress) in
@@ -307,7 +311,9 @@ class VPRootViewController: UIViewController {
             case .complete://读取数据完成
                 hud.labelText = "读取完成"
                 hud.hide(true, afterDelay: 1.0)
-                }
+            default:
+                break
             }
         }
+    }
 }

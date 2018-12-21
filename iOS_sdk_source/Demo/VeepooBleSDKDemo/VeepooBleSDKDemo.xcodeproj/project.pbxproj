@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707B09F1E72504A00207523 /* VPSettingBrightController.swift */; };
 		6707B0A21E72504A00207523 /* VPSettingBrightController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6707B0A01E72504A00207523 /* VPSettingBrightController.xib */; };
+		671585F821CC8D1E00FD8EE3 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671585F721CC8D1D00FD8EE3 /* VeepooBleSDK.framework */; };
 		672E08321E5D36ED00F60750 /* VPTestBloodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08301E5D36ED00F60750 /* VPTestBloodController.swift */; };
 		672E08331E5D36ED00F60750 /* VPTestBloodController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672E08311E5D36ED00F60750 /* VPTestBloodController.xib */; };
 		672E08381E5D5CAE00F60750 /* VPTestSleepController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08361E5D5CAE00F60750 /* VPTestSleepController.swift */; };
@@ -25,7 +26,6 @@
 		6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6750522A1E557517008D45BC /* VPScanDeviceViewController.swift */; };
 		6757E2892196DA850019E8B4 /* VPTapTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757E2872196DA7F0019E8B4 /* VPTapTestViewController.swift */; };
 		6757E28A2196DA850019E8B4 /* VPTapTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6757E2882196DA840019E8B4 /* VPTapTestViewController.xib */; };
-		6757E28C2196DBB20019E8B4 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6757E28B2196DBB20019E8B4 /* VeepooBleSDK.framework */; };
 		67640D491E55C22E008D9D71 /* VPMessageRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D481E55C22E008D9D71 /* VPMessageRemindViewController.swift */; };
 		67640D4C1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D4B1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift */; };
 		67640D4F1E56CA04008D9D71 /* VPOterFunctionSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67640D4E1E56CA04008D9D71 /* VPOterFunctionSettingController.swift */; };
@@ -76,6 +76,7 @@
 		2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeepooBleSDKDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6707B09F1E72504A00207523 /* VPSettingBrightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingBrightController.swift; sourceTree = "<group>"; };
 		6707B0A01E72504A00207523 /* VPSettingBrightController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPSettingBrightController.xib; sourceTree = "<group>"; };
+		671585F721CC8D1D00FD8EE3 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		672E08301E5D36ED00F60750 /* VPTestBloodController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestBloodController.swift; sourceTree = "<group>"; };
 		672E08311E5D36ED00F60750 /* VPTestBloodController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestBloodController.xib; sourceTree = "<group>"; };
 		672E08361E5D5CAE00F60750 /* VPTestSleepController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestSleepController.swift; sourceTree = "<group>"; };
@@ -92,7 +93,6 @@
 		6750522A1E557517008D45BC /* VPScanDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPScanDeviceViewController.swift; sourceTree = "<group>"; };
 		6757E2872196DA7F0019E8B4 /* VPTapTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTapTestViewController.swift; sourceTree = "<group>"; };
 		6757E2882196DA840019E8B4 /* VPTapTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTapTestViewController.xib; sourceTree = "<group>"; };
-		6757E28B2196DBB20019E8B4 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		67640D481E55C22E008D9D71 /* VPMessageRemindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPMessageRemindViewController.swift; sourceTree = "<group>"; };
 		67640D4B1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBaseFunctionRemindController.swift; sourceTree = "<group>"; };
 		67640D4E1E56CA04008D9D71 /* VPOterFunctionSettingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPOterFunctionSettingController.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
-				6757E28C2196DBB20019E8B4 /* VeepooBleSDK.framework in Frameworks */,
+				671585F821CC8D1E00FD8EE3 /* VeepooBleSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,14 +247,6 @@
 			path = VeepooExtension;
 			sourceTree = "<group>";
 		};
-		6786EDD0214BB0CA00E03882 /* 2.0.6.0 */ = {
-			isa = PBXGroup;
-			children = (
-				6757E28B2196DBB20019E8B4 /* VeepooBleSDK.framework */,
-			);
-			path = 2.0.6.0;
-			sourceTree = "<group>";
-		};
 		679A218A1EF103A200518B15 /* VeepooViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,7 +296,7 @@
 		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				6786EDD0214BB0CA00E03882 /* 2.0.6.0 */,
+				671585F721CC8D1D00FD8EE3 /* VeepooBleSDK.framework */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
 				67057F991E655D830084D6AB /* VeepooTools */,

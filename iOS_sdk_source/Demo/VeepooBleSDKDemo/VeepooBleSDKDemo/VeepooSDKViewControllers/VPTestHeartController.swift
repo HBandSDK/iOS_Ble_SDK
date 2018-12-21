@@ -9,7 +9,7 @@
 import UIKit
 
 class VPTestHeartController: UIViewController,UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var testHeartTableView: UITableView!
     
     @IBOutlet weak var testHeartCurrentDateLabel: UILabel!
@@ -26,7 +26,7 @@ class VPTestHeartController: UIViewController,UITableViewDelegate, UITableViewDa
         obtainOneDayHeartData()
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func selectHeartLastDateAction(_ sender: UIButton) {//上一天
         dayIndex = dayIndex - 1
         obtainOneDayHeartData()
@@ -95,7 +95,7 @@ class VPTestHeartController: UIViewController,UITableViewDelegate, UITableViewDa
         
         return heartDict.keys.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         if cell == nil {
@@ -117,7 +117,8 @@ class VPTestHeartController: UIViewController,UITableViewDelegate, UITableViewDa
             return cell!
         }
         
-        cell?.detailTextLabel?.text = "心率" + subHeartDict["heartValue"]! + "/运动量" + subHeartDict["sportValue"]! + "/步数" + subHeartDict["stepValue"]!
+        cell?.detailTextLabel?.text = "心率" + subHeartDict["heartValue"]! + "/运动量" + subHeartDict["sportValue"]! + "/步数" + subHeartDict["stepValue"]! + "/距离" + subHeartDict["disValue"]! + "/卡路里" + subHeartDict["calValue"]!
+        cell?.detailTextLabel?.adjustsFontSizeToFitWidth = true
         
         return cell!
     }
