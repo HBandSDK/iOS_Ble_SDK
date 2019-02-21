@@ -59,7 +59,7 @@ class VPTestBloodController: UIViewController,UITableViewDelegate, UITableViewDa
         }
         
         unowned let weakSelf = self
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestBloodStart(sender.isSelected, testMode: 1) { (testBloodState, progress, systolic, diastolic) in
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestBloodStart(sender.isSelected, testMode: 0) { (testBloodState, progress, systolic, diastolic) in
             if sender.isSelected {
                 weakSelf.testProgressLabel.text = "测试进度:" + String(progress) + "%"
                 weakSelf.systolicLabel.text = "高压:" + String(systolic)

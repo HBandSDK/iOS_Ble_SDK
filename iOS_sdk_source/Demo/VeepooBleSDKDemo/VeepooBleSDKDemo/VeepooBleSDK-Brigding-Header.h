@@ -8,7 +8,6 @@
 
 #ifndef VeepooBleSDK_Brigding_Header_h
 #define VeepooBleSDK_Brigding_Header_h
-
 #import <VeepooBleSDK/VeepooBleSDK.h>
 #import "MBProgressHUD.h"
 #endif /* VeepooBleSDK_Brigding_Header_h */

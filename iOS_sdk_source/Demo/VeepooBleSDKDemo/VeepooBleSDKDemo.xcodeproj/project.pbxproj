@@ -19,6 +19,7 @@
 		672E084D1E5EC2FE00F60750 /* VPTakePhotoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672E084B1E5EC2FE00F60750 /* VPTakePhotoController.xib */; };
 		672E085A1E5ED92F00F60750 /* VPDFUController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08581E5ED92F00F60750 /* VPDFUController.swift */; };
 		672E085B1E5ED92F00F60750 /* VPDFUController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 672E08591E5ED92F00F60750 /* VPDFUController.xib */; };
+		673EF4AE221BF6E80014BDB1 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 673EF4AD221BF6E80014BDB1 /* VeepooBleSDK.framework */; };
 		675052221E553CDD008D45BC /* VPBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675052211E553CDD008D45BC /* VPBaseNavigationController.swift */; };
 		675052261E553F3F008D45BC /* VPRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675052241E553F3F008D45BC /* VPRootViewController.swift */; };
 		675052271E553F3F008D45BC /* VPRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 675052251E553F3F008D45BC /* VPRootViewController.xib */; };
@@ -42,7 +43,6 @@
 		678368AC1E58363200C3BCB8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678368AB1E58363200C3BCB8 /* StringExtension.swift */; };
 		6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */; };
 		6786EDC0214B620C00E03882 /* VPSettingScreenDurationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */; };
-		678C89CD21F701470041E0AB /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678C89CC21F701470041E0AB /* VeepooBleSDK.framework */; };
 		679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */; };
 		679EA6B31EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */; };
 		67A4D34A1F71101A00DBB53E /* VPSettingScreenStyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */; };
@@ -86,6 +86,7 @@
 		672E084B1E5EC2FE00F60750 /* VPTakePhotoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTakePhotoController.xib; sourceTree = "<group>"; };
 		672E08581E5ED92F00F60750 /* VPDFUController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDFUController.swift; sourceTree = "<group>"; };
 		672E08591E5ED92F00F60750 /* VPDFUController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPDFUController.xib; sourceTree = "<group>"; };
+		673EF4AD221BF6E80014BDB1 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		675052211E553CDD008D45BC /* VPBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBaseNavigationController.swift; sourceTree = "<group>"; };
 		675052241E553F3F008D45BC /* VPRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPRootViewController.swift; sourceTree = "<group>"; };
 		675052251E553F3F008D45BC /* VPRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPRootViewController.xib; sourceTree = "<group>"; };
@@ -109,7 +110,6 @@
 		678368AB1E58363200C3BCB8 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingScreenDurationController.swift; sourceTree = "<group>"; };
 		6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingScreenDurationController.xib; sourceTree = "<group>"; };
-		678C89CC21F701470041E0AB /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VeepooBleSDK.framework; path = ../../../Framework/2.0.19.15/VeepooBleSDK.framework; sourceTree = "<group>"; };
 		679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPFemaleSelectView.swift; sourceTree = "<group>"; };
 		679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingFemaleRelatedController.swift; sourceTree = "<group>"; };
 		67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingScreenStyleController.swift; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
-				678C89CD21F701470041E0AB /* VeepooBleSDK.framework in Frameworks */,
+				673EF4AE221BF6E80014BDB1 /* VeepooBleSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +296,7 @@
 		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				678C89CC21F701470041E0AB /* VeepooBleSDK.framework */,
+				673EF4AD221BF6E80014BDB1 /* VeepooBleSDK.framework */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
 				67057F991E655D830084D6AB /* VeepooTools */,
@@ -666,6 +666,17 @@
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"Zip\"",
+					"-framework",
+					"\"iOSDFULibrary\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "VeepooBleSDKDemo/VeepooBleSDK-Brigding-Header.h";
@@ -693,6 +704,17 @@
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"Zip\"",
+					"-framework",
+					"\"iOSDFULibrary\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "VeepooBleSDKDemo/VeepooBleSDK-Brigding-Header.h";
