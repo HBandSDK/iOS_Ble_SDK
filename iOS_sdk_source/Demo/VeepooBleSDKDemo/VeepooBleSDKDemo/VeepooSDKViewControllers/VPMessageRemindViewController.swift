@@ -20,12 +20,49 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
         super.viewDidLoad()
         title = "信息提醒"
         view.backgroundColor = UIColor.white
+        initMessageRemindViewControllerUI()
+    }
+
+    func initMessageRemindViewControllerUI() {
         messageRemindTableView = UITableView(frame: view.bounds, style: .plain)
         messageRemindTableView?.delegate = self
         messageRemindTableView?.dataSource = self
         view.addSubview(messageRemindTableView!)
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: Width, height: 50));
+        for i in 1...2 {
+            let operationBtn = UIButton(frame: CGRect(x: CGFloat(i - 1) * Width / 2 + 20, y: 5, width: Width / 2 - 40, height: 40))
+            operationBtn.backgroundColor = UIColor.brown
+            operationBtn.tag = i
+            operationBtn.setTitle(i == 1 ? "全开" : "全关", for: .normal)
+            operationBtn.addTarget(self, action: #selector(openOrCloseAllFunction(sender:)), for: .touchUpInside)
+            headerView.addSubview(operationBtn)
+        }
+        messageRemindTableView?.tableHeaderView = headerView
     }
-
+    
+    @objc func openOrCloseAllFunction(sender: UIButton)  {//开始设置信息提醒的开关功能
+        if VPBleCentralManage.sharedBleManager().isConnected == false {
+            _ = AppDelegate.showHUD(message: "设备未连接,设置失败", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        
+        unowned let weakSelf = self
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingMessageType(VPSettingMessageSwitchType.settingAll, settingState: VPSettingFunctionState(rawValue: sender.tag)!) { (settingFunctionCompleteState) in
+            switch settingFunctionCompleteState {
+            case .functionCompleteUnknown:
+                _ = AppDelegate.showHUD(message: "没有此功能", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .functionCompleteFailure:
+                _ = AppDelegate.showHUD(message: "设置失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .functionCompleteOpen:
+                _ = AppDelegate.showHUD(message: "设置成功，已经开启", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                weakSelf.messageRemindTableView?.reloadData()
+            case .functionCompleteClose:
+                _ = AppDelegate.showHUD(message: "设置成功，已经关闭", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                weakSelf.messageRemindTableView?.reloadData()
+            }
+        }
+    }
     
     func messageOpenOrCloseAction(sender: UISwitch)  {//开始设置信息提醒的开关功能
         if VPBleCentralManage.sharedBleManager().isConnected == false {

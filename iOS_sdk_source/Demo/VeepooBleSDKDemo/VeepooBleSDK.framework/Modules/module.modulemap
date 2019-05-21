@@ -1,0 +1,6 @@
+framework module VeepooBleSDK {
+  umbrella header "VeepooBleSDK.h"
+
+  export *
+  module * { export * }
+}

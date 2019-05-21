@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前心率:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTv-Ku-IVA">
-                    <rect key="frame" x="40" y="120" width="295" height="30"/>
+                    <rect key="frame" x="40" y="60" width="295" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="sd2-8w-J6N"/>
                     </constraints>
@@ -32,7 +32,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBQ-7p-AIc">
-                    <rect key="frame" x="148" y="160" width="80" height="30"/>
+                    <rect key="frame" x="147.5" y="100" width="80" height="30"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="XEO-eg-wde"/>
@@ -45,7 +45,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-02-19" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoI-jS-R1w">
-                    <rect key="frame" x="138" y="84" width="100" height="20"/>
+                    <rect key="frame" x="137.5" y="20" width="100" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="4QY-j8-FRe"/>
                         <constraint firstAttribute="height" constant="20" id="EhV-k4-qJD"/>
@@ -55,7 +55,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yZK-6F-PGY">
-                    <rect key="frame" x="253" y="79" width="46" height="30"/>
+                    <rect key="frame" x="252.5" y="15" width="46" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="GjP-p7-xGb"/>
                         <constraint firstAttribute="height" constant="30" id="MTW-0O-HG8"/>
@@ -66,7 +66,7 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Tb-bT-gaB">
-                    <rect key="frame" x="0.0" y="240" width="375" height="427"/>
+                    <rect key="frame" x="0.0" y="180" width="375" height="487"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="2LC-VT-qqL"/>
@@ -74,7 +74,7 @@
                     </connections>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前日期的半小时心率和运动量值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nak-lQ-Acp">
-                    <rect key="frame" x="16" y="210" width="343" height="20"/>
+                    <rect key="frame" x="16" y="150" width="343" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="OsU-wK-CLJ"/>
                     </constraints>
@@ -83,7 +83,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sf4-Ou-pFX">
-                    <rect key="frame" x="77" y="79" width="46" height="30"/>
+                    <rect key="frame" x="76.5" y="15" width="46" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="46" id="MuG-Xz-Ra9"/>
                         <constraint firstAttribute="height" constant="30" id="XWR-fZ-qkb"/>
@@ -107,11 +107,11 @@
                 <constraint firstItem="6Tb-bT-gaB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eT6-9d-xZS"/>
                 <constraint firstItem="MBQ-7p-AIc" firstAttribute="top" secondItem="ZTv-Ku-IVA" secondAttribute="bottom" constant="10" id="gwp-zr-eoo"/>
                 <constraint firstItem="nak-lQ-Acp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="i0Y-xM-0qs"/>
-                <constraint firstItem="ZoI-jS-R1w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="84" id="rTZ-Ik-uTh"/>
+                <constraint firstItem="ZoI-jS-R1w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="rTZ-Ik-uTh"/>
                 <constraint firstItem="yZK-6F-PGY" firstAttribute="leading" secondItem="ZoI-jS-R1w" secondAttribute="trailing" constant="15" id="tDq-dU-ABu"/>
                 <constraint firstAttribute="trailing" secondItem="ZTv-Ku-IVA" secondAttribute="trailing" constant="40" id="u5B-CK-Bid"/>
                 <constraint firstItem="yZK-6F-PGY" firstAttribute="centerY" secondItem="ZoI-jS-R1w" secondAttribute="centerY" id="uFQ-Sm-bQJ"/>
-                <constraint firstItem="ZTv-Ku-IVA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="120" id="vmK-BS-CAl"/>
+                <constraint firstItem="ZTv-Ku-IVA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="vmK-BS-CAl"/>
                 <constraint firstItem="Sf4-Ou-pFX" firstAttribute="centerY" secondItem="ZoI-jS-R1w" secondAttribute="centerY" id="x8L-Bi-v1q"/>
                 <constraint firstItem="ZoI-jS-R1w" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xue-c2-hWu"/>
             </constraints>

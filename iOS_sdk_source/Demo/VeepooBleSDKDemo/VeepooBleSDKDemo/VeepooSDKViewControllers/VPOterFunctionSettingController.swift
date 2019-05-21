@@ -9,7 +9,7 @@
 import UIKit
 
 class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate , UITableViewDataSource{
-    
+
     let otherFunctionSettingCellID = "otherFunctionSettingCellID"
     
     var otherFunctionSettingTableView: UITableView?
@@ -29,7 +29,7 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         // Do any additional setup after loading the view.
         // Do any additional setup after loading the view.
     }
-    
+
     func settingBaseFunctionRemindFarilure(sender: UISwitch) {
         sender.isOn = !sender.isOn
     }

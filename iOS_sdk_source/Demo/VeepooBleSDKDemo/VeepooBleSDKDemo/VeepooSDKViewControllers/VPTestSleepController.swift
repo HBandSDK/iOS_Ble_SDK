@@ -22,9 +22,16 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
     
     var sleepTestArray: Array<Any>?
     
+    var sleepType = 0;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "睡眠"
+        if VPBleCentralManage
+            .sharedBleManager()?.peripheralModel.sleepType == 1 {//精准睡眠
+            sleepDayIndex = 0;
+            sleepType = 1;
+        }
         obtainOneDaySleepData()
     }
     
@@ -49,8 +56,9 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
         guard let sleepArray = sleepTestArray else {
             return 0
         }
-        let sleepDict = sleepArray[section] as! [String : String]
-        return sleepDict.keys.count
+//        let sleepDict = sleepArray[section] as! [String : String]
+//        return sleepDict.keys.count
+        return 6;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -62,6 +70,33 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
         guard let sleepArray = sleepTestArray else {
             return cell!
         }
+        
+        if sleepType == 1 {//精准睡眠
+            let sleepModel = sleepArray[indexPath.section] as! VPAccurateSleepModel
+            
+            if indexPath.row == 0 {//入睡时间
+                cell?.textLabel?.text = "入睡时间"
+                cell?.detailTextLabel?.text = sleepModel.sleepTime
+            }else if (indexPath.row == 1) {
+                cell?.textLabel?.text = "起床时间"
+                cell?.detailTextLabel?.text = sleepModel.wakeTime
+            }else if (indexPath.row == 2) {//总的睡眠时间就是深睡时间加上浅睡时间
+                cell?.textLabel?.text = "深睡时间"
+                cell?.detailTextLabel?.text = sleepModel.deepDuration
+            }else if (indexPath.row == 3) {
+                cell?.textLabel?.text = "浅睡时间"
+                cell?.detailTextLabel?.text = sleepModel.lightDuration
+            }else if (indexPath.row == 4) {
+                cell?.textLabel?.text = "苏醒次数"
+                cell?.detailTextLabel?.text = sleepModel.getUpTimes
+            }else if (indexPath.row == 5) {//深浅睡眠是由0、1和2组成的字符串，每一个长度代表5分钟，0是表示当时的5分钟是浅睡，1代表深睡，2代表苏醒
+                cell?.textLabel?.text = "睡眠曲线"
+                cell?.detailTextLabel?.text = sleepModel.sleepLine
+            }
+            
+            return cell!;
+        }
+        
         
         let sleepDict = sleepArray[indexPath.section] as! [String : String]
         
@@ -90,7 +125,11 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
     func obtainOneDaySleepData() {
         self.sleepDateLabel.text = sleepDayIndex.getOneDayDateString()
         
-        sleepTestArray = VPDataBaseOperation.veepooSDKGetSleepData(withDate: self.sleepDateLabel.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
+        if sleepType == 1 {//精准睡眠
+            sleepTestArray = VPDataBaseOperation.veepooSDKGetAccurateSleepData(withDate: self.sleepDateLabel.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
+        } else {
+            sleepTestArray = VPDataBaseOperation.veepooSDKGetSleepData(withDate: self.sleepDateLabel.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
+        }
         
         sleepTestTableView.reloadData()
     }

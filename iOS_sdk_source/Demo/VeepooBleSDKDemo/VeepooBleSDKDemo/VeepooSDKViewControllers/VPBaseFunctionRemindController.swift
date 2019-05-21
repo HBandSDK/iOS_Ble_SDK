@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VPBaseFunctionRemindController: UIViewController  , UITableViewDelegate , UITableViewDataSource{
+class VPBaseFunctionRemindController: UIViewController  , UITableViewDelegate , UITableViewDataSource {
 
     let baseFunctionRemindCellID = "baseFunctionRemindCellID"
     
@@ -36,6 +36,9 @@ class VPBaseFunctionRemindController: UIViewController  , UITableViewDelegate , 
             return
         }
          VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingBaseFunctionType(VPSettingBaseFunctionSwitchType(rawValue: sender.tag)!, settingState: VPSettingFunctionState(rawValue: sender.isOn ? 1 : 2)!) {[weak self] (settingFunctionCompleteState) in
+            if self == nil {
+                return
+            }
             switch settingFunctionCompleteState {
             case .functionCompleteUnknown:
                 _ = AppDelegate.showHUD(message: "没有此功能", hudModel: MBProgressHUDModeText, showView: (self?.view)!)
@@ -116,4 +119,8 @@ class VPBaseFunctionRemindController: UIViewController  , UITableViewDelegate , 
         
     }
 
+    deinit {
+        print("deinit")
+    }
+    
 }

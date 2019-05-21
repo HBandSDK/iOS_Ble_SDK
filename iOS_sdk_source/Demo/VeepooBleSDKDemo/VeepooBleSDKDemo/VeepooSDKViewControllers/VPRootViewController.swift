@@ -40,17 +40,26 @@ class VPRootViewController: UIViewController {
     /// 获取实时计步的定时器
     var stepTimer: Timer!
     
+    let curveView: VPOxygenAnalysisSectionFourView = VPAnalysisViewFactory.createSectionFourView()
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        curveView.showType = 0;
+        curveView.update(withConnectState: true)
+        curveView.frame = CGRect(x: 0, y: 150, width: Width, height: 100)
+//        self.view.addSubview(curveView)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "VeepooBleSDK" + String(VeepooBleSDKVersion)//sdk的版本
-        
+        self.navigationController?.navigationBar.isTranslucent = false
         //设置导航栏上的UI
         self.setRootViewControllerNaviItemUI()
         
         //从2.0之后，要多加一步操作,下边两句任选其一，第一个是已经封装了SDK的，第二种是没有封装到数据库的，优点是自己对数据进行操作比较灵活
         VPBleCentralManage.sharedBleManager().isLogEnable = true
         VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()
-        //        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
+//        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
         
         
         unowned let weakSelf = self
@@ -87,11 +96,21 @@ class VPRootViewController: UIViewController {
                 _ = AppDelegate.showHUD(message: "发现新固件", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             }
         }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startRealTimeStep()
+        
+        
+//        let curveView = VPOxygenCurveView(vpOxygenCurveType: VPOxygenCurveTypeHypoxiaTime)
+//        curveView?.frame = CGRect(x: 0, y: 100, width: Width, height: 200)
+//        curveView?.oneDayOxygens = nil
+//        self.view.addSubview(curveView ?? UIView())
+//        let resultView = VPAnalysisViewFactory.createSectionTwoView();
+//        resultView?.frame = CGRect(x: 0, y: 100, width: Width, height: 500)
+//        view.addSubview(resultView!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -115,13 +134,14 @@ class VPRootViewController: UIViewController {
         textLabel.zc_height = 50
         textLabel.zc_centerX = 50
         textLabel.zc_centerY = 300
-        //        view.addSubview(textLabel)
+//        view.addSubview(textLabel)
         
     }
-    
+
     
     /// 设备验证密码成功后的操作
     func deviceVerifyPasswordSuccessful() {//设备验证密码成功
+        
         if VPBleCentralManage.sharedBleManager().vpBleDFUConnectStateChangeBlock != nil {//正在固件升级，自己也可以加判断条件
             return
         }
@@ -151,7 +171,8 @@ class VPRootViewController: UIViewController {
         
         //密码验证后一般要读取基本数据（这个是所有设备必须读取的，每个设备都有的包含计步，睡眠、心率、血压的数据）、如果有运动数据读取运动数据，如果有血氧数据读取血氧数据，三者读取的时候不能同步进行，要一个读取完毕在读取其他的
         let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
-        
+        return
+            
         
         //验证密码成功后开始读取手环的数据（睡眠、计步、心率、血压等基本数据）
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSdkStartReadDeviceAllData {[weak self] (readDeviceBaseDataState, totalDay, currentReadDayNumber, readCurrentDayProgress) in
@@ -257,19 +278,26 @@ class VPRootViewController: UIViewController {
     ///
     /// - Parameter sender: 通过sender的tag去判断应该进入哪个控制器
     @IBAction func enterDetailedFunctionViewControllerAction(_ sender: UIButton) {
+//        let testController = VPOxygenDetailController.init()
+//        testController.showType = 9;
+//        self
+//            .navigationController?.pushViewController(testController, animated: true)
         if veepooBleManager.isConnected == false {
             _ = AppDelegate.showHUD(message: "设备没有连接", hudModel: MBProgressHUDModeText, showView: view)
             return
         }
+        
         let controllerName = controllers[sender.tag - 1]
-        
+
         let controllerClass: AnyClass? = NSClassFromString(nameSpace + "." + controllerName)
-        
+
         let controller = controllerClass as! UIViewController.Type
+        self
+            .navigationController?.pushViewController(controller.init(), animated: true)
         
-        self.navigationController?.pushViewController(controller.init(), animated: true)
+        
     }
-    
+
     /// 销毁定时器操作
     func DestroyStepTimer() {
         guard let stepTimer1 = stepTimer else {
@@ -280,7 +308,7 @@ class VPRootViewController: UIViewController {
     }
     
     func readOxygenData() {
-        let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
+       let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSdkStartReadDeviceOxygenData {[weak self] (readDeviceBaseDataState, totalDay, currentReadDayNumber, readCurrentDayProgress) in
             switch readDeviceBaseDataState {
             case .start: //开始读取数据
@@ -291,13 +319,13 @@ class VPRootViewController: UIViewController {
                 hud.labelText = progressString
             case .complete://读取数据完成
                 hud.labelText = "读取完成"
-                //                hud.hide(true, afterDelay: 1.0)
+//                hud.hide(true, afterDelay: 1.0)
                 self?.readHrvData()
             default:
                 break
+                }
             }
         }
-    }
     func readHrvData() {
         let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSdkStartReadDeviceHrvData { (readDeviceBaseDataState, totalDay, currentReadDayNumber, readCurrentDayProgress) in
@@ -313,7 +341,7 @@ class VPRootViewController: UIViewController {
                 hud.hide(true, afterDelay: 1.0)
             default:
                 break
+                }
             }
         }
-    }
 }

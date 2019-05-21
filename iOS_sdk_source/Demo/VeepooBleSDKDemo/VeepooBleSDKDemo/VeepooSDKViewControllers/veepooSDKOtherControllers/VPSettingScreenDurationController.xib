@@ -25,6 +25,10 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="170" id="7ly-Z8-VsL"/>
                     </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="htq-PT-crK"/>
+                        <outlet property="delegate" destination="-1" id="I4Y-CL-5vb"/>
+                    </connections>
                 </pickerView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epr-Qo-avp">
                     <rect key="frame" x="15" y="314" width="345" height="44"/>

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -27,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZc-pV-fc0">
-                    <rect key="frame" x="10" y="74" width="145" height="44"/>
+                    <rect key="frame" x="10" y="15" width="145" height="44"/>
                     <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Lzc-UK-HzS"/>
@@ -38,7 +38,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFm-3K-qal">
-                    <rect key="frame" x="165" y="74" width="145" height="44"/>
+                    <rect key="frame" x="165" y="15" width="145" height="44"/>
                     <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="断开连接"/>
                     <connections>
@@ -46,7 +46,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7F-lM-jVu" userLabel="BaseMessageView">
-                    <rect key="frame" x="10" y="128" width="300" height="155"/>
+                    <rect key="frame" x="10" y="69" width="300" height="155"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备名称:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1Q-ti-nNa">
                             <rect key="frame" x="10" y="5" width="280" height="25"/>
@@ -107,7 +107,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtq-r8-dFL">
-                    <rect key="frame" x="10" y="293" width="67.5" height="44"/>
+                    <rect key="frame" x="10" y="234" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="ihX-TP-bVL"/>
@@ -118,7 +118,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDb-ah-7Iz">
-                    <rect key="frame" x="87.5" y="293" width="67.5" height="44"/>
+                    <rect key="frame" x="87.5" y="234" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="血压"/>
                     <connections>
@@ -126,7 +126,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnm-SM-M1c">
-                    <rect key="frame" x="165" y="293" width="67" height="44"/>
+                    <rect key="frame" x="165" y="234" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="血氧"/>
                     <connections>
@@ -134,7 +134,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uf9-Tr-HJQ">
-                    <rect key="frame" x="242.5" y="293" width="67.5" height="44"/>
+                    <rect key="frame" x="242.5" y="234" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="疲劳度"/>
                     <connections>
@@ -142,7 +142,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvw-tf-5ON">
-                    <rect key="frame" x="10" y="347" width="67.5" height="44"/>
+                    <rect key="frame" x="10" y="288" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="xHG-i4-sx2"/>
@@ -153,7 +153,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK4-ru-5IS">
-                    <rect key="frame" x="87.5" y="347" width="67.5" height="44"/>
+                    <rect key="frame" x="87.5" y="288" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="计步"/>
                     <connections>
@@ -161,7 +161,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwL-BD-aOS">
-                    <rect key="frame" x="165" y="347" width="67" height="44"/>
+                    <rect key="frame" x="165" y="288" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="信息提醒"/>
                     <connections>
@@ -169,7 +169,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgM-7X-9K9">
-                    <rect key="frame" x="242" y="347" width="68" height="44"/>
+                    <rect key="frame" x="242.5" y="288" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="基本开关"/>
                     <connections>
@@ -177,7 +177,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbR-H9-B20">
-                    <rect key="frame" x="10" y="401" width="67" height="44"/>
+                    <rect key="frame" x="10" y="342" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="dOQ-zx-Eb5"/>
@@ -188,7 +188,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NU-5a-ABH">
-                    <rect key="frame" x="88" y="401" width="67" height="44"/>
+                    <rect key="frame" x="87.5" y="342" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="其他功能"/>
                     <connections>
@@ -212,7 +212,7 @@
                 <constraint firstItem="t7F-lM-jVu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="DmY-hE-Zaw"/>
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="leading" secondItem="iwL-BD-aOS" secondAttribute="trailing" constant="10" id="E1B-Yb-0EB"/>
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="ECR-BW-isb"/>
-                <constraint firstItem="dZc-pV-fc0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="EzT-jV-HBW"/>
+                <constraint firstItem="dZc-pV-fc0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="EzT-jV-HBW"/>
                 <constraint firstAttribute="trailing" secondItem="HgM-7X-9K9" secondAttribute="trailing" constant="10" id="FUG-Z1-OOc"/>
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="top" id="GrA-7u-byL"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="leading" secondItem="gK4-ru-5IS" secondAttribute="trailing" constant="10" id="GyW-5j-z4X"/>

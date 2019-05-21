@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '570B1EFB2D11F5B06166FDA2A614F81C'
-               BlueprintName = 'iOSDFULibrary'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'iOSDFULibrary.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DDF4CD01D521284D29810B0479C683C8"
+               BlueprintName = "iOSDFULibrary"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "iOSDFULibrary.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
