@@ -20,7 +20,10 @@ class VPTestOxygenController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let arr = VPDataBaseOperation.veepooSDKGetDeviceOxygenData(withDate: "2019-05-14", andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
+//        let arr = VPDataBaseOperation.veepooSDKGetDeviceOxygenData(withDate: "2019-06-18", andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
+        let arr = VPDataBaseOperation.veepooSDKGetDeviceOxygenData(withDate: "2019-07-05", andTableID: "F1:72:BE:AF:52:C7")
+        
+        
         // Do any additional setup after loading the view.
     }
 

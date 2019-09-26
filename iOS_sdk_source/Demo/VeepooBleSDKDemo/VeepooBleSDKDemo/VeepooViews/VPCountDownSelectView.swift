@@ -77,7 +77,7 @@ class VPCountDownSelectView: UIView, UIPickerViewDelegate,UIPickerViewDataSource
         selectMainView.addSubview(selectPickerView)
     }
     
-    func cancelOrConfirmAction(sender: UIButton) {//取消或者确认操作
+    @objc func cancelOrConfirmAction(sender: UIButton) {//取消或者确认操作
         if sender.tag == 1 {
             if selectViewTitle == "常驻倒计时时长" {
                 countDownModel?.repeatTime = UInt(a)

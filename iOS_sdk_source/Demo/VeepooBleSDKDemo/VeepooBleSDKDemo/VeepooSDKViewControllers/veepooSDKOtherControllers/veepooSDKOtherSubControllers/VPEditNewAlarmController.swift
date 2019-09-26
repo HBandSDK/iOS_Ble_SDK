@@ -159,7 +159,7 @@ class VPEditNewAlarmController: UIViewController,UIPickerViewDelegate,UIPickerVi
         }
     }
     
-    func selectRepeatWeekAction(sender: UIButton)  {//选择星期
+    @objc func selectRepeatWeekAction(sender: UIButton)  {//选择星期
         sender.isSelected = !sender.isSelected;
         print(sender.tag)
         var k = 0
@@ -181,7 +181,7 @@ class VPEditNewAlarmController: UIViewController,UIPickerViewDelegate,UIPickerVi
         return topY
     }
     
-    func selectSceneAction(sender: UIButton) {//场景选择
+    @objc func selectSceneAction(sender: UIButton) {//场景选择
         for sceneBtn:UIButton in sceneBtns {
             if sceneBtn.tag != sender.tag {
                 sceneBtn.isSelected = false

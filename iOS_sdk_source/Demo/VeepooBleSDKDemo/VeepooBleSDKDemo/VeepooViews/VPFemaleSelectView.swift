@@ -90,7 +90,7 @@ class VPFemaleSelectView: UIView, UIPickerViewDelegate, UIPickerViewDataSource {
         selectMainView.addSubview(selectPickerView)
     }
     
-    func cancelOrConfirmAction(sender: UIButton) {
+    @objc func cancelOrConfirmAction(sender: UIButton) {
         if sender.tag == 1 {
             if selectViewTitle == "生理期选择" {
                 femaleModel?.femaleState = VPDeviceFemaleState(rawValue: a)!

@@ -78,7 +78,7 @@ class VPSettingFemaleRelatedController: UIViewController , UITableViewDelegate ,
         view.addSubview(femaleRelatedTableView!)
     }
 
-    func startSettingFemaleAction() {
+    @objc func startSettingFemaleAction() {
         unowned let weakSelf = self;
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceFemale(with: femaleModel, settingMode: 1, successResult: { (deviceFemaleModel) in
             guard let deviceFemaleModel = deviceFemaleModel else {

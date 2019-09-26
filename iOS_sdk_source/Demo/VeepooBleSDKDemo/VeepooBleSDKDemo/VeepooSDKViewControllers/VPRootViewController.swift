@@ -232,7 +232,7 @@ class VPRootViewController: UIViewController {
     }
     
     /// 获取手环当前的计步数据，与设备的显示的计步数据同步
-    func startRealTimeStep() {
+    @objc func startRealTimeStep() {
         if veepooBleManager.isConnected == false {
             return
         }

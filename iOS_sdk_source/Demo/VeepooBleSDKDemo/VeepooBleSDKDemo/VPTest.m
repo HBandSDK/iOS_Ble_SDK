@@ -8,6 +8,10 @@
 
 #import "VPTest.h"
 
+/*
+ $(inherited) $(PROJECT_DIR)/VeepooBleSDKDemo $(PROJECT_DIR)
+ */
+
 @interface VPTest ()
 
 @end

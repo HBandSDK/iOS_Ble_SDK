@@ -64,7 +64,7 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
         }
     }
     
-    func messageOpenOrCloseAction(sender: UISwitch)  {//开始设置信息提醒的开关功能
+    @objc func messageOpenOrCloseAction(sender: UISwitch)  {//开始设置信息提醒的开关功能
         if VPBleCentralManage.sharedBleManager().isConnected == false {
             _ = AppDelegate.showHUD(message: "设备未连接,设置失败", hudModel: MBProgressHUDModeText, showView: view)
             self.perform(#selector(settingMessageRemindFarilure(sender:)), with: sender, afterDelay: 0.5)
@@ -89,8 +89,8 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
         }
     }
     
-    /// 设置失败
-    func settingMessageRemindFarilure(sender: UISwitch) {
+    /// 设置失败@objc @objc
+    @objc func settingMessageRemindFarilure(sender: UISwitch) {
         sender.isOn = !sender.isOn
     }
     

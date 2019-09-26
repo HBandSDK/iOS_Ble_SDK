@@ -26,12 +26,11 @@ class VPSettingScreenStyleController: UIViewController ,UITableViewDelegate, UIT
             _ = AppDelegate.showHUD(message: "没有屏幕样式设置功能", hudModel: MBProgressHUDModeText, showView: view)
             return
         }
-        unowned let weakSelf = self
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceScreenStyle(0, settingMode: 2) { (screenStyle, settingSuccess) in
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceScreenStyle(0, settingMode: 2) {[weak self] (screenStyle, settingSuccess) in
             if settingSuccess == true {
-                weakSelf.screenStyle = Int(screenStyle)
+                self?.screenStyle = Int(screenStyle)
             }else {
-                _ = AppDelegate.showHUD(message: "读取失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                _ = AppDelegate.showHUD(message: "读取失败", hudModel: MBProgressHUDModeText, showView: (self?.view)!)
             }
         }
     }

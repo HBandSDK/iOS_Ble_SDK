@@ -24,6 +24,10 @@
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>使用蓝牙连接手环</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>使用蓝牙连接手环</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

@@ -58,7 +58,7 @@ class VPDeviceNewAlarmController: UIViewController,UITableViewDelegate,UITableVi
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAlarmClock))
     }
     
-    func openOrCloseAlarmClock(sender: UISwitch) {//对单组闹钟进行开或者关，只对重复星期的闹钟有效
+    @objc func openOrCloseAlarmClock(sender: UISwitch) {//对单组闹钟进行开或者关，只对重复星期的闹钟有效
         let alarmModel = deviceAlarmArray[sender.tag] as? VPDeviceNewAlarmModel
         //下边copy一个模型，以免设置失败后，Model改变，页面不能刷新到正确状态
         let settingModel = alarmModel?.copy() as? VPDeviceNewAlarmModel
@@ -67,7 +67,7 @@ class VPDeviceNewAlarmController: UIViewController,UITableViewDelegate,UITableVi
         self.readOrSettingAlarmClock(settingAlarmModel: settingModel!, settingMode: 1)
     }
     
-    func addAlarmClock()  {//
+    @objc func addAlarmClock()  {//
         if deviceAlarmArray.count >= 20 {
             _ = AppDelegate.showHUD(message: "设备最多支持20组闹钟", hudModel: MBProgressHUDModeText, showView: view)
             return

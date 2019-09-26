@@ -59,7 +59,7 @@ class VPAlarmClockSettingController: UIViewController , UITableViewDelegate , UI
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: rightBtn)
     }
     
-    func settingAlarmAction() {//开始设置闹钟
+    @objc func settingAlarmAction() {//开始设置闹钟
         //每次设置闹钟都要把三组闹钟值都重新设置
         unowned let weakSelf = self
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceAlarm(withAlarmModel1: alarmModelArray[0], alarmModel2: alarmModelArray[1], alarmModel3: alarmModelArray[2], settingMode: VPOperationAlarmMode(rawValue: 1)!, successResult: { (alarmModel1, alarmModel2, alarmModel3) in
@@ -69,7 +69,7 @@ class VPAlarmClockSettingController: UIViewController , UITableViewDelegate , UI
         }
     }
     
-    func alarmOpenOrCloseAction(sender:UISwitch) {
+    @objc func alarmOpenOrCloseAction(sender:UISwitch) {
         let alarmModel = alarmModelArray[sender.tag]
         alarmModel.alarmState = sender.isOn ? 1 : 0
     }
