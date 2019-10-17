@@ -42,7 +42,6 @@
 		678368AC1E58363200C3BCB8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678368AB1E58363200C3BCB8 /* StringExtension.swift */; };
 		6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */; };
 		6786EDC0214B620C00E03882 /* VPSettingScreenDurationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */; };
-		678BF99D233CBDDF00A956B3 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678BF99C233CBDDF00A956B3 /* VeepooBleSDK.framework */; };
 		678C89A221F036B00041E0AB /* SDKResours.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 678C89A121F036AF0041E0AB /* SDKResours.bundle */; };
 		679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */; };
 		679EA6B31EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */; };
@@ -50,6 +49,9 @@
 		67A4D34B1F71101A00DBB53E /* VPSettingScreenStyleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A4D3491F71101A00DBB53E /* VPSettingScreenStyleController.xib */; };
 		67B64E441EDFB5E8000549D6 /* VPTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B64E431EDFB5E8000549D6 /* VPTest.m */; };
 		67B889EC1EFBAFBE00214EC5 /* ZCUIView+setRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B889EB1EFBAFBE00214EC5 /* ZCUIView+setRect.swift */; };
+		67BA7254235813C8004E6E1E /* VPPTTTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA7252235813C8004E6E1E /* VPPTTTestController.swift */; };
+		67BA7255235813C8004E6E1E /* VPPTTTestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BA7253235813C8004E6E1E /* VPPTTTestController.xib */; };
+		67BA725823583FB8004E6E1E /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BA725723583FB6004E6E1E /* VeepooBleSDK.framework */; };
 		67CA3B581EF25AB500203D20 /* VPDeviceCountDownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */; };
 		67CA3B591EF25AB500203D20 /* VPDeviceCountDownController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */; };
 		67CA3B5B1EF2649700203D20 /* VPCountDownSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA3B5A1EF2649700203D20 /* VPCountDownSelectView.swift */; };
@@ -112,7 +114,6 @@
 		678368AB1E58363200C3BCB8 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingScreenDurationController.swift; sourceTree = "<group>"; };
 		6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingScreenDurationController.xib; sourceTree = "<group>"; };
-		678BF99C233CBDDF00A956B3 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		678C89A121F036AF0041E0AB /* SDKResours.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SDKResours.bundle; sourceTree = "<group>"; };
 		679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPFemaleSelectView.swift; sourceTree = "<group>"; };
 		679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingFemaleRelatedController.swift; sourceTree = "<group>"; };
@@ -121,6 +122,9 @@
 		67B64E421EDFB5E8000549D6 /* VPTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPTest.h; sourceTree = "<group>"; };
 		67B64E431EDFB5E8000549D6 /* VPTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPTest.m; sourceTree = "<group>"; };
 		67B889EB1EFBAFBE00214EC5 /* ZCUIView+setRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ZCUIView+setRect.swift"; sourceTree = "<group>"; };
+		67BA7252235813C8004E6E1E /* VPPTTTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPPTTTestController.swift; sourceTree = "<group>"; };
+		67BA7253235813C8004E6E1E /* VPPTTTestController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPPTTTestController.xib; sourceTree = "<group>"; };
+		67BA725723583FB6004E6E1E /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VeepooBleSDK.framework; path = ../../../Framework/VeepooBleSDK.framework; sourceTree = "<group>"; };
 		67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceCountDownController.swift; sourceTree = "<group>"; };
 		67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPDeviceCountDownController.xib; sourceTree = "<group>"; };
 		67CA3B5A1EF2649700203D20 /* VPCountDownSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPCountDownSelectView.swift; sourceTree = "<group>"; };
@@ -155,7 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
-				678BF99D233CBDDF00A956B3 /* VeepooBleSDK.framework in Frameworks */,
+				67BA725823583FB8004E6E1E /* VeepooBleSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +186,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				67BA724F23581393004E6E1E /* PTT */,
 				67640D501E56CF2E008D9D71 /* veepooSDKOtherControllers */,
 				675052241E553F3F008D45BC /* VPRootViewController.swift */,
 				675052251E553F3F008D45BC /* VPRootViewController.xib */,
@@ -260,6 +265,15 @@
 			path = VeepooViews;
 			sourceTree = "<group>";
 		};
+		67BA724F23581393004E6E1E /* PTT */ = {
+			isa = PBXGroup;
+			children = (
+				67BA7252235813C8004E6E1E /* VPPTTTestController.swift */,
+				67BA7253235813C8004E6E1E /* VPPTTTestController.xib */,
+			);
+			path = PTT;
+			sourceTree = "<group>";
+		};
 		67CA3B701EF3774700203D20 /* VPTabelViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,7 +314,7 @@
 		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				678BF99C233CBDDF00A956B3 /* VeepooBleSDK.framework */,
+				67BA725723583FB6004E6E1E /* VeepooBleSDK.framework */,
 				678C89A121F036AF0041E0AB /* SDKResours.bundle */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
@@ -412,6 +426,7 @@
 			files = (
 				67FC22C01E68FF7D0029DED3 /* VPTestFatigueController.xib in Resources */,
 				678368A81E58264A00C3BCB8 /* VPTestHeartController.xib in Resources */,
+				67BA7255235813C8004E6E1E /* VPPTTTestController.xib in Resources */,
 				67CB1CB51E52D26E00805649 /* LaunchScreen.storyboard in Resources */,
 				67FC22B61E6810F70029DED3 /* VPModifyPasswordController.xib in Resources */,
 				67640D541E56D248008D9D71 /* VPSyncPersonalInformationController.xib in Resources */,
@@ -512,6 +527,7 @@
 				675052261E553F3F008D45BC /* VPRootViewController.swift in Sources */,
 				67FC22951E6560860029DED3 /* MBProgressHUD.m in Sources */,
 				6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */,
+				67BA7254235813C8004E6E1E /* VPPTTTestController.swift in Sources */,
 				67FC22B11E67FC660029DED3 /* VPRaiseHandSettingController.swift in Sources */,
 				678368A71E58264A00C3BCB8 /* VPTestHeartController.swift in Sources */,
 				67A4D34A1F71101A00DBB53E /* VPSettingScreenStyleController.swift in Sources */,

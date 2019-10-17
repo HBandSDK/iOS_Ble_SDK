@@ -98,14 +98,3 @@ typedef enum : int {
 
 
 @end
-
-/*
- //把模型数据保存到数据库
- - (BOOL)saveToDatabase;
- 
- //删除就是把服务器数据的状态标志为0
- - (BOOL)deleteFromDatabase;
- 
- //把删除的数据重新保存到数据库
- - (BOOL)restoreFromDatabase;
- */

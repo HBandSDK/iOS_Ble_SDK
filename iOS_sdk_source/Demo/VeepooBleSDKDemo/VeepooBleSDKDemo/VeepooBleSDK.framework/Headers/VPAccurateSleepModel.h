@@ -12,21 +12,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VPAccurateSleepModel : NSObject
 
-//睡眠的类型，上传A7指令睡眠标记位
+//Type of sleep, upload A7 command sleep flag(睡眠的类型，上传A7指令睡眠标记位)
 @property (nonatomic, strong) NSString *sleepType;
-//入睡时间
+//Sleep time 入睡时间
 @property (nonatomic, strong) NSString *sleepTime;
-//起床时间
+//Wake up time 起床时间
 @property (nonatomic, strong) NSString *wakeTime;
-//睡眠标志
+//Sleep sign 睡眠标志
 @property (nonatomic, strong) NSString *sleepTag;
-//起夜得分
+//get up score 起夜得分
 @property (nonatomic, strong) NSString *getUpScore;
-//深睡得分
+//Deep sleep score 深睡得分
 @property (nonatomic, strong) NSString *deepScore;
-//睡眠效率得分，起夜到深睡的效率得分
+//Sleep efficiency score, efficiency score from night to deep sleep 睡眠效率得分，起夜到深睡的效率得分
 @property (nonatomic, strong) NSString *sleepEfficiencyScore;
-//入睡效率得分，从开始睡眠到第一次进入深睡的效率
+//Sleeping efficiency score, from the start of sleep to the first time into the deep sleep 入睡效率得分，从开始睡眠到第一次进入深睡的效率
 @property (nonatomic, strong) NSString *fallAsleepScore;
 
 //睡眠时长得分

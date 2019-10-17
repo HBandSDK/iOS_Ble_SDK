@@ -4,8 +4,10 @@
 //
 //  Created by 张冲 on 17/2/7.
 //  Copyright © 2017年 veepoo. All rights reserved.
-//  开发者qq:2810503497,如果在调试过程中有问题可以qq联系，添加qq的时候请备注使用iOS蓝牙SDK和公司名称
-//  已经修改SDK中不支持-Objc的原因，主要原因是代码写重复了加载的时候报重复错误
+
+//  Developer qq: 2810503497, if there is a problem during the debugging process, you can contact qq, please add notes when using qq to use iOS Bluetooth SDK and company name
+
+//  The reason why the -Objc is not supported in the SDK has been modified. The main reason is that the code writes repeatedly when the load is repeated.(已经修改SDK中不支持-Objc的原因，主要原因是代码写重复了加载的时候报重复错误)
 
 #import <UIKit/UIKit.h>
 #import "VPBleCentralManage.h"
@@ -26,6 +28,8 @@
 #import "VPHRVLorentAnalysisModel.h"
 #import "VPOxygenAnalysisModel.h"
 #import "VPLowPowerModel.h"
+#import "VPOxygenDisconnectTestModel.h"
+#import "VPPttValueModel.h"
 
 //测试UI使用
 #import "VPHRVLorentView.h"

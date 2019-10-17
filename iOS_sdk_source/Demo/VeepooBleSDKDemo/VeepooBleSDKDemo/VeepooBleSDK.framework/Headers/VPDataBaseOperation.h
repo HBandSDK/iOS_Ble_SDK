@@ -179,7 +179,7 @@
  
  oneMinuteArray为每一分钟的数据的数组，下边的结构是每一分钟的字典如下：
  NSDictionary *oneMinuteArrayDict = @{
- VPDeviceRunningPakageKey:packageSp,//第几包从4开始
+ VPDeviceRunningPakageKey:packageSp,//第几包,从4开始
  VPDeviceRunningHeartKey:heartSp,//心率值
  VPDeviceRunningSportKey:sportValueSp,//运动量
  VPDeviceRunningStepKey:stepValueSp,//步数

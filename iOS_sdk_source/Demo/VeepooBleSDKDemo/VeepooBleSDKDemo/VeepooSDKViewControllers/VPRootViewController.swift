@@ -17,7 +17,7 @@ class VPRootViewController: UIViewController {
     let veepooBleManager: VPBleCentralManage = VPBleCentralManage.sharedBleManager()
     
     /// 主界面下边按钮的子控制器
-    let controllers = ["VPTestHeartController","VPTestBloodController","VPTestOxygenController","VPTestFatigueController","VPTestSleepController","VPTestStepController","VPMessageRemindViewController","VPBaseFunctionRemindController","VPDFUController" ,"VPOterFunctionSettingController"]
+    let controllers = ["VPTestHeartController","VPTestBloodController","VPTestOxygenController","VPTestFatigueController","VPTestSleepController","VPTestStepController","VPMessageRemindViewController","VPBaseFunctionRemindController","VPDFUController" ,"VPOterFunctionSettingController","VPPTTTestController"]
     
     @IBOutlet weak var vpScanDeviceButton: UIButton!
     

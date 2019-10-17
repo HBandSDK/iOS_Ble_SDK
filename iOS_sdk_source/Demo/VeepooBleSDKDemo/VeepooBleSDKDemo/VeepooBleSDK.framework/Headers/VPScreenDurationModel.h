@@ -10,12 +10,19 @@
 
 @interface VPScreenDurationModel : NSObject<NSCopying>
 
+//Current bright screen duration
 //当前的亮屏时长
 @property (nonatomic, assign) NSInteger currentDuration;
+
+//The default brightness time of the device
 //设备默认的亮屏时长
 @property (nonatomic, assign) NSInteger defaultDuration;
+
+//The device can set the minimum brightness time
 //设备可设置最小的亮屏时长
 @property (nonatomic, assign) NSInteger minDuration;
+
+//The device can set the maximum brightness time
 //设备可设置最大的亮屏时长
 @property (nonatomic, assign) NSInteger maxDuration;
 

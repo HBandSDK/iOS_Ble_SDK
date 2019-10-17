@@ -9,65 +9,65 @@
 #import <Foundation/Foundation.h>
 #import "VPPeripheralManage.h"
 
-////SDK版本号
+//SDK版本号
 //FOUNDATION_EXPORT NSString * const VeepooBleSDKVersion;
 
 @interface VPBleCentralManage : NSObject<CBPeripheralDelegate,CBCentralManagerDelegate>
 
-//是否输出log日志，默认打开
+//Whether to output log log, open by default 是否输出log日志，默认打开
 @property (nonatomic, assign) BOOL isLogEnable;
 
-//中心设备管理者
+//Bluetooth Center Device Manager 中心设备管理者
 @property (nonatomic, strong) CBCentralManager *centralManager;
 
-//已经连接的设备模型
+//Connected device model 已经连接的设备模型
 @property (nonatomic, strong) VPPeripheralModel *peripheralModel;
 
-//密码验证成功后设备的指令发送和数据接收管理
+//Command transmission and data reception management of the device after successful password verification 密码验证成功后设备的指令发送和数据接收管理
 @property (nonatomic, strong) VPPeripheralBaseManage *peripheralManage;
 
-//设备是否处于DFULang模式，如果在DFULang模式验证密码后不能读取数据
+//Whether the device is in DFULang mode, if the password cannot be read after verifying the password in DFULang mode 设备是否处于DFULang模式，如果在DFULang模式验证密码后不能读取数据
 @property (nonatomic, assign) BOOL isDFULangMode;
 
-//系统蓝牙状态改变的回调
+//System Bluetooth status change callback 系统蓝牙状态改变的回调
 @property (nonatomic, copy) void(^VPBleCentralManageChangeBlock)(VPCentralManagerState BleState);
 
-//设备连接状态改变的回调
+//Callback of device connection status change 设备连接状态改变的回调
 @property (nonatomic, copy) void(^VPBleConnectStateChangeBlock)(VPDeviceConnectState deviceConnectState);
 
-//设备进入DFU连接状态改变的回调
+//The device enters the callback of the DFU connection status change 设备进入DFU连接状态改变的回调
 @property (nonatomic, copy) void(^VPBleDFUConnectStateChangeBlock)(VPDeviceConnectState deviceConnectState);
 
-//连接状态,发送指令前确保连接
+//Connection status, ensure connection before sending instructions 连接状态,发送指令前确保连接
 @property (nonatomic, assign) BOOL isConnected;
 
-/**
- 是否自动连接，默认是YES
- */
+//Whether to connect automatically, the default is YES 是否自动连接，默认是YES
 @property (nonatomic, assign) BOOL automaticConnection;
 
-//创建实例
+//Create an instance 创建实例
 + (instancetype)sharedBleManager;
 
-//开始扫描设备
+//Start scanning device 开始扫描设备
 - (void)veepooSDKStartScanDeviceAndReceiveScanningDevice:(ReceiveScanningDevice)scanningDevice;
 
-//停止扫描
+//Stop scanning 停止扫描
 - (void)veepooSDKStopScanDevice;
 
-//开始连接设备
+//Start connecting devices 开始连接设备
 - (void)veepooSDKConnectDevice:(VPPeripheralModel *)peripheralModel deviceConnectBlock:(DeviceConnectBlock)connectBlock;
 
-//断开连接，不再自动连接，人为断开连接SDK不再负责帮助自动重连
+//Disconnected, no longer automatically connected, artificially disconnected SDK is no longer responsible for helping to automatically reconnect 断开连接，不再自动连接，人为断开连接SDK不再负责帮助自动重连
 - (void)veepooSDKDisconnectDevice;
 
 /**
+ Set or verify the password, and each time you find the service, it will automatically send the password once. The default password is 0000.
+ Every time you send a password, it will synchronize the local time of the phone to the bracelet.
  设置或验证密码，每次寻找到服务之后都会自动的去发送一次密码，默认密码是0000
  每次发送密码都会同步一下手机本地的时间给手环
  
- @param type 同步密码的类型是验证还是设置
- @param password 4位0-9的字符串，如果是设置则传nil
- @param result 0是失败 1是成功
+ @param type Is the type of sync password verified or set? 同步密码的类型是验证还是设置
+ @param password 4 digits 0-9 string, if it is set, pass nil 4位0-9的字符串，如果是设置则传nil
+ @param result 0 is a failure 1 is a success 0是失败 1是成功
  */
 - (void)veepooSDKSynchronousPasswordWithType:(SynchronousPasswordType)type password:(NSString *)password SynchronizationResult:(SynchronizationResultBlock)result;
 

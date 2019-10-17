@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPPTTTestController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="pttStateLabel" destination="O41-fr-1D9" id="Vmt-hN-xeG"/>
+                <outlet property="pttTestBtn" destination="CFc-5w-Krd" id="iGd-PJ-2e2"/>
+                <outlet property="signalLabel" destination="txk-z9-jry" id="Det-mE-gMW"/>
+                <outlet property="valueLabel" destination="YG8-19-0WY" id="PCf-qb-JUe"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备未进入PTT模式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O41-fr-1D9">
+                    <rect key="frame" x="83.5" y="30" width="153" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFc-5w-Krd">
+                    <rect key="frame" x="100" y="81" width="120" height="30"/>
+                    <state key="normal" title="开始PTT数据采集"/>
+                    <state key="selected" title="结束PTT数据采集"/>
+                    <connections>
+                        <action selector="startPttDataCollection:" destination="-1" eventType="touchUpInside" id="S8Y-UR-hHW"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="心率: --          HRV: --         QT: --" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YG8-19-0WY">
+                    <rect key="frame" x="37" y="131" width="246.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txk-z9-jry">
+                    <rect key="frame" x="10" y="171.5" width="300" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="YG8-19-0WY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="A8k-Rj-reU"/>
+                <constraint firstItem="YG8-19-0WY" firstAttribute="top" secondItem="CFc-5w-Krd" secondAttribute="bottom" constant="20" id="BEB-8U-bsG"/>
+                <constraint firstItem="txk-z9-jry" firstAttribute="top" secondItem="YG8-19-0WY" secondAttribute="bottom" constant="20" id="L5U-Ei-VUo"/>
+                <constraint firstItem="CFc-5w-Krd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QVr-H0-ym2"/>
+                <constraint firstItem="O41-fr-1D9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="30" id="a5B-0m-exx"/>
+                <constraint firstItem="CFc-5w-Krd" firstAttribute="top" secondItem="O41-fr-1D9" secondAttribute="bottom" constant="30" id="bdF-bf-x3T"/>
+                <constraint firstItem="txk-z9-jry" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="uji-VR-kD7"/>
+                <constraint firstItem="O41-fr-1D9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vEs-76-jQU"/>
+                <constraint firstAttribute="trailing" secondItem="txk-z9-jry" secondAttribute="trailing" constant="10" id="zK6-bx-ICk"/>
+            </constraints>
+            <point key="canvasLocation" x="138.75" y="95.070422535211264"/>
+        </view>
+    </objects>
+</document>
