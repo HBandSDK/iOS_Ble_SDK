@@ -17,7 +17,8 @@ class VPRootViewController: UIViewController {
     let veepooBleManager: VPBleCentralManage = VPBleCentralManage.sharedBleManager()
     
     /// 主界面下边按钮的子控制器
-    let controllers = ["VPTestHeartController","VPTestBloodController","VPTestOxygenController","VPTestFatigueController","VPTestSleepController","VPTestStepController","VPMessageRemindViewController","VPBaseFunctionRemindController","VPDFUController" ,"VPOterFunctionSettingController","VPPTTTestController"]
+    let controllers = ["VPTestHeartController","VPTestBloodController","VPTestOxygenController","VPTestFatigueController","VPTestSleepController","VPTestStepController","VPMessageRemindViewController","VPBaseFunctionRemindController","VPDFUController" ,"VPOterFunctionSettingController","VPPTTTestController"
+        ,"VPSOSViewController"]
     
     @IBOutlet weak var vpScanDeviceButton: UIButton!
     
@@ -95,6 +96,9 @@ class VPRootViewController: UIViewController {
                 //可以给出用户弹窗询问用户是否前去升级
                 _ = AppDelegate.showHUD(message: "发现新固件", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             }
+        }
+        VPPeripheralManage.shareVPPeripheralManager()?.receiveDeviceSOSCommand = {() -> Void in
+            print("sos")
         }
         
     }

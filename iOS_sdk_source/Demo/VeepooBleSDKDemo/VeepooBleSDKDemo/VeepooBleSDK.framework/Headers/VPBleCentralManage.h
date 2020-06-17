@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VPPeripheralManage.h"
 
-//SDK版本号
+//SDK版本号 宝瑞思
 //FOUNDATION_EXPORT NSString * const VeepooBleSDKVersion;
 
 @interface VPBleCentralManage : NSObject<CBPeripheralDelegate,CBCentralManagerDelegate>

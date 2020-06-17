@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -201,6 +201,14 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="rca-Rc-ioC"/>
                     </connections>
                 </button>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrv-da-GvZ">
+                    <rect key="frame" x="242.5" y="342" width="67.5" height="44"/>
+                    <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="联定制"/>
+                    <connections>
+                        <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="6gJ-YU-DAB"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -236,7 +244,9 @@
                 <constraint firstItem="gK4-ru-5IS" firstAttribute="top" secondItem="Kvw-tf-5ON" secondAttribute="top" id="OPT-OA-M58"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="height" secondItem="Mtq-r8-dFL" secondAttribute="height" id="R1y-sD-6ZS"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="leading" secondItem="dnm-SM-M1c" secondAttribute="trailing" constant="10" id="RBk-jA-kKU"/>
+                <constraint firstItem="Zrv-da-GvZ" firstAttribute="top" secondItem="mfb-Na-KAM" secondAttribute="top" id="RO8-m3-6qF"/>
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="top" secondItem="vFm-3K-qal" secondAttribute="top" id="Tg9-O4-rLv"/>
+                <constraint firstItem="Zrv-da-GvZ" firstAttribute="bottom" secondItem="mfb-Na-KAM" secondAttribute="bottom" id="Y41-Dc-dtg"/>
                 <constraint firstAttribute="trailing" secondItem="t7F-lM-jVu" secondAttribute="trailing" constant="10" id="bAy-it-l7r"/>
                 <constraint firstAttribute="trailing" secondItem="vFm-3K-qal" secondAttribute="trailing" constant="10" id="dQ3-LH-BKp"/>
                 <constraint firstItem="Kvw-tf-5ON" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="e4O-p8-Tax"/>
@@ -254,6 +264,7 @@
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="leading" secondItem="iwL-BD-aOS" secondAttribute="trailing" constant="10" id="jH5-Tn-Yib"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="leading" secondItem="Mtq-r8-dFL" secondAttribute="trailing" constant="10" id="jdL-Zu-p8e"/>
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="leading" secondItem="zDb-ah-7Iz" secondAttribute="trailing" constant="10" id="k8n-pK-vfo"/>
+                <constraint firstItem="Zrv-da-GvZ" firstAttribute="trailing" secondItem="HgM-7X-9K9" secondAttribute="trailing" id="msq-Ub-Ubd"/>
                 <constraint firstItem="gbR-H9-B20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="nCB-FI-bAI"/>
                 <constraint firstItem="2NU-5a-ABH" firstAttribute="leading" secondItem="gK4-ru-5IS" secondAttribute="leading" id="ogo-T2-n0j"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="leading" secondItem="gK4-ru-5IS" secondAttribute="trailing" constant="10" id="pmI-Ov-5KB"/>
@@ -261,6 +272,7 @@
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="width" secondItem="Kvw-tf-5ON" secondAttribute="width" id="rcC-Ua-EOA"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="leading" secondItem="dnm-SM-M1c" secondAttribute="trailing" constant="10" id="woA-c4-JyS"/>
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="height" secondItem="vFm-3K-qal" secondAttribute="height" id="xbe-5I-DAm"/>
+                <constraint firstItem="Zrv-da-GvZ" firstAttribute="leading" secondItem="HgM-7X-9K9" secondAttribute="leading" id="zLa-lX-tTQ"/>
             </constraints>
             <point key="canvasLocation" x="24" y="52"/>
         </view>

@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, PTTTestState){
 
 @property (nonatomic, assign) PTTTestState testState;
 
+//使用VPECGTestResutHandle类下这个resultWithPTTResultData方法获取诊断结果, 参数就是resultData
 @property (nonatomic, strong) NSData *resultData;
 
 + (instancetype)modelWithData:(NSData *)ecgPTTData;

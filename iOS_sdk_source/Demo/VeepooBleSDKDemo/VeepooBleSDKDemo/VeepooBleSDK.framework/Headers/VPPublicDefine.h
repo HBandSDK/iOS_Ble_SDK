@@ -103,6 +103,8 @@ typedef NS_ENUM(NSInteger, VPSettingMessageSwitchType) {//关于来电提醒的�
     VPSettingSnapchat,
     VPSettingSkype,
     VPSettingGMail,
+    VPSettingDingTalk,
+    VPSettingWeChatWork,
     VPSettingOtherPlatform = 19,
     VPSettingAll = 100,//设置所有, 读取的使用不能使用这个
 };
@@ -157,6 +159,17 @@ typedef NS_ENUM(NSInteger,VPCameraType) {
     VPCameraTypeExit = 0,//退出拍照
     VPCameraTypeEnter = 1,//进入拍照
     VPCameraTypePhoto = 2//开始拍照
+};
+
+//可设置某个功能在设备上显示或隐藏
+typedef NS_ENUM(NSInteger,VPOperationFuctionType) {
+    VPOperationFuctionTypeBlood = 0,//血压
+};
+
+typedef NS_ENUM(NSInteger, VPOperationType) {//设置获取读取某个功能
+    VPOperationTypeOpen = 1,//打开某个功能
+    VPOperationTypeClose = 2,//关闭某个功能
+    VPOperationTypeRead = 3, //读取某个功能的开关和有无
 };
 
 #pragma mark -- 心率、血压、血氧、疲劳度的测试

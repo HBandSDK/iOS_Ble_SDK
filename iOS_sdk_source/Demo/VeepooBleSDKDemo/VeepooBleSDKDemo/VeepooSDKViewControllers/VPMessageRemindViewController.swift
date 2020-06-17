@@ -14,7 +14,7 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
     
     var messageRemindTableView: UITableView?
     
-    let messageFunctions = ["来电","短信","微信","QQ","新浪","Facebook","Twitter","Flickr","Linkedln","whatsApp","Line","Instagram","Snapchat","Skype","GMail","其他应用"]
+    let messageFunctions = ["来电","短信","微信","QQ","新浪","Facebook","Twitter","Flickr","Linkedln","whatsApp","Line","Instagram","Snapchat","Skype","GMail","DingTalk","WeChat Work","其他应用"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

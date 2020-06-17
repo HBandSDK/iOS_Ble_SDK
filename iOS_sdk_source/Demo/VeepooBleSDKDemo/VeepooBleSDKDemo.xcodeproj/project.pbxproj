@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0409743724986F0A006076EC /* VPSOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409743524986F0A006076EC /* VPSOSViewController.swift */; };
+		0409743824986F0A006076EC /* VPSOSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0409743624986F0A006076EC /* VPSOSViewController.xib */; };
+		0409743E2499A86A006076EC /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0409743D2499A86A006076EC /* VeepooBleSDK.framework */; };
 		6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707B09F1E72504A00207523 /* VPSettingBrightController.swift */; };
 		6707B0A21E72504A00207523 /* VPSettingBrightController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6707B0A01E72504A00207523 /* VPSettingBrightController.xib */; };
 		672E08321E5D36ED00F60750 /* VPTestBloodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08301E5D36ED00F60750 /* VPTestBloodController.swift */; };
@@ -51,7 +54,6 @@
 		67B889EC1EFBAFBE00214EC5 /* ZCUIView+setRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B889EB1EFBAFBE00214EC5 /* ZCUIView+setRect.swift */; };
 		67BA7254235813C8004E6E1E /* VPPTTTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA7252235813C8004E6E1E /* VPPTTTestController.swift */; };
 		67BA7255235813C8004E6E1E /* VPPTTTestController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67BA7253235813C8004E6E1E /* VPPTTTestController.xib */; };
-		67BA725823583FB8004E6E1E /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BA725723583FB6004E6E1E /* VeepooBleSDK.framework */; };
 		67CA3B581EF25AB500203D20 /* VPDeviceCountDownController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */; };
 		67CA3B591EF25AB500203D20 /* VPDeviceCountDownController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */; };
 		67CA3B5B1EF2649700203D20 /* VPCountDownSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA3B5A1EF2649700203D20 /* VPCountDownSelectView.swift */; };
@@ -76,6 +78,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0409743524986F0A006076EC /* VPSOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSOSViewController.swift; sourceTree = "<group>"; };
+		0409743624986F0A006076EC /* VPSOSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSOSViewController.xib; sourceTree = "<group>"; };
+		0409743D2499A86A006076EC /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeepooBleSDKDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6707B09F1E72504A00207523 /* VPSettingBrightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingBrightController.swift; sourceTree = "<group>"; };
 		6707B0A01E72504A00207523 /* VPSettingBrightController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPSettingBrightController.xib; sourceTree = "<group>"; };
@@ -124,7 +129,6 @@
 		67B889EB1EFBAFBE00214EC5 /* ZCUIView+setRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ZCUIView+setRect.swift"; sourceTree = "<group>"; };
 		67BA7252235813C8004E6E1E /* VPPTTTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPPTTTestController.swift; sourceTree = "<group>"; };
 		67BA7253235813C8004E6E1E /* VPPTTTestController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPPTTTestController.xib; sourceTree = "<group>"; };
-		67BA725723583FB6004E6E1E /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VeepooBleSDK.framework; path = ../../../Framework/VeepooBleSDK.framework; sourceTree = "<group>"; };
 		67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceCountDownController.swift; sourceTree = "<group>"; };
 		67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPDeviceCountDownController.xib; sourceTree = "<group>"; };
 		67CA3B5A1EF2649700203D20 /* VPCountDownSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPCountDownSelectView.swift; sourceTree = "<group>"; };
@@ -159,13 +163,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
-				67BA725823583FB8004E6E1E /* VeepooBleSDK.framework in Frameworks */,
+				0409743E2499A86A006076EC /* VeepooBleSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0409742F24986ED5006076EC /* 联定制 */ = {
+			isa = PBXGroup;
+			children = (
+				0409743524986F0A006076EC /* VPSOSViewController.swift */,
+				0409743624986F0A006076EC /* VPSOSViewController.xib */,
+			);
+			path = "联定制";
+			sourceTree = "<group>";
+		};
 		67057F991E655D830084D6AB /* VeepooTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +199,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0409742F24986ED5006076EC /* 联定制 */,
 				67BA724F23581393004E6E1E /* PTT */,
 				67640D501E56CF2E008D9D71 /* veepooSDKOtherControllers */,
 				675052241E553F3F008D45BC /* VPRootViewController.swift */,
@@ -314,7 +328,7 @@
 		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				67BA725723583FB6004E6E1E /* VeepooBleSDK.framework */,
+				0409743D2499A86A006076EC /* VeepooBleSDK.framework */,
 				678C89A121F036AF0041E0AB /* SDKResours.bundle */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
@@ -425,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67FC22C01E68FF7D0029DED3 /* VPTestFatigueController.xib in Resources */,
+				0409743824986F0A006076EC /* VPSOSViewController.xib in Resources */,
 				678368A81E58264A00C3BCB8 /* VPTestHeartController.xib in Resources */,
 				67BA7255235813C8004E6E1E /* VPPTTTestController.xib in Resources */,
 				67CB1CB51E52D26E00805649 /* LaunchScreen.storyboard in Resources */,
@@ -462,7 +477,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
@@ -479,7 +494,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9008D6A8C6EF4C9C4EB3BC08 /* [CP] Check Pods Manifest.lock */ = {
@@ -529,6 +544,7 @@
 				6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */,
 				67BA7254235813C8004E6E1E /* VPPTTTestController.swift in Sources */,
 				67FC22B11E67FC660029DED3 /* VPRaiseHandSettingController.swift in Sources */,
+				0409743724986F0A006076EC /* VPSOSViewController.swift in Sources */,
 				678368A71E58264A00C3BCB8 /* VPTestHeartController.swift in Sources */,
 				67A4D34A1F71101A00DBB53E /* VPSettingScreenStyleController.swift in Sources */,
 				67640D5B1E56EFA9008D9D71 /* VPLongSeatSettingController.swift in Sources */,
@@ -684,8 +700,9 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -720,8 +737,9 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.7;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

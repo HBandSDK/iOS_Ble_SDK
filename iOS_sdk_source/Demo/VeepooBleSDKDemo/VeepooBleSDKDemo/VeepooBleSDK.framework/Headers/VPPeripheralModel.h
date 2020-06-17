@@ -63,6 +63,9 @@
 //此字段代表运动模式的类型, 0代表是单运动, 1代表有10种多运动, 判断是否有运动模式用runningSaveTimes这个字段, 如果非0代表有运动模式
 @property (nonatomic, assign) NSInteger runningType;
 
+//判断是否是新协议读取方式
+@property (nonatomic, assign) BOOL stepChangeNewMode;
+
 //The device can set several screen styles, mainly color screen items, and 0 means no screen style setting function.
 //设备可以设置几种屏幕风格，主要是彩屏项目，0代表没有屏幕风格设置功能
 @property (nonatomic, assign) NSUInteger screenTypes;
@@ -75,7 +78,7 @@
 //亮屏时长类型0代表没有，1代表有此功能
 @property (nonatomic, assign) NSUInteger screenDurationType;
 
-//设备ANCS信息提醒包含的功能数据结构如AD02010202000102020000000000000000000000共计20个字节的Data，前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表来电、短信、wechat、QQ、Sina、Facebook、Twitter、Flickr、LinkedIn、whatsApp、Line、Instagram、Snapchat、Skype，后边的带开发，每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒，最后一位是其他应用（除了上述之外的其他有通知的App），图标显示默认公共图标，0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
+//设备ANCS信息提醒包含的功能数据结构如AD02010202000102020000000000000000000000共计20个字节的Data，前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表来电、短信、wechat、QQ、Sina、Facebook、Twitter、Flickr、LinkedIn、whatsApp、Line、Instagram、Snapchat、Skype、钉钉、企业微信，后边的带开发，每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒，最后一位是其他应用（除了上述之外的其他有通知的App），图标显示默认公共图标，0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
 @property (nonatomic, strong) NSData *deviceAncsData;
 
 //设备开关的提醒状态包含的功能数据结构如B802010202010102020000000000000000000000前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表公英制、24小时制式、心率自动检测、血压自动检测、运动量过量提醒、心率血压血氧语音播报、手机查找、秒表功能、血氧过低通知、LED灯档位（1代表正常肤色档位、2代表黑色皮肤档位），HRV夜间自动检测，来电免接听，蓝牙断链提醒，SOS页面显示, PPG自动测量, 科学睡眠自动检测(这个暂时无用, 关闭科学睡眠用的是PPG自动测量)，每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
@@ -136,6 +139,11 @@
 //Low power type 0 generation is not, 1 means there is
 //低功耗类型 0代没有,1代表有
 @property (nonatomic, assign) NSInteger lowPowerType;
+
+//Whether there is weather data, if 1 means there is, if not 1 means no
+//是否有天气数据，如果1代表有，如果非1代表没有
+@property (nonatomic, assign) NSInteger weatherType;
+
 
 #pragma mark -- Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is

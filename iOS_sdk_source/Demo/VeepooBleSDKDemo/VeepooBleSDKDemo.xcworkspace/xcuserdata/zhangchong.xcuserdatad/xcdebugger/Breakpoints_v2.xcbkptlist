@@ -18,23 +18,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "23DA8014-68E7-449D-8F96-A89C6164480A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../VeepooBleSDK/VeepooBleSDK/VPBleManage/VPPeripheralManage.m"
-            timestampString = "589269574.734841"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
-            landmarkName = "-handleOneDayAllFiveMinuteData:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "9366E4F9-3338-414C-944A-C828510CF4F6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"

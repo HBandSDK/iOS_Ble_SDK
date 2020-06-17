@@ -24,6 +24,7 @@
 #import "VPLowPowerModel.h"
 #import "VPOxygenDisconnectTestModel.h"
 #import "VPPttValueModel.h"
+#import "VPSyncPersonalInfo.h"
 
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
@@ -80,6 +81,22 @@
 /// @param lastReadTime Read the data tested after this time format @"19-10-11 08:00:00"
 /// @param readResult Returns the data for the test 0 reading, 1 read complete
 - (void)veepooSDKReadDisconnectOxygenDataWithLastReadTime:(NSString *)lastReadTime result:(void(^)(VPOxygenDisconnectTestModel *testModel, NSInteger state))readResult;
+
+#pragma mark -- 单兵SOS定制功能，App和设备只做简单指令交互，其他功能客户自己解决
+
+//接受士兵的反馈,设置这个回调就可以，设备长按3秒侧按键，启动SOS功能，手环发送一条SOS指令到APP，APP收到后，反馈指令给手环，手环显示“SOS发送成功”
+//Accept the soldier's feedback and set this callback
+@property(nonatomic, strong) void(^receiveSoldierFeedback)(void);
+
+//App发送一条指令给设备，紧急情况下，指挥员信息通知单兵（手机到手环）
+//In an emergency, the commander informs the individual soldier (mobile phone to bracelet)
+- (void)veepooSDKSendToSoldierCommand:(void(^)(BOOL sendSuccess))result;
+
+/// 服务器可以主动推送一些文字消息，透过APP转发给手环，并在手环上显示消息并振动提醒。比如“全员撤退”之类的命令。
+/// @param type 用来定义任务类型
+/// @param taskMessage 用来显示服务器要推送的内容,内容长度不能超过100个字节
+- (void)veepooSDKSendToSoldierSpecialTask:(int)type taskMessage:(NSString *)taskMessage andResult:(void(^)(BOOL success))sendResult;
+
 
 #pragma mark -- ECG PTT FUNCTION
 
@@ -139,6 +156,9 @@
  @param synchronousPersonalInformationBlock Callback 0 after synchronization represents failure 1 represents success 同步后的回调0代表失败 1代表成功
  */
 - (void)veepooSDKSynchronousPersonalInformationWithStature:(NSUInteger)stature weight:(NSUInteger)weight birth:(NSUInteger)birth sex:(NSUInteger)sex targetStep:(NSUInteger)targetStep result:(void(^)(NSUInteger settingResult))synchronousPersonalInformationBlock;
+
+//可以使用下边的设置个人信息，使用personalInfo设置，需自己初始化
+- (void)veepooSDKSynchronousPersonalInformation:(VPSyncPersonalInfo *)personalInfo result:(void(^)(NSUInteger settingResult))synchronousPersonalInformationBlock;
 
 /**
  Set the private blood pressure mode, ensure that the high pressure is greater than the low pressure when setting. If the setting mode is read systolic pressure and diastolic pressure are transmitted 0
@@ -401,6 +421,10 @@
 //清除数据，清除数据后手环会自动关机，不能监听是否清除成功，关机会会与App断开连接
 - (void)veepooSDKClearDeviceData;
 
+#pragma mark --- 设置功能的有无, 特殊开发者使用
+- (void)veepooSDKSettingFunction:(VPOperationFuctionType)fuctionType settingType:(VPOperationType)settingType result:(void(^)(VPSettingFunctionCompleteState settingState))settingResult;
+
+
 #pragma mark ---Simple reading method, suitable for stand-alone version, data can be directly extracted from the SDK database after reading, by subclass VPPeripheralManage
 #pragma mark --- 简易的读取方式，适用于单机版本，读取完成之后可直接从SDK的数据库中提取数据，由子类VPPeripheralManage实现
 
@@ -479,6 +503,7 @@
 
 
 - (void)veepooSDK_readDeviceRunningDataWithBlockNumber:(NSInteger)blockNumber result:(void(^)(NSDictionary *runningDataDict,NSInteger totalPackage, NSInteger currentReadPackage))readDeviceRunningDataBlock;
+
 
 @end
 

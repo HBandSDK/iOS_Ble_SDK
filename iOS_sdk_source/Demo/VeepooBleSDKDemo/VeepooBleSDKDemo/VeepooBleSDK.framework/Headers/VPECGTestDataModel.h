@@ -57,6 +57,7 @@ typedef enum : int {
 //导联信号
 @property (nonatomic, strong) NSString *lead;
 
+//使用VPECGTestResutHandle下这个方法可获取诊断结果, 付费客户可用
 //测试结果, 根据每个结果得出诊断结果
 @property (nonatomic, strong) NSString *result1;
 @property (nonatomic, strong) NSString *result2;

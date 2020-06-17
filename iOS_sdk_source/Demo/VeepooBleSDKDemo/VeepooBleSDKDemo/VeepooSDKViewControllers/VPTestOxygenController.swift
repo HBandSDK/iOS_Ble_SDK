@@ -21,8 +21,16 @@ class VPTestOxygenController: UIViewController {
         super.viewDidLoad()
         
 //        let arr = VPDataBaseOperation.veepooSDKGetDeviceOxygenData(withDate: "2019-06-18", andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
-        let arr = VPDataBaseOperation.veepooSDKGetDeviceOxygenData(withDate: "2019-07-05", andTableID: "F1:72:BE:AF:52:C7")
+        let arr = VPDataBaseOperation.veepooSDKGetDeviceOxygenData(withDate: "2020-05-27", andTableID: "FF:E4:71:43:BC:D9")
         
+        let oxygenCurview = VPOxygenCurveView(vpOxygenCurveType:VPOxygenCurveTypeOxygen)
+        
+        oxygenCurview?.frame = CGRect(x: 0, y: 200, width: 300, height: 300)
+        
+        oxygenCurview?.oneDayOxygens = arr
+        
+        
+        view .addSubview(oxygenCurview!)
         
         // Do any additional setup after loading the view.
     }
