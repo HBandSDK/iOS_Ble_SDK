@@ -3,7 +3,7 @@
 //  VeepooBleSDK
 //
 //  Created by 张冲 on 17/2/7.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 
 //  Developer qq: 2810503497, if there is a problem during the debugging process, you can contact qq, please add notes when using qq to use iOS Bluetooth SDK and company name
 
@@ -57,6 +57,9 @@
 #import "VPWeatherHandle.h"
 #import "VPWeatherServerHourlyModel.h"
 #import "VPWeatherServerForecastModel.h"
+
+#import "WLWeatherModel.h"
+#import "WLWeatherManager.h"
 
 //! Project version number for VeepooBleSDK.
 FOUNDATION_EXPORT double VeepooBleSDKVersionNumber;

@@ -3,7 +3,7 @@
 //  VeepooBleSDK
 //
 //  Created by zhangchong on 2020/3/3.
-//  Copyright © 2020 veepoo. All rights reserved.
+//  Copyright © 2020 zc.All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

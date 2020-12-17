@@ -3,7 +3,7 @@
 //  WYPHealthyThird
 //
 //  Created by 张冲 on 17/7/21.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

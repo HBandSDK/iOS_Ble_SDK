@@ -3,7 +3,7 @@
 //  VPBleSdk
 //
 //  Created by 张冲 on 17/1/12.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -152,6 +152,7 @@ typedef NS_ENUM(NSInteger, VPSettingFunctionCompleteState) {//设置某个功能
     VPFunctionCompleteOpen = 1,//此功能已经打开
     VPFunctionCompleteClose = 2,//此功能已经关闭
     VPFunctionCompleteFailure = 3,//设置或者读取失败
+    VPFunctionCompleteComplete = 4,//设置完成，针对Data设置的回复
 };
 
 

@@ -3,7 +3,7 @@
 //  VeepooBleSDK
 //
 //  Created by 张冲 on 17/9/20.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -69,6 +69,9 @@
 //Invalid interface 无效接口
 - (void)veepooSDKSendData:(NSData *)commandData adcResult:(void(^)(NSData *gSensorADC))adcTestResult valueResult:(void(^)(NSData *gSensorADC))valueTestResult;
 
+//同步时间，特殊情况使用，默认连接的时候会自动同步时间 system 1是12小时 2是24小时，如果无用则需要通过开关设置中的制式在设置一遍
+- (void)veepooSDKSettingTimeWithYear:(int)year month:(int)month day:(int)day hour:(int)hour minute:(int)min second:(int)sec timeSystem:(int)system;
+
 
 /// 定制功能
 /// 24-hour oxygen test switch, Special project functions
@@ -123,6 +126,8 @@
  @param settingCompleteBlock Set and read completed callbacks 设置和读取完成的回调
  */
 - (void)veepooSDKSettingMessageType:(VPSettingMessageSwitchType)messageType settingState:(VPSettingFunctionState)settingState completeBlock:(void(^)(VPSettingFunctionCompleteState completeState))settingCompleteBlock;
+
+- (void)veepooSDKSettingMessageWithData:(NSData *)settingData completeBlock:(void(^)(VPSettingFunctionCompleteState completeState))settingCompleteBlock;
 
 /**
  The status of setting or reading the basic switch function includes: raising the screen at night to brighten the screen (only setting for 22:00-08:00 night, the rest of the time is to brighten the screen)
@@ -418,7 +423,7 @@
 - (void)veepooSDKSettingLowPowerSettingMode:(VPSettingFunctionState)settingMode result:(void(^)(VPSettingFunctionCompleteState settingState))lowPowerResultBlock;
 
 //Clear the data, the bracelet will automatically shut down after clearing the data, can not monitor whether the clear is successful, the shutdown will disconnect from the App
-//清除数据，清除数据后手环会自动关机，不能监听是否清除成功，关机会会与App断开连接
+//清除数据，清除数据后手环会自动关机，不能监听是否清除成功，关机后会与App断开连接
 - (void)veepooSDKClearDeviceData;
 
 #pragma mark --- 设置功能的有无, 特殊开发者使用
