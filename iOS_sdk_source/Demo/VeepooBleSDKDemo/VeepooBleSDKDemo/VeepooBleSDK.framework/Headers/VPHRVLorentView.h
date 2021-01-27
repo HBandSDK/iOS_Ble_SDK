@@ -3,7 +3,7 @@
 //  VeepooBleSDK
 //
 //  Created by 张冲 on 2018/12/19.
-//  Copyright © 2018 veepoo. All rights reserved.
+//  Copyright © 2018 zc.All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

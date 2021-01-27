@@ -3,7 +3,7 @@
 //  WYPHealthyThird
 //
 //  Created by 张冲 on 2018/10/11.
-//  Copyright © 2018年 veepoo. All rights reserved.
+//  Copyright © 2018年 zc.All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -49,9 +49,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *getUpDuration;
 //其他睡眠时间，单位分钟, 快速眼动期
 @property (nonatomic, strong) NSString *otherDuration;
-//第一次进入深睡时间
+//第一次进入深睡时间，入睡效率
 @property (nonatomic, strong) NSString *firstDeepDuration;
-//起夜到深睡时间的平均值
+//起夜到深睡时间的平均值，睡眠效率
 @property (nonatomic, strong) NSString *getUpToDeepAve;
 //曲线上一个点代表的时间，单位秒，现在是60s
 @property (nonatomic, strong) NSString *onePointDuration;

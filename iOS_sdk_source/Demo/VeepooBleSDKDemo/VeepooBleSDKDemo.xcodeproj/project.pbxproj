@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0409743724986F0A006076EC /* VPSOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409743524986F0A006076EC /* VPSOSViewController.swift */; };
 		0409743824986F0A006076EC /* VPSOSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0409743624986F0A006076EC /* VPSOSViewController.xib */; };
-		0409743E2499A86A006076EC /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0409743D2499A86A006076EC /* VeepooBleSDK.framework */; };
+		04715AE625C16001006788FA /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04715AE525C16001006788FA /* VeepooBleSDK.framework */; };
 		6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707B09F1E72504A00207523 /* VPSettingBrightController.swift */; };
 		6707B0A21E72504A00207523 /* VPSettingBrightController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6707B0A01E72504A00207523 /* VPSettingBrightController.xib */; };
 		672E08321E5D36ED00F60750 /* VPTestBloodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672E08301E5D36ED00F60750 /* VPTestBloodController.swift */; };
@@ -75,12 +75,14 @@
 		67FC22BF1E68FF7D0029DED3 /* VPTestFatigueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FC22BD1E68FF7D0029DED3 /* VPTestFatigueController.swift */; };
 		67FC22C01E68FF7D0029DED3 /* VPTestFatigueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67FC22BE1E68FF7D0029DED3 /* VPTestFatigueController.xib */; };
 		AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */; };
+		FE65720E25B930AD00672A8B /* VPPhotoDialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */; };
+		FE65720F25B930AD00672A8B /* VPPhotoDialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0409743524986F0A006076EC /* VPSOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSOSViewController.swift; sourceTree = "<group>"; };
 		0409743624986F0A006076EC /* VPSOSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSOSViewController.xib; sourceTree = "<group>"; };
-		0409743D2499A86A006076EC /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
+		04715AE525C16001006788FA /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeepooBleSDKDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6707B09F1E72504A00207523 /* VPSettingBrightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingBrightController.swift; sourceTree = "<group>"; };
 		6707B0A01E72504A00207523 /* VPSettingBrightController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPSettingBrightController.xib; sourceTree = "<group>"; };
@@ -155,6 +157,8 @@
 		67FC22BE1E68FF7D0029DED3 /* VPTestFatigueController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestFatigueController.xib; sourceTree = "<group>"; };
 		8ADCC1E39C7B06805F3E9386 /* Pods-VeepooBleSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeepooBleSDKDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VeepooBleSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPPhotoDialViewController.swift; sourceTree = "<group>"; };
+		FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPPhotoDialViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
-				0409743E2499A86A006076EC /* VeepooBleSDK.framework in Frameworks */,
+				04715AE625C16001006788FA /* VeepooBleSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,6 +261,8 @@
 				6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */,
 				6757E2822196D1BD0019E8B4 /* VPTapTestViewController.swift */,
 				6757E2832196D1BD0019E8B4 /* VPTapTestViewController.xib */,
+				FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */,
+				FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */,
 			);
 			path = veepooSDKOtherControllers;
 			sourceTree = "<group>";
@@ -328,7 +334,7 @@
 		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				0409743D2499A86A006076EC /* VeepooBleSDK.framework */,
+				04715AE525C16001006788FA /* VeepooBleSDK.framework */,
 				678C89A121F036AF0041E0AB /* SDKResours.bundle */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
@@ -445,6 +451,7 @@
 				67CB1CB51E52D26E00805649 /* LaunchScreen.storyboard in Resources */,
 				67FC22B61E6810F70029DED3 /* VPModifyPasswordController.xib in Resources */,
 				67640D541E56D248008D9D71 /* VPSyncPersonalInformationController.xib in Resources */,
+				FE65720F25B930AD00672A8B /* VPPhotoDialViewController.xib in Resources */,
 				67CA7E361EF3BAD5000D8745 /* VPEditNewAlarmController.xib in Resources */,
 				675052271E553F3F008D45BC /* VPRootViewController.xib in Resources */,
 				67CB1CB21E52D26E00805649 /* Assets.xcassets in Resources */,
@@ -557,6 +564,7 @@
 				67CB1CAB1E52D26E00805649 /* AppDelegate.swift in Sources */,
 				672E085A1E5ED92F00F60750 /* VPDFUController.swift in Sources */,
 				67640D531E56D248008D9D71 /* VPSyncPersonalInformationController.swift in Sources */,
+				FE65720E25B930AD00672A8B /* VPPhotoDialViewController.swift in Sources */,
 				67640D601E57E346008D9D71 /* VPAlarmClockSettingController.swift in Sources */,
 				67640D4F1E56CA04008D9D71 /* VPOterFunctionSettingController.swift in Sources */,
 				67CA3B5B1EF2649700203D20 /* VPCountDownSelectView.swift in Sources */,
@@ -702,7 +710,7 @@
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -739,7 +747,7 @@
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

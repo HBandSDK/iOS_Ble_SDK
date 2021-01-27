@@ -3,7 +3,7 @@
 //  VeepooBleSDK
 //
 //  Created by 张冲 on 17/9/20.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 //Custom read usage, data needs to be saved by itself

@@ -3,7 +3,7 @@
 //  VeepooBleSDKDemo
 //
 //  Created by zhangchong on 2020/6/16.
-//  Copyright © 2020 veepoo. All rights reserved.
+//  Copyright © 2020 zc.All rights reserved.
 //
 
 import UIKit

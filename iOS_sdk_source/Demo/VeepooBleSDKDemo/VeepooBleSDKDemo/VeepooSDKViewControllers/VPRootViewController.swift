@@ -3,7 +3,7 @@
 //  VeepooBleSDKDemo
 //
 //  Created by 张冲 on 17/2/16.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 import UIKit
@@ -61,7 +61,7 @@ class VPRootViewController: UIViewController {
         VPBleCentralManage.sharedBleManager().isLogEnable = true
         VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()
 //        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
-        
+//        VPBleCentralManage.sharedBleManager()?.automaticConnection = false
         
         unowned let weakSelf = self
         //监听手机系统蓝牙状态改变

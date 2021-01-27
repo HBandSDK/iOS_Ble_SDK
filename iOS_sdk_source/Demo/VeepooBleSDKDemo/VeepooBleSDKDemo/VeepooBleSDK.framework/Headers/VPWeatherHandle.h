@@ -3,7 +3,7 @@
 //  WYPHealthyThird
 //
 //  Created by zhangchong on 2020/2/28.
-//  Copyright © 2020 veepoo. All rights reserved.
+//  Copyright © 2020 zc.All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 //清除当前缓存信息
 - (void)reset;
+
+//SDK使用人，主要调用以下3个方法即可，Model自己配置好下发
 
 //同步App的天气数据给设备
 - (void)syncWeatherDataToDeviceWithWeatherServerModel:(VPWeatherServerModel *)serverModel result:(VPSyncWeatherResult)result;

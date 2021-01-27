@@ -3,7 +3,7 @@
 //  VeepooBleSDKDemo
 //
 //  Created by 张冲 on 17/2/17.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 import UIKit
@@ -14,15 +14,16 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
     
     var otherFunctionSettingTableView: UITableView?
     
-    let otherFunctions = ["同步个人信息","闹钟设置","血压私人模式设置","久坐提醒设置","心率报警设置","拍照功能","与手机配对","翻腕亮屏","修改密码","亮度调节","女性设置","倒计时功能","新闹钟设置","彩屏样式设置","亮屏时长","敲击测试"]
+    let otherFunctions = ["同步个人信息","闹钟设置","血压私人模式设置","久坐提醒设置","心率报警设置","拍照功能","与手机配对","翻腕亮屏","修改密码","亮度调节","女性设置","倒计时功能","新闹钟设置","彩屏样式设置","亮屏时长","敲击测试","照片表盘"]
     
-    let otherControllers = ["VPSyncPersonalInformationController","VPAlarmClockSettingController","VPBloodPrivateSettingController","VPLongSeatSettingController","VPHeartAlarmController","VPTakePhotoController","与手机配对","VPRaiseHandSettingController","VPModifyPasswordController","VPSettingBrightController","VPSettingFemaleRelatedController","VPDeviceCountDownController","VPDeviceNewAlarmController","VPSettingScreenStyleController","VPSettingScreenDurationController","VPTapTestViewController"]
+    let otherControllers = ["VPSyncPersonalInformationController","VPAlarmClockSettingController","VPBloodPrivateSettingController","VPLongSeatSettingController","VPHeartAlarmController","VPTakePhotoController","与手机配对","VPRaiseHandSettingController","VPModifyPasswordController","VPSettingBrightController","VPSettingFemaleRelatedController","VPDeviceCountDownController","VPDeviceNewAlarmController","VPSettingScreenStyleController","VPSettingScreenDurationController","VPTapTestViewController","VPPhotoDialViewController"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "功能列表"
         view.backgroundColor = UIColor.white
         otherFunctionSettingTableView = UITableView(frame: view.bounds, style: .plain)
+        otherFunctionSettingTableView?.autoresizingMask = UIViewAutoresizing.flexibleHeight
         otherFunctionSettingTableView?.delegate = self
         otherFunctionSettingTableView?.dataSource = self
         view.addSubview(otherFunctionSettingTableView!)

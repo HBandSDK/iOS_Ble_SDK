@@ -3,7 +3,7 @@
 //  VeepooBleSDKDemo
 //
 //  Created by 张冲 on 17/2/16.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 import UIKit
@@ -60,6 +60,9 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
             case .functionCompleteClose:
                 _ = AppDelegate.showHUD(message: "设置成功，已经关闭", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
                 weakSelf.messageRemindTableView?.reloadData()
+            case .functionCompleteComplete:
+                _ = AppDelegate.showHUD(message: "设置完成", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                weakSelf.messageRemindTableView?.reloadData()
             }
         }
     }
@@ -85,6 +88,8 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
                 _ = AppDelegate.showHUD(message: "设置成功，已经开启", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             case .functionCompleteClose:
                 _ = AppDelegate.showHUD(message: "设置成功，已经关闭", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .functionCompleteComplete:
+                _ = AppDelegate.showHUD(message: "设置完成", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             }
         }
     }

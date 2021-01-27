@@ -3,7 +3,7 @@
 //  VeepooBleSDK
 //
 //  Created by 张冲 on 2019/1/11.
-//  Copyright © 2019 veepoo. All rights reserved.
+//  Copyright © 2019 zc.All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

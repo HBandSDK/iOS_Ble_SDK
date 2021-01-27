@@ -3,7 +3,7 @@
 //  VeepooBleSDKDemo
 //
 //  Created by 张冲 on 17/6/16.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 //写的有点啰嗦了,具体页面就不要看了，主要看功能实现的逻辑，星期一到星期日的weekBtn.tag一次为2^0至2^6，把所有选择的星期异或如选择了周一和周三就 2^0 | 2^2取得的值就是alarmModel.repeatState的值了，如果都没有选alarmModel.repeatState = 0，如果单次设置失败，可能是选择的日期比当前的日期早，场景图标demo中有两套，根据你们手环上的图标去对应选择，场景为0默认闹钟（这个是通用的），其他的依次顺序为1-20，不要混掉，手环端是根据这个一一对应的

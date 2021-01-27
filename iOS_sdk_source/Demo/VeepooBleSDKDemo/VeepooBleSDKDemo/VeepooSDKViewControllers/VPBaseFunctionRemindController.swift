@@ -3,7 +3,7 @@
 //  VeepooBleSDKDemo
 //
 //  Created by 张冲 on 17/2/17.
-//  Copyright © 2017年 veepoo. All rights reserved.
+//  Copyright © 2017年 zc.All rights reserved.
 //
 
 import UIKit
@@ -65,6 +65,8 @@ class VPBaseFunctionRemindController: UIViewController  , UITableViewDelegate , 
                 _ = AppDelegate.showHUD(message: "设置成功，已经开启", hudModel: MBProgressHUDModeText, showView: (self?.view)!)
             case .functionCompleteClose:
                 _ = AppDelegate.showHUD(message: "设置成功，已经关闭", hudModel: MBProgressHUDModeText, showView: (self?.view)!)
+            case .functionCompleteComplete:
+                _ = AppDelegate.showHUD(message: "设置完成闭", hudModel: MBProgressHUDModeText, showView: (self?.view)!)
             }
         }
     }
