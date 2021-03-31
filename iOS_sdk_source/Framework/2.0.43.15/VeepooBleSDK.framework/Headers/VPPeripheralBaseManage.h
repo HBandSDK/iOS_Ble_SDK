@@ -28,6 +28,8 @@
 #import "VPDialModel.h"
 #import "VPPhotoDialModel.h"
 #import "VPDeviceMarketDialModel.h"
+#import "VPDeviceGPSModel.h"
+#import "VPDeviceHadjCountModel.h"
 
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
@@ -549,6 +551,26 @@
                                photoDialModel:(VPPhotoDialModel *)photoDialModel
                                        result:(void (^)(VPPhotoDialModel *photoDialModel, VPDeviceMarketDialModel *deviceMarketDialModel, NSError *error))result
                             transformProgress:(void (^)(double progress))transformProgress;
+
+#pragma mark - search device function
+
+/// 手机查找手环功能
+/// @param open 开启or关闭
+/// @param result 设备状态回调
+- (void)veepooSDK_searchDeviceFuntionWithState:(BOOL)open result:(void (^)(BOOL open, VPSearchDeviceFunctionState state))result;
+
+#pragma mark - gps 和 诵经
+
+/// GPS和时区设置
+/// @param model 传入的模型
+/// @param result 结果，state 为0表示不支持，1成功 2失败
+- (void)veepooSDK_setDeviceGPSAndTimezoneWithModel:(VPDeviceGPSModel *)model result:(void (^)(NSInteger state))result;
+
+
+/// 诵经计数数据读取
+/// @param timestamp 时间戳 读取哪个时间戳之后的数据
+/// @param result 诵经结果 单包或多包
+- (void)veepooSDK_readHadjCountWithTimestamp:(long)timestamp result:(void (^)(VPDeviceHadjCountModel *model))result;
 
 @end
 

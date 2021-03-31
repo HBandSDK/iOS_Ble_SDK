@@ -77,6 +77,7 @@ typedef void(^DeviceConnectBlock)(DeviceConnectState connectState);
 
 typedef void(^SynchronizationResultBlock)(PasswordSynchronTpye result);
 
+typedef void(^VPReadRSSIBlock)(NSInteger rssiValue);
 
 typedef NS_ENUM(NSInteger, VPReadDeviceBaseDataState) {//读取设备基本数据的状态变化
     VPReadDeviceBaseDataStart = 0, //开始读取数据
@@ -106,6 +107,9 @@ typedef NS_ENUM(NSInteger, VPSettingMessageSwitchType) {//关于来电提醒的�
     VPSettingDingTalk,
     VPSettingWeChatWork,
     VPSettingOtherPlatform = 19,
+    VPSettingOtherTikTok = 20,
+    VPSettingOtherTelegram = 21,
+    VPSettingOtherConnected2 = 22,
     VPSettingAll = 100,//设置所有, 读取的使用不能使用这个
 };
 
@@ -256,4 +260,13 @@ typedef NS_ENUM(NSInteger,VPDeviceRuningMode) {//运动模式类型
     VPDeviceRuningModeStationaryBike,//室内骑行
     VPDeviceRuningModeElliptical,//椭圆机
     VPDeviceRuningModeRowingMachine,//划船机
+};
+
+
+// 手机查找手环状态
+typedef NS_ENUM(NSUInteger, VPSearchDeviceFunctionState) {
+    VPSearchDeviceFunctionStateUnsupported,   // 功能不支持
+    VPSearchDeviceFunctionStateEnter,         // 设备进入了查找状态
+    VPSearchDeviceFunctionStateExit,          // 设备推出了查找状态
+    VPSearchDeviceFunctionStateTimeout,       // 设备查找超时
 };

@@ -82,7 +82,12 @@
 @property (nonatomic, assign) NSUInteger screenDurationType;
 
 //设备ANCS信息提醒包含的功能数据结构如AD02010202000102020000000000000000000000共计20个字节的Data，前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表来电、短信、wechat、QQ、Sina、Facebook、Twitter、Flickr、LinkedIn、whatsApp、Line、Instagram、Snapchat、Skype、钉钉、企业微信，后边的带开发，每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒，最后一位是其他应用（除了上述之外的其他有通知的App），图标显示默认公共图标，0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
+// 下标19的高4位表示包号（第一包为0x00） 低4位表示 其它， 如果打开其它，则下标19应为0x01(高4位:0b0000,低4位:0b0001)
 @property (nonatomic, strong) NSData *deviceAncsData;
+
+// AD02010202000102020000000000000000000010
+// ANCS第二包 前两个字节是头和设置及读取 从第三个字节，即下标为2开始，依次代表 tiktok、telegram、connected2、、、 下标19的高4位表示包号（0x10表示第二包）
+@property (nonatomic, strong) NSData *deviceAncsDataTwo;
 
 //设备开关的提醒状态包含的功能数据结构如B802010202010102020000000000000000000000前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表公英制、24小时制式、心率自动检测、血压自动检测、运动量过量提醒、心率血压血氧语音播报、手机查找、秒表功能、血氧过低通知、LED灯档位（1代表正常肤色档位、2代表黑色皮肤档位），HRV夜间自动检测，来电免接听，蓝牙断链提醒，SOS页面显示, PPG自动测量, 科学睡眠自动检测(这个暂时无用, 关闭科学睡眠用的是PPG自动测量)，每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
 @property (nonatomic, strong) NSData *deviceSwitchData;
@@ -157,6 +162,9 @@
 @property (nonatomic, assign) NSUInteger photoDialCount;
 
 @property (nonatomic, strong) VPDialModel *dialModel;
+
+//手机查找手环功能 0代表没有，1代表有
+@property (nonatomic, assign) NSUInteger searchDeviceFunction;
 
 #pragma mark -- Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is
