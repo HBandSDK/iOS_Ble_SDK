@@ -30,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let centralManagerIdentifiers = launchOptions?[UIApplicationLaunchOptionsKey.bluetoothCentrals]
         print(centralManagerIdentifiers ?? [])
         
+//        VPDFUOperation().veepooSDKStartDfu(withFilePath: VPPath.filePath(documentSubPath: "VeepooBleSDKframework.zip")) { (progress, state) in
+//            
+//        }
+        
         return true
     }
 

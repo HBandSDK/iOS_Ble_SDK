@@ -15,6 +15,7 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
     var messageRemindTableView: UITableView?
     
     let messageFunctions = ["来电","短信","微信","QQ","新浪","Facebook","Twitter","Flickr","Linkedln","whatsApp","Line","Instagram","Snapchat","Skype","GMail","DingTalk","WeChat Work","其他应用"]
+    let messageFunctionsTwo = ["TikTok","Telegram","Connected2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,7 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
     }
 
     func initMessageRemindViewControllerUI() {
-        messageRemindTableView = UITableView(frame: view.bounds, style: .plain)
+        messageRemindTableView = UITableView(frame: CGRect.init(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - 80), style: .plain)
         messageRemindTableView?.delegate = self
         messageRemindTableView?.dataSource = self
         view.addSubview(messageRemindTableView!)
@@ -105,38 +106,58 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageFunctions.count
+        return messageFunctions.count + messageFunctionsTwo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        var tbyte:[UInt8] = Array(repeating: 0x00, count: 20)
-        VPBleCentralManage.sharedBleManager().peripheralModel.deviceAncsData.copyBytes(to: &tbyte, count: 20)
-        var header = tbyte[indexPath.row + 2]//header == 0即为没有此功能，1是开启，2是关闭
-        
         var cell = tableView.dequeueReusableCell(withIdentifier: messageRemindCellID)
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: messageRemindCellID)
         }
+        
         cell?.selectionStyle = .none
-        cell?.textLabel?.text = messageFunctions[indexPath.row]
         
-        let messageSwitch = UISwitch()
-        
-        messageSwitch.tag = indexPath.row + 2
-        
-        if  indexPath.row == messageFunctions.count - 1 {//最后一位代表其他应用，中间预留了几位
-            header = tbyte[19]
-            messageSwitch.tag = 19
+        if indexPath.row < messageFunctions.count { // 第一包
+            var tbyte:[UInt8] = Array(repeating: 0x00, count: 20)
+            if VPBleCentralManage.sharedBleManager().peripheralModel.deviceAncsData != nil {
+                VPBleCentralManage.sharedBleManager().peripheralModel.deviceAncsData.copyBytes(to: &tbyte, count: 20)
+            }
+            var header = tbyte[indexPath.row + 2]//header == 0即为没有此功能，1是开启，2是关闭
+            
+            cell?.textLabel?.text = messageFunctions[indexPath.row]
+            
+            let messageSwitch = UISwitch()
+            messageSwitch.tag = indexPath.row + 2
+            
+            if  indexPath.row == messageFunctions.count - 1 {//最后一位代表其他应用，中间预留了几位
+                header = tbyte[19]
+                messageSwitch.tag = 19
+            }
+            
+            messageSwitch.addTarget(self, action: #selector(messageOpenOrCloseAction(sender:)), for: .touchUpInside)
+            messageSwitch.isEnabled = header != 0//为0即为没有此功能
+            messageSwitch.isOn = header == 1//为1即为开
+            
+            cell?.accessoryView = messageSwitch
         }
         
-        messageSwitch.addTarget(self, action: #selector(messageOpenOrCloseAction(sender:)), for: .touchUpInside)
-        
-        messageSwitch.isEnabled = header != 0//为0即为没有此功能
-        
-        messageSwitch.isOn = header == 1//为1即为开
-        
-        cell?.accessoryView = messageSwitch
+        if indexPath.row >= messageFunctions.count { // 第二包
+            var tbyte:[UInt8] = Array(repeating: 0x00, count: 20)
+            if VPBleCentralManage.sharedBleManager().peripheralModel.deviceAncsDataTwo != nil {
+                VPBleCentralManage.sharedBleManager().peripheralModel.deviceAncsDataTwo.copyBytes(to: &tbyte, count: 20)
+            }
+            let header = tbyte[indexPath.row + 2 - messageFunctions.count]//header == 0即为没有此功能，1是开启，2是关闭
+            
+            cell?.textLabel?.text = messageFunctionsTwo[indexPath.row - messageFunctions.count]
+            
+            let messageSwitch = UISwitch()
+            messageSwitch.tag = indexPath.row + 2
+            messageSwitch.addTarget(self, action: #selector(messageOpenOrCloseAction(sender:)), for: .touchUpInside)
+//            messageSwitch.isEnabled = header != 0//为0即为没有此功能
+            messageSwitch.isOn = header == 1//为1即为开
+            
+            cell?.accessoryView = messageSwitch
+        }
         
         return cell!
     }

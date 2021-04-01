@@ -18,9 +18,17 @@ class VPPhotoDialViewController: UIViewController {
     @IBOutlet weak var showPhotoDialViewButton: UIButton!
     var photoDialView : VPPhotoDialView!
     
+    var supportPhotoDialFunction:Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "照片表盘"
+        // 照片表盘标志位
+        supportPhotoDialFunction = (VPBleCentralManage.sharedBleManager()?.peripheralModel.photoDialCount)! > 0
+        if !supportPhotoDialFunction {
+            _ = AppDelegate.showHUD(message: "不支持照片表盘功能", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
         self.readDeviceScreenButton.sendActions(for: .touchUpInside)
         self.readPhotoDialDetailButton.sendActions(for: .touchUpInside)
     }
@@ -38,17 +46,17 @@ class VPPhotoDialViewController: UIViewController {
     
     // 设置设备表盘为照片表盘
     @IBAction func setScreenStyleToPhotoDial(_ sender: UIButton) {
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKSettingDeviceScreenStyle(1, settingMode: 1, dialType: .photo, result: { (dialType, screenStyle, settingSuccess) in
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKSettingDeviceScreenStyle(1, settingMode: 1, dialType: .photo, result: { [weak self](dialType, screenStyle, settingSuccess) in
             print("设置>> screenStyle: \(screenStyle), settingSuccess:\(settingSuccess)")
+            self?.readDeviceScreenButton.sendActions(for: .touchUpInside)
         })
-        self.readDeviceScreenButton.sendActions(for: .touchUpInside)
     }
     
     // MARK: - 照片表盘传输、元素设置、效果View显示
     // 读取照片表盘信息，获取VPPhotoDialModel模型
     // SDK使用者请自行持有该模型，设置与显示效果View都依据读取上来的模型
     @IBAction func readPhotoDialDetailInfo(_ sender: UIButton) {
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_dialChannel(with: .read, dialType: .photo, photoDialModel: nil, result: { [weak self](photoDialModel, error) in
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_dialChannel(with: .read, dialType: .photo, photoDialModel: nil, result: { [weak self](photoDialModel, deviceMarketDialModel, error) in
             self?.photoDialModel = photoDialModel! as VPPhotoDialModel
         }, transformProgress: nil);
     }
@@ -61,7 +69,7 @@ class VPPhotoDialViewController: UIViewController {
         self.photoDialModel.setColor = "00FF00"
         self.photoDialModel.isDefaultBG = true
         self.photoDialModel.transformImage = nil // transformImage必须为空
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_dialChannel(with: .setupPhotoDial, dialType: .photo, photoDialModel: self.photoDialModel, result: { (photoDialModel, error) in
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_dialChannel(with: .setupPhotoDial, dialType: .photo, photoDialModel: self.photoDialModel, result: { (photoDialModel, deviceMarketDialModel, error) in
             if error != nil {
                 print(photoDialModel! as VPPhotoDialModel)
             }
@@ -77,10 +85,10 @@ class VPPhotoDialViewController: UIViewController {
         self.photoDialModel.setColor = "FF0000"
         // 传输的图片宽高必须与屏幕的宽高一致 请注意⚠️分辨率为显示分辨率，即1x
         // 240*240
-//        self.photoDialModel.transformImage = UIImage.init(named: "test_240_240")
+        self.photoDialModel.transformImage = UIImage.init(named: "test_240_240")
         // 240*280
-        self.photoDialModel.transformImage = UIImage.init(named: "test_240_280")
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_dialChannel(with: .setupPhotoDial, dialType: .photo, photoDialModel: self.photoDialModel, result: { ( photoDialModel, error) in
+//        self.photoDialModel.transformImage = UIImage.init(named: "test_240_280")
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_dialChannel(with: .setupPhotoDial, dialType: .photo, photoDialModel: self.photoDialModel, result: { ( photoDialModel, deviceMarketDialModel, error) in
             print(error! as NSError)
         }, transformProgress: { (progress) in
             print("进度：\(progress * 100) %")
@@ -95,14 +103,14 @@ class VPPhotoDialViewController: UIViewController {
         }
         timeIndex += 1
         // 圆屏 测试
-//        if timeIndex > 3 {
-//            timeIndex = 1 // 圆屏 从1 开始
-//        }
+        if timeIndex > 3 {
+            timeIndex = 1 // 圆屏 从1 开始
+        }
         
         // 方屏 测试
-        if timeIndex > 7 || timeIndex < 4 {
-            timeIndex = 4 // 方屏从 4 开始
-        }
+//        if timeIndex > 7 || timeIndex < 4 {
+//            timeIndex = 4 // 方屏从 4 开始
+//        }
         
         // 元素轮训
         topAndBottomIndex += 1

@@ -293,7 +293,7 @@ class VPEditNewAlarmController: UIViewController,UIPickerViewDelegate,UIPickerVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 && indexPath.section == 0 {//选择日期,先给你写个随机的，大概意思就是这意思
-            repeatDetailLabel.text = String(format: "%04d-%02d-%02d",2017,arc4random()%12 + 1 ,arc4random() % 31)
+            repeatDetailLabel.text = String(format: "%04d-%02d-%02d",2021,arc4random()%12 + 1 ,arc4random() % 31)
             alarmModel?.alarmDate = repeatDetailLabel.text
         }else if (indexPath.row == 0 && indexPath.section == 1) {
             showScene = !showScene

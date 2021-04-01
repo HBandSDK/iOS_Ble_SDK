@@ -38,7 +38,7 @@ class VPDeviceNewAlarmController: UIViewController,UITableViewDelegate,UITableVi
         }
         var tbyte:[UInt8] = Array(repeating: 0x00, count: 20)
         VPBleCentralManage.sharedBleManager().peripheralModel.deviceFuctionData.copyBytes(to: &tbyte, count: tbyte.count)
-        if !(tbyte[17] != 1 || tbyte[17] != 2) {//先判断一下是否有这个功能
+        if !(tbyte[17] != 1 || tbyte[17] != 2 || tbyte[17] != 3 || tbyte[17] != 4) {//先判断一下是否有这个功能
             _ = AppDelegate.showHUD(message: "手环没有新闹钟功能", hudModel: MBProgressHUDModeText, showView: view)
             return
         }
