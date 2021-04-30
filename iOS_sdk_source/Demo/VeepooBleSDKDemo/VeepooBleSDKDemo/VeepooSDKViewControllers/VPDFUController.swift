@@ -69,6 +69,32 @@ class VPDFUController: UIViewController {
         }
     }
     
+    @IBAction func localTest(_ sender: UIButton) {
+        if sender.isSelected {
+            return
+        }
+        dfuProgressLabel.text = "准备升级"
+        sender.isSelected = true
+        unowned let weakSelf = self
+        let filePath = Bundle.main.path(forResource: "A63_00630022_8065_fw_encryptandsign.bin", ofType: nil)
+        dufOperationManager.veepooSDKStartDfu(withFilePath: filePath) { (dfuProgress, deviceDFUState) in
+            switch deviceDFUState {
+            case .fileNotExist:
+                sender.isSelected = false
+                _ = AppDelegate.showHUD(message: "升级文件不存在，不能升级", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .start:
+                _ = AppDelegate.showHUD(message: "开始升级", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .updating:
+                weakSelf.dfuProgressLabel.text = "升级进度: " + String(dfuProgress) + "%"
+            case .success:
+                sender.isSelected = false
+                _ = AppDelegate.showHUD(message: "升级成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .failure:
+                sender.isSelected = false
+                _ = AppDelegate.showHUD(message: "升级失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

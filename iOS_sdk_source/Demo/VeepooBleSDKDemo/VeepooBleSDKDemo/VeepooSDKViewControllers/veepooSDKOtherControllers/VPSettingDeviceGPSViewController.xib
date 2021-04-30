@@ -79,14 +79,10 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxr-7o-fX8">
-                    <rect key="frame" x="118.5" y="344" width="177" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qp6-zS-ITd">
+                    <rect key="frame" x="212" y="343" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="L5O-QL-JF7"/>
-                        <constraint firstAttribute="width" constant="177" id="R0i-KI-Ten"/>
-                    </constraints>
-                    <state key="normal" title="下发指令">
+                    <state key="normal" title="克尔白经纬度">
                         <color key="titleColor" systemColor="systemBlueColor"/>
                     </state>
                     <state key="disabled">
@@ -94,7 +90,7 @@
                     </state>
                     <state key="selected" title="关闭查找"/>
                     <connections>
-                        <action selector="sendCommandBtnClick:" destination="-1" eventType="touchUpInside" id="JCr-Eg-1vs"/>
+                        <action selector="KAABAGPSSettingBtn:" destination="-1" eventType="touchUpInside" id="ABU-tt-ABe"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经度:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8a-Tn-9TG">
@@ -104,10 +100,12 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4be-YM-HSn">
-                    <rect key="frame" x="119" y="485" width="177" height="44"/>
+                    <rect key="frame" x="118.5" y="485" width="177" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="I0U-4c-XvL"/>
                         <constraint firstAttribute="width" constant="177" id="KF8-1e-FsC"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="177" id="ti1-tl-jfZ"/>
                         <constraint firstAttribute="height" constant="44" id="wR9-nj-fDg"/>
                     </constraints>
                     <state key="normal" title="诵经计数读取">
@@ -149,6 +147,42 @@
                         <constraint firstAttribute="height" constant="1" id="IWD-3b-3cg"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxr-7o-fX8">
+                    <rect key="frame" x="20" y="343" width="182" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="nYD-SJ-Qom"/>
+                    </constraints>
+                    <state key="normal" title="下发指令">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭查找"/>
+                    <connections>
+                        <action selector="sendCommandBtnClick:" destination="-1" eventType="touchUpInside" id="JCr-Eg-1vs"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVK-zQ-uBy">
+                    <rect key="frame" x="33.5" y="485" width="73" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="ER4-wB-9EQ"/>
+                        <constraint firstAttribute="width" constant="73" id="rAe-YK-DFp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="AGPS测试">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭查找"/>
+                    <connections>
+                        <action selector="AGPSBtn:" destination="-1" eventType="touchUpInside" id="Rd2-dT-S3m"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -166,41 +200,46 @@
                 <constraint firstItem="9lQ-Jr-8tz" firstAttribute="trailing" secondItem="T8a-Tn-9TG" secondAttribute="trailing" id="AYa-17-6Hc"/>
                 <constraint firstItem="m0v-lL-Qui" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="B2J-pV-8uX"/>
                 <constraint firstItem="1KE-4g-wNR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="B7E-1x-et3"/>
-                <constraint firstItem="jxr-7o-fX8" firstAttribute="centerX" secondItem="dCH-MX-hSa" secondAttribute="centerX" constant="-17" id="BaQ-7R-Ls2"/>
+                <constraint firstItem="jxr-7o-fX8" firstAttribute="top" secondItem="dCH-MX-hSa" secondAttribute="bottom" constant="29" id="C60-bY-ebL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qp6-zS-ITd" secondAttribute="trailing" constant="20" id="Cpz-0M-167"/>
                 <constraint firstItem="EB8-5A-rH7" firstAttribute="width" secondItem="QFn-sz-W29" secondAttribute="width" id="Fo6-1t-zA2"/>
                 <constraint firstItem="nxK-zm-aKH" firstAttribute="height" secondItem="QFn-sz-W29" secondAttribute="height" id="GrW-jQ-o9p"/>
-                <constraint firstItem="4be-YM-HSn" firstAttribute="width" secondItem="jxr-7o-fX8" secondAttribute="width" id="IoN-pg-ofv"/>
                 <constraint firstItem="nxK-zm-aKH" firstAttribute="centerX" secondItem="QFn-sz-W29" secondAttribute="centerX" id="ItN-rA-NfX"/>
                 <constraint firstItem="U0D-A9-dzT" firstAttribute="centerX" secondItem="QFn-sz-W29" secondAttribute="centerX" id="J6i-Zr-6p3"/>
                 <constraint firstItem="dCH-MX-hSa" firstAttribute="height" secondItem="QFn-sz-W29" secondAttribute="height" id="KEH-RQ-gOy"/>
                 <constraint firstItem="nxK-zm-aKH" firstAttribute="top" secondItem="EB8-5A-rH7" secondAttribute="bottom" constant="20" id="Krh-AG-qY4"/>
                 <constraint firstItem="nxK-zm-aKH" firstAttribute="width" secondItem="QFn-sz-W29" secondAttribute="width" id="LtB-Hv-zaT"/>
                 <constraint firstItem="0YK-tG-Xqt" firstAttribute="trailing" secondItem="T8a-Tn-9TG" secondAttribute="trailing" id="Mxy-e2-cze"/>
-                <constraint firstItem="1KE-4g-wNR" firstAttribute="top" secondItem="jxr-7o-fX8" secondAttribute="bottom" constant="25" id="OYg-UZ-5YO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UMf-an-FRa" secondAttribute="trailing" constant="20" id="QHK-vJ-GGT"/>
                 <constraint firstItem="9lQ-Jr-8tz" firstAttribute="centerY" secondItem="U0D-A9-dzT" secondAttribute="centerY" id="R0o-8w-S3o"/>
+                <constraint firstItem="qp6-zS-ITd" firstAttribute="centerY" secondItem="jxr-7o-fX8" secondAttribute="centerY" id="RVS-yf-IKA"/>
                 <constraint firstItem="dCH-MX-hSa" firstAttribute="centerX" secondItem="QFn-sz-W29" secondAttribute="centerX" id="Rzy-fk-5lk"/>
                 <constraint firstItem="Lj6-7n-eI2" firstAttribute="centerY" secondItem="dCH-MX-hSa" secondAttribute="centerY" id="TX7-X4-cBQ"/>
-                <constraint firstItem="jxr-7o-fX8" firstAttribute="top" secondItem="dCH-MX-hSa" secondAttribute="bottom" constant="30" id="Tqn-Rn-FsT"/>
                 <constraint firstItem="EB8-5A-rH7" firstAttribute="top" secondItem="QFn-sz-W29" secondAttribute="bottom" constant="20" id="UH9-Zn-8SJ"/>
                 <constraint firstItem="U0D-A9-dzT" firstAttribute="height" secondItem="QFn-sz-W29" secondAttribute="height" id="UMV-3P-Pdk"/>
+                <constraint firstItem="qp6-zS-ITd" firstAttribute="width" secondItem="jxr-7o-fX8" secondAttribute="width" id="Vgx-04-wgd"/>
                 <constraint firstItem="U0D-A9-dzT" firstAttribute="top" secondItem="nxK-zm-aKH" secondAttribute="bottom" constant="20" id="WFW-cr-6IF"/>
+                <constraint firstItem="4be-YM-HSn" firstAttribute="centerX" secondItem="1KE-4g-wNR" secondAttribute="centerX" id="Y8j-7J-cvt"/>
                 <constraint firstItem="4be-YM-HSn" firstAttribute="top" secondItem="gya-5k-rIu" secondAttribute="bottom" constant="20" id="Z5T-x0-pkb"/>
+                <constraint firstItem="4be-YM-HSn" firstAttribute="leading" secondItem="xVK-zQ-uBy" secondAttribute="trailing" constant="12" id="aGl-Uj-grA"/>
                 <constraint firstItem="UMf-an-FRa" firstAttribute="top" secondItem="4be-YM-HSn" secondAttribute="bottom" constant="23" id="acD-lh-lC4"/>
+                <constraint firstItem="qp6-zS-ITd" firstAttribute="leading" secondItem="jxr-7o-fX8" secondAttribute="trailing" constant="10" id="bUD-EQ-oTM"/>
+                <constraint firstItem="4be-YM-HSn" firstAttribute="centerY" secondItem="xVK-zQ-uBy" secondAttribute="centerY" id="cyW-Pm-IUD"/>
                 <constraint firstItem="QFn-sz-W29" firstAttribute="leading" secondItem="T8a-Tn-9TG" secondAttribute="trailing" constant="20" id="fxT-nP-ntP"/>
+                <constraint firstItem="1KE-4g-wNR" firstAttribute="top" secondItem="jxr-7o-fX8" secondAttribute="bottom" constant="26" id="g6Q-aX-ozc"/>
+                <constraint firstItem="qp6-zS-ITd" firstAttribute="height" secondItem="jxr-7o-fX8" secondAttribute="height" id="jvz-WV-aV3"/>
                 <constraint firstItem="2Zt-qW-B3L" firstAttribute="centerY" secondItem="nxK-zm-aKH" secondAttribute="centerY" id="klb-tG-UXv"/>
                 <constraint firstItem="EB8-5A-rH7" firstAttribute="height" secondItem="QFn-sz-W29" secondAttribute="height" id="l3j-HW-9bV"/>
                 <constraint firstAttribute="trailing" secondItem="1KE-4g-wNR" secondAttribute="trailing" id="mzv-fv-eHj"/>
                 <constraint firstItem="m0v-lL-Qui" firstAttribute="centerY" secondItem="gya-5k-rIu" secondAttribute="centerY" id="naz-pT-lUg"/>
-                <constraint firstItem="4be-YM-HSn" firstAttribute="centerX" secondItem="jxr-7o-fX8" secondAttribute="centerX" id="qh5-tI-d6v"/>
                 <constraint firstItem="dCH-MX-hSa" firstAttribute="width" secondItem="QFn-sz-W29" secondAttribute="width" id="r9B-Ka-Wwe"/>
-                <constraint firstItem="4be-YM-HSn" firstAttribute="height" secondItem="jxr-7o-fX8" secondAttribute="height" id="rdR-Er-yrV"/>
                 <constraint firstItem="QFn-sz-W29" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="17" id="rrq-fQ-Pmr"/>
                 <constraint firstItem="UMf-an-FRa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="t4Y-Lu-CsE"/>
                 <constraint firstItem="Lj6-7n-eI2" firstAttribute="trailing" secondItem="T8a-Tn-9TG" secondAttribute="trailing" id="taQ-HL-wsz"/>
+                <constraint firstItem="jxr-7o-fX8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="v2e-aS-TWd"/>
                 <constraint firstItem="dCH-MX-hSa" firstAttribute="top" secondItem="U0D-A9-dzT" secondAttribute="bottom" constant="20" id="vRV-3O-10a"/>
             </constraints>
-            <point key="canvasLocation" x="-1820" y="153"/>
+            <point key="canvasLocation" x="-2175" y="-221"/>
         </view>
     </objects>
     <resources>

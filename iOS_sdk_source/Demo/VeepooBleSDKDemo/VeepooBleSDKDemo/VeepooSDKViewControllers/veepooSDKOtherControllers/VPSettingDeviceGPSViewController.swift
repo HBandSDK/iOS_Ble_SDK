@@ -18,12 +18,14 @@ class VPSettingDeviceGPSViewController: UIViewController {
     
     @IBOutlet weak var textView: UITextView!
     var deviceGPSModel: VPDeviceGPSModel!
+    var KAABAGPSModel: VPDeviceKAABAGPSModel!
     
     @IBOutlet weak var timestampField2: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         deviceGPSModel = VPDeviceGPSModel.init()
+        KAABAGPSModel = VPDeviceKAABAGPSModel.init()
         // Do any additional setup after loading the view.
         timestampField.text = String(format: "%.0f", Date().toGlobalTime().timeIntervalSince1970)
         timestampField2.text = String(format: "%.0f", Date().timeIntervalSince1970)
@@ -79,6 +81,30 @@ class VPSettingDeviceGPSViewController: UIViewController {
             let str = "当前包诵经次数:\(model.currentCount) 开始时间戳:\(model.startTimestamp) 结束时间戳:\(model.endTimestamp)"
             self?.textView.text.append(str)
             self?.textView.insertText("\n\n")
+        })
+    }
+    
+    @IBAction func KAABAGPSSettingBtn(_ sender: UIButton) {
+        KAABAGPSModel.longitude = Int32((Double(longitudeField.text!) ?? 0) * 100000)
+        KAABAGPSModel.latitude = Int32((Double(latitudeField.text!) ?? 0) * 100000)
+        KAABAGPSModel.altitude = Int16(altitudeTextField.text!) ?? 0
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_setKAABAGPS(with: KAABAGPSModel, result: { [weak self](state) in
+            _ = AppDelegate.showHUD(message: state == 1 ? "设置成功" : "设置失败", hudModel: MBProgressHUDModeText, showView: (self?.view)!)
+        })
+    }
+    
+    @IBAction func AGPSBtn(_ sender: UIButton) {
+        let apgsFunction = VPBleCentralManage.sharedBleManager()?.peripheralModel.agpsFunction;
+        print("是否有AGPS功能: \(apgsFunction == 1 ? "是":"否")")
+        
+        let path = Bundle.main.path(forResource: "LTEPH_GPS_1", ofType: "rtcm")
+        let fileUrl = URL(fileURLWithPath: path!)
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_AGPSTransform(withFileUrl: fileUrl, timestamp: 0, result: { (photoDialModel, marketDialModel, error) in
+            if error != nil {
+                print(error! as NSError)
+            }
+        }, transformProgress: { (progress) in
+            print("进度: \(progress * 100) %")
         })
     }
 }
