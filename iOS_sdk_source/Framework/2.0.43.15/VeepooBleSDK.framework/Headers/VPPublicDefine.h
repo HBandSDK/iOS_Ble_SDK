@@ -138,6 +138,8 @@ typedef NS_ENUM(NSInteger, VPSettingBaseFunctionSwitchType) {//关于来电提�
     //下边是第二包
     VPSettingLongpressUnlock = 22, //长按解锁
     VPSettingMessageScreenLight = 23, //消息亮屏
+    VPSettingAutomaticTemperatureTest = 24, //体温自动检测开关
+    VPSettingTemperatureUnit = 25, //体温单位设置 1表示摄氏度 2表示华氏度
     
     //其他指令
     VPSettingAutomaticOxygenTest = 1000,//血氧夜间自动检测
@@ -269,4 +271,11 @@ typedef NS_ENUM(NSUInteger, VPSearchDeviceFunctionState) {
     VPSearchDeviceFunctionStateEnter,         // 设备进入了查找状态
     VPSearchDeviceFunctionStateExit,          // 设备推出了查找状态
     VPSearchDeviceFunctionStateTimeout,       // 设备查找超时
+};
+
+// 体温手动测试/自动监测开关状态
+typedef NS_ENUM(NSUInteger, VPTemperatureTestState) {
+    VPTemperatureTestStateUnsupported,
+    VPTemperatureTestStateOpen,
+    VPTemperatureTestStateClose,
 };

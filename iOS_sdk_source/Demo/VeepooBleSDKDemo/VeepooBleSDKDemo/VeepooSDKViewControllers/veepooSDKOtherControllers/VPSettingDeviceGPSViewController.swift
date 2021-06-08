@@ -99,7 +99,8 @@ class VPSettingDeviceGPSViewController: UIViewController {
         
         let path = Bundle.main.path(forResource: "LTEPH_GPS_1", ofType: "rtcm")
         let fileUrl = URL(fileURLWithPath: path!)
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_AGPSTransform(withFileUrl: fileUrl, timestamp: 0, result: { (photoDialModel, marketDialModel, error) in
+        let timestamp = Int(timestampField2.text!) ?? 0
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_AGPSTransform(withFileUrl: fileUrl, timestamp: timestamp, result: { (photoDialModel, marketDialModel, error) in
             if error != nil {
                 print(error! as NSError)
             }
@@ -107,6 +108,13 @@ class VPSettingDeviceGPSViewController: UIViewController {
             print("进度: \(progress * 100) %")
         })
     }
+    
+    // 设备主动上报GPS数据
+    @IBAction func showGPS(_ sender: UIButton) {
+        let vc = VPMapGPSTagViewController.init()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension Date {

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPTemperatureViewController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="manualTestDataBtn" destination="G8y-1n-YYK" id="7B2-fh-MlL"/>
+                <outlet property="monitorSwitch" destination="TZg-M7-Svz" id="Gcd-Us-zMu"/>
+                <outlet property="readAutoTestDataBtn" destination="3Pt-SP-WqA" id="sPx-mT-esS"/>
+                <outlet property="supportFunctionLabel" destination="kom-hc-p8x" id="3rD-gx-SyV"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备是否支持体温功能:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8Y-Uj-fFM">
+                    <rect key="frame" x="20" y="64" width="178" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="3hv-1x-qEA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体温自动监测开关:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7v0-dy-L1g">
+                    <rect key="frame" x="20" y="124" width="143.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="R9H-CP-g7o"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="RVn-EO-sbg"/>
+                        <constraint firstAttribute="width" constant="143.5" id="kxV-PE-bMn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="否" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kom-hc-p8x">
+                    <rect key="frame" x="218" y="64" width="176" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ZYp-tm-aN0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pt-SP-WqA">
+                    <rect key="frame" x="116" y="184" width="182" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="182" id="Jfh-tU-RNl"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="O2q-dQ-uEK"/>
+                        <constraint firstAttribute="height" constant="44" id="TOD-bj-oW4"/>
+                    </constraints>
+                    <state key="normal" title="读取自动测量数据">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭查找"/>
+                    <connections>
+                        <action selector="readAutoTestDataBtnClick:" destination="-1" eventType="touchUpInside" id="Nrp-96-Rjs"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8y-1n-YYK">
+                    <rect key="frame" x="116" y="248" width="182" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="182" id="XAo-io-joJ"/>
+                        <constraint firstAttribute="height" constant="44" id="tcy-a4-Qhy"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="te9-zr-FU9"/>
+                    </constraints>
+                    <state key="normal" title="开启手动测量">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭手动测量"/>
+                    <connections>
+                        <action selector="manualTestDataBtnClick:" destination="-1" eventType="touchUpInside" id="Wc9-gd-H9Y"/>
+                    </connections>
+                </button>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TZg-M7-Svz">
+                    <rect key="frame" x="183.5" y="128.5" width="51" height="31"/>
+                    <connections>
+                        <action selector="monitorSwitchAction:" destination="-1" eventType="valueChanged" id="rsu-ZG-N0r"/>
+                    </connections>
+                </switch>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="3Pt-SP-WqA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="27O-8i-4Ln"/>
+                <constraint firstItem="TZg-M7-Svz" firstAttribute="leading" secondItem="7v0-dy-L1g" secondAttribute="trailing" constant="20" id="29N-th-JVj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kom-hc-p8x" secondAttribute="trailing" constant="20" id="2J4-gN-ixV"/>
+                <constraint firstItem="K8Y-Uj-fFM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="3Aw-F5-Efu"/>
+                <constraint firstItem="K8Y-Uj-fFM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="8Zt-tu-BQa"/>
+                <constraint firstItem="G8y-1n-YYK" firstAttribute="top" secondItem="3Pt-SP-WqA" secondAttribute="bottom" constant="20" id="C2j-cj-lFn"/>
+                <constraint firstItem="kom-hc-p8x" firstAttribute="centerY" secondItem="K8Y-Uj-fFM" secondAttribute="centerY" id="HF0-MV-bMo"/>
+                <constraint firstItem="3Pt-SP-WqA" firstAttribute="top" secondItem="7v0-dy-L1g" secondAttribute="bottom" constant="20" id="PEg-35-Mz3"/>
+                <constraint firstItem="7v0-dy-L1g" firstAttribute="top" secondItem="K8Y-Uj-fFM" secondAttribute="bottom" constant="20" id="YM0-l0-EKr"/>
+                <constraint firstItem="G8y-1n-YYK" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YgC-M9-uDg"/>
+                <constraint firstItem="TZg-M7-Svz" firstAttribute="centerY" secondItem="7v0-dy-L1g" secondAttribute="centerY" id="jZF-Z3-7AB"/>
+                <constraint firstItem="7v0-dy-L1g" firstAttribute="leading" secondItem="K8Y-Uj-fFM" secondAttribute="leading" id="kDJ-Qt-bgK"/>
+                <constraint firstItem="kom-hc-p8x" firstAttribute="leading" secondItem="K8Y-Uj-fFM" secondAttribute="trailing" constant="20" id="oKu-FC-aDM"/>
+            </constraints>
+            <point key="canvasLocation" x="-38" y="74"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

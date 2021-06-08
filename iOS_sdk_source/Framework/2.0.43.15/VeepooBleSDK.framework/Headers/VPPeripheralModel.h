@@ -125,8 +125,8 @@
 //0代表普通睡眠,1代表精准睡眠
 @property (nonatomic, assign) NSInteger sleepType;
 
-//0 generation does not have this function, 1 means that there is this function
-//0代没有此功能,1代表有此功能
+//0 generation does not have this function, 1 means E series, 2 means G series
+//0代没有此功能,1代表E系列,2代表G系列
 @property (nonatomic, assign) NSInteger ecgType;
 
 //0 means the device is not in PTT mode, 1 means the device is in PTT mode
@@ -161,10 +161,16 @@
 //照片表盘个数
 @property (nonatomic, assign) NSUInteger photoDialCount;
 
+// AGPS功能 1代表有 0表示没有
+@property (nonatomic, assign) NSInteger agpsFunction;
+
 @property (nonatomic, strong) VPDialModel *dialModel;
 
 //手机查找手环功能 0代表没有，1代表有
 @property (nonatomic, assign) NSUInteger searchDeviceFunction;
+
+//体温功能 0表示没有 1有体温但无自动测量 2有体温且有自动测量
+@property (nonatomic, assign) NSUInteger temperatureType;
 
 #pragma mark -- Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is

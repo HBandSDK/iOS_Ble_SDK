@@ -60,5 +60,4 @@ class VPPTTTestController: UIViewController {
             signalLabel.text = (signalLabel.text)! + "    " +  "\(signal)"
         }
     }
-
 }

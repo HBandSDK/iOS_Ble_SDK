@@ -19,6 +19,8 @@ typedef enum : int {
 
 //数据类型2代表手环手动测试，3代表手环自动测试，4代表App手动测试
 @property (nonatomic, strong) NSString *type;
+//2为E系列 3为G系列
+@property (nonatomic, strong) NSString *ecgType;
 //测试日期
 @property (nonatomic, strong) NSString *date;
 //测试时间
@@ -41,6 +43,7 @@ typedef enum : int {
 @property (nonatomic, strong) NSArray *originalSignals;
 
 //界面上画波形使用此数组,如果此数组没有值,则代表还没有合理的波形数据, 测试过程中此波形数组长度会一直拼接, 画波形的时候可以开启个定时器,每100毫秒取25个点
+// ecgType不同，画图的方式不同 1为旧的方式，2为新的方式
 @property (nonatomic, strong) NSArray *filterSignals;
 
 //心率数组，App手动测试每秒的心率值
@@ -89,6 +92,8 @@ typedef enum : int {
 - (void)receiveAppTestValueBytes:(const uint8_t *)tbyte;
 //接收App手动测试的波形数据
 - (void)receiveAppTestAdcBytes:(const uint8_t *)tbyte;
+//接收App手动测试的波形数据大包
+- (void)receiveAppTestAdcBigBlock:(NSData *)data;
 
 //根据读取的数据创建模型，如果返回nil代表数据解析失败
 - (BOOL)parseWithContentData:(NSData *)contentData;

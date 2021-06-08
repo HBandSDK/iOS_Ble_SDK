@@ -24,6 +24,8 @@
  heartValue = 0;//心率值
  sportValue = 17;//运动量
  stepValue = 0;//步数
+ calValue = 0;//卡路里
+ disValue = 0;//距离
  ppgs = [数组]; //使用的时, 如果有heartValue用heartValue,如果没有则优先使用ecgs,如果heartValue和ecgs都没有就用ppgs, ppgs和ecgs是这个时间段的心率数组
  ecgs = [数组];
  };
@@ -33,6 +35,8 @@
  heartValue = 0;
  sportValue = 25;
  stepValue = 0;
+ calValue = 0;
+ disValue = 0;
  ppgs = [数组]; //使用的时, 如果有heartValue用heartValue,如果没有则优先使用ppgs,如果heartValue和ppgs都没有就用ecgs, ppgs和ecgs是这个时间段的心率数组
  ecgs = [数组];
  };
@@ -240,6 +244,22 @@
  */
 + (NSArray *)veepooSDKGetDeviceHrvDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
 
+
+/**
+ 获取设备某一天的体温自动测量数据
+ @param queryDate 要查询的日期格式为2021-06-07
+ @param tableID 设备的mac地址，获取哪个设备的数据
+ @return 获取一天体温自动测量数据的数组，数组内是每5分钟的字典，格式如下
+ NSDictionary *dataDic =  {
+ VPDeviceTemperatrueDataMonthKey: month, 月份
+ VPDeviceTemperatrueDataDayKey: day, 日
+ VPDeviceTemperatrueDataHourKey: hour, 小时
+ VPDeviceTemperatrueDataMinuteKey: minute, 分钟
+ VPDeviceTemperatrueDataValueKey: value, 温度值（摄氏度）
+ }
+*/
++ (NSArray *)veepooSDKGetDeviceTemperatureDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
+
 /*
  NSString *const VPDeviceRunningTotalTimeKey = @"totalTime";
  NSString *const VPDeviceRunningBeginTimeKey = @"beginTime";
@@ -308,6 +328,13 @@ NSString *const VPHRVValueKey = @"hrvValue";
 NSString *const VPHRVTempKey = @"temp1";
 NSString *const VPHRVHeartsKey = @"hearts";
 */
+/*
+NSString *const VPDeviceTemperatrueDataMonthKey = @"month";
+NSString *const VPDeviceTemperatrueDataDayKey = @"day";
+NSString *const VPDeviceTemperatrueDataHourKey = @"hour";
+NSString *const VPDeviceTemperatrueDataMinuteKey = @"minute";
+NSString *const VPDeviceTemperatrueDataValueKey = @"value";
+ */
 @end
 
 

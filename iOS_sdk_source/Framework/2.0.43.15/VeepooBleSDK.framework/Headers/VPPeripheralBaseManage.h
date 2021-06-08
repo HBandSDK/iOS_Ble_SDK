@@ -29,6 +29,7 @@
 #import "VPPhotoDialModel.h"
 #import "VPDeviceMarketDialModel.h"
 #import "VPDeviceGPSModel.h"
+#import "VPDeviceKAABAGPSModel.h"
 #import "VPDeviceHadjCountModel.h"
 
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
@@ -484,6 +485,10 @@
 //开始读取Hrv数据
 - (void)veepooSdkStartReadDeviceHrvData:(void(^)(VPReadDeviceBaseDataState readState, NSUInteger totalDay, NSUInteger currentReadDayNumber, NSUInteger readCurrentDayProgress))readStateChangeBlock;
 
+//Start reading Temperature data
+//开始读取体温数据
+- (void)veepooSdkStartReadDeviceTemperatureData:(void(^)(VPReadDeviceBaseDataState readState, NSUInteger totalDay, NSUInteger currentReadDayNumber, NSUInteger readCurrentDayProgress))readStateChangeBlock;
+
 #pragma mark --- It is suitable for storing data by itself. It is more flexible in the development process, and the data is stored by itself. It is suitable for data uploading server and multi-account multi-handle development. It is implemented by subclass VPPeripheralAddManage, temporarily not implemented.
 #pragma mark --- 适用于自己存储数据，开发过程中比较灵活，数据自己存储，适用于数据上传服务器和多账号多手环开发，由子类VPPeripheralAddManage实现，暂时为没有实现
 //特别说明：VPPeripheralAddManage此代理中设计到字典里边的key最好在自己程序中先写成全局常量，因不涉及到数据库等所以后边可能会根据具体情况改变，自己代码也最好不要获取数据后直接保存，最好自己转一下符合自己公司的key在保存，这样后边SDK改变，对应自己的程序只需要改变全局常量即可了
@@ -536,6 +541,13 @@
 
 - (void)veepooSDK_readDeviceRunningDataWithBlockNumber:(NSInteger)blockNumber result:(void(^)(NSDictionary *runningDataDict,NSInteger totalPackage, NSInteger currentReadPackage))readDeviceRunningDataBlock;
 
+
+/// 读取自动测量的体温数据
+/// @param dayNumber 代表哪一天0代表今天，1代表昨天，2代表前天，不能大于saveDays
+/// @param maxPackage 一天的数据比较多，每次读取可以从选择的包数读取，仅当天有效
+/// @param readDeviceTemperatureDataBlock 回调函数
+- (void)veepooSDK_readDeviceAutoTestTemperatureDataWithDayNumber:(NSInteger)dayNumber maxPackage:(NSInteger)maxPackage result:(void (^)(NSArray *oneDayTempDataArray ,NSInteger totalPackage, NSInteger currentReadPackage))readDeviceTemperatureDataBlock;
+
 #pragma mark - Dial Channel
 // SDK 内部使用
 - (void)veepooSDK_peripheralIsReadyToSendWriteWithoutResponseBlock:(void(^)(CBPeripheral *peripheral))block;
@@ -571,6 +583,42 @@
 /// @param timestamp 时间戳 读取哪个时间戳之后的数据
 /// @param result 诵经结果 单包或多包
 - (void)veepooSDK_readHadjCountWithTimestamp:(long)timestamp result:(void (^)(VPDeviceHadjCountModel *model))result;
+
+
+
+/// 克尔白经纬度设置
+/// @param model 传入的模型
+/// @param result 结果 0表示不支持 1表示成功 2代表失败
+- (void)veepooSDK_setKAABAGPSWithModel:(VPDeviceKAABAGPSModel *)model result:(void (^)(NSInteger state))result;
+
+
+/// 设备克尔白经纬度实际上报
+/// @param open 开启/关闭 上报
+/// @param result 回调
+- (void)veepooSDK_readDeviceRTGPSDataWithState:(BOOL)open result:(void (^)(BOOL start, VPDeviceKAABAGPSModel *model))result;
+
+
+/// AGPS数据传输 先通过 peripheralModel.agpsFunction 判定是否支持AGPS功能
+/// @param fileUrl 星历文件（rtcm 格式）
+/// @param timestamp 星历文件生成时间戳（网站获取）
+/// @param result 结果，使用UI传输的方式所以 photoDialModel和deviceMarketDialModel无效，仅error有用
+/// @param transformProgress 数据传输进度
+- (void)veepooSDK_AGPSTransformWithFileUrl:(NSURL *)fileUrl
+                                 timestamp:(long)timestamp
+                                    result:(void(^)(VPPhotoDialModel *photoDialModel, VPDeviceMarketDialModel *deviceMarketDialModel, NSError *error))result
+                         transformProgress:(void (^)(double progress))transformProgress;
+
+#pragma mark - 体温功能
+
+/// 手动测量体温
+/// @param start 开启/关闭
+/// @param result 回调函数
+///   state 表示状态
+///   enable 参数表示设备是否正忙
+///   progress表示测量进度
+///   tempValue表示体温值的10倍(单位摄氏度)
+- (void)veepooSDK_temperatureTestStart:(BOOL)start result:(void (^)(VPTemperatureTestState state, BOOL enable, NSInteger progress, NSInteger tempValue))result;
+
 
 @end
 

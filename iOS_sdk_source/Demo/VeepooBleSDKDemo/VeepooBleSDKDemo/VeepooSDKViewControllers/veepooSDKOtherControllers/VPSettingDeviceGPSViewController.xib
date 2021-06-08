@@ -183,6 +183,21 @@
                         <action selector="AGPSBtn:" destination="-1" eventType="touchUpInside" id="Rd2-dT-S3m"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Mf-Ok-rSJ">
+                    <rect key="frame" x="303" y="485" width="73" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="GPS显示">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭查找"/>
+                    <connections>
+                        <action selector="showGPS:" destination="-1" eventType="touchUpInside" id="CU6-bt-uxo"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -204,6 +219,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qp6-zS-ITd" secondAttribute="trailing" constant="20" id="Cpz-0M-167"/>
                 <constraint firstItem="EB8-5A-rH7" firstAttribute="width" secondItem="QFn-sz-W29" secondAttribute="width" id="Fo6-1t-zA2"/>
                 <constraint firstItem="nxK-zm-aKH" firstAttribute="height" secondItem="QFn-sz-W29" secondAttribute="height" id="GrW-jQ-o9p"/>
+                <constraint firstItem="6Mf-Ok-rSJ" firstAttribute="width" secondItem="xVK-zQ-uBy" secondAttribute="width" id="HtE-dz-EKs"/>
                 <constraint firstItem="nxK-zm-aKH" firstAttribute="centerX" secondItem="QFn-sz-W29" secondAttribute="centerX" id="ItN-rA-NfX"/>
                 <constraint firstItem="U0D-A9-dzT" firstAttribute="centerX" secondItem="QFn-sz-W29" secondAttribute="centerX" id="J6i-Zr-6p3"/>
                 <constraint firstItem="dCH-MX-hSa" firstAttribute="height" secondItem="QFn-sz-W29" secondAttribute="height" id="KEH-RQ-gOy"/>
@@ -227,11 +243,14 @@
                 <constraint firstItem="4be-YM-HSn" firstAttribute="centerY" secondItem="xVK-zQ-uBy" secondAttribute="centerY" id="cyW-Pm-IUD"/>
                 <constraint firstItem="QFn-sz-W29" firstAttribute="leading" secondItem="T8a-Tn-9TG" secondAttribute="trailing" constant="20" id="fxT-nP-ntP"/>
                 <constraint firstItem="1KE-4g-wNR" firstAttribute="top" secondItem="jxr-7o-fX8" secondAttribute="bottom" constant="26" id="g6Q-aX-ozc"/>
+                <constraint firstItem="6Mf-Ok-rSJ" firstAttribute="height" secondItem="xVK-zQ-uBy" secondAttribute="height" id="hsb-nb-Dor"/>
                 <constraint firstItem="qp6-zS-ITd" firstAttribute="height" secondItem="jxr-7o-fX8" secondAttribute="height" id="jvz-WV-aV3"/>
                 <constraint firstItem="2Zt-qW-B3L" firstAttribute="centerY" secondItem="nxK-zm-aKH" secondAttribute="centerY" id="klb-tG-UXv"/>
                 <constraint firstItem="EB8-5A-rH7" firstAttribute="height" secondItem="QFn-sz-W29" secondAttribute="height" id="l3j-HW-9bV"/>
                 <constraint firstAttribute="trailing" secondItem="1KE-4g-wNR" secondAttribute="trailing" id="mzv-fv-eHj"/>
+                <constraint firstItem="6Mf-Ok-rSJ" firstAttribute="centerY" secondItem="4be-YM-HSn" secondAttribute="centerY" id="nM3-VR-RO5"/>
                 <constraint firstItem="m0v-lL-Qui" firstAttribute="centerY" secondItem="gya-5k-rIu" secondAttribute="centerY" id="naz-pT-lUg"/>
+                <constraint firstItem="6Mf-Ok-rSJ" firstAttribute="leading" secondItem="4be-YM-HSn" secondAttribute="trailing" constant="7.5" id="phT-kC-9OH"/>
                 <constraint firstItem="dCH-MX-hSa" firstAttribute="width" secondItem="QFn-sz-W29" secondAttribute="width" id="r9B-Ka-Wwe"/>
                 <constraint firstItem="QFn-sz-W29" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" constant="17" id="rrq-fQ-Pmr"/>
                 <constraint firstItem="UMf-an-FRa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="t4Y-Lu-CsE"/>
