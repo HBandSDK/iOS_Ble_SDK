@@ -32,6 +32,9 @@
 //设备的信号，可以通过此信号，在列表中排序，rssi值越大信号越好，一般是负数
 @property (nonatomic, strong) NSNumber *RSSI;
 
+//过滤规则
+@property (nonatomic, assign, readonly) BOOL deviceFilter;
+
 #pragma mark -- Attribute value obtained after connection and password verification succeeded 连接并密码验证成功后获取的属性值
 
 //Device number, developers don't need
@@ -199,6 +202,7 @@
 
 
 @end
+
 
 
 
