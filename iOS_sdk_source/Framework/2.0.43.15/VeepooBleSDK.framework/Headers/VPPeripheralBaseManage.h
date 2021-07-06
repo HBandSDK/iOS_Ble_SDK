@@ -95,7 +95,7 @@
 //languageType 中文(1) 英文(2) 日语(3) 韩语(4) 德语(5) 俄语(6) 西班牙(7) 意大利(8) 法语(9) 越南语(10) 葡萄牙语(11) 泰语(13) 波兰(14) 瑞典(15) 土耳其(16) 荷兰语(17) 捷克语(18)
 - (void)veepooSDKSettingLanguage:(UInt8)languageType result:(void(^)(BOOL success))settingLangueResult;
 
-#pragma mark -- 单兵SOS定制功能，App和设备只做简单指令交互，其他功能客户自己解决
+#pragma mark - 单兵SOS定制功能，App和设备只做简单指令交互，其他功能客户自己解决
 
 //接受士兵的反馈,设置这个回调就可以，设备长按3秒侧按键，启动SOS功能，手环发送一条SOS指令到APP，APP收到后，反馈指令给手环，手环显示“SOS发送成功”
 //Accept the soldier's feedback and set this callback
@@ -111,7 +111,7 @@
 - (void)veepooSDKSendToSoldierSpecialTask:(int)type taskMessage:(NSString *)taskMessage andResult:(void(^)(BOOL success))sendResult;
 
 
-#pragma mark -- ECG PTT FUNCTION
+#pragma mark - ECG PTT FUNCTION
 
 /// 是否处于PTT模式下的监听
 /// Monitor PTT status changes, Destroy the listener nil
@@ -126,7 +126,7 @@
 - (void)veepooSDKPTTTest:(BOOL)start valueBlock:(void(^)(VPPttValueModel *valueModel))valueBlock signalBlock:(void(^)(NSArray <NSNumber *>*signals))signalBlock;
 
 
-#pragma mark -- The following are the basic function settings to ensure that Bluetooth is properly connected. 以下是基本功能的设置 要确保蓝牙正常连接
+#pragma mark - The following are the basic function settings to ensure that Bluetooth is properly connected. 以下是基本功能的设置 要确保蓝牙正常连接
 /**
  Set or read the status of the message reminder
  设置或者读取信息提醒的状态
@@ -248,7 +248,7 @@
  */
 - (void)veepooSDKSettingBrightWithBrightModel:(VPDeviceBrightModel *)brightModel settingMode:(NSUInteger)settingMode successResult:(void(^)(VPDeviceBrightModel *brightModel))settingBrightResultBlock failureResult:(void(^)(void))settingBrightFailureBlock;
 
-#pragma mark -- User turn off the operation 用户开启关闭的操作
+#pragma mark - User turn off the operation 用户开启关闭的操作
 /**
  Set and monitor the camera, after entering the camera mode, you can listen to the user's camera action through the callback. After listening to the callback of the user VPCameraTypePhoto to start taking photos, you can call the system camera to take photos and save.
  设置和监听拍照，进入拍照模式后通过回调可以监听用户拍照动作，当监听到用户VPCameraTypePhoto开始拍照的回调后，可以调用系统相机进行拍照并保存
@@ -454,12 +454,12 @@
 //清除数据，清除数据后手环会自动关机，不能监听是否清除成功，关机后会与App断开连接
 - (void)veepooSDKClearDeviceData;
 
-#pragma mark --- 设置功能的有无, 特殊开发者使用
+#pragma mark - 设置功能的有无, 特殊开发者使用
 - (void)veepooSDKSettingFunction:(VPOperationFuctionType)fuctionType settingType:(VPOperationType)settingType result:(void(^)(VPSettingFunctionCompleteState settingState))settingResult;
 
 
-#pragma mark ---Simple reading method, suitable for stand-alone version, data can be directly extracted from the SDK database after reading, by subclass VPPeripheralManage
-#pragma mark --- 简易的读取方式，适用于单机版本，读取完成之后可直接从SDK的数据库中提取数据，由子类VPPeripheralManage实现
+#pragma mark - Simple reading method, suitable for stand-alone version, data can be directly extracted from the SDK database after reading, by subclass VPPeripheralManage
+#pragma mark 简易的读取方式，适用于单机版本，读取完成之后可直接从SDK的数据库中提取数据，由子类VPPeripheralManage实现
 
 //Start reading all data
 //开始读取所有数据
@@ -489,8 +489,8 @@
 //开始读取体温数据
 - (void)veepooSdkStartReadDeviceTemperatureData:(void(^)(VPReadDeviceBaseDataState readState, NSUInteger totalDay, NSUInteger currentReadDayNumber, NSUInteger readCurrentDayProgress))readStateChangeBlock;
 
-#pragma mark --- It is suitable for storing data by itself. It is more flexible in the development process, and the data is stored by itself. It is suitable for data uploading server and multi-account multi-handle development. It is implemented by subclass VPPeripheralAddManage, temporarily not implemented.
-#pragma mark --- 适用于自己存储数据，开发过程中比较灵活，数据自己存储，适用于数据上传服务器和多账号多手环开发，由子类VPPeripheralAddManage实现，暂时为没有实现
+#pragma mark - It is suitable for storing data by itself. It is more flexible in the development process, and the data is stored by itself. It is suitable for data uploading server and multi-account multi-handle development. It is implemented by subclass VPPeripheralAddManage, temporarily not implemented.
+#pragma mark 适用于自己存储数据，开发过程中比较灵活，数据自己存储，适用于数据上传服务器和多账号多手环开发，由子类VPPeripheralAddManage实现，暂时为没有实现
 //特别说明：VPPeripheralAddManage此代理中设计到字典里边的key最好在自己程序中先写成全局常量，因不涉及到数据库等所以后边可能会根据具体情况改变，自己代码也最好不要获取数据后直接保存，最好自己转一下符合自己公司的key在保存，这样后边SDK改变，对应自己的程序只需要改变全局常量即可了
 /**
  Read the count data for a certain day
@@ -607,6 +607,19 @@
                                  timestamp:(long)timestamp
                                     result:(void(^)(VPPhotoDialModel *photoDialModel, VPDeviceMarketDialModel *deviceMarketDialModel, NSError *error))result
                          transformProgress:(void (^)(double progress))transformProgress;
+
+/// 设备主动要求APP(SDK)下发GPS数据  调用示例可参考SDK配套的Demo
+/// @param block  回调函数，自身包含一个block参数，下发时使用这个参数进行下发
+/// state 0x01 表示设备要求App 开始 下发GPS数据
+///     0x02 表示设备要求App 结束 下发GPS数据
+///
+/// 嵌套的block
+/// ackState 同 state 状态一致
+/// GPSState  0x01 表示App GPS状态正常，model 的数据有效，可定时下发GPS数据
+///         0x02 表示App GPS信号弱， model的数据有效
+///         0x03 表示App GPS权限未开启， model的数据无效，SDK不会触发下发数据操作
+/// model 海拔高度(altitude) 属性无效，其它属性有效
+- (void)veepooSDK_sendGPSDataToDeviceWithBlock:(void(^)(NSInteger state, void(^sendTask)(NSInteger ackState, NSInteger GPSState, VPDeviceGPSModel *model)))block;
 
 #pragma mark - 体温功能
 

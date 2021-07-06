@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, VPReadDeviceBaseDataState) {//读取设备基本数�
     VPReadDeviceBaseDataInvalid,//SDK不提供使用
 };
 
-#pragma mark -- 基本功能设置的状态
+#pragma mark - 基本功能设置的状态
 typedef NS_ENUM(NSInteger, VPSettingMessageSwitchType) {//关于来电提醒的类型选择
     VPSettingUnkonw = 1, //未知类型
     VPSettingCall = 2, //来电设置
@@ -107,9 +107,11 @@ typedef NS_ENUM(NSInteger, VPSettingMessageSwitchType) {//关于来电提醒的�
     VPSettingDingTalk,
     VPSettingWeChatWork,
     VPSettingOtherPlatform = 19,
+    // 第二包
     VPSettingOtherTikTok = 20,
     VPSettingOtherTelegram = 21,
     VPSettingOtherConnected2 = 22,
+    VPSettingKakaoTalk,
     VPSettingAll = 100,//设置所有, 读取的使用不能使用这个
 };
 
@@ -179,7 +181,7 @@ typedef NS_ENUM(NSInteger, VPOperationType) {//设置获取读取某个功能
     VPOperationTypeRead = 3, //读取某个功能的开关和有无
 };
 
-#pragma mark -- 心率、血压、血氧、疲劳度的测试
+#pragma mark - 心率、血压、血氧、疲劳度的测试
 
 typedef NS_ENUM(NSInteger,VPTestHeartState) {//测试心率过程中的状态变化
     VPTestHeartStateStart = 0,//开始检测心率，还没有测出结果
@@ -241,7 +243,7 @@ typedef NS_ENUM(NSInteger,VPTestECGState) {//测试ECG过程中的状态变化
     VPTestECGStateNoFunction,//设备没有此功能
 };
 
-#pragma mark -- SDK 1.7后新添加
+#pragma mark - SDK 1.7后新添加
 typedef NS_ENUM(NSInteger,VPDeviceFemaleState) {//女性项目属于哪个生理期
     VPDeviceFemaleStateNone = 0,//没有设置生理期
     VPDeviceFemaleStateMenstrual,//月经期

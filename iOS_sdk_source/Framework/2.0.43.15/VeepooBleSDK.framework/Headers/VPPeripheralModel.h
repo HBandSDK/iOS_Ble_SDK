@@ -13,7 +13,7 @@
 
 @interface VPPeripheralModel : NSObject
 
-#pragma mark -- Attribute value obtained at scan time 扫描时候获取的属性值
+#pragma mark - Attribute value obtained at scan time 扫描时候获取的属性值
 
 //Bluetooth device, developers don't need
 //蓝牙设备，开发者不用
@@ -35,7 +35,7 @@
 //过滤规则
 @property (nonatomic, assign, readonly) BOOL deviceFilter;
 
-#pragma mark -- Attribute value obtained after connection and password verification succeeded 连接并密码验证成功后获取的属性值
+#pragma mark - Attribute value obtained after connection and password verification succeeded 连接并密码验证成功后获取的属性值
 
 //Device number, developers don't need
 //设备编号，开发者不用
@@ -175,7 +175,7 @@
 //体温功能 0表示没有 1有体温但无自动测量 2有体温且有自动测量
 @property (nonatomic, assign) NSUInteger temperatureType;
 
-#pragma mark -- Property value obtained when new firmware is found 发现新固件的时候获得的属性值
+#pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is
 //设备网络升级版本，当用户收到有新固件版本的时候，告知用户升级的版本是多少
 @property (nonatomic, strong) NSString *deviceNetVersion;
