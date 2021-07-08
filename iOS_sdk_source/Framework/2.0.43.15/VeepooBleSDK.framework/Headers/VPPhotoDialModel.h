@@ -25,6 +25,11 @@ typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
     VPDeviceScreenTypeCircle240_240 = 1,   // 圆屏 240*240
     VPDeviceScreenTypeSquare240_240,       // 方屏 240*240
     VPDeviceScreenTypeSquare240_280,       // 方屏 240*280
+    VPDeviceScreenTypeSquare240_280_QFN,   // 方屏 240*280 QFN版本
+    VPDeviceScreenTypeCircle240_240_QFN,   // 圆屏 240*240 QFN版本
+    VPDeviceScreenTypeSquare240_295,       // 方屏 240*295
+    VPDeviceScreenTypeSquare240_295_QFN,   // 方屏 240*295 QFN版本
+    VPDeviceScreenTypeCircle360_360_QFN,   // 圆屏 360*360 QFN版本
 };
 
 typedef NS_ENUM(NSUInteger, VPPhotoDialTimePosition) {
@@ -49,6 +54,7 @@ typedef NS_ENUM(NSUInteger, VPPhotoDialTimeTopAndBottomElement) {
     VPPhotoDialTimeTopAndBottomElementHeart,
     VPPhotoDialTimeTopAndBottomElementCalories,
     VPPhotoDialTimeTopAndBottomElementDistance,
+    // 如果是VPDeviceScreenTypeSquare240_280_QFN 类型，需隐藏此项，因为电池存在百分比与固定格数的区分
     VPPhotoDialTimeTopAndBottomElementBatteryAndBLE,
 };
 

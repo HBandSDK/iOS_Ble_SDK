@@ -23,7 +23,17 @@ class VPAlarmClockSettingController: UIViewController , UITableViewDelegate , UI
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "闹钟设置"
+        view.backgroundColor = UIColor.white
+        
+        var tbyte:[UInt8] = Array(repeating: 0x00, count: 20)
+        VPBleCentralManage.sharedBleManager().peripheralModel.deviceFuctionData.copyBytes(to: &tbyte, count: tbyte.count)
+        if tbyte[17] == 0xFE {//0xFE 表示手环端无闹钟
+            _ = AppDelegate.showHUD(message: "手环没有闹钟功能", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        
         setAlarmClockControllerUI()
+        
         //闹钟设置也是以手环为主，要先读取再去设置，下边是读取闹钟
         unowned let weakSelf = self
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceAlarm(withAlarmModel1: VPDeviceAlarmModel(), alarmModel2: VPDeviceAlarmModel(), alarmModel3: VPDeviceAlarmModel(), settingMode: VPOperationAlarmMode(rawValue: 6)!, successResult: { (alarmModel1, alarmModel2, alarmModel3) in
@@ -39,7 +49,6 @@ class VPAlarmClockSettingController: UIViewController , UITableViewDelegate , UI
     }
 
     func setAlarmClockControllerUI() {
-        view.backgroundColor = UIColor.white
         alarmClockTableView = UITableView(frame: view.bounds, style: .plain)
         alarmClockTableView?.delegate = self
         alarmClockTableView?.dataSource = self

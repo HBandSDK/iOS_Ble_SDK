@@ -490,7 +490,7 @@
 - (void)veepooSdkStartReadDeviceTemperatureData:(void(^)(VPReadDeviceBaseDataState readState, NSUInteger totalDay, NSUInteger currentReadDayNumber, NSUInteger readCurrentDayProgress))readStateChangeBlock;
 
 #pragma mark - It is suitable for storing data by itself. It is more flexible in the development process, and the data is stored by itself. It is suitable for data uploading server and multi-account multi-handle development. It is implemented by subclass VPPeripheralAddManage, temporarily not implemented.
-#pragma mark 适用于自己存储数据，开发过程中比较灵活，数据自己存储，适用于数据上传服务器和多账号多手环开发，由子类VPPeripheralAddManage实现，暂时为没有实现
+#pragma mark 适用于自己存储数据，开发过程中比较灵活，数据自己存储，适用于数据上传服务器和多账号多手环开发，由子类VPPeripheralAddManage实现
 //特别说明：VPPeripheralAddManage此代理中设计到字典里边的key最好在自己程序中先写成全局常量，因不涉及到数据库等所以后边可能会根据具体情况改变，自己代码也最好不要获取数据后直接保存，最好自己转一下符合自己公司的key在保存，这样后边SDK改变，对应自己的程序只需要改变全局常量即可了
 /**
  Read the count data for a certain day

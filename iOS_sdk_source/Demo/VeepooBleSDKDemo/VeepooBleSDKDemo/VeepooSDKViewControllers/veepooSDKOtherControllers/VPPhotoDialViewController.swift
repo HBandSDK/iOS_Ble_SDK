@@ -84,10 +84,33 @@ class VPPhotoDialViewController: UIViewController {
 //        self.photoDialModel.timePosition = .bottom
         self.photoDialModel.setColor = "FF0000"
         // 传输的图片宽高必须与屏幕的宽高一致 请注意⚠️分辨率为显示分辨率，即1x
+        var image:UIImage!
+        switch self.photoDialModel.screenType {
         // 240*240
-        self.photoDialModel.transformImage = UIImage.init(named: "test_240_240")
+        case .circle240_240,
+             .square240_240,
+             .circle240_240_QFN:
+            image = UIImage.init(named: "test_240_240")
+            break
         // 240*280
-//        self.photoDialModel.transformImage = UIImage.init(named: "test_240_280")
+        case .square240_280,
+             .square240_280_QFN:
+            image = UIImage.init(named: "test_240_280")
+            break
+        // 240*295
+        case .square240_295,
+             .square240_295_QFN:
+            image = UIImage.init(named: "test_240_295")
+            break
+        // 360*360
+        case .circle360_360_QFN:
+            image = UIImage.init(named: "test_360_360")
+            break
+        default:
+            image = UIImage.init(named: "test_240_240")
+            break
+        }
+        self.photoDialModel.transformImage = image
         VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_dialChannel(with: .setupPhotoDial, dialType: .photo, photoDialModel: self.photoDialModel, result: { ( photoDialModel, deviceMarketDialModel, error) in
             print(error! as NSError)
         }, transformProgress: { (progress) in
@@ -117,6 +140,10 @@ class VPPhotoDialViewController: UIViewController {
         if topAndBottomIndex > 8 {
             topAndBottomIndex = 0
         }
+        if self.photoDialModel.screenType == .square240_280_QFN && topAndBottomIndex == 8 {
+            topAndBottomIndex = 0
+        }
+        
         self.photoDialModel.timePosition = VPPhotoDialTimePosition(rawValue: timeIndex)!
 
         self.photoDialModel.timeTopPosition = VPPhotoDialTimeTopAndBottomElement(rawValue: topAndBottomIndex)!

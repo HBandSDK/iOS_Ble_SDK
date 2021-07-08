@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias SendGPSToDeviceTask = (_ ackState:NSInteger,_ GPSState:NSInteger,_ model:VPDeviceGPSModel) -> ()
+
 class VPSettingDeviceGPSViewController: UIViewController {
     
     @IBOutlet weak var longitudeField: UITextField!
@@ -16,11 +18,19 @@ class VPSettingDeviceGPSViewController: UIViewController {
     @IBOutlet weak var timestampField: UITextField!
     @IBOutlet weak var altitudeTextField: UITextField!
     
+    @IBOutlet weak var AGPSButton: UIButton!
+    
     @IBOutlet weak var textView: UITextView!
     var deviceGPSModel: VPDeviceGPSModel!
     var KAABAGPSModel: VPDeviceKAABAGPSModel!
     
     @IBOutlet weak var timestampField2: UITextField!
+    
+    var sendGPSToDeviceTask: SendGPSToDeviceTask!
+    var sendTimer: Timer!
+    var ackState: NSInteger = 0
+    
+    @IBOutlet weak var AppSendGPSBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,8 +89,10 @@ class VPSettingDeviceGPSViewController: UIViewController {
         VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_readHadjCount(withTimestamp: timestamp, result: { [weak self](model) in
             let model = model! as VPDeviceHadjCountModel
             let str = "当前包诵经次数:\(model.currentCount) 开始时间戳:\(model.startTimestamp) 结束时间戳:\(model.endTimestamp)"
-            self?.textView.text.append(str)
-            self?.textView.insertText("\n\n")
+            self?.printText(str)
+            if model.totalCount == model.currentCount {
+                self?.printText("诵经次数读取完成")
+            }
         })
     }
     
@@ -93,20 +105,95 @@ class VPSettingDeviceGPSViewController: UIViewController {
         })
     }
     
+    
+    /// 设备主动要求App下发GPS数据
+    @IBAction func AppSendGPSToDeviceBtn(_ sender: UIButton) {
+        _ = AppDelegate.showHUD(message: "已点击", hudModel: MBProgressHUDModeText, showView: view)
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_sendGPSDataToDevice({ [weak self](state, callBack) in
+            self?.SendGPSToDeviceControl(state, callBack: callBack!)
+        })
+    }
+    
+    private func SendGPSToDeviceControl(_ state: NSInteger, callBack: @escaping SendGPSToDeviceTask){
+        // callback 赋值
+        sendGPSToDeviceTask = callBack
+        ackState = state
+        if state == 0x01 {
+            AppSendGPSBtn.isEnabled = false
+            if sendTimer == nil {
+                sendTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true, block: { [weak self](Timer) in
+                    self?.SendTimerAction()
+                })
+            }
+        }
+        if state == 0x02 {
+            AppSendGPSBtn.isEnabled = true
+            // 销毁定时器
+            DestroySendTimer()
+            // 发结束的 ack 与 结束包
+            self.SendTimerAction()
+            // 销毁Task闭包（block）
+            sendGPSToDeviceTask = nil
+        }
+    }
+    
+    // 定时器循环操作
+    @objc private func SendTimerAction(){
+        if (sendGPSToDeviceTask != nil) {
+            let gpsModel = VPDeviceGPSModel.init()
+            // ... gpsModel 赋值
+            gpsModel.longitude = Int32((Double(longitudeField.text!) ?? 0) * 100000)
+            gpsModel.latitude = Int32((Double(latitudeField.text!) ?? 0) * 100000)
+            gpsModel.timezone = Int16(timezoneField.text!) ?? 0
+            gpsModel.timestamp = Int(timestampField.text!) ?? 0
+            // GPSState 0x01 表示GPS信号正常， 0x02表示信号弱，0x03表示权限未开启
+            let GPSState: NSInteger = 0x01
+            sendGPSToDeviceTask(ackState, GPSState, gpsModel)
+        }
+    }
+    
+    /// 销毁定时器操作
+    func DestroySendTimer() {
+        guard let sendTimer1 = sendTimer else {
+            return
+        }
+        sendTimer1.invalidate()
+        sendTimer = nil
+    }
+    
     @IBAction func AGPSBtn(_ sender: UIButton) {
         let apgsFunction = VPBleCentralManage.sharedBleManager()?.peripheralModel.agpsFunction;
         print("是否有AGPS功能: \(apgsFunction == 1 ? "是":"否")")
         
-        let path = Bundle.main.path(forResource: "LTEPH_GPS_1", ofType: "rtcm")
-        let fileUrl = URL(fileURLWithPath: path!)
+//        let path = Bundle.main.path(forResource: "LTEPH_GPS_1", ofType: "rtcm")
+//        let fileUrl = URL(fileURLWithPath: path!)
+        
+        AGPSButton.isEnabled = false
+        
+        var fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        fileUrl?.appendPathComponent("LTEPH_GPS_1-7.rtcm")
+        
         let timestamp = Int(timestampField2.text!) ?? 0
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_AGPSTransform(withFileUrl: fileUrl, timestamp: timestamp, result: { (photoDialModel, marketDialModel, error) in
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_AGPSTransform(withFileUrl: fileUrl, timestamp: timestamp, result: { [weak self](photoDialModel, marketDialModel, error) in
+            self?.AGPSButton.isEnabled = true
             if error != nil {
                 print(error! as NSError)
+                self?.printText("\(error! as NSError)")
             }
-        }, transformProgress: { (progress) in
-            print("进度: \(progress * 100) %")
+        }, transformProgress: { [weak self](progress) in
+            let proVlaue = Int(progress * 100)
+            let proStr = "进度: \(proVlaue) %"
+            print(proStr)
+            if(proVlaue % 2 == 0){
+                self?.printText(proStr)
+            }
         })
+    }
+    
+    private func printText(_ str: String){
+        self.textView.text.append(str)
+        self.textView.insertText("\n\n")
+        self.textView.scrollRangeToVisible(NSMakeRange(self.textView.text.count, 1))
     }
     
     // 设备主动上报GPS数据

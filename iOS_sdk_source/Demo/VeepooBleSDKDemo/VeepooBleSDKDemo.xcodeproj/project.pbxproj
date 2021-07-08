@@ -87,7 +87,6 @@
 		FE722C0A25F5D41900EA675E /* VPFindDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */; };
 		FE722C2A25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */; };
 		FE722C2B25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */; };
-		FEF464962643E2BD00534E9B /* LTEPH_GPS_1.rtcm in Resources */ = {isa = PBXBuildFile; fileRef = FEF464952643E2BD00534E9B /* LTEPH_GPS_1.rtcm */; };
 		FEFA5486266B48D50071E61B /* VPTemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */; };
 		FEFA5487266B48D50071E61B /* VPTemperatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEFA5485266B48D50071E61B /* VPTemperatureViewController.xib */; };
 /* End PBXBuildFile section */
@@ -195,7 +194,6 @@
 		FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPFindDeviceViewController.xib; sourceTree = "<group>"; };
 		FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingDeviceGPSViewController.swift; sourceTree = "<group>"; };
 		FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingDeviceGPSViewController.xib; sourceTree = "<group>"; };
-		FEF464952643E2BD00534E9B /* LTEPH_GPS_1.rtcm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LTEPH_GPS_1.rtcm; sourceTree = "<group>"; };
 		FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTemperatureViewController.swift; sourceTree = "<group>"; };
 		FEFA5485266B48D50071E61B /* VPTemperatureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPTemperatureViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -396,7 +394,6 @@
 				67CB1CB11E52D26E00805649 /* Assets.xcassets */,
 				67CB1CB31E52D26E00805649 /* LaunchScreen.storyboard */,
 				67CB1CB61E52D26E00805649 /* Info.plist */,
-				FEF464952643E2BD00534E9B /* LTEPH_GPS_1.rtcm */,
 				67B64E421EDFB5E8000549D6 /* VPTest.h */,
 				67B64E431EDFB5E8000549D6 /* VPTest.m */,
 			);
@@ -506,7 +503,6 @@
 				67640D541E56D248008D9D71 /* VPSyncPersonalInformationController.xib in Resources */,
 				FE65720F25B930AD00672A8B /* VPPhotoDialViewController.xib in Resources */,
 				67CA7E361EF3BAD5000D8745 /* VPEditNewAlarmController.xib in Resources */,
-				FEF464962643E2BD00534E9B /* LTEPH_GPS_1.rtcm in Resources */,
 				675052271E553F3F008D45BC /* VPRootViewController.xib in Resources */,
 				FE722C0A25F5D41900EA675E /* VPFindDeviceViewController.xib in Resources */,
 				67CB1CB21E52D26E00805649 /* Assets.xcassets in Resources */,
@@ -772,7 +768,7 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = (
@@ -809,7 +805,7 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.8;
 				OTHER_LDFLAGS = (
