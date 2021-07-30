@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 /** VPWeatherServerHourlyModel
- 天气状态码对应天气状态关系 逐小时的状态与次关系一致
+ 天气状态码对应天气状态关系 逐小时的状态与此关系一致
  “()” 表示不包含
  "[]" 表示包含
  

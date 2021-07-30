@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0409743724986F0A006076EC /* VPSOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0409743524986F0A006076EC /* VPSOSViewController.swift */; };
 		0409743824986F0A006076EC /* VPSOSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0409743624986F0A006076EC /* VPSOSViewController.xib */; };
+		044D07D126B3EDFD00B39E77 /* SDKResours.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 044D07D026B3EDFC00B39E77 /* SDKResours.bundle */; };
 		044ECB1A25E3A358002D090C /* VPPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044ECB1725E3A358002D090C /* VPPath.swift */; };
 		6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707B09F1E72504A00207523 /* VPSettingBrightController.swift */; };
 		6707B0A21E72504A00207523 /* VPSettingBrightController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6707B0A01E72504A00207523 /* VPSettingBrightController.xib */; };
@@ -45,7 +46,6 @@
 		678368AC1E58363200C3BCB8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678368AB1E58363200C3BCB8 /* StringExtension.swift */; };
 		6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */; };
 		6786EDC0214B620C00E03882 /* VPSettingScreenDurationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */; };
-		678C89A221F036B00041E0AB /* SDKResours.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 678C89A121F036AF0041E0AB /* SDKResours.bundle */; };
 		679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */; };
 		679EA6B31EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */; };
 		67A4D34A1F71101A00DBB53E /* VPSettingScreenStyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */; };
@@ -108,6 +108,7 @@
 /* Begin PBXFileReference section */
 		0409743524986F0A006076EC /* VPSOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSOSViewController.swift; sourceTree = "<group>"; };
 		0409743624986F0A006076EC /* VPSOSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSOSViewController.xib; sourceTree = "<group>"; };
+		044D07D026B3EDFC00B39E77 /* SDKResours.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SDKResours.bundle; path = ../../../doc/SDKResours.bundle; sourceTree = "<group>"; };
 		044ECB1725E3A358002D090C /* VPPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPPath.swift; sourceTree = "<group>"; };
 		2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeepooBleSDKDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6707B09F1E72504A00207523 /* VPSettingBrightController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingBrightController.swift; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		678368AB1E58363200C3BCB8 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingScreenDurationController.swift; sourceTree = "<group>"; };
 		6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingScreenDurationController.xib; sourceTree = "<group>"; };
-		678C89A121F036AF0041E0AB /* SDKResours.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SDKResours.bundle; sourceTree = "<group>"; };
 		679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPFemaleSelectView.swift; sourceTree = "<group>"; };
 		679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingFemaleRelatedController.swift; sourceTree = "<group>"; };
 		67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingScreenStyleController.swift; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				FE70FA85263A5F2400074260 /* GRDFUSDK.framework */,
-				678C89A121F036AF0041E0AB /* SDKResours.bundle */,
+				044D07D026B3EDFC00B39E77 /* SDKResours.bundle */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
 				67057F991E655D830084D6AB /* VeepooTools */,
@@ -506,6 +506,7 @@
 				675052271E553F3F008D45BC /* VPRootViewController.xib in Resources */,
 				FE722C0A25F5D41900EA675E /* VPFindDeviceViewController.xib in Resources */,
 				67CB1CB21E52D26E00805649 /* Assets.xcassets in Resources */,
+				044D07D126B3EDFD00B39E77 /* SDKResours.bundle in Resources */,
 				672E08391E5D5CAE00F60750 /* VPTestSleepController.xib in Resources */,
 				67CA3B741EF3783A00203D20 /* VPNewAlarmCell.xib in Resources */,
 				67640D581E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib in Resources */,
@@ -514,7 +515,6 @@
 				672E08331E5D36ED00F60750 /* VPTestBloodController.xib in Resources */,
 				67CA3B591EF25AB500203D20 /* VPDeviceCountDownController.xib in Resources */,
 				FEFA5487266B48D50071E61B /* VPTemperatureViewController.xib in Resources */,
-				678C89A221F036B00041E0AB /* SDKResours.bundle in Resources */,
 				678368A21E5814A600C3BCB8 /* VPHeartAlarmController.xib in Resources */,
 				FE27F0EE264A1DD50080CDA1 /* VPMapGPSTagViewController.xib in Resources */,
 				6707B0A21E72504A00207523 /* VPSettingBrightController.xib in Resources */,
