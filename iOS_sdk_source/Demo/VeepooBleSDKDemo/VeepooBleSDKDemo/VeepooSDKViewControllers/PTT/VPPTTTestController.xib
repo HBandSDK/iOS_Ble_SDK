@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -47,15 +47,30 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0H-MW-bHT">
+                    <rect key="frame" x="110" y="269" width="100" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Xhx-9Y-dF5"/>
+                        <constraint firstAttribute="width" constant="100" id="fag-d7-UX6"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="thn-ye-QMf"/>
+                    </constraints>
+                    <state key="normal" title="开始ECG测量"/>
+                    <state key="selected" title="结束ECG测量"/>
+                    <connections>
+                        <action selector="startECGTest:" destination="-1" eventType="touchUpInside" id="E2E-Fp-1Mf"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="b0H-MW-bHT" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="05W-zd-yvw"/>
                 <constraint firstItem="YG8-19-0WY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="A8k-Rj-reU"/>
                 <constraint firstItem="YG8-19-0WY" firstAttribute="top" secondItem="CFc-5w-Krd" secondAttribute="bottom" constant="20" id="BEB-8U-bsG"/>
                 <constraint firstItem="txk-z9-jry" firstAttribute="top" secondItem="YG8-19-0WY" secondAttribute="bottom" constant="20" id="L5U-Ei-VUo"/>
                 <constraint firstItem="CFc-5w-Krd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QVr-H0-ym2"/>
                 <constraint firstItem="O41-fr-1D9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="30" id="a5B-0m-exx"/>
                 <constraint firstItem="CFc-5w-Krd" firstAttribute="top" secondItem="O41-fr-1D9" secondAttribute="bottom" constant="30" id="bdF-bf-x3T"/>
+                <constraint firstItem="b0H-MW-bHT" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="lKb-Ku-Fcf"/>
                 <constraint firstItem="txk-z9-jry" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="uji-VR-kD7"/>
                 <constraint firstItem="O41-fr-1D9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vEs-76-jQU"/>
                 <constraint firstAttribute="trailing" secondItem="txk-z9-jry" secondAttribute="trailing" constant="10" id="zK6-bx-ICk"/>

@@ -60,4 +60,11 @@ class VPPTTTestController: UIViewController {
             signalLabel.text = (signalLabel.text)! + "    " +  "\(signal)"
         }
     }
+    
+    @IBAction func startECGTest(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestECGStart(sender.isSelected) { (state, testProgress, model) in
+            
+        }
+    }
 }

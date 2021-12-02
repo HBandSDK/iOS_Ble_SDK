@@ -296,12 +296,16 @@ class VPRootViewController: UIViewController {
         let controllerClass: AnyClass? = NSClassFromString(nameSpace + "." + controllerName)
 
         let controller = controllerClass as! UIViewController.Type
-        self
-            .navigationController?.pushViewController(controller.init(), animated: true)
+        self.navigationController?.pushViewController(controller.init(), animated: true)
         
         
     }
 
+    // 赛米加G15定制项目 广播包测试
+    @IBAction func enterG15AdvertisementTestController(_ sender: UIButton) {
+        let vc = VPG15AdvertisementDataViewController.init()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     /// 销毁定时器操作
     func DestroyStepTimer() {
         guard let stepTimer1 = stepTimer else {

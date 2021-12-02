@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZc-pV-fc0">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZc-pV-fc0">
                     <rect key="frame" x="10" y="15" width="145" height="44"/>
                     <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -35,7 +35,7 @@
                         <action selector="enterScanDeviceController:" destination="-1" eventType="touchUpInside" id="Xrr-Aq-Lef"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFm-3K-qal">
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFm-3K-qal">
                     <rect key="frame" x="165" y="15" width="145" height="44"/>
                     <color key="backgroundColor" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="断开连接"/>
@@ -104,7 +104,7 @@
                         <constraint firstItem="lMU-uq-AdQ" firstAttribute="trailing" secondItem="E1Q-ti-nNa" secondAttribute="trailing" id="yPa-8w-a6E"/>
                     </constraints>
                 </view>
-                <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtq-r8-dFL">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mtq-r8-dFL">
                     <rect key="frame" x="10" y="234" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -115,7 +115,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="9Zd-tF-1aS"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDb-ah-7Iz">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDb-ah-7Iz">
                     <rect key="frame" x="87.5" y="234" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="血压"/>
@@ -123,7 +123,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="0eD-in-tBO"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnm-SM-M1c">
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnm-SM-M1c">
                     <rect key="frame" x="165" y="234" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="血氧"/>
@@ -131,7 +131,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="tMz-0r-SUa"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uf9-Tr-HJQ">
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uf9-Tr-HJQ">
                     <rect key="frame" x="242.5" y="234" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="疲劳度"/>
@@ -139,7 +139,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="cqM-fe-Okm"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvw-tf-5ON">
+                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kvw-tf-5ON">
                     <rect key="frame" x="10" y="288" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -150,7 +150,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="GlO-DB-kYT"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK4-ru-5IS">
+                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gK4-ru-5IS">
                     <rect key="frame" x="87.5" y="288" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="计步"/>
@@ -158,7 +158,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="KHL-Sp-6Ep"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwL-BD-aOS">
+                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwL-BD-aOS">
                     <rect key="frame" x="165" y="288" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="信息提醒"/>
@@ -166,7 +166,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="T9m-ey-C2K"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgM-7X-9K9">
+                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HgM-7X-9K9">
                     <rect key="frame" x="242.5" y="288" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="基本开关"/>
@@ -174,7 +174,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="ihA-Zz-ZFQ"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbR-H9-B20">
+                <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbR-H9-B20">
                     <rect key="frame" x="10" y="342" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -185,7 +185,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="0IU-Ab-HKT"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NU-5a-ABH">
+                <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NU-5a-ABH">
                     <rect key="frame" x="87.5" y="342" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="其他功能"/>
@@ -193,7 +193,7 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="a2L-o7-FOk"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfb-Na-KAM">
+                <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfb-Na-KAM">
                     <rect key="frame" x="165" y="342" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="PTT"/>
@@ -201,12 +201,21 @@
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="rca-Rc-ioC"/>
                     </connections>
                 </button>
-                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrv-da-GvZ">
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zrv-da-GvZ">
                     <rect key="frame" x="242.5" y="342" width="67.5" height="44"/>
                     <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="联定制"/>
                     <connections>
                         <action selector="enterDetailedFunctionViewControllerAction:" destination="-1" eventType="touchUpInside" id="6gJ-YU-DAB"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFu-zD-CUV">
+                    <rect key="frame" x="10" y="394" width="67.5" height="44"/>
+                    <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="G15广播包"/>
+                    <connections>
+                        <action selector="enterG15AdvertisementTestController:" destination="-1" eventType="touchUpInside" id="DPN-Ny-zdh"/>
                     </connections>
                 </button>
             </subviews>
@@ -223,6 +232,7 @@
                 <constraint firstItem="Kvw-tf-5ON" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="bottom" constant="10" id="BP7-O2-OLC"/>
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="width" secondItem="vFm-3K-qal" secondAttribute="width" id="BSF-CR-SE1"/>
                 <constraint firstItem="gK4-ru-5IS" firstAttribute="height" secondItem="Kvw-tf-5ON" secondAttribute="height" id="BYA-9H-m7X"/>
+                <constraint firstItem="jFu-zD-CUV" firstAttribute="top" secondItem="gbR-H9-B20" secondAttribute="bottom" constant="8" symbolic="YES" id="C59-Mp-smH"/>
                 <constraint firstItem="Mtq-r8-dFL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="C8k-kE-VFf"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="width" secondItem="Mtq-r8-dFL" secondAttribute="width" id="Ckm-aa-nSH"/>
                 <constraint firstItem="t7F-lM-jVu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="DmY-hE-Zaw"/>
@@ -231,12 +241,14 @@
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="EzT-jV-HBW"/>
                 <constraint firstAttribute="trailing" secondItem="HgM-7X-9K9" secondAttribute="trailing" constant="10" id="FUG-Z1-OOc"/>
                 <constraint firstItem="mfb-Na-KAM" firstAttribute="leading" secondItem="iwL-BD-aOS" secondAttribute="leading" id="G44-P0-8OI"/>
+                <constraint firstItem="jFu-zD-CUV" firstAttribute="leading" secondItem="gbR-H9-B20" secondAttribute="leading" id="GXB-By-UdD"/>
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="top" id="GrA-7u-byL"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="leading" secondItem="gK4-ru-5IS" secondAttribute="trailing" constant="10" id="GyW-5j-z4X"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="height" secondItem="Kvw-tf-5ON" secondAttribute="height" id="H9l-Yl-e6N"/>
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="height" secondItem="Mtq-r8-dFL" secondAttribute="height" id="Hlh-sc-r4e"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="height" secondItem="Mtq-r8-dFL" secondAttribute="height" id="IHp-9r-9B1"/>
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="top" secondItem="Kvw-tf-5ON" secondAttribute="top" id="Isu-Tt-W20"/>
+                <constraint firstItem="jFu-zD-CUV" firstAttribute="height" secondItem="gbR-H9-B20" secondAttribute="height" id="JTY-xE-8I6"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="top" id="LeC-7w-jnF"/>
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="leading" secondItem="zDb-ah-7Iz" secondAttribute="trailing" constant="10" id="Lkd-hb-hQi"/>
                 <constraint firstItem="gK4-ru-5IS" firstAttribute="width" secondItem="Kvw-tf-5ON" secondAttribute="width" id="NiV-XZ-RGH"/>
@@ -246,6 +258,7 @@
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="leading" secondItem="dnm-SM-M1c" secondAttribute="trailing" constant="10" id="RBk-jA-kKU"/>
                 <constraint firstItem="Zrv-da-GvZ" firstAttribute="top" secondItem="mfb-Na-KAM" secondAttribute="top" id="RO8-m3-6qF"/>
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="top" secondItem="vFm-3K-qal" secondAttribute="top" id="Tg9-O4-rLv"/>
+                <constraint firstItem="jFu-zD-CUV" firstAttribute="width" secondItem="gbR-H9-B20" secondAttribute="width" id="XgP-7X-PYE"/>
                 <constraint firstItem="Zrv-da-GvZ" firstAttribute="bottom" secondItem="mfb-Na-KAM" secondAttribute="bottom" id="Y41-Dc-dtg"/>
                 <constraint firstAttribute="trailing" secondItem="t7F-lM-jVu" secondAttribute="trailing" constant="10" id="bAy-it-l7r"/>
                 <constraint firstAttribute="trailing" secondItem="vFm-3K-qal" secondAttribute="trailing" constant="10" id="dQ3-LH-BKp"/>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPEditTextAlarmViewController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="editTableView" destination="RFJ-Ag-bWO" id="G1D-VE-6UT"/>
+                <outlet property="timePickerView" destination="1UI-mN-Aa2" id="3ha-VC-KUI"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RFJ-Ag-bWO">
+                    <rect key="frame" x="0.0" y="174" width="414" height="688"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Etf-AC-Sz1"/>
+                        <outlet property="delegate" destination="-1" id="tWh-xc-bxw"/>
+                    </connections>
+                </tableView>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1UI-mN-Aa2">
+                    <rect key="frame" x="0.0" y="54" width="414" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="YWZ-Ai-E5E"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="jiZ-AK-cSD"/>
+                        <outlet property="delegate" destination="-1" id="9qq-zJ-9Rc"/>
+                    </connections>
+                </pickerView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1UI-mN-Aa2" secondAttribute="trailing" id="KWb-FG-JUh"/>
+                <constraint firstItem="1UI-mN-Aa2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="KgV-v5-OkR"/>
+                <constraint firstItem="RFJ-Ag-bWO" firstAttribute="top" secondItem="1UI-mN-Aa2" secondAttribute="bottom" id="VEO-HX-7IT"/>
+                <constraint firstItem="RFJ-Ag-bWO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VzZ-AV-Kwg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RFJ-Ag-bWO" secondAttribute="trailing" id="agC-fF-QqL"/>
+                <constraint firstItem="1UI-mN-Aa2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hPf-C4-QXG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="RFJ-Ag-bWO" secondAttribute="bottom" id="qrY-50-WsJ"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="119"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

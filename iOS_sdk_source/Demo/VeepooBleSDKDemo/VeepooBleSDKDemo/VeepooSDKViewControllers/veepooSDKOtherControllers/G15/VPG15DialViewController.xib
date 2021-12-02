@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPG15DialViewController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="imageView1" destination="zuA-ia-qqm" id="cra-xG-niR"/>
+                <outlet property="imageView2" destination="8Ew-9H-wyi" id="hvO-vY-p72"/>
+                <outlet property="imageView3" destination="xcZ-Nq-hZ4" id="oQe-4V-7os"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zuA-ia-qqm">
+                    <rect key="frame" x="20" y="69" width="150" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="AM6-OX-bbz"/>
+                        <constraint firstAttribute="height" constant="150" id="vnp-fh-0b7"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8Ew-9H-wyi">
+                    <rect key="frame" x="20" y="227" width="150" height="150"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xcZ-Nq-hZ4">
+                    <rect key="frame" x="20" y="385" width="150" height="150"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SE-Ga-0j9">
+                    <rect key="frame" x="178" y="129" width="122" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="g2x-NF-BtR"/>
+                        <constraint firstAttribute="width" constant="122" id="wfG-3z-Su1"/>
+                    </constraints>
+                    <state key="normal" title="传输界面1"/>
+                    <connections>
+                        <action selector="transformBtn1:" destination="-1" eventType="touchUpInside" id="GwT-BR-FDy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X49-za-Ep5">
+                    <rect key="frame" x="178" y="287" width="124" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="124" id="4Cr-5e-W3x"/>
+                        <constraint firstAttribute="height" constant="30" id="oS4-ZT-wty"/>
+                    </constraints>
+                    <state key="normal" title="传输界面2"/>
+                    <connections>
+                        <action selector="transformBtn2:" destination="-1" eventType="touchUpInside" id="gdM-WT-84x"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFE-Mq-6n3">
+                    <rect key="frame" x="178" y="445" width="124" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Nsr-fT-KLw"/>
+                        <constraint firstAttribute="width" constant="124" id="ayt-ok-U1j"/>
+                    </constraints>
+                    <state key="normal" title="传输界面3"/>
+                    <connections>
+                        <action selector="transformBtn3:" destination="-1" eventType="touchUpInside" id="HHr-Cw-Yhm"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VN6-sh-yPt">
+                    <rect key="frame" x="20" y="553" width="124" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="124" id="6Qq-P8-OeL"/>
+                        <constraint firstAttribute="width" constant="124" id="awT-50-lGV"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="pwc-Qo-1pB"/>
+                        <constraint firstAttribute="height" constant="30" id="zvU-bq-Pkf"/>
+                    </constraints>
+                    <state key="normal" title="二维码"/>
+                    <connections>
+                        <action selector="transformBtn4:" destination="-1" eventType="touchUpInside" id="FGj-9a-Xvy"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="X49-za-Ep5" firstAttribute="centerY" secondItem="8Ew-9H-wyi" secondAttribute="centerY" id="0AJ-Qd-PEN"/>
+                <constraint firstItem="xcZ-Nq-hZ4" firstAttribute="leading" secondItem="zuA-ia-qqm" secondAttribute="leading" id="4kS-bD-0jQ"/>
+                <constraint firstItem="8Ew-9H-wyi" firstAttribute="height" secondItem="zuA-ia-qqm" secondAttribute="height" id="5ba-ZX-Pzu"/>
+                <constraint firstItem="X49-za-Ep5" firstAttribute="leading" secondItem="8Ew-9H-wyi" secondAttribute="trailing" constant="8" symbolic="YES" id="9IZ-1e-EhK"/>
+                <constraint firstItem="NFE-Mq-6n3" firstAttribute="centerY" secondItem="xcZ-Nq-hZ4" secondAttribute="centerY" id="CqW-p3-kx9"/>
+                <constraint firstItem="2SE-Ga-0j9" firstAttribute="leading" secondItem="zuA-ia-qqm" secondAttribute="trailing" constant="8" symbolic="YES" id="L6z-29-S6k"/>
+                <constraint firstItem="8Ew-9H-wyi" firstAttribute="leading" secondItem="zuA-ia-qqm" secondAttribute="leading" id="Mgs-rg-DuT"/>
+                <constraint firstItem="VN6-sh-yPt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="O7i-wt-FkQ"/>
+                <constraint firstItem="NFE-Mq-6n3" firstAttribute="leading" secondItem="xcZ-Nq-hZ4" secondAttribute="trailing" constant="8" symbolic="YES" id="PBs-dM-86A"/>
+                <constraint firstItem="zuA-ia-qqm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="PEa-Di-NF6"/>
+                <constraint firstItem="zuA-ia-qqm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="RrZ-Xh-wRP"/>
+                <constraint firstItem="xcZ-Nq-hZ4" firstAttribute="firstBaseline" secondItem="8Ew-9H-wyi" secondAttribute="baseline" constant="8" symbolType="layoutAnchor" id="Td2-nx-51w"/>
+                <constraint firstItem="xcZ-Nq-hZ4" firstAttribute="height" secondItem="zuA-ia-qqm" secondAttribute="height" id="eig-6Z-gWr"/>
+                <constraint firstItem="8Ew-9H-wyi" firstAttribute="top" secondItem="zuA-ia-qqm" secondAttribute="bottom" constant="8" symbolic="YES" id="jAX-uj-io1"/>
+                <constraint firstItem="xcZ-Nq-hZ4" firstAttribute="width" secondItem="zuA-ia-qqm" secondAttribute="width" id="kbz-e7-4ja"/>
+                <constraint firstItem="VN6-sh-yPt" firstAttribute="top" secondItem="xcZ-Nq-hZ4" secondAttribute="bottom" constant="18" id="lUE-NJ-7If"/>
+                <constraint firstItem="8Ew-9H-wyi" firstAttribute="width" secondItem="zuA-ia-qqm" secondAttribute="width" id="nql-7X-bIe"/>
+                <constraint firstItem="2SE-Ga-0j9" firstAttribute="centerY" secondItem="zuA-ia-qqm" secondAttribute="centerY" id="urb-iT-717"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

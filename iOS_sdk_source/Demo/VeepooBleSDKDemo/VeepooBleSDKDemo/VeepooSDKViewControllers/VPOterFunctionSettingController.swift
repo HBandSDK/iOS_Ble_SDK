@@ -14,9 +14,9 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
     
     var otherFunctionSettingTableView: UITableView?
     
-    let otherFunctions = ["同步个人信息","闹钟设置","血压私人模式设置","久坐提醒设置","心率报警设置","拍照功能","与手机配对","翻腕亮屏","修改密码","亮度调节","女性设置","倒计时功能","新闹钟设置","彩屏样式设置","亮屏时长","敲击测试","照片表盘","市场表盘","手机查找手环","GPS与时区设置", "体温数据读取"]
+    let otherFunctions = ["同步个人信息","闹钟设置","血压私人模式设置","久坐提醒设置","心率报警设置","拍照功能","与手机配对","翻腕亮屏","修改密码","亮度调节","女性设置","倒计时功能","新闹钟设置","文字闹钟","彩屏样式设置","亮屏时长","敲击测试","照片表盘","市场表盘","手机查找手环","GPS与时区设置", "体温数据读取", "G15表盘", "RR逐跳数据"]
     
-    let otherControllers = ["VPSyncPersonalInformationController","VPAlarmClockSettingController","VPBloodPrivateSettingController","VPLongSeatSettingController","VPHeartAlarmController","VPTakePhotoController","与手机配对","VPRaiseHandSettingController","VPModifyPasswordController","VPSettingBrightController","VPSettingFemaleRelatedController","VPDeviceCountDownController","VPDeviceNewAlarmController","VPSettingScreenStyleController","VPSettingScreenDurationController","VPTapTestViewController","VPPhotoDialViewController","VPMarketDialViewController","VPFindDeviceViewController","VPSettingDeviceGPSViewController", "VPTemperatureViewController"]
+    let otherControllers = ["VPSyncPersonalInformationController","VPAlarmClockSettingController","VPBloodPrivateSettingController","VPLongSeatSettingController","VPHeartAlarmController","VPTakePhotoController","与手机配对","VPRaiseHandSettingController","VPModifyPasswordController","VPSettingBrightController","VPSettingFemaleRelatedController","VPDeviceCountDownController","VPDeviceNewAlarmController","VPTextAlarmClockSettingController","VPSettingScreenStyleController","VPSettingScreenDurationController","VPTapTestViewController","VPPhotoDialViewController","VPMarketDialViewController","VPFindDeviceViewController","VPSettingDeviceGPSViewController", "VPTemperatureViewController", "VPG15DialViewController", "VPRRIntervalDataViewController"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

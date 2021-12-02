@@ -37,7 +37,7 @@ class VPSettingDeviceGPSViewController: UIViewController {
         deviceGPSModel = VPDeviceGPSModel.init()
         KAABAGPSModel = VPDeviceKAABAGPSModel.init()
         // Do any additional setup after loading the view.
-        timestampField.text = String(format: "%.0f", Date().toGlobalTime().timeIntervalSince1970)
+        timestampField.text = String(format: "%.0f", Date().timeIntervalSince1970)
         timestampField2.text = String(format: "%.0f", Date().timeIntervalSince1970)
     }
 
@@ -134,7 +134,14 @@ class VPSettingDeviceGPSViewController: UIViewController {
             self.SendTimerAction()
             // 销毁Task闭包（block）
             sendGPSToDeviceTask = nil
+            // 销毁block
+            self.destroyBlock()
         }
+    }
+    
+    // 销毁block
+    private func destroyBlock(){
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_sendGPSDataToDevice(nil)
     }
     
     // 定时器循环操作
