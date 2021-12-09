@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPRRIntervalDataViewController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
             <connections>
+                <outlet property="startPackageTextField" destination="GWF-0p-CjN" id="Hmo-yG-Pb1"/>
+                <outlet property="textView" destination="xWd-1M-uet" id="hMQ-DY-Vtk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,10 +21,13 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m95-Cp-ADy">
-                    <rect key="frame" x="20" y="74" width="182" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m95-Cp-ADy">
+                    <rect key="frame" x="212" y="69" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="182" id="NNE-fr-Hqa"/>
+                        <constraint firstAttribute="height" constant="44" id="qAR-Xq-Q1W"/>
+                    </constraints>
                     <state key="normal" title="今天">
                         <color key="titleColor" systemColor="systemBlueColor"/>
                     </state>
@@ -34,9 +39,8 @@
                         <action selector="readData:" destination="-1" eventType="touchUpInside" id="Ian-Mr-Cwj"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezS-Ly-lsN">
-                    <rect key="frame" x="20" y="149" width="182" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezS-Ly-lsN">
+                    <rect key="frame" x="212" y="143" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="昨天">
                         <color key="titleColor" systemColor="systemBlueColor"/>
@@ -49,9 +53,8 @@
                         <action selector="readData1:" destination="-1" eventType="touchUpInside" id="kj4-L7-Hue"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ns-IC-L1v">
-                    <rect key="frame" x="20" y="229" width="182" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ns-IC-L1v">
+                    <rect key="frame" x="212" y="217" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="前天">
                         <color key="titleColor" systemColor="systemBlueColor"/>
@@ -64,13 +67,79 @@
                         <action selector="readData2:" destination="-1" eventType="touchUpInside" id="BrN-1f-3hC"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起始包:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX2-at-7RV">
+                    <rect key="frame" x="20" y="92" width="57" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ZDD-eq-5tA"/>
+                        <constraint firstAttribute="width" constant="57" id="vXk-Xq-10g"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" placeholder="输入&gt;=1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GWF-0p-CjN">
+                    <rect key="frame" x="20" y="148" width="139" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWd-1M-uet">
+                    <rect key="frame" x="20" y="281" width="374" height="561"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndh-ff-xFk">
+                    <rect key="frame" x="20" y="217" width="69" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="69" id="c8F-qW-DYD"/>
+                        <constraint firstAttribute="height" constant="44" id="n8g-x3-FaO"/>
+                    </constraints>
+                    <state key="normal" title="清空">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭手动测量"/>
+                    <connections>
+                        <action selector="clearBtn:" destination="-1" eventType="touchUpInside" id="yGY-J9-z5u"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="139" y="129"/>
+            <constraints>
+                <constraint firstItem="ezS-Ly-lsN" firstAttribute="width" secondItem="m95-Cp-ADy" secondAttribute="width" id="1bs-ds-mXb"/>
+                <constraint firstItem="2ns-IC-L1v" firstAttribute="height" secondItem="m95-Cp-ADy" secondAttribute="height" id="34x-MH-Gi4"/>
+                <constraint firstItem="ezS-Ly-lsN" firstAttribute="trailing" secondItem="m95-Cp-ADy" secondAttribute="trailing" id="3tu-i1-liX"/>
+                <constraint firstItem="2ns-IC-L1v" firstAttribute="trailing" secondItem="m95-Cp-ADy" secondAttribute="trailing" id="Ens-s4-XXM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="m95-Cp-ADy" secondAttribute="trailing" constant="20" id="Eoa-ZY-nmo"/>
+                <constraint firstItem="ezS-Ly-lsN" firstAttribute="centerY" secondItem="GWF-0p-CjN" secondAttribute="centerY" id="JEn-G4-TPb"/>
+                <constraint firstItem="ezS-Ly-lsN" firstAttribute="top" secondItem="m95-Cp-ADy" secondAttribute="bottom" constant="30" id="Ka6-dj-Qfd"/>
+                <constraint firstItem="ezS-Ly-lsN" firstAttribute="leading" secondItem="GWF-0p-CjN" secondAttribute="trailing" constant="53" id="Peg-Lg-LCs"/>
+                <constraint firstItem="m95-Cp-ADy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="25" id="Woe-g6-pMh"/>
+                <constraint firstItem="2ns-IC-L1v" firstAttribute="width" secondItem="m95-Cp-ADy" secondAttribute="width" id="alL-IJ-HSV"/>
+                <constraint firstItem="xWd-1M-uet" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bfi-D7-DF1"/>
+                <constraint firstItem="xWd-1M-uet" firstAttribute="top" secondItem="2ns-IC-L1v" secondAttribute="bottom" constant="20" id="dT5-V4-0sL"/>
+                <constraint firstItem="ezS-Ly-lsN" firstAttribute="height" secondItem="m95-Cp-ADy" secondAttribute="height" id="dfJ-Hm-aBu"/>
+                <constraint firstItem="GWF-0p-CjN" firstAttribute="leading" secondItem="XX2-at-7RV" secondAttribute="leading" id="dhH-bd-fTd"/>
+                <constraint firstItem="xWd-1M-uet" firstAttribute="top" secondItem="ndh-ff-xFk" secondAttribute="bottom" constant="20" id="jDg-QA-Kku"/>
+                <constraint firstItem="XX2-at-7RV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="js6-Mr-xVe"/>
+                <constraint firstItem="ndh-ff-xFk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="myN-B3-n2J"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xWd-1M-uet" secondAttribute="bottom" constant="20" id="oPu-OB-Sc1"/>
+                <constraint firstItem="XX2-at-7RV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="48" id="qgA-Vh-o6b"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xWd-1M-uet" secondAttribute="trailing" constant="20" id="vpR-Bq-5Vt"/>
+                <constraint firstItem="2ns-IC-L1v" firstAttribute="top" secondItem="ezS-Ly-lsN" secondAttribute="bottom" constant="30" id="xUH-Eq-zPn"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="128.57142857142856"/>
         </view>
     </objects>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

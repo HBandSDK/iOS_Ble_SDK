@@ -37,6 +37,9 @@ class VPG15AdvertisementDataViewController: UIViewController {
         }
         
     }
+    @IBAction func clearTextView(_ sender: UIButton) {
+        self.logTextView.text = "";
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

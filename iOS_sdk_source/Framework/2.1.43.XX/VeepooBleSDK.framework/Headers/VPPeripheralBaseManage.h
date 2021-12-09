@@ -664,7 +664,7 @@
 /// 差异化读取，可自行控制blockNumber，减少数据被重复读取的次数
 /// @param dayNumber  代表哪一天 0代表今天，1代表昨天，2代表前天 设备只支持3天数据读取
 /// @param blockNumber  表示从哪一块数据开始读  从1开始，如传1，则表示读取从1及之后产生的数据      备注：1分钟产生一块数据，一天60*24块
-/// @param result 结果回调，如果error不为空，表示失败。responseObject与progress 仅在error为空时有效
+/// @param result 结果回调，responseObject为VPRRIntervalDataModel对象，如果error不为空，表示失败。responseObject与progress 仅在error为空时有效
 - (void)veepooSDK_readRRIntervalDataWithDayNumber:(NSInteger)dayNumber blockNumber:(NSInteger)blockNumber result:(void (^)(id responseObject, NSProgress *progress, NSError *error))result;
 
 @end

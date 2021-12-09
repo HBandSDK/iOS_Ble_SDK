@@ -59,6 +59,20 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyF-AV-unR">
+                    <rect key="frame" x="334" y="110.5" width="60" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="Qsk-F2-v3M"/>
+                        <constraint firstAttribute="width" constant="60" id="Rpc-L8-KOK"/>
+                        <constraint firstAttribute="height" constant="44" id="lQ4-8C-Agg"/>
+                    </constraints>
+                    <state key="normal" title="清除"/>
+                    <state key="selected" title="停止扫描"/>
+                    <connections>
+                        <action selector="clearTextView:" destination="-1" eventType="touchUpInside" id="HVl-c9-Rf6"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -67,6 +81,7 @@
                 <constraint firstItem="JCb-k5-Cfc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="0h1-nW-XzE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="awH-9u-KFz" secondAttribute="trailing" constant="20" id="DmG-v6-Afl"/>
                 <constraint firstItem="awH-9u-KFz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="LUf-7T-dqc"/>
+                <constraint firstItem="qyF-AV-unR" firstAttribute="centerY" secondItem="JCb-k5-Cfc" secondAttribute="centerY" id="LkU-vh-Zaj"/>
                 <constraint firstItem="awH-9u-KFz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="OaR-bm-8oM"/>
                 <constraint firstItem="JCb-k5-Cfc" firstAttribute="top" secondItem="awH-9u-KFz" secondAttribute="bottom" constant="24" id="UQr-12-kxk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iM4-A7-oMy" secondAttribute="bottom" constant="20" id="Wr5-aD-ndf"/>
@@ -74,6 +89,7 @@
                 <constraint firstItem="iM4-A7-oMy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Y7B-7e-YZW"/>
                 <constraint firstItem="h7g-RB-R4w" firstAttribute="centerY" secondItem="JCb-k5-Cfc" secondAttribute="centerY" id="lP7-36-7TD"/>
                 <constraint firstItem="iM4-A7-oMy" firstAttribute="top" secondItem="h7g-RB-R4w" secondAttribute="bottom" constant="13.5" id="omy-EI-Ais"/>
+                <constraint firstItem="qyF-AV-unR" firstAttribute="trailing" secondItem="awH-9u-KFz" secondAttribute="trailing" id="rRi-y7-dL6"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="123.88392857142857"/>
         </view>

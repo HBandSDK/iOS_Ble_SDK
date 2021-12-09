@@ -67,6 +67,8 @@
 #import "WLWeatherModel.h"
 #import "WLWeatherManager.h"
 
+#import "VPRRIntervalDataModel.h"
+
 //! Project version number for VeepooBleSDK.
 FOUNDATION_EXPORT double VeepooBleSDKVersionNumber;
 

@@ -252,6 +252,10 @@ class VPEditTextAlarmViewController: UIViewController,UIPickerViewDelegate,UIPic
             alarmModel?.alarmText = textField.text
             alarmModel?.alarmHour = String(hour)
             alarmModel?.alarmMinute = String(minute)
+            if (textField.text.data(using: .utf8)!.count > 60) {
+                _ = AppDelegate.showHUD(message: "文字闹钟最长不能超过60字节", hudModel: MBProgressHUDModeText, showView: view)
+                return
+            }
             callBackBlock()
         }
         self.view.endEditing(true)
