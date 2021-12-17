@@ -10,6 +10,8 @@ import UIKit
 
 class VPRRIntervalDataViewController: UIViewController {
 
+    var allModels:[VPRRIntervalDataModel] = []
+    
     @IBOutlet weak var startPackageTextField: UITextField!
     @IBOutlet weak var textView: UITextView!
     var startPackage:Int = 1
@@ -23,36 +25,17 @@ class VPRRIntervalDataViewController: UIViewController {
         if startPackage < 1 {
             return
         }
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_readRRIntervalData(withDayNumber: 0, blockNumber: startPackage, result: { model, progress, error in
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_readRRIntervalData(withDayNumber: sender.tag, blockNumber: startPackage, result: { [self] model, progress, error in
             if error == nil {
+                guard let model = model else {
+                    return
+                }
                 self.printData(model: model as Any, progress: progress!)
+                allModels.append(model as! VPRRIntervalDataModel)
             }
         })
     }
     
-    @IBAction func readData1(_ sender: UIButton) {
-        startPackage = Int(startPackageTextField.text!) ?? 1
-        if startPackage < 1 {
-            return
-        }
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_readRRIntervalData(withDayNumber: 1, blockNumber: startPackage, result: { model, progress, error in
-            if error == nil {
-                self.printData(model: model as Any, progress: progress!)
-            }
-        })
-    }
-    
-    @IBAction func readData2(_ sender: UIButton) {
-        startPackage = Int(startPackageTextField.text!) ?? 1
-        if startPackage < 1 {
-            return
-        }
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_readRRIntervalData(withDayNumber: 2, blockNumber: startPackage, result: { model, progress, error in
-            if error == nil {
-                self.printData(model: model as Any, progress: progress!)
-            }
-        })
-    }
     @IBAction func clearBtn(_ sender: UIButton) {
         self.textView.text = ""
     }
@@ -64,14 +47,46 @@ class VPRRIntervalDataViewController: UIViewController {
     func printData(model:Any, progress: Progress) -> Void {
         let model = model as! VPRRIntervalDataModel
         let progress = progress as Progress
-        let str = "块:\(model.blockNumber),长度:\(model.dataStream),读取进度:\(progress.localizedDescription!))"
-        self.printText(str)
-        print(str)
+        var valueStr = ""
+        let bytes = [UInt8](model.dataStream)
+        for i in 0..<bytes.count {
+            let value = Int(bytes[i])
+            var heartValue = 0
+            if value != 0 {
+//                heartValue = value
+                heartValue = 60000/Int(value*20)
+            }
+            if i == bytes.count - 1 {
+                valueStr.append("\(heartValue)\n\n")
+            }else{
+                valueStr.append("\(heartValue)|")
+            }
+        }
+        let str = "时间:\(model.date) \(model.time), 块:\(model.blockNumber), 读取进度:\(progress.localizedDescription!)), 数据:\(valueStr)"
+        self.bucketControl(str, finish: progress.isFinished)
+//        print(str)
     }
     
-    private func printText(_ str: String){
+    var strs: String = ""
+    var strsCount:NSInteger = 0
+    
+    // 防止太快更新UI
+    private func bucketControl(_ str: String, finish: Bool){
+        strs.append(str)
+        strsCount += 1
+        if finish {
+            self.updateTextView(strs)
+        } else {
+            if strsCount > 10 {
+                self.updateTextView(strs)
+            }
+        }
+    }
+    
+    private func updateTextView(_ str: String){
         self.textView.text.append(str)
-        self.textView.insertText("\n")
+        strs = ""
+        strsCount = 0
         self.textView.scrollRangeToVisible(NSMakeRange(self.textView.text.count, 1))
     }
     

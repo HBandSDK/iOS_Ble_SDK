@@ -39,7 +39,7 @@
                         <action selector="readData:" destination="-1" eventType="touchUpInside" id="Ian-Mr-Cwj"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezS-Ly-lsN">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezS-Ly-lsN">
                     <rect key="frame" x="212" y="143" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="昨天">
@@ -50,10 +50,10 @@
                     </state>
                     <state key="selected" title="关闭手动测量"/>
                     <connections>
-                        <action selector="readData1:" destination="-1" eventType="touchUpInside" id="kj4-L7-Hue"/>
+                        <action selector="readData:" destination="-1" eventType="touchUpInside" id="8pL-Gt-Bew"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ns-IC-L1v">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ns-IC-L1v">
                     <rect key="frame" x="212" y="217" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="前天">
@@ -64,7 +64,7 @@
                     </state>
                     <state key="selected" title="关闭手动测量"/>
                     <connections>
-                        <action selector="readData2:" destination="-1" eventType="touchUpInside" id="BrN-1f-3hC"/>
+                        <action selector="readData:" destination="-1" eventType="touchUpInside" id="8Aa-ae-Ynw"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="起始包:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX2-at-7RV">
@@ -86,7 +86,7 @@
                     <rect key="frame" x="20" y="281" width="374" height="561"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="textColor" systemColor="labelColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndh-ff-xFk">

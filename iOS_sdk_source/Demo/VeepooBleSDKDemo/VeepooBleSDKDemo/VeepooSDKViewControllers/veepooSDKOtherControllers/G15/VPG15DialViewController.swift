@@ -26,6 +26,7 @@ class VPG15DialViewController: UIViewController {
         imageView.image = imageWithUIColor(color: .red)
         let label = UILabel.init(frame: .init(x: 0, y: 0, width: 240, height: 240))
         label.text = "个人信息"
+        label.textAlignment = .center
         label.textColor = .white
         imageView.addSubview(label)
         sendImageDataToDevice(imageView: imageView, type: .personalProfile)
@@ -36,6 +37,7 @@ class VPG15DialViewController: UIViewController {
         imageView.image = imageWithUIColor(color: .green)
         let label = UILabel.init(frame: .init(x: 0, y: 0, width: 240, height: 240))
         label.text = "主题1"
+        label.textAlignment = .center
         label.textColor = .white
         imageView.addSubview(label)
         sendImageDataToDevice(imageView: imageView, type: .pictureTheme1)
@@ -46,6 +48,7 @@ class VPG15DialViewController: UIViewController {
         imageView.image = imageWithUIColor(color: .blue)
         let label = UILabel.init(frame: .init(x: 0, y: 0, width: 240, height: 240))
         label.text = "主题2"
+        label.textAlignment = .center
         label.textColor = .white
         imageView.addSubview(label)
         sendImageDataToDevice(imageView: imageView, type: .pictureTheme2)
@@ -53,9 +56,13 @@ class VPG15DialViewController: UIViewController {
     
     @IBAction func transformBtn4(_ sender: UIButton) {
         let imageView = UIImageView.init(frame: CGRect.init(origin: .zero, size: .init(width: 240, height: 240)))
-        imageView.image = imageWithUIColor(color: .cyan)
-        let label = UILabel.init(frame: .init(x: 0, y: 0, width: 240, height: 240))
+        imageView.image = imageWithUIColor(color: .black)
+        let qrcodeImage = UIImageView.init(frame: CGRect.init(origin: .init(x: 80, y: 30), size: .init(width: 80, height: 80)))
+        qrcodeImage.image = imageWithUIColor(color: .white)
+        imageView.addSubview(qrcodeImage)
+        let label = UILabel.init(frame: .init(x: 80, y: 30, width: 80, height: 80))
         label.text = "二维码"
+        label.textAlignment = .center
         label.textColor = .black
         imageView.addSubview(label)
         sendImageDataToDevice(imageView: imageView, type: .appQRCode)
