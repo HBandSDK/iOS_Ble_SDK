@@ -143,6 +143,7 @@ typedef NS_ENUM(NSInteger, VPSettingBaseFunctionSwitchType) {//关于来电提�
     VPSettingMessageScreenLight = 23, //消息亮屏
     VPSettingAutomaticTemperatureTest = 24, //体温自动检测开关
     VPSettingTemperatureUnit = 25, //体温单位设置 1表示摄氏度 2表示华氏度
+    VPSettingECGNormallyOpen = 26, //ECG 常开功能
     
     //其他指令
     VPSettingAutomaticOxygenTest = 1000,//血氧夜间自动检测

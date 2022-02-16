@@ -32,6 +32,7 @@
 #import "VPDeviceGPSModel.h"
 #import "VPDeviceKAABAGPSModel.h"
 #import "VPDeviceHadjCountModel.h"
+#import "VPG15QRCodeInfoModel.h"
 
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
@@ -657,6 +658,9 @@
                                    type:(VPG15DialViewTransformType)type
                                  result:(void (^)(id responseObject, NSError *error))result
                       transformProgress:(void (^)(double progress))transformProgress;
+
+- (void)veepooSDK_G15QRCodeInfoWithModel:(VPG15QRCodeInfoModel *)model
+                                  result:(void (^)(BOOL success, NSError *error))result;
 
 #pragma mark - RR逐跳原始数据读取
 
