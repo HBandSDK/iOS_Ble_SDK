@@ -652,15 +652,29 @@
 - (void)veepooSDK_temperatureTestStart:(BOOL)start result:(void (^)(VPTemperatureTestState state, BOOL enable, NSInteger progress, NSInteger tempValue))result;
 
 
-#pragma mark - G15赛米加界面更换功能
+#pragma mark - G15功能
 
+
+/// 界面更换
+/// @param image 所需更换的图片
+/// @param type 更换类型
+/// @param result   结果回调
+/// @param transformProgress 传输进度回调
 - (void)veepooSDK_G15TransformWithImage:(UIImage *)image
                                    type:(VPG15DialViewTransformType)type
                                  result:(void (^)(id responseObject, NSError *error))result
                       transformProgress:(void (^)(double progress))transformProgress;
 
+/// 二维码文本信息传输
+/// @param model 二维码信息
+/// @param result 结果回调
 - (void)veepooSDK_G15QRCodeInfoWithModel:(VPG15QRCodeInfoModel *)model
                                   result:(void (^)(BOOL success, NSError *error))result;
+
+/// ECG 常开模式下 ECG值更新监听
+/// 设备有值返回则会触发result回调
+/// @param result 结果回调
+- (void)veepooSDK_G15ECGValueMonitor:(void (^)(NSInteger ecgValue, NSString *dateStr))result;
 
 #pragma mark - RR逐跳原始数据读取
 

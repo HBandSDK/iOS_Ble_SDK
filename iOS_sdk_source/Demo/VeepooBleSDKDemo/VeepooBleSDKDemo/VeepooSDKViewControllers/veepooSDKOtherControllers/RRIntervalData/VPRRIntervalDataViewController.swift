@@ -49,6 +49,7 @@ class VPRRIntervalDataViewController: UIViewController {
         let progress = progress as Progress
         var valueStr = ""
         let bytes = [UInt8](model.dataStream)
+        var validationCount = 0
         for i in 0..<bytes.count {
             let value = Int(bytes[i])
             var heartValue = 0
@@ -61,8 +62,11 @@ class VPRRIntervalDataViewController: UIViewController {
             }else{
                 valueStr.append("\(heartValue)|")
             }
+            if value >= 12 && value <= 120 {
+                validationCount += 1
+            }
         }
-        let str = "时间:\(model.date) \(model.time), 块:\(model.blockNumber), 读取进度:\(progress.localizedDescription!)), 数据:\(valueStr)"
+        let str = "时间:\(model.date) \(model.time), 块:\(model.blockNumber), 读取进度:\(progress.localizedDescription!)), 有效数据:\(validationCount)个, 数据:\(valueStr)"
         self.bucketControl(str, finish: progress.isFinished)
 //        print(str)
     }

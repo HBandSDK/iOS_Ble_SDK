@@ -55,17 +55,17 @@ class VPG15DialViewController: UIViewController {
     }
     
     @IBAction func transformBtn4(_ sender: UIButton) {
-        let imageView = UIImageView.init(frame: CGRect.init(origin: .zero, size: .init(width: 240, height: 240)))
-        imageView.image = imageWithUIColor(color: .black)
-        let qrcodeImage = UIImageView.init(frame: CGRect.init(origin: .init(x: 80, y: 30), size: .init(width: 80, height: 80)))
-        qrcodeImage.image = imageWithUIColor(color: .white)
-        imageView.addSubview(qrcodeImage)
-        let label = UILabel.init(frame: .init(x: 80, y: 30, width: 80, height: 80))
-        label.text = "二维码"
-        label.textAlignment = .center
-        label.textColor = .black
-        imageView.addSubview(label)
-        sendImageDataToDevice(imageView: imageView, type: .appQRCode)
+//        let imageView = UIImageView.init(frame: CGRect.init(origin: .zero, size: .init(width: 240, height: 240)))
+//        imageView.image = imageWithUIColor(color: .black)
+//        let qrcodeImage = UIImageView.init(frame: CGRect.init(origin: .init(x: 80, y: 30), size: .init(width: 80, height: 80)))
+//        qrcodeImage.image = imageWithUIColor(color: .white)
+//        imageView.addSubview(qrcodeImage)
+//        let label = UILabel.init(frame: .init(x: 80, y: 30, width: 80, height: 80))
+//        label.text = "二维码"
+//        label.textAlignment = .center
+//        label.textColor = .black
+//        imageView.addSubview(label)
+//        sendImageDataToDevice(imageView: imageView, type: .appQRCode)
     }
     
     func sendImageDataToDevice(imageView:UIImageView, type:VPG15DialViewTransformType) -> Void {
