@@ -157,6 +157,14 @@ typedef NS_ENUM(NSInteger, VPSettingFunctionState) {//设置获取读取某个�
     VPSettingFunction = 4,//设置某个功能
 };
 
+typedef NS_ENUM(NSInteger, VPDeviceClearDataType) {//设备清除数据类型
+    VPDeviceClearDataTypeUnkown = 0,        //无
+    VPDeviceClearDataTypeReset = 1,         //清除手环数据并关机，相当于恢复出厂模式
+    VPDeviceClearDataTypeClearData = 2,     //清除手环数据
+    VPDeviceClearDataTypeClearArgs = 3,     //清除手环参数
+    VPDeviceClearDataTypeShutdown = 4       //关机
+};
+
 typedef NS_ENUM(NSInteger, VPSettingFunctionCompleteState) {//设置某个功能完成之后的状态
     VPFunctionCompleteUnknown = 0, //设备没有此功能
     VPFunctionCompleteOpen = 1,//此功能已经打开
