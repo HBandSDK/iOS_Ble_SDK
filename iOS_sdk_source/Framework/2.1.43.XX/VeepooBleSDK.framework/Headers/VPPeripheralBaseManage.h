@@ -473,9 +473,9 @@
 //清除数据，清除数据后手环会自动关机，不能监听是否清除成功，关机后会与App断开连接
 - (void)veepooSDKClearDeviceData;
 
-//Clear the data, the bracelet will automatically shut down after clearing the data, can not monitor whether the clear is successful, the shutdown will disconnect from the App
-//清除数据，清除数据后手环会自动关机，不能监听是否清除成功，关机后会与App断开连接
-- (void)veepooSDKClearDeviceDataWithType:(VPDeviceClearDataType)dataType;
+//Reset the device, device will reload, data will not clear. this operation will disconnect.
+//复位，设备会重新冷启动一遍，数据不会丢失。会与App断开连接
+- (void)veepooSDKResetDeviceData;
 
 #pragma mark - 设置功能的有无, 特殊开发者使用
 - (void)veepooSDKSettingFunction:(VPOperationFuctionType)fuctionType settingType:(VPOperationType)settingType result:(void(^)(VPSettingFunctionCompleteState settingState))settingResult;
