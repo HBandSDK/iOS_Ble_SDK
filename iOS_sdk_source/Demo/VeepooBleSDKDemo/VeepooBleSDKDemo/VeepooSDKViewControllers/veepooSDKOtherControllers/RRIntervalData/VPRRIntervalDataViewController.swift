@@ -10,6 +10,7 @@ import UIKit
 
 class VPRRIntervalDataViewController: UIViewController {
 
+
     var allModels:[VPRRIntervalDataModel] = []
     
     @IBOutlet weak var startPackageTextField: UITextField!
@@ -18,8 +19,20 @@ class VPRRIntervalDataViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "RR逐跳数据"
+        
+        let testStr = ""
+        let strs = testStr.components(separatedBy: ",")
+        let mData = NSMutableData.init()
+        var mArr = [Int]()
+        for str in strs {
+            var intValue = Int(str)
+            mData.append(&intValue, length: 2)
+            mArr.append(intValue!)
+        }
+        
+        VPRRIntervalDataHRVHandle.getRRIntervalLorentzModels(withArr: mArr as [NSNumber])
     }
-
+    
     @IBAction func readData(_ sender: UIButton) {
         startPackage = Int(startPackageTextField.text!) ?? 1
         if startPackage < 1 {

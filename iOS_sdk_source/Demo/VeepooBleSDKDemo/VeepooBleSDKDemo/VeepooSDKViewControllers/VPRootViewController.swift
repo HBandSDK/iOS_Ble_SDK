@@ -54,6 +54,12 @@ class VPRootViewController: UIViewController {
         super.viewDidLoad()
         self.title = "VeepooBleSDK" + String(VeepooBleSDKVersion)//sdk的版本
         self.navigationController?.navigationBar.isTranslucent = false
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance.init()
+            appearance.backgroundColor = .white
+            self.navigationController?.navigationBar.standardAppearance = appearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
         //设置导航栏上的UI
         self.setRootViewControllerNaviItemUI()
         

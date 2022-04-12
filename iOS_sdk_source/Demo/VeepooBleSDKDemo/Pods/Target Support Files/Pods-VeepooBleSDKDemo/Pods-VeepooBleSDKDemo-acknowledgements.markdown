@@ -78,11 +78,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-## Zip
+## ZIPFoundation
 
-The MIT License (MIT)
+MIT License
 
-Copyright (c) 2015 Roy Marmelstein
+Copyright (c) 2017 Thomas Zoechling
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -103,12 +103,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-
 ## iOSDFULibrary
 
 BSD 3-Clause License
 
-Copyright (c) 2016, Nordic Semiconductor
+Copyright (c) 2019, Nordic Semiconductor
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without

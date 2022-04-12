@@ -6,7 +6,7 @@ target 'VeepooBleSDKDemo' do
 
 #OC pod集成也是这样的
 
-pod 'iOSDFULibrary', '~> 4.1.0’
+pod 'iOSDFULibrary', '~> 4.11.1’
 
 pod 'FMDB'
 
