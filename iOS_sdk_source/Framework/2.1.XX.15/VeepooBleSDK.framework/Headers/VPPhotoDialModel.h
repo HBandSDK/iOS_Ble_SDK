@@ -22,22 +22,31 @@ typedef NS_ENUM(NSUInteger, VPDeviceDialType) {
 };
 
 typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
-    VPDeviceScreenTypeCircle240_240 = 1,   // 圆屏 240*240
-    VPDeviceScreenTypeSquare240_240,       // 方屏 240*240
-    VPDeviceScreenTypeSquare240_280,       // 方屏 240*280
-    VPDeviceScreenTypeSquare240_280_QFN,   // 方屏 240*280 QFN版本
-    VPDeviceScreenTypeCircle240_240_QFN,   // 圆屏 240*240 QFN版本
-    VPDeviceScreenTypeSquare240_295,       // 方屏 240*295
-    VPDeviceScreenTypeSquare240_295_QFN,   // 方屏 240*295 QFN版本
-    VPDeviceScreenTypeCircle360_360_QFN,   // 圆屏 360*360 QFN版本
+    VPDeviceScreenTypeCircle240_240             = 0x01,        // 圆屏 240*240
+    VPDeviceScreenTypeSquare240_240             = 0x02,        // 方屏 240*240
+    VPDeviceScreenTypeSquare240_280             = 0x03,        // 方屏 240*280
+    VPDeviceScreenTypeSquare240_280_QFN         = 0x04,        // 方屏 240*280 QFN版本
+    VPDeviceScreenTypeCircle240_240_QFN         = 0x05,        // 圆屏 240*240 QFN版本
+    VPDeviceScreenTypeSquare240_295             = 0x06,        // 方屏 240*295
+    VPDeviceScreenTypeSquare240_295_QFN         = 0x07,        // 方屏 240*295 QFN版本
+    VPDeviceScreenTypeCircle360_360_QFN         = 0x08,        // 圆屏 360*360 QFN版本
+    VPDeviceScreenTypeSquare080_160_QFN         = 0x0A,        // 方屏  80*160 位置只有上中下
+    VPDeviceScreenTypeSquare240_240_QFN         = 0x0B,        // 方屏 240*240 QFN版本
+    VPDeviceScreenTypeSquare135_240_QFN         = 0x0C,        // 方屏 135*240 位置只有上中下
+    VPDeviceScreenTypeSquare172_320_QFN         = 0x0D,        // 方屏 172*320 位置只有上中下
+    VPDeviceScreenTypeSquare167_240_QFN         = 0x0E,        // 方屏 167*240 位置只有上中下
+    VPDeviceScreenTypeSquare240_284_QFN         = 0x0F,        // 方屏 240*284 QFN版本 效果图用240x280的
+    VPDeviceScreenTypeSquare240_286_QFN         = 0x10,        // 方屏 240*286 QFN版本 效果图用240x280的
+    VPDeviceScreenTypeSquare320_380_QFN         = 0x11,        // 方屏 320*380 QFN版本
+    VPDeviceScreenTypeSquare200_320_QFN         = 0x12,        // 方屏 200*320 位置只有上中下
 };
 
 typedef NS_ENUM(NSUInteger, VPPhotoDialTimePosition) {
-    // 圆屏
+    // 上中下
     VPPhotoDialTimePositionTop = 1,         // top
     VPPhotoDialTimePositionMiddle,          // middle
     VPPhotoDialTimePositionBottom,          // bottom
-    // 方屏
+    // 四个角
     VPPhotoDialTimePositionLeftTop,         // left top
     VPPhotoDialTimePositionRightTop,        // right top
     VPPhotoDialTimePositionLeftBottom,      // left bottom
@@ -54,7 +63,11 @@ typedef NS_ENUM(NSUInteger, VPPhotoDialTimeTopAndBottomElement) {
     VPPhotoDialTimeTopAndBottomElementHeart,
     VPPhotoDialTimeTopAndBottomElementCalories,
     VPPhotoDialTimeTopAndBottomElementDistance,
-    // 如果是VPDeviceScreenTypeSquare240_280_QFN 类型，需隐藏此项，因为电池存在百分比与固定格数的区分
+    /* 如果是以下类型，需隐藏此项，因为电池存在百分比与固定格数的区分
+     * VPDeviceScreenTypeSquare240_280_QFN
+     * VPDeviceScreenTypeSquare240_284_QFN
+     * VPDeviceScreenTypeSquare240_286_QFN
+     */
     VPPhotoDialTimeTopAndBottomElementBatteryAndBLE,
 };
 
