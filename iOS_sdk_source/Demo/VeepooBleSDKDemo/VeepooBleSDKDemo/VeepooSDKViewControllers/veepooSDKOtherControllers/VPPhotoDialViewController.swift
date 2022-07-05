@@ -94,7 +94,8 @@ class VPPhotoDialViewController: UIViewController {
             break
         // 240*280
         case .square240_280,
-             .square240_280_QFN:
+             .square240_280_QFN,
+             .square240_280_QFN_RIG:
             image = UIImage.init(named: "test_240_280")
             break
         // 240*295
@@ -140,7 +141,12 @@ class VPPhotoDialViewController: UIViewController {
         if topAndBottomIndex > 8 {
             topAndBottomIndex = 0
         }
-        if self.photoDialModel.screenType == .square240_280_QFN && topAndBottomIndex == 8 {
+        let hideBatteryAndBLE = self.photoDialModel.screenType == .square240_280_QFN ||
+                                self.photoDialModel.screenType == .square240_284_QFN ||
+                                self.photoDialModel.screenType == .square240_286_QFN ||
+                                self.photoDialModel.screenType == .square240_280_QFN_RIG;
+        
+        if hideBatteryAndBLE && topAndBottomIndex == 8 {
             topAndBottomIndex = 0
         }
         
