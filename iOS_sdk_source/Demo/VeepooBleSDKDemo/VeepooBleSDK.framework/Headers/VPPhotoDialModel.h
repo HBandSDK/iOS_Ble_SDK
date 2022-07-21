@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
     VPDeviceScreenTypeSquare240_295             = 0x06,        // 方屏 240*295
     VPDeviceScreenTypeSquare240_295_QFN         = 0x07,        // 方屏 240*295 QFN版本
     VPDeviceScreenTypeCircle360_360_QFN         = 0x08,        // 圆屏 360*360 QFN版本
+    VPDeviceScreenTypeSquare240_280_QFN_RIG     = 0x09,        // 方屏 240*280 QFN版本 RIG设备，与0x04区分默认背景
     VPDeviceScreenTypeSquare080_160_QFN         = 0x0A,        // 方屏  80*160 位置只有上中下
     VPDeviceScreenTypeSquare240_240_QFN         = 0x0B,        // 方屏 240*240 QFN版本
     VPDeviceScreenTypeSquare135_240_QFN         = 0x0C,        // 方屏 135*240 位置只有上中下
@@ -65,6 +66,7 @@ typedef NS_ENUM(NSUInteger, VPPhotoDialTimeTopAndBottomElement) {
     VPPhotoDialTimeTopAndBottomElementDistance,
     /* 如果是以下类型，需隐藏此项，因为电池存在百分比与固定格数的区分
      * VPDeviceScreenTypeSquare240_280_QFN
+     * VPDeviceScreenTypeSquare240_280_QFN_RIG
      * VPDeviceScreenTypeSquare240_284_QFN
      * VPDeviceScreenTypeSquare240_286_QFN
      */
