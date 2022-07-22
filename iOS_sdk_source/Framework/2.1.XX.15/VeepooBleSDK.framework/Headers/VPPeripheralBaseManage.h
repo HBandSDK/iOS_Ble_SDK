@@ -675,10 +675,12 @@
 - (void)veepooSDK_G15QRCodeInfoWithModel:(VPG15QRCodeInfoModel *)model
                                   result:(void (^)(BOOL success, NSError *error))result;
 
-/// ECG 常开模式下 ECG值更新监听
+/// ECG 常开模式下 ECG值 与 波形 更新监听
 /// 设备有值返回则会触发result回调
+/// 如果不想建立监听，请传nil
 /// @param result 结果回调
-- (void)veepooSDK_G15ECGValueMonitor:(void (^)(NSInteger ecgValue, NSString *dateStr))result;
+/// @param ecgDataResult 波形数据结果回调
+- (void)veepooSDK_G15ECGValueMonitor:(void (^)(NSInteger ecgValue, NSString *dateStr))result ecgDataResult:(void (^)(NSArray<NSNumber *> *ecgDatas))ecgDataResult;
 
 #pragma mark - RR逐跳原始数据读取
 
