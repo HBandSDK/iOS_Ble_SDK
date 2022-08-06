@@ -298,3 +298,14 @@ typedef NS_ENUM(NSUInteger, VPDeviceTextAlarmSettingModel) {
     VPDeviceTextAlarmSettingModelAddOrChange,
     VPDeviceTextAlarmSettingModelRead
 };
+
+// 血糖功能指令测试状态
+typedef NS_ENUM(NSUInteger, VPDeviceBloodGlucoseTestState) {
+    VPDeviceBloodGlucoseTestStateUnsupported,      // 设备不支持
+    VPDeviceBloodGlucoseTestStateOpen,             // 开启测量
+    VPDeviceBloodGlucoseTestStateClose,            // 关闭测量
+    VPDeviceBloodGlucoseTestStateLowPower,         // 设备低电
+    VPDeviceBloodGlucoseTestStateDeviceBusy,       // 设备正忙
+    VPDeviceBloodGlucoseTestStateNotWear           // 设备佩戴检测未通过
+};
+

@@ -260,6 +260,18 @@
 */
 + (NSArray *)veepooSDKGetDeviceTemperatureDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
 
+/**
+ 获取设备某一天的血糖自动测量数据
+ @param queryDate 要查询的日期格式为2021-06-07
+ @param tableID 设备的mac地址，获取哪个设备的数据
+ @return 获取一天血糖自动测量数据的数组，数组内是每5分钟的字典，格式如下
+ NSDictionary *dataDic =  {
+    "time" = "16:30";
+    "bloodGlucoses" =  [@"0.00"]; // 每5分钟的血糖值数组，数组中元素最少1个，至多5个。
+ }
+*/
++ (NSArray *)veepooSDKGetDeviceBloodGlucoseDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
+
 /*
  NSString *const VPDeviceRunningTotalTimeKey = @"totalTime";
  NSString *const VPDeviceRunningBeginTimeKey = @"beginTime";
