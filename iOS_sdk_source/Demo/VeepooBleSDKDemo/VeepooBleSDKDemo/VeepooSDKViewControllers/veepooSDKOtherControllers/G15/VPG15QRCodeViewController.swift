@@ -80,6 +80,8 @@ class VPG15QRCodeViewController: UIViewController {
             self.textView.text = ""
             VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_G15ECGValueMonitor { [weak self](ecgValue, dateStr) in
                 self?.updateTextView("时间：\(dateStr ?? "x")，值:\(ecgValue) \n")
+            } ecgDataResult: { ecgDatas in
+                print(ecgDatas as Any)
             }
         }
     }

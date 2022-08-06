@@ -312,6 +312,13 @@ class VPRootViewController: UIViewController {
         let vc = VPG15AdvertisementDataViewController.init()
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    // 进入血糖界面
+    @IBAction func enterBloodGlucoseTestController(_ sender: UIButton) {
+        let vc = VPBloodGlucoseViewController.init()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     /// 销毁定时器操作
     func DestroyStepTimer() {
         guard let stepTimer1 = stepTimer else {
@@ -320,6 +327,7 @@ class VPRootViewController: UIViewController {
         stepTimer1.invalidate()
         stepTimer = nil
     }
+    
     
     func readOxygenData() {
        let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)

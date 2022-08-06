@@ -20,17 +20,17 @@ class VPRRIntervalDataViewController: UIViewController {
         super.viewDidLoad()
         title = "RR逐跳数据"
         
-        let testStr = ""
-        let strs = testStr.components(separatedBy: ",")
-        let mData = NSMutableData.init()
-        var mArr = [Int]()
-        for str in strs {
-            var intValue = Int(str)
-            mData.append(&intValue, length: 2)
-            mArr.append(intValue!)
-        }
-        
-        VPRRIntervalDataHRVHandle.getRRIntervalLorentzModels(withArr: mArr as [NSNumber])
+//        let testStr = ""
+//        let strs = testStr.components(separatedBy: ",")
+//        let mData = NSMutableData.init()
+//        var mArr = [Int]()
+//        for str in strs {
+//            var intValue = Int(str)! * 20;
+//            mData.append(&intValue, length: 2)
+//            mArr.append(intValue)
+//        }
+//        
+//        VPRRIntervalDataHRVHandle.getRRIntervalLorentzModels(withArr: mArr as [NSNumber])
     }
     
     @IBAction func readData(_ sender: UIButton) {

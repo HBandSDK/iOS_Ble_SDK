@@ -175,6 +175,9 @@
 //体温功能 0表示没有 1有体温但无自动测量 2有体温且有自动测量
 @property (nonatomic, assign) NSUInteger temperatureType;
 
+//血糖功能 1代表有 0表示没有
+@property (nonatomic, assign) NSUInteger bloodGlucoseType;
+
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is
 //设备网络升级版本，当用户收到有新固件版本的时候，告知用户升级的版本是多少

@@ -323,6 +323,16 @@
  */
 - (void)veepooSDKTestECGStart:(BOOL)start testResult:(void(^)(VPTestECGState testECGState, NSUInteger testProgress, VPECGTestDataModel *testModel))testECGResultBlock;
 
+/**
+ Turning the Blood Glucose test on or off，The structure of the returned blood glucose value is: 0.00, and the reported value is 100 times. Handle it by yourself when displaying it
+ 开启或者关闭血糖测试，返回的血糖值结构为: 0.00，上报的value为100倍，显示的时候自行处理
+ 
+ @param start Start and End
+ @param testResult Callback of test results
+ */
+- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value))testResult;
+
+
 //Send the mobile phone pairing command. When the device is successfully connected, the system will have a pop-up window for the user to select whether the device is paired with the mobile phone. If the user chooses to cancel, if you want to pair with the mobile phone during the connection process, you can send this command. There is no callback for this command. When the transmission is successful, the system will pop up the window to the user. Note: If the device and phone are already configured with this command, it is invalid.
 //发送与手机配对指令，当设备连接成功后，系统会有一个弹窗让用户选择设备是否与手机配对，如果用户选择了取消，如果在连接过程中想与手机配对，则发送这个命令就可以了，此命令没有回调，当发送成功后系统会有弹窗给用户, 注意：如果设备和手机已经配对此命令无效
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -218,12 +218,22 @@
                         <action selector="enterG15AdvertisementTestController:" destination="-1" eventType="touchUpInside" id="DPN-Ny-zdh"/>
                     </connections>
                 </button>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0R-Hf-fbP">
+                    <rect key="frame" x="88" y="394" width="67.5" height="44"/>
+                    <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="血糖"/>
+                    <connections>
+                        <action selector="enterBloodGlucoseTestController:" destination="-1" eventType="touchUpInside" id="U57-UG-Eb9"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="height" secondItem="Kvw-tf-5ON" secondAttribute="height" id="0Cs-WM-CUm"/>
                 <constraint firstItem="2NU-5a-ABH" firstAttribute="trailing" secondItem="gK4-ru-5IS" secondAttribute="trailing" id="0Dd-QN-Tcl"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="top" secondItem="Kvw-tf-5ON" secondAttribute="top" id="3VV-NT-fbk"/>
+                <constraint firstItem="J0R-Hf-fbP" firstAttribute="width" secondItem="jFu-zD-CUV" secondAttribute="width" id="59x-mU-JVh"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="width" secondItem="Mtq-r8-dFL" secondAttribute="width" id="77X-5p-7bI"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="width" secondItem="Kvw-tf-5ON" secondAttribute="width" id="8ha-8z-MBM"/>
                 <constraint firstItem="mfb-Na-KAM" firstAttribute="trailing" secondItem="iwL-BD-aOS" secondAttribute="trailing" id="9uU-M8-KjY"/>
@@ -248,6 +258,7 @@
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="height" secondItem="Mtq-r8-dFL" secondAttribute="height" id="Hlh-sc-r4e"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="height" secondItem="Mtq-r8-dFL" secondAttribute="height" id="IHp-9r-9B1"/>
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="top" secondItem="Kvw-tf-5ON" secondAttribute="top" id="Isu-Tt-W20"/>
+                <constraint firstItem="J0R-Hf-fbP" firstAttribute="leading" secondItem="jFu-zD-CUV" secondAttribute="trailing" constant="10.5" id="Iz2-kJ-Drx"/>
                 <constraint firstItem="jFu-zD-CUV" firstAttribute="height" secondItem="gbR-H9-B20" secondAttribute="height" id="JTY-xE-8I6"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="top" id="LeC-7w-jnF"/>
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="leading" secondItem="zDb-ah-7Iz" secondAttribute="trailing" constant="10" id="Lkd-hb-hQi"/>
@@ -280,7 +291,9 @@
                 <constraint firstItem="Zrv-da-GvZ" firstAttribute="trailing" secondItem="HgM-7X-9K9" secondAttribute="trailing" id="msq-Ub-Ubd"/>
                 <constraint firstItem="gbR-H9-B20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="nCB-FI-bAI"/>
                 <constraint firstItem="2NU-5a-ABH" firstAttribute="leading" secondItem="gK4-ru-5IS" secondAttribute="leading" id="ogo-T2-n0j"/>
+                <constraint firstItem="J0R-Hf-fbP" firstAttribute="top" secondItem="2NU-5a-ABH" secondAttribute="bottom" constant="8" symbolic="YES" id="pPv-kJ-hGp"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="leading" secondItem="gK4-ru-5IS" secondAttribute="trailing" constant="10" id="pmI-Ov-5KB"/>
+                <constraint firstItem="J0R-Hf-fbP" firstAttribute="height" secondItem="jFu-zD-CUV" secondAttribute="height" id="qh6-6E-oJM"/>
                 <constraint firstItem="2NU-5a-ABH" firstAttribute="top" secondItem="gbR-H9-B20" secondAttribute="top" id="qrj-QW-udD"/>
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="width" secondItem="Kvw-tf-5ON" secondAttribute="width" id="rcC-Ua-EOA"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="leading" secondItem="dnm-SM-M1c" secondAttribute="trailing" constant="10" id="woA-c4-JyS"/>

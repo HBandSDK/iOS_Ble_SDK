@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPBloodGlucoseViewController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="manualTestDataBtn" destination="Ijk-tc-Dg4" id="24d-4V-m56"/>
+                <outlet property="readDataBtn" destination="dSK-4d-Xel" id="EBC-Ex-mYv"/>
+                <outlet property="supportFunctionLabel" destination="YJQ-ba-DEB" id="scR-wy-AMZ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备是否支持血糖:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKY-uQ-cOL">
+                    <rect key="frame" x="20" y="62" width="143.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="P3i-1f-4ep"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="否" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJQ-ba-DEB">
+                    <rect key="frame" x="183.5" y="62" width="17.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="K5k-f1-4cU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSK-4d-Xel">
+                    <rect key="frame" x="19" y="126" width="182" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="182" id="F9m-7S-lNe"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="rsN-dR-1GF"/>
+                        <constraint firstAttribute="height" constant="44" id="uc3-pA-ceV"/>
+                    </constraints>
+                    <state key="normal" title="读取数据">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭手动测量"/>
+                    <connections>
+                        <action selector="readDataBtnAction:" destination="-1" eventType="touchUpInside" id="kTG-RP-tev"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijk-tc-Dg4">
+                    <rect key="frame" x="20" y="178" width="182" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Ibx-ff-Aas"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="NG6-xm-Mbc"/>
+                        <constraint firstAttribute="width" constant="182" id="ZCK-1K-9Ib"/>
+                    </constraints>
+                    <state key="normal" title="开启手动测量">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭手动测量"/>
+                    <connections>
+                        <action selector="manualTestDataBtnAction:" destination="-1" eventType="touchUpInside" id="CzP-rD-wS1"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="eKY-uQ-cOL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="18" id="54l-bQ-LV1"/>
+                <constraint firstItem="YJQ-ba-DEB" firstAttribute="leading" secondItem="eKY-uQ-cOL" secondAttribute="trailing" constant="20" id="82v-Ta-UHd"/>
+                <constraint firstItem="dSK-4d-Xel" firstAttribute="top" secondItem="eKY-uQ-cOL" secondAttribute="bottom" constant="24" id="RdU-3Q-n0G"/>
+                <constraint firstItem="YJQ-ba-DEB" firstAttribute="centerY" secondItem="eKY-uQ-cOL" secondAttribute="centerY" id="Ryk-7e-Wox"/>
+                <constraint firstItem="eKY-uQ-cOL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Uzc-iq-Rlb"/>
+                <constraint firstItem="Ijk-tc-Dg4" firstAttribute="top" secondItem="dSK-4d-Xel" secondAttribute="bottom" constant="8" symbolic="YES" id="dnv-N9-X9D"/>
+                <constraint firstItem="dSK-4d-Xel" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="19" id="x9x-1U-Qrx"/>
+                <constraint firstItem="Ijk-tc-Dg4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yil-d7-Bet"/>
+            </constraints>
+            <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
