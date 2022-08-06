@@ -45,6 +45,8 @@
 		678368AC1E58363200C3BCB8 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678368AB1E58363200C3BCB8 /* StringExtension.swift */; };
 		6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */; };
 		6786EDC0214B620C00E03882 /* VPSettingScreenDurationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */; };
+		678BF9C3233D970E00A956B3 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678BF9C2233D970200A956B3 /* VeepooBleSDK.framework */; };
+		678C89A221F036B00041E0AB /* SDKResours.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 678C89A121F036AF0041E0AB /* SDKResours.bundle */; };
 		679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */; };
 		679EA6B31EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */; };
 		67A4D34A1F71101A00DBB53E /* VPSettingScreenStyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */; };
@@ -76,6 +78,8 @@
 		AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */; };
 		FE27F0ED264A1DD50080CDA1 /* VPMapGPSTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27F0EB264A1DD50080CDA1 /* VPMapGPSTagViewController.swift */; };
 		FE27F0EE264A1DD50080CDA1 /* VPMapGPSTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */; };
+		FE373EA327B9EA4500F312C4 /* VPG15QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE373EA127B9EA4500F312C4 /* VPG15QRCodeViewController.swift */; };
+		FE373EA427B9EA4500F312C4 /* VPG15QRCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */; };
 		FE65720E25B930AD00672A8B /* VPPhotoDialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */; };
 		FE65720F25B930AD00672A8B /* VPPhotoDialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */; };
 		FE6EE04625C1464800B67C70 /* VPMarketDialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6EE04425C1464800B67C70 /* VPMarketDialViewController.swift */; };
@@ -95,11 +99,23 @@
 		FE8E3A1726F49BD300065ADB /* VPEditTextAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8E3A1526F49BD300065ADB /* VPEditTextAlarmViewController.xib */; };
 		FE8E3A4626F5E31200065ADB /* VPTextAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E3A4426F5E31200065ADB /* VPTextAlarmCell.swift */; };
 		FE8E3A4726F5E31200065ADB /* VPTextAlarmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8E3A4526F5E31200065ADB /* VPTextAlarmCell.xib */; };
+		FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */; };
+		FECB0D9D289CF58A00D434D2 /* VPBloodGlucoseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */; };
 		FED9CC892754C81A00E54DC8 /* VPRRIntervalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9CC872754C81A00E54DC8 /* VPRRIntervalDataViewController.swift */; };
 		FED9CC8A2754C81A00E54DC8 /* VPRRIntervalDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED9CC882754C81A00E54DC8 /* VPRRIntervalDataViewController.xib */; };
 		FEFA5486266B48D50071E61B /* VPTemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */; };
 		FEFA5487266B48D50071E61B /* VPTemperatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEFA5485266B48D50071E61B /* VPTemperatureViewController.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		678BF9C1233D970200A956B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 678BF9BC233D96FB00A956B3 /* VeepooBleSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 67A5D8871E4976090026E7CA;
+			remoteInfo = VeepooBleSDK;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		FE70FA96263A613F00074260 /* Embed Frameworks */ = {
@@ -157,6 +173,8 @@
 		678368AB1E58363200C3BCB8 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingScreenDurationController.swift; sourceTree = "<group>"; };
 		6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingScreenDurationController.xib; sourceTree = "<group>"; };
+		678BF9BC233D96FB00A956B3 /* VeepooBleSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VeepooBleSDK.xcodeproj; path = ../../VeepooBleSDK/VeepooBleSDK.xcodeproj; sourceTree = "<group>"; };
+		678C89A121F036AF0041E0AB /* SDKResours.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SDKResours.bundle; sourceTree = "<group>"; };
 		679A218F1EF1044100518B15 /* VPFemaleSelectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPFemaleSelectView.swift; sourceTree = "<group>"; };
 		679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingFemaleRelatedController.swift; sourceTree = "<group>"; };
 		67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPSettingScreenStyleController.swift; sourceTree = "<group>"; };
@@ -194,6 +212,8 @@
 		A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VeepooBleSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE27F0EB264A1DD50080CDA1 /* VPMapGPSTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMapGPSTagViewController.swift; sourceTree = "<group>"; };
 		FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPMapGPSTagViewController.xib; sourceTree = "<group>"; };
+		FE373EA127B9EA4500F312C4 /* VPG15QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPG15QRCodeViewController.swift; sourceTree = "<group>"; };
+		FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPG15QRCodeViewController.xib; sourceTree = "<group>"; };
 		FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPPhotoDialViewController.swift; sourceTree = "<group>"; };
 		FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPPhotoDialViewController.xib; sourceTree = "<group>"; };
 		FE6EE04425C1464800B67C70 /* VPMarketDialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMarketDialViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +232,8 @@
 		FE8E3A1526F49BD300065ADB /* VPEditTextAlarmViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPEditTextAlarmViewController.xib; sourceTree = "<group>"; };
 		FE8E3A4426F5E31200065ADB /* VPTextAlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTextAlarmCell.swift; sourceTree = "<group>"; };
 		FE8E3A4526F5E31200065ADB /* VPTextAlarmCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPTextAlarmCell.xib; sourceTree = "<group>"; };
+		FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPBloodGlucoseViewController.swift; sourceTree = "<group>"; };
+		FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPBloodGlucoseViewController.xib; sourceTree = "<group>"; };
 		FED9CC872754C81A00E54DC8 /* VPRRIntervalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPRRIntervalDataViewController.swift; sourceTree = "<group>"; };
 		FED9CC882754C81A00E54DC8 /* VPRRIntervalDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPRRIntervalDataViewController.xib; sourceTree = "<group>"; };
 		FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTemperatureViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE70FA94263A613F00074260 /* GRDFUSDK.framework in Frameworks */,
+				678BF9C3233D970E00A956B3 /* VeepooBleSDK.framework in Frameworks */,
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +283,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FECB0D97289CF3F000D434D2 /* 血糖 */,
 				0409742F24986ED5006076EC /* 联定制 */,
 				67BA724F23581393004E6E1E /* PTT */,
 				67640D501E56CF2E008D9D71 /* veepooSDKOtherControllers */,
@@ -346,6 +370,14 @@
 			path = VeepooExtension;
 			sourceTree = "<group>";
 		};
+		678BF9BD233D96FB00A956B3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				678BF9C2233D970200A956B3 /* VeepooBleSDK.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		679A218A1EF103A200518B15 /* VeepooViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,6 +439,8 @@
 			isa = PBXGroup;
 			children = (
 				FE70FA85263A5F2400074260 /* GRDFUSDK.framework */,
+				678BF9BC233D96FB00A956B3 /* VeepooBleSDK.xcodeproj */,
+				678C89A121F036AF0041E0AB /* SDKResours.bundle */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
 				67057F991E655D830084D6AB /* VeepooTools */,
@@ -448,6 +482,8 @@
 				FE8E39FF26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.xib */,
 				FE8E3A0426F2E4A800065ADB /* VPG15DialViewController.swift */,
 				FE8E3A0526F2E4A800065ADB /* VPG15DialViewController.xib */,
+				FE373EA127B9EA4500F312C4 /* VPG15QRCodeViewController.swift */,
+				FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */,
 			);
 			path = G15;
 			sourceTree = "<group>";
@@ -460,6 +496,15 @@
 				FE8E3A1526F49BD300065ADB /* VPEditTextAlarmViewController.xib */,
 			);
 			path = TextAlarmClock;
+			sourceTree = "<group>";
+		};
+		FECB0D97289CF3F000D434D2 /* 血糖 */ = {
+			isa = PBXGroup;
+			children = (
+				FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */,
+				FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */,
+			);
+			path = "血糖";
 			sourceTree = "<group>";
 		};
 		FED9CC842754C80300E54DC8 /* RRIntervalData */ = {
@@ -507,7 +552,7 @@
 				TargetAttributes = {
 					67CB1CA61E52D26E00805649 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 4E8S34J8UT;
+						DevelopmentTeam = 7RTTXV5Q46;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -535,6 +580,12 @@
 			mainGroup = 67CB1C9E1E52D26E00805649;
 			productRefGroup = 67CB1CA81E52D26E00805649 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 678BF9BD233D96FB00A956B3 /* Products */;
+					ProjectRef = 678BF9BC233D96FB00A956B3 /* VeepooBleSDK.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				67CB1CA61E52D26E00805649 /* VeepooBleSDKDemo */,
@@ -542,11 +593,22 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		678BF9C2233D970200A956B3 /* VeepooBleSDK.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VeepooBleSDK.framework;
+			remoteRef = 678BF9C1233D970200A956B3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		67CB1CA51E52D26E00805649 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FECB0D9D289CF58A00D434D2 /* VPBloodGlucoseViewController.xib in Resources */,
 				FE8E3A0726F2E4A800065ADB /* VPG15DialViewController.xib in Resources */,
 				FE8E3A0126F2E3BC00065ADB /* VPG15AdvertisementDataViewController.xib in Resources */,
 				67FC22C01E68FF7D0029DED3 /* VPTestFatigueController.xib in Resources */,
@@ -570,8 +632,10 @@
 				672E08471E5E813300F60750 /* VPTestStepController.xib in Resources */,
 				FE722C2B25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib in Resources */,
 				672E08331E5D36ED00F60750 /* VPTestBloodController.xib in Resources */,
+				FE373EA427B9EA4500F312C4 /* VPG15QRCodeViewController.xib in Resources */,
 				67CA3B591EF25AB500203D20 /* VPDeviceCountDownController.xib in Resources */,
 				FEFA5487266B48D50071E61B /* VPTemperatureViewController.xib in Resources */,
+				678C89A221F036B00041E0AB /* SDKResours.bundle in Resources */,
 				678368A21E5814A600C3BCB8 /* VPHeartAlarmController.xib in Resources */,
 				FE27F0EE264A1DD50080CDA1 /* VPMapGPSTagViewController.xib in Resources */,
 				6707B0A21E72504A00207523 /* VPSettingBrightController.xib in Resources */,
@@ -653,6 +717,7 @@
 				FE8E3A0026F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift in Sources */,
 				67CA3B581EF25AB500203D20 /* VPDeviceCountDownController.swift in Sources */,
 				6757E2842196D1BD0019E8B4 /* VPTapTestViewController.swift in Sources */,
+				FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */,
 				679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */,
 				FE722C0925F5D41900EA675E /* VPFindDeviceViewController.swift in Sources */,
 				FE6EE04625C1464800B67C70 /* VPMarketDialViewController.swift in Sources */,
@@ -683,6 +748,7 @@
 				FED9CC892754C81A00E54DC8 /* VPRRIntervalDataViewController.swift in Sources */,
 				67CA3B6E1EF363C100203D20 /* VPDeviceNewAlarmController.swift in Sources */,
 				67FC22BF1E68FF7D0029DED3 /* VPTestFatigueController.swift in Sources */,
+				FE373EA327B9EA4500F312C4 /* VPG15QRCodeViewController.swift in Sources */,
 				672E084C1E5EC2FE00F60750 /* VPTakePhotoController.swift in Sources */,
 				678368AC1E58363200C3BCB8 /* StringExtension.swift in Sources */,
 				67CB1CAB1E52D26E00805649 /* AppDelegate.swift in Sources */,
@@ -821,8 +887,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8ADCC1E39C7B06805F3E9386 /* Pods-VeepooBleSDKDemo.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4E8S34J8UT;
+				CURRENT_PROJECT_VERSION = 2.6;
+				DEVELOPMENT_TEAM = 7RTTXV5Q46;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -831,9 +899,9 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.9.10;
+				MARKETING_VERSION = 2.9.23;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -844,8 +912,9 @@
 					"\"iOSDFULibrary\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemoTestFlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "VeepooBleSDKDemo/VeepooBleSDK-Brigding-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
@@ -855,8 +924,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4E8S34J8UT;
+				CURRENT_PROJECT_VERSION = 2.6;
+				DEVELOPMENT_TEAM = 7RTTXV5Q46;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -865,9 +936,9 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.9.10;
+				MARKETING_VERSION = 2.9.23;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -878,8 +949,9 @@
 					"\"iOSDFULibrary\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemoTestFlight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENABLE_BATCH_MODE = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "VeepooBleSDKDemo/VeepooBleSDK-Brigding-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
