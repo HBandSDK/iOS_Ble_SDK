@@ -255,17 +255,68 @@ typedef NS_ENUM(NSInteger,VPDeviceFemaleState) {//女性项目属于哪个生理
 };
 
 typedef NS_ENUM(NSInteger,VPDeviceRuningMode) {//运动模式类型
-    VPDeviceRuningModeCommon = 0,//普通的单运动模式
-    VPDeviceRuningModeOutdoorRun,//户外跑步
-    VPDeviceRuningModeOutdoorWalk,//户外步行
-    VPDeviceRuningModeIutdoorRun,//室内跑步
-    VPDeviceRuningModeIutdoorWalk,//室内步行
-    VPDeviceRuningModeHiking,//徒步
-    VPDeviceRuningModeStairStepper,//踏步机
-    VPDeviceRuningModeOutdoorCycle,//户外骑行
-    VPDeviceRuningModeStationaryBike,//室内骑行
-    VPDeviceRuningModeElliptical,//椭圆机
-    VPDeviceRuningModeRowingMachine,//划船机
+    VPDeviceRuningModeCommon = 0,               //普通的单运动模式
+    VPDeviceRuningModeOutdoorRun,               //户外跑步
+    VPDeviceRuningModeOutdoorWalk,              //户外步行
+    VPDeviceRuningModeIutdoorRun,               //室内跑步
+    VPDeviceRuningModeIutdoorWalk,              //室内步行
+    VPDeviceRuningModeHiking,                   //徒步
+    VPDeviceRuningModeStairStepper,             //踏步机
+    VPDeviceRuningModeOutdoorCycle,             //户外骑行
+    VPDeviceRuningModeStationaryBike,           //室内骑行
+    VPDeviceRuningModeElliptical,               //椭圆机
+    VPDeviceRuningModeRowingMachine,            //划船机
+    VPDeviceRuningModeMountaineering,           //登山
+    VPDeviceRuningModeSwim,                     //游泳
+    VPDeviceRuningModeSitUps,                   //仰卧起坐
+    VPDeviceRuningModeSki,                      //滑雪
+    VPDeviceRuningModeJumpRope,                 //跳绳
+    VPDeviceRuningModeYoga,                     //瑜伽
+    VPDeviceRuningModePingpong,                 //乒乓球
+    VPDeviceRuningModeBasketball,               //篮球
+    VPDeviceRuningModeVolleyball,               //排球
+    VPDeviceRuningModeFootball,                 //足球
+    VPDeviceRuningModeBadminton,                //羽毛球
+    VPDeviceRuningModeTennis,                   //网球
+    VPDeviceRuningModeClimbStairs,              //爬楼梯
+    VPDeviceRuningModeFitness,                  //健身
+    VPDeviceRuningModeWeightlifting,            //举重
+    VPDeviceRuningModeDiving,                   //潜水
+    VPDeviceRuningModeBoxing,                   //拳击
+    VPDeviceRuningModeGymBall,                  //健身球
+    VPDeviceRuningModeSquatTraining,            //深蹲训练
+    VPDeviceRuningModeTriathlon,                //铁人三项
+    VPDeviceRuningModeDance,                    //舞蹈
+    VPDeviceRuningModeHIIT,                     //HIIT
+    VPDeviceRuningModeRockClimbing,             //攀岩
+    VPDeviceRuningModeSports,                   //竞技
+    VPDeviceRuningModeBalls,                    //球类
+    VPDeviceRuningModeFitnessGame,              //健身游戏
+    VPDeviceRuningModeFreeTime,                 //自由活动
+    VPDeviceRuningModeAerobics,                 //健美操
+    VPDeviceRuningModeGymnastics,               //体操
+    VPDeviceRuningModeFloorExercise,            //自由体操
+    VPDeviceRuningModeHorizontalBar,            //单杠
+    VPDeviceRuningModeParallelBars,             //双杠
+    VPDeviceRuningModeTrampoline,               //蹦床
+    VPDeviceRuningModeTrackAndField,            //田径
+    VPDeviceRuningModeMarathon,                 //马拉松
+    VPDeviceRuningModePushUps,                  //俯卧撑
+    VPDeviceRuningModeDumbbel,                  //哑铃
+    VPDeviceRuningModeRugbyFootball,            //橄榄球
+    VPDeviceRuningModeHandball,                 //手球
+    VPDeviceRuningModeBaseballSoftball,         //棒垒球
+    VPDeviceRuningModeBaseball,                 //棒球
+    VPDeviceRuningModeHockey,                   //曲棍球
+    VPDeviceRuningModeGolf,                     //高尔夫球
+    VPDeviceRuningModeBowling,                  //保龄球
+    VPDeviceRuningModeBilliards,                //台球
+    VPDeviceRuningModeRowing,                   //赛艇
+    VPDeviceRuningModeSailboat,                 //帆船
+    VPDeviceRuningModeSkate,                    //滑冰
+    VPDeviceRuningModeCurling,                  //冰壶
+    VPDeviceRuningModePuck,                     //冰球
+    VPDeviceRuningModeSled,                     //雪橇
 };
 
 
