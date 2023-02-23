@@ -107,6 +107,22 @@ class VPRootViewController: UIViewController {
             print("sos")
         }
         
+        // BT连接状态监听，仅支持双模芯片
+        VPPeripheralManage.shareVPPeripheralManager()?.vpbtConnectStateChangeBlock = {(btState: VPDeviceBTState, mediaSwitch: Bool) -> Void
+            in
+            switch btState {
+            case .disConnect:
+                print("BT未连接\(mediaSwitch)")
+            case .connected:
+                print("BT已连接\(mediaSwitch)")
+            case .advertising:
+                print("BT广播中\(mediaSwitch)")
+            default:
+                break
+            }
+        }
+        // 开启设备BT开关，会触发连接，如果未与系统配对，则会触发系统配对
+//        veepooBleManager.peripheralManage.veepooSDK_openDeviceBTSwitch()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,7 +171,7 @@ class VPRootViewController: UIViewController {
         if VPBleCentralManage.sharedBleManager().vpBleDFUConnectStateChangeBlock != nil {//正在固件升级，自己也可以加判断条件
             return
         }
-        //验证密码之后如果不是在DFU模式，第一步一定要先同步一下信息，最主要的是身高，同时App端修改个人信息后也一定要同步给设备，设置成功后在做其他事情，也可以向我这没写，因为一定会设置成功
+        //验证密码之后如果不是在DFU模式，第一步一定要先同步一下信息，最主要的是身高，同时App端修改个人信息后也一定要同步给设备，设置成功后在做其他事情，也可以像我这么写，因为一定会设置成功
         VPPeripheralManage.shareVPPeripheralManager().veepooSDKSynchronousPersonalInformation(withStature: 175, weight: 60, birth: 1995, sex: 0, targetStep: 10000) { (settingResult) in
             
         }
@@ -181,7 +197,7 @@ class VPRootViewController: UIViewController {
         
         //密码验证后一般要读取基本数据（这个是所有设备必须读取的，每个设备都有的包含计步，睡眠、心率、血压的数据）、如果有运动数据读取运动数据，如果有血氧数据读取血氧数据，三者读取的时候不能同步进行，要一个读取完毕在读取其他的
         let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
-        return
+//        return
             
         
         //验证密码成功后开始读取手环的数据（睡眠、计步、心率、血压等基本数据）
@@ -297,14 +313,17 @@ class VPRootViewController: UIViewController {
             return
         }
         
+//        veepooBleManager.peripheralManage.veepooSDKSettingDeviceName(with: "ccbbaa") { [self] state in
+//            print("修改设备名称:\(state)")
+//            vpDeviceNameLabel.text = "设备名称:" + veepooBleManager.peripheralModel.deviceName
+//        }
+        
         let controllerName = controllers[sender.tag - 1]
 
         let controllerClass: AnyClass? = NSClassFromString(nameSpace + "." + controllerName)
 
         let controller = controllerClass as! UIViewController.Type
         self.navigationController?.pushViewController(controller.init(), animated: true)
-        
-        
     }
 
     // 赛米加G15定制项目 广播包测试

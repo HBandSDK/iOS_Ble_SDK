@@ -16,13 +16,7 @@ class VPTextAlarmCell: UITableViewCell {
             alarmText.text = newValue?.alarmText
             alarmSwitch.isOn = UInt((newValue?.alarmState)!) == 1
             
-            if UInt((newValue?.repeatState)!) == 0 {//单次提醒
-                alarmSwitch.isHidden = true
-                repeatLabel.text = newValue?.alarmDate
-            }else {
-                alarmSwitch.isHidden = false
-                repeatLabel.text = newValue?.getRepeatWeek()
-            }
+            repeatLabel.text = newValue?.getRepeatWeek()
         }
     }
     

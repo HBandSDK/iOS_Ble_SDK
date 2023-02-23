@@ -15,7 +15,7 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
     var messageRemindTableView: UITableView?
     
     let messageFunctions = ["来电","短信","微信","QQ","新浪","Facebook","Twitter","Flickr","Linkedln","whatsApp","Line","Instagram","Snapchat","Skype","GMail","DingTalk","WeChat Work","其他应用"]
-    let messageFunctionsTwo = ["TikTok","Telegram","Connected2","Kakao Talk", "警右"]
+    let messageFunctionsTwo = ["TikTok","Telegram","Connected2","Kakao Talk", "警右", "Messenger"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,7 +153,7 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
             let messageSwitch = UISwitch()
             messageSwitch.tag = indexPath.row + 2
             messageSwitch.addTarget(self, action: #selector(messageOpenOrCloseAction(sender:)), for: .touchUpInside)
-//            messageSwitch.isEnabled = header != 0//为0即为没有此功能
+            messageSwitch.isEnabled = header != 0//为0即为没有此功能
             messageSwitch.isOn = header == 1//为1即为开
             
             cell?.accessoryView = messageSwitch
