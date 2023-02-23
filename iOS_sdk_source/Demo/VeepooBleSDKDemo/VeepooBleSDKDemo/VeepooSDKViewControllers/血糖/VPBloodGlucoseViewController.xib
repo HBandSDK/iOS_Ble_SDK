@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPBloodGlucoseViewController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
             <connections>
                 <outlet property="manualTestDataBtn" destination="Ijk-tc-Dg4" id="24d-4V-m56"/>
+                <outlet property="privateModelBtn" destination="HWF-he-BRd" id="SEj-If-siK"/>
+                <outlet property="privateModelLabel" destination="d0A-Fy-7z2" id="Zho-Yd-nGo"/>
                 <outlet property="readDataBtn" destination="dSK-4d-Xel" id="EBC-Ex-mYv"/>
                 <outlet property="supportFunctionLabel" destination="YJQ-ba-DEB" id="scR-wy-AMZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备是否支持血糖:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKY-uQ-cOL">
-                    <rect key="frame" x="20" y="62" width="143.5" height="40"/>
+                    <rect key="frame" x="20" y="66" width="143.5" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="P3i-1f-4ep"/>
                     </constraints>
@@ -32,7 +34,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="否" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJQ-ba-DEB">
-                    <rect key="frame" x="183.5" y="62" width="17.5" height="40"/>
+                    <rect key="frame" x="183.5" y="66" width="17.5" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="K5k-f1-4cU"/>
                     </constraints>
@@ -41,7 +43,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSK-4d-Xel">
-                    <rect key="frame" x="19" y="126" width="182" height="44"/>
+                    <rect key="frame" x="19" y="177" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="182" id="F9m-7S-lNe"/>
@@ -60,7 +62,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijk-tc-Dg4">
-                    <rect key="frame" x="20" y="178" width="182" height="44"/>
+                    <rect key="frame" x="20" y="229" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Ibx-ff-Aas"/>
@@ -78,16 +80,59 @@
                         <action selector="manualTestDataBtnAction:" destination="-1" eventType="touchUpInside" id="CzP-rD-wS1"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWF-he-BRd">
+                    <rect key="frame" x="20" y="281" width="182" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Fb1-G0-V94"/>
+                        <constraint firstAttribute="width" constant="182" id="ePu-Ef-hm3"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="vyk-Eh-mt3"/>
+                    </constraints>
+                    <state key="normal" title="血糖校准">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled" title="不支持校准">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <state key="selected" title="关闭手动测量"/>
+                    <connections>
+                        <action selector="privateModelBtnAction:" destination="-1" eventType="touchUpInside" id="6Ol-Dc-rPb"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否支持血糖校准:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Esa-m2-GPA">
+                    <rect key="frame" x="20" y="114" width="143.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="RUj-Fm-tig"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="否" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0A-Fy-7z2">
+                    <rect key="frame" x="183.5" y="114" width="17.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="qcE-u6-jZQ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="dSK-4d-Xel" firstAttribute="top" secondItem="Esa-m2-GPA" secondAttribute="bottom" constant="23" id="1eg-P3-mUg"/>
                 <constraint firstItem="eKY-uQ-cOL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="18" id="54l-bQ-LV1"/>
+                <constraint firstItem="d0A-Fy-7z2" firstAttribute="leading" secondItem="Esa-m2-GPA" secondAttribute="trailing" constant="20" id="7W2-gq-yAo"/>
+                <constraint firstItem="d0A-Fy-7z2" firstAttribute="centerY" secondItem="Esa-m2-GPA" secondAttribute="centerY" id="7ps-94-6bm"/>
                 <constraint firstItem="YJQ-ba-DEB" firstAttribute="leading" secondItem="eKY-uQ-cOL" secondAttribute="trailing" constant="20" id="82v-Ta-UHd"/>
-                <constraint firstItem="dSK-4d-Xel" firstAttribute="top" secondItem="eKY-uQ-cOL" secondAttribute="bottom" constant="24" id="RdU-3Q-n0G"/>
+                <constraint firstItem="HWF-he-BRd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="OvY-RD-KA2"/>
                 <constraint firstItem="YJQ-ba-DEB" firstAttribute="centerY" secondItem="eKY-uQ-cOL" secondAttribute="centerY" id="Ryk-7e-Wox"/>
+                <constraint firstItem="HWF-he-BRd" firstAttribute="top" secondItem="Ijk-tc-Dg4" secondAttribute="bottom" constant="8" symbolic="YES" id="U19-vC-FCy"/>
                 <constraint firstItem="eKY-uQ-cOL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Uzc-iq-Rlb"/>
                 <constraint firstItem="Ijk-tc-Dg4" firstAttribute="top" secondItem="dSK-4d-Xel" secondAttribute="bottom" constant="8" symbolic="YES" id="dnv-N9-X9D"/>
+                <constraint firstItem="Esa-m2-GPA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ocT-LA-K0d"/>
+                <constraint firstItem="Esa-m2-GPA" firstAttribute="top" secondItem="eKY-uQ-cOL" secondAttribute="bottom" constant="8" symbolic="YES" id="p47-Zv-C5I"/>
                 <constraint firstItem="dSK-4d-Xel" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="19" id="x9x-1U-Qrx"/>
                 <constraint firstItem="Ijk-tc-Dg4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yil-d7-Bet"/>
             </constraints>

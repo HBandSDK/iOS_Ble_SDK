@@ -11,18 +11,23 @@ import UIKit
 class VPBloodGlucoseViewController: UIViewController {
     
     @IBOutlet weak var supportFunctionLabel: UILabel!
+    @IBOutlet weak var privateModelLabel: UILabel!
     @IBOutlet weak var readDataBtn: UIButton!
     @IBOutlet weak var manualTestDataBtn: UIButton!
+    @IBOutlet weak var privateModelBtn: UIButton!
     
     var support: Bool = false
+    var privateModelSupport: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "血糖功能"
         support = VPBleCentralManage.sharedBleManager()?.peripheralModel.bloodGlucoseType != 0
         supportFunctionLabel.text = support ? "是" : "否"
-
         
+        privateModelSupport = VPBleCentralManage.sharedBleManager()?.peripheralModel.bloodGlucoseType == 2
+        privateModelLabel.text = privateModelSupport ? "是" : "否"
+        privateModelBtn.isEnabled = privateModelSupport
     }
     
     @IBAction func readDataBtnAction(_ sender: UIButton) {
@@ -64,5 +69,21 @@ class VPBloodGlucoseViewController: UIViewController {
         });
     }
     
-
+    
+    @IBAction func privateModelBtnAction(_ sender: Any) {
+        // 设置 setting
+//        let testValue = 9.13
+//        VPBleCentralManage.sharedBleManager()?.peripheralManage
+//            .veepooSDKBloodGlucosePersonal(withOpCode: 1, value: testValue, open: true, result: { [weak self](success, value, isOpen) in
+//            _ = AppDelegate.showHUD(message: "设置 \(success), \(value), \(isOpen)", hudModel: MBProgressHUDModeText, showView: self!.view)
+//            print("\(success), \(value), \(isOpen)")
+//        })
+        
+        // 读取 read
+        VPBleCentralManage.sharedBleManager()?.peripheralManage
+            .veepooSDKBloodGlucosePersonal(withOpCode: 2, value: 0, open: true, result: {  [weak self](success, value, isOpen) in
+        _ = AppDelegate.showHUD(message: "读取 \(success), \(value), \(isOpen)", hudModel: MBProgressHUDModeText, showView: self!.view)
+        })
+    }
+    
 }
