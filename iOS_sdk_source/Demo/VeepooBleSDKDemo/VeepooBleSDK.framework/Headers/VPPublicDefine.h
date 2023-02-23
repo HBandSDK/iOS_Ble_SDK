@@ -70,6 +70,12 @@ typedef NS_ENUM(NSInteger, DeviceDFUState) {
     DeviceDFUFailure,//升级失败
 };
 
+typedef NS_ENUM(NSInteger, VPDeviceBTState) {
+    VPDeviceBTStateDisConnect = 0, //未连接
+    VPDeviceBTStateConnected,      //已连接
+    VPDeviceBTStateAdvertising,    //广播中
+};
+
 //接收扫描到的设备
 typedef void(^ReceiveScanningDevice)(VPPeripheralModel *peripheralModel);
 //接收扫描到的设备
@@ -111,8 +117,9 @@ typedef NS_ENUM(NSInteger, VPSettingMessageSwitchType) {//关于来电提醒的�
     VPSettingOtherTikTok = 20,
     VPSettingOtherTelegram = 21,
     VPSettingOtherConnected2 = 22,
-    VPSettingKakaoTalk,
-    VPSettingJingYou, // 警右 APP
+    VPSettingKakaoTalk = 23,
+    VPSettingJingYou = 24, // 警右 APP
+    VPSettingMessenger = 25,
     VPSettingAll = 100,//设置所有, 读取的使用不能使用这个
 };
 

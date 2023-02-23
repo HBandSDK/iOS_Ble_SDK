@@ -21,7 +21,6 @@
 
 //The name of the device, displayed in the scanned list
 //设备的名字，扫描的列表中显示
-
 @property (nonatomic, strong, readonly) NSString *deviceName;
 
 //Device address, password verification may change after successful verification, displayed in the scanned list
@@ -95,7 +94,7 @@
 //设备开关的提醒状态包含的功能数据结构如B802010202010102020000000000000000000000前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表公英制、24小时制式、心率自动检测、血压自动检测、运动量过量提醒、心率血压血氧语音播报、手机查找、秒表功能、血氧过低通知、LED灯档位（1代表正常肤色档位、2代表黑色皮肤档位），HRV夜间自动检测，来电免接听，蓝牙断链提醒，SOS页面显示, PPG自动测量, 科学睡眠自动检测(这个暂时无用, 关闭科学睡眠用的是PPG自动测量)，每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
 @property (nonatomic, strong) NSData *deviceSwitchData;
 
-//设备开关(第二个数据包)的提醒状态包含的功能数据结构如B802010202010102020000000000000000000001前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表公长按解锁、消息亮屏, 每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
+//设备开关(第二个数据包)的提醒状态包含的功能数据结构如B802010202010102020000000000000000000001前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表公长按解锁、消息亮屏、体温自动监测、体温单位切换、ECG常开、血糖功能开关、梅托功能开关、压力功能开关、血糖单位切换, 每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
 @property (nonatomic, strong) NSData *deviceSwitchTwoData;
 
 //Drinking status and whether there is drinking data 0 means no drinking, other representatives have several drinking
@@ -124,8 +123,8 @@
 //非0代表有hrv功能
 @property (nonatomic, assign) NSInteger hrvType;
 
-//0 stands for normal sleep and 1 stands for precise sleep
-//0代表普通睡眠,1代表精准睡眠
+//0 stands for normal sleep and 1/3 stands for precise sleep
+//0代表普通睡眠,1/3代表精准睡眠
 @property (nonatomic, assign) NSInteger sleepType;
 
 //0 generation does not have this function, 1 means E series, 2 means G series
@@ -178,6 +177,12 @@
 //血糖功能 1代表有 0表示没有
 @property (nonatomic, assign) NSUInteger bloodGlucoseType;
 
+//设备的BT信息，内部使用
+@property (nonatomic, strong) NSData *deviceBTInfoData;
+
+//设备的芯片类型 从杰理系列开始有 1表示杰理系列
+@property (nonatomic, assign) NSUInteger CPUType;
+
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is
 //设备网络升级版本，当用户收到有新固件版本的时候，告知用户升级的版本是多少
@@ -191,6 +196,8 @@
 //低功耗模型
 @property (nonatomic, strong) VPLowPowerModel *lowPowerModel;
 
+#pragma mark - SDK Inner Function SDK 内部方法
+
 //Initialize the model through the broadcast package, sdk internal use
 //通过广播包初始化模型，sdk内部使用
 - (instancetype)initWithPeripher:(CBPeripheral*)peripher advertisementData:(NSDictionary*)advertisementData RSSI:(NSNumber *)RSSI;
@@ -203,6 +210,10 @@
 //密码验证成功后改变属性值 ，sdk内部使用
 - (void)setPropertyValueWithPasswordData:(NSData *)passData;
 
+/// This method is called after successfully modifying the BLE name {@link deviceName}
+/// 修改蓝牙名称成功之后会调用这个方法来改变 {@link deviceName}
+/// - Parameter deviceName: 新的设备名称 New DeviceName
+- (void)setPropertyValueWithDeviceName:(NSString *)deviceName;
 
 @end
 

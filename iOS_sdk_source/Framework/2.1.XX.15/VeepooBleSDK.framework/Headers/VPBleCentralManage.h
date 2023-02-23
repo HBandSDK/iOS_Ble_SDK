@@ -20,6 +20,10 @@
 //连接后是否弹系统配对窗口，默认Yes
 @property (nonatomic, assign) BOOL isAutoShowPair;
 
+//是否默认连接K系列的BT，仅在 isAutoShowPair为YES且系统版本>=iOS13才有效，默认Yes
+//如果系统版本低于13，无法自动连接BT，需要提示用户前往手机系统蓝牙自行连接
+@property (nonatomic, assign) BOOL isAutoConnectBT NS_AVAILABLE_IOS(13_0);
+
 //Bluetooth Center Device Manager 中心设备管理者
 @property (nonatomic, strong) CBCentralManager *centralManager;
 

@@ -36,8 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 //闹钟提醒的文字，最长支持60字节
 @property (nonatomic, strong) NSString *alarmText;
 
-//The date of the alarm reminder is valid for a single reminder. The default reminder for the repeat week is 0000-00-00. All formats are like this.
-//闹钟提醒的日期，对单次提醒有效，重复星期提醒的默认给0000-00-00，所有格式都是这样的
+// Invalid field
+//闹钟提醒的日期，无效字段
 @property (nonatomic, strong) NSString *alarmDate;
 
 - (instancetype)initWithAlarmDict:(NSDictionary *)alarmDict;

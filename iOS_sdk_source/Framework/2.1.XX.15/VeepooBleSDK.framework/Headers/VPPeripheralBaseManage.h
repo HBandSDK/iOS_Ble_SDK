@@ -55,6 +55,9 @@
 //接收50Hz绿光数据
 @property (nonatomic, copy) void(^ReceiveGreenLightData)(NSArray <NSNumber *>*values);
 
+//Callback of device BT connection status change 设备BT连接状态改变的回调
+@property (nonatomic, copy) void(^VPBTConnectStateChangeBlock)(VPDeviceBTState btState, BOOL mediaSwitchOpen);
+
 //Create an instance
 + (instancetype)shareVPPeripheralManager;
 
@@ -325,12 +328,24 @@
 
 /**
  Turning the Blood Glucose test on or off，The structure of the returned blood glucose value is: 0.00, and the reported value is 100 times. Handle it by yourself when displaying it
- 开启或者关闭血糖测试，返回的血糖值结构为: 0.00，上报的value为100倍，显示的时候自行处理
+ 开启或者关闭血糖测试，返回的血糖值结构为: 0.00，上报的value为100倍，显示的时候自行处理，
+ 血糖值单位转换，mmol/L => mg/dL, 公式：floor((X mmol/l ) *18 +0.5f) = Y mg/dl
  
  @param start Start and End
  @param testResult Callback of test results
  */
 - (void)veepooSDKTestBloodGlucoseStart:(BOOL)start testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value))testResult;
+
+
+/// 血糖校准读取/设置
+/// @param opCode 1为设置 2为读取
+/// @param value 血糖值 范围[3.00, 15.00]，不在该范围内会被强制修改为4.00 （读取时无效）
+/// @param open 是否开启校准模式 0关闭 1开启（读取时无效）
+/// @param result 回调
+- (void)veepooSDKBloodGlucosePersonalWithOpCode:(NSInteger)opCode
+                                          value:(CGFloat)value
+                                           open:(BOOL)open
+                                         result:(void(^)(BOOL success, CGFloat privateValue, NSInteger model))result;
 
 
 //Send the mobile phone pairing command. When the device is successfully connected, the system will have a pop-up window for the user to select whether the device is paired with the mobile phone. If the user chooses to cancel, if you want to pair with the mobile phone during the connection process, you can send this command. There is no callback for this command. When the transmission is successful, the system will pop up the window to the user. Note: If the device and phone are already configured with this command, it is invalid.
@@ -392,7 +407,14 @@
                                               settingMode:(VPDeviceTextAlarmSettingModel)settingMode
                                             successResult:(void(^)(NSArray *alarmArray))settingTextAlarmResultBlock
                                             failureResult:(void(^)(void))settingTextAlarmFailureBlock;
-
+/**
+ Set the device name
+ 设置设备的名称，注意⚠️修改成功之后，设备端已经改完了，但手机端的下一次扫描并不一定会马上变成修改完之后的名称，可能是手机系统蓝牙的缓存
+ 
+ @param textString 设备的名称，会进行UTF8编码，转换之后的字节数量有限制，杰理平台最多18个字节，其它平台则为8字节
+ @param resultBlock 结果回调，state 为0表示成功、1表示失败、2表示textString长度溢出、3表示textString长度不足
+ */
+- (void)veepooSDKSettingDeviceNameWithString:(NSString *)textString resultBlock:(void(^)(NSUInteger state))resultBlock;
 
 /**
  Screen style setting, first get the range of screen style settings according to screenTypes in VPPeripheralModel. If it is 3, you can set 1-3. If it is 0, it does not have this function.
@@ -700,6 +722,12 @@
 /// @param blockNumber  表示从哪一块数据开始读  从1开始，如传1，则表示读取从1及之后产生的数据      备注：1分钟产生一块数据，一天60*24块
 /// @param result 结果回调，responseObject为VPRRIntervalDataModel对象，如果error不为空，表示失败。responseObject与progress 仅在error为空时有效
 - (void)veepooSDK_readRRIntervalDataWithDayNumber:(NSInteger)dayNumber blockNumber:(NSInteger)blockNumber result:(void (^)(id responseObject, NSProgress *progress, NSError *error))result;
+
+#pragma mark - 打开设备BT开关
+
+/// 打开设备的BT开关，如果设备与手机系统未配对，会触发配对请求。
+/// BT的连接状态统一使用 {@link VPBTConnectStateChangeBlock} 进行判断
+- (void)veepooSDK_openDeviceBTSwitch;
 
 @end
 
