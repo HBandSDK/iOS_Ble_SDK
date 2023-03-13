@@ -1,0 +1,6 @@
+framework module JL_BLEKit {
+  umbrella header "JL_BLEKit.h"
+
+  export *
+  module * { export * }
+}
