@@ -184,8 +184,13 @@ class VPRootViewController: UIViewController {
         vpDeviceVersionLabel.text = "固件版本:" + veepooBleManager.peripheralModel.deviceVersion + "-" + String(veepooBleManager.peripheralModel.deviceNumber)
         
         unowned let weakSelf = self
-        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryPower { (batteryLevel) in
-            weakSelf.vpDeviceBatteryLevelLabel.text = "电池电压:" + String(batteryLevel)
+//        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryPower { (batteryLevel) in
+//            weakSelf.vpDeviceBatteryLevelLabel.text = "电池电压:" + String(batteryLevel)
+//        }
+        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryInfo { isPercent, percenTypeIsLowBat, battery in
+            let str = isPercent ? "电量" : "电压"
+            let percentSign = isPercent ? "%" : ""
+            weakSelf.vpDeviceBatteryLevelLabel.text = "电池" + str + ":" + String(battery) + percentSign
         }
         
         if veepooBleManager.isDFULangMode == true {//如果处于DFULang模式则不再读取数据

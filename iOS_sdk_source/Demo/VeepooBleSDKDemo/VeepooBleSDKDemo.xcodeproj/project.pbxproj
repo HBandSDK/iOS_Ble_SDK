@@ -105,6 +105,12 @@
 		FED9CC8A2754C81A00E54DC8 /* VPRRIntervalDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED9CC882754C81A00E54DC8 /* VPRRIntervalDataViewController.xib */; };
 		FEFA5486266B48D50071E61B /* VPTemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */; };
 		FEFA5487266B48D50071E61B /* VPTemperatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEFA5485266B48D50071E61B /* VPTemperatureViewController.xib */; };
+		FEFDBB1E29BF444A00264276 /* DFUnits.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDBB1A29BF444900264276 /* DFUnits.framework */; };
+		FEFDBB1F29BF444A00264276 /* JL_BLEKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDBB1B29BF444A00264276 /* JL_BLEKit.framework */; };
+		FEFDBB2129BF445000264276 /* ZipZap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDBB1C29BF444A00264276 /* ZipZap.framework */; };
+		FEFDBB2229BF445100264276 /* ZipZap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDBB1C29BF444A00264276 /* ZipZap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FEFDBB2329BF445E00264276 /* JLDialUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDBB1929BF444900264276 /* JLDialUnit.framework */; };
+		FEFDBB2429BF445E00264276 /* JLDialUnit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FEFDBB1929BF444900264276 /* JLDialUnit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +130,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FEFDBB2229BF445100264276 /* ZipZap.framework in Embed Frameworks */,
+				FEFDBB2429BF445E00264276 /* JLDialUnit.framework in Embed Frameworks */,
 				FE70FA95263A613F00074260 /* GRDFUSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -238,6 +246,10 @@
 		FED9CC882754C81A00E54DC8 /* VPRRIntervalDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPRRIntervalDataViewController.xib; sourceTree = "<group>"; };
 		FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTemperatureViewController.swift; sourceTree = "<group>"; };
 		FEFA5485266B48D50071E61B /* VPTemperatureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPTemperatureViewController.xib; sourceTree = "<group>"; };
+		FEFDBB1929BF444900264276 /* JLDialUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JLDialUnit.framework; sourceTree = "<group>"; };
+		FEFDBB1A29BF444900264276 /* DFUnits.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DFUnits.framework; sourceTree = "<group>"; };
+		FEFDBB1B29BF444A00264276 /* JL_BLEKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JL_BLEKit.framework; sourceTree = "<group>"; };
+		FEFDBB1C29BF444A00264276 /* ZipZap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZipZap.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,7 +257,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEFDBB2329BF445E00264276 /* JLDialUnit.framework in Frameworks */,
+				FEFDBB1E29BF444A00264276 /* DFUnits.framework in Frameworks */,
+				FEFDBB2129BF445000264276 /* ZipZap.framework in Frameworks */,
 				FE70FA94263A613F00074260 /* GRDFUSDK.framework in Frameworks */,
+				FEFDBB1F29BF444A00264276 /* JL_BLEKit.framework in Frameworks */,
 				678BF9C3233D970E00A956B3 /* VeepooBleSDK.framework in Frameworks */,
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
 			);
@@ -438,6 +454,10 @@
 		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
+				FEFDBB1A29BF444900264276 /* DFUnits.framework */,
+				FEFDBB1B29BF444A00264276 /* JL_BLEKit.framework */,
+				FEFDBB1929BF444900264276 /* JLDialUnit.framework */,
+				FEFDBB1C29BF444A00264276 /* ZipZap.framework */,
 				FE70FA85263A5F2400074260 /* GRDFUSDK.framework */,
 				678BF9BC233D96FB00A956B3 /* VeepooBleSDK.xcodeproj */,
 				678C89A121F036AF0041E0AB /* SDKResours.bundle */,
@@ -887,7 +907,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8ADCC1E39C7B06805F3E9386 /* Pods-VeepooBleSDKDemo.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 2.6;
 				DEVELOPMENT_TEAM = 7RTTXV5Q46;
@@ -924,7 +943,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2B3A1FF32F1E5220F815EC66 /* Pods-VeepooBleSDKDemo.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 2.6;
 				DEVELOPMENT_TEAM = 7RTTXV5Q46;

@@ -107,6 +107,12 @@ class VPPhotoDialViewController: UIViewController {
         case .circle360_360_QFN:
             image = UIImage.init(named: "test_360_360")
             break
+        case .square320_380_JL:
+            image = UIColor.cyan.image(CGSizeMake(320, 380))
+            break
+        case .square368_448_JL:
+            image = UIColor.white.image(CGSizeMake(368, 448))
+            break
         default:
             image = UIImage.init(named: "test_240_240")
             break
@@ -176,4 +182,15 @@ class VPPhotoDialViewController: UIViewController {
     }
     */
 
+}
+
+extension UIColor {
+    func image(_ size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
+        let format = UIGraphicsImageRendererFormat.init()
+        format.scale = 1 // 默认一倍图
+        return UIGraphicsImageRenderer.init(size: size, format: format).image { rendererContext in
+            self.setFill()
+            rendererContext.fill(CGRect(origin: .zero, size: size))
+        }
+    }
 }
