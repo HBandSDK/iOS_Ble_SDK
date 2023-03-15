@@ -32,6 +32,7 @@
 #import "VPDeviceGPSModel.h"
 #import "VPDeviceKAABAGPSModel.h"
 #import "VPDeviceHadjCountModel.h"
+#import "VPDeviceHealthRemindModel.h"
 #import "VPG15QRCodeInfoModel.h"
 
 @class JL_Assist;
@@ -268,6 +269,16 @@
  @param settingBrightFailureBlock Set failed callbacks
  */
 - (void)veepooSDKSettingBrightWithBrightModel:(VPDeviceBrightModel *)brightModel settingMode:(NSUInteger)settingMode successResult:(void(^)(VPDeviceBrightModel *brightModel))settingBrightResultBlock failureResult:(void(^)(void))settingBrightFailureBlock;
+
+/// 健康提醒功能 读取和设置   Health Remind Feature
+/// @param remindType 提醒类型 remindType
+/// @param opCode 1表示设置 2表示读取，读取时remindModel可以传空。1 means Setting 2 means Read , remindModel can be nil if opCode is 2(Read)
+/// @param remindModel 设置模型，仅在设置时有效
+/// @param resultBlock 结果回调 result callbacks
+- (void)veepooSDKSettingHealthRemindWithRemindType:(VPDeviceHealthRemindType)remindType
+                                            opCode:(NSInteger)opCode
+                                       remindModel:(VPDeviceHealthRemindModel *)remindModel
+                                       resultBlock:(void(^)(BOOL success, VPDeviceHealthRemindModel *successModel))resultBlock;
 
 #pragma mark - User turn off the operation 用户开启关闭的操作
 /**

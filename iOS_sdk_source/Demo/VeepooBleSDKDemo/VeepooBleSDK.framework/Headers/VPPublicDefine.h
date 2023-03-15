@@ -367,3 +367,15 @@ typedef NS_ENUM(NSUInteger, VPDeviceBloodGlucoseTestState) {
     VPDeviceBloodGlucoseTestStateNotWear           // 设备佩戴检测未通过
 };
 
+
+typedef NS_ENUM(NSUInteger, VPDeviceHealthRemindType) {
+    VPDeviceHealthRemindTypeAll,             // 所有
+    VPDeviceHealthRemindTypeLongSeat,        // 久坐
+    VPDeviceHealthRemindTypeDrinkWater,      // 喝水
+    VPDeviceHealthRemindTypeLookFarAway,     // 远眺
+    VPDeviceHealthRemindTypeSport,           // 运动
+    VPDeviceHealthRemindTypeTakeMedicine,    // 吃药
+    VPDeviceHealthRemindTypeRead,            // 看书
+    VPDeviceHealthRemindTypeTrip,            // 出行
+    VPDeviceHealthRemindTypeWashHands,       // 洗手
+};
