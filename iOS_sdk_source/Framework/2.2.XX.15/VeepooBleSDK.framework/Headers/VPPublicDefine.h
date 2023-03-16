@@ -63,11 +63,13 @@ typedef NS_ENUM(NSInteger, SynchronousPasswordType) {
 };
 
 typedef NS_ENUM(NSInteger, DeviceDFUState) {
-    DeviceDFUFileNotExist = 0, //升级文件不存在
-    DeviceDFUStart,//开始升级
-    DeviceDFUUpdating,//升级中
-    DeviceDFUSuccess,//升级成功
-    DeviceDFUFailure,//升级失败
+    DeviceDFUFileNotExist = 0,  //升级文件不存在
+    DeviceDFUStart,             //开始升级
+    DeviceDFUUpdating,          //升级中
+    DeviceDFUSuccess,           //升级成功
+    DeviceDFUFailure,           //升级失败
+    DeviceDFUPrepared,          //K系列设备的数据校验完成
+    DeviceDFUReboot             //K系列设备重启
 };
 
 typedef NS_ENUM(NSInteger, VPDeviceBTState) {

@@ -58,13 +58,17 @@ class VPDFUController: UIViewController {
             case .start:
                 _ = AppDelegate.showHUD(message: "开始升级", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             case .updating:
-                weakSelf.dfuProgressLabel.text = "升级进度: " + String(dfuProgress) + "%"
+                weakSelf.dfuProgressLabel.text = "升级进度: " + String(format: "%.2f", dfuProgress) + "%"
             case .success:
                 sender.isSelected = false
                 _ = AppDelegate.showHUD(message: "升级成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             case .failure:
                 sender.isSelected = false
                 _ = AppDelegate.showHUD(message: "升级失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .prepared:
+                _ = AppDelegate.showHUD(message: "校验文件完成(K)", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .reboot:
+                _ = AppDelegate.showHUD(message: "设备即将重启(K)", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             }
         }
     }
@@ -76,7 +80,14 @@ class VPDFUController: UIViewController {
         dfuProgressLabel.text = "准备升级"
         sender.isSelected = true
         unowned let weakSelf = self
-        let filePath = Bundle.main.path(forResource: "A63_00630022_8065_fw_encryptandsign.bin", ofType: nil)
+        let fileName = "KH31_9638_00310433_OTA_UI_23-0303.zip"
+        var filePath = Bundle.main.path(forResource: fileName, ofType: nil)
+        if (filePath == nil) {
+            return
+        }
+        // 拷贝到沙盒中，并返回路径
+        filePath = copyToSandbox(bundlePath: filePath!)
+        
         dufOperationManager.veepooSDKStartDfu(withFilePath: filePath) { (dfuProgress, deviceDFUState) in
             switch deviceDFUState {
             case .fileNotExist:
@@ -85,15 +96,36 @@ class VPDFUController: UIViewController {
             case .start:
                 _ = AppDelegate.showHUD(message: "开始升级", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             case .updating:
-                weakSelf.dfuProgressLabel.text = "升级进度: " + String(dfuProgress) + "%"
+                weakSelf.dfuProgressLabel.text = "升级进度: " + String(format: "%.2f", dfuProgress) + "%"
             case .success:
                 sender.isSelected = false
                 _ = AppDelegate.showHUD(message: "升级成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             case .failure:
                 sender.isSelected = false
                 _ = AppDelegate.showHUD(message: "升级失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .prepared:
+                _ = AppDelegate.showHUD(message: "校验文件完成(K)", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            case .reboot:
+                _ = AppDelegate.showHUD(message: "设备即将重启(K)", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             }
         }
+    }
+    
+    func copyToSandbox(bundlePath:String) -> String {
+        let bundleURL = URL(string: bundlePath)
+        let fileName = bundleURL?.lastPathComponent
+        let document = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        let destURL = document!.appendingPathComponent(fileName!, isDirectory: false)
+        let fileManager = FileManager.default
+        do {
+            if fileManager.fileExists(atPath: destURL.path) {
+                try fileManager.removeItem(at: destURL)
+            }
+            try fileManager.copyItem(atPath: bundlePath, toPath: destURL.path)
+        } catch let error as NSError {
+            print("Error : \(error.localizedDescription)")
+        }
+        return destURL.path
     }
     
     override func didReceiveMemoryWarning() {

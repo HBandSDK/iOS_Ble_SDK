@@ -16,7 +16,7 @@
  @param progress 升级进度
  @param deviceDFUState 升级的状态变化
  */
-typedef void(^DeviceDFUBlock)(NSInteger progress, DeviceDFUState deviceDFUState);
+typedef void(^DeviceDFUBlock)(double progress, DeviceDFUState deviceDFUState);
 
 @interface VPDFUOperation : NSObject
 

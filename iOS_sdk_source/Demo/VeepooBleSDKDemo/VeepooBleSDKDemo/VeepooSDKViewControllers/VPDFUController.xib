@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,15 +31,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nE-dq-17p">
-                    <rect key="frame" x="120" y="150" width="80" height="30"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="80" id="e5t-eG-BhS"/>
-                        <constraint firstAttribute="height" constant="30" id="uFy-st-AkX"/>
-                    </constraints>
-                    <state key="normal" title="开始升级"/>
+                    <rect key="frame" x="40" y="150" width="100" height="30"/>
+                    <state key="normal" title="服务器升级"/>
                     <state key="selected" title="正在升级"/>
                     <connections>
-                        <action selector="localTest:" destination="-1" eventType="touchUpInside" id="LCo-Lj-yl8"/>
+                        <action selector="startDFUAction:" destination="-1" eventType="touchUpInside" id="VXp-d4-sNu"/>
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前版本:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ie-ja-Qga">
@@ -67,14 +63,19 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFF-kB-GWm">
-                    <rect key="frame" x="30" y="323" width="260" height="128"/>
+                    <rect key="frame" x="30" y="323" width="260" height="225"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="128" id="ycO-Z3-TOf"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eq3-81-vBM">
+                    <rect key="frame" x="180" y="150" width="100" height="30"/>
+                    <state key="normal" title="本地升级"/>
+                    <state key="selected" title="正在升级"/>
+                    <connections>
+                        <action selector="localTest:" destination="-1" eventType="touchUpInside" id="7Mf-IC-ac3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -84,18 +85,24 @@
                 <constraint firstItem="0Ie-ja-Qga" firstAttribute="top" secondItem="8nE-dq-17p" secondAttribute="bottom" constant="35" id="9D6-kG-U4p"/>
                 <constraint firstItem="Fid-7V-wGG" firstAttribute="leading" secondItem="zHI-ht-Yse" secondAttribute="leading" id="Bjj-nK-IGU"/>
                 <constraint firstAttribute="trailing" secondItem="QFF-kB-GWm" secondAttribute="trailing" constant="30" id="C1i-Zt-PKi"/>
-                <constraint firstItem="8nE-dq-17p" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="F9Y-Cd-AEE"/>
+                <constraint firstItem="Eq3-81-vBM" firstAttribute="top" secondItem="8nE-dq-17p" secondAttribute="top" id="EGQ-V2-CIo"/>
                 <constraint firstItem="Fid-7V-wGG" firstAttribute="top" secondItem="zHI-ht-Yse" secondAttribute="bottom" constant="15" id="Frk-Az-nNU"/>
+                <constraint firstItem="Eq3-81-vBM" firstAttribute="width" secondItem="8nE-dq-17p" secondAttribute="width" id="FzX-Ri-ijX"/>
                 <constraint firstItem="Fid-7V-wGG" firstAttribute="height" secondItem="zHI-ht-Yse" secondAttribute="height" id="H2w-7x-2Jh"/>
+                <constraint firstItem="Eq3-81-vBM" firstAttribute="leading" secondItem="8nE-dq-17p" secondAttribute="trailing" constant="40" id="ISG-Do-mUv"/>
                 <constraint firstAttribute="trailing" secondItem="zKl-b0-4wv" secondAttribute="trailing" constant="30" id="Qrp-if-JzR"/>
                 <constraint firstItem="0Ie-ja-Qga" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="QtF-NT-bTM"/>
                 <constraint firstItem="zHI-ht-Yse" firstAttribute="trailing" secondItem="0Ie-ja-Qga" secondAttribute="trailing" id="S4h-qf-hoi"/>
                 <constraint firstAttribute="trailing" secondItem="0Ie-ja-Qga" secondAttribute="trailing" constant="30" id="X2p-kg-t2Z"/>
+                <constraint firstAttribute="bottom" secondItem="QFF-kB-GWm" secondAttribute="bottom" constant="20" id="aC3-wR-2zs"/>
                 <constraint firstItem="QFF-kB-GWm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="b6t-vx-i9D"/>
                 <constraint firstItem="Fid-7V-wGG" firstAttribute="trailing" secondItem="zHI-ht-Yse" secondAttribute="trailing" id="bnh-XV-yS3"/>
                 <constraint firstItem="8nE-dq-17p" firstAttribute="top" secondItem="zKl-b0-4wv" secondAttribute="bottom" constant="30" id="f6D-Nf-Cih"/>
                 <constraint firstItem="zHI-ht-Yse" firstAttribute="leading" secondItem="0Ie-ja-Qga" secondAttribute="leading" id="jGL-kN-GRD"/>
                 <constraint firstItem="zHI-ht-Yse" firstAttribute="top" secondItem="0Ie-ja-Qga" secondAttribute="bottom" constant="15" id="mE9-b0-a6e"/>
+                <constraint firstAttribute="trailing" secondItem="Eq3-81-vBM" secondAttribute="trailing" constant="40" id="trC-i7-sfU"/>
+                <constraint firstItem="Eq3-81-vBM" firstAttribute="height" secondItem="8nE-dq-17p" secondAttribute="height" id="tyi-Ey-maa"/>
+                <constraint firstItem="8nE-dq-17p" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="vqj-EX-uSH"/>
             </constraints>
             <point key="canvasLocation" x="414.5" y="-28.5"/>
         </view>

@@ -99,7 +99,7 @@ class VPRootViewController: UIViewController {
             case .connectStateVerifyPasswordFailure://验证密码失败
                 _ = AppDelegate.showHUD(message: "验证密码失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             case .discoverNewUpdateFirm://发现新固件
-                //可以给出用户弹窗询问用户是否前去升级
+                //可以给出用户弹窗询问用户是否前去升级，先判断是否还在连接
                 _ = AppDelegate.showHUD(message: "发现新固件", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             }
         }
@@ -169,6 +169,7 @@ class VPRootViewController: UIViewController {
     func deviceVerifyPasswordSuccessful() {//设备验证密码成功
         
         if VPBleCentralManage.sharedBleManager().vpBleDFUConnectStateChangeBlock != nil {//正在固件升级，自己也可以加判断条件
+            print("进入固件升级模式了")
             return
         }
         //验证密码之后如果不是在DFU模式，第一步一定要先同步一下信息，最主要的是身高，同时App端修改个人信息后也一定要同步给设备，设置成功后在做其他事情，也可以像我这么写，因为一定会设置成功
@@ -194,8 +195,10 @@ class VPRootViewController: UIViewController {
         }
         
         if veepooBleManager.isDFULangMode == true {//如果处于DFULang模式则不再读取数据
+            print("进入固件升级模式了")
             return
-        }
+        }        
+        
         
         //获取实时计步
         startRealTimeStep()
