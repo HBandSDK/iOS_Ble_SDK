@@ -34,6 +34,7 @@
 #import "VPDeviceHadjCountModel.h"
 #import "VPDeviceHealthRemindModel.h"
 #import "VPG15QRCodeInfoModel.h"
+#import "VPDeviceContactsModel.h"
 
 @class JL_Assist;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
@@ -275,10 +276,22 @@
 /// @param opCode 1表示设置 2表示读取，读取时remindModel可以传空。1 means Setting 2 means Read , remindModel can be nil if opCode is 2(Read)
 /// @param remindModel 设置模型，仅在设置时有效
 /// @param resultBlock 结果回调 result callbacks
+/// @param deviceInfoDidChangeBlock 设备端信息存在变更时触发回调 device info did change will callbacks
 - (void)veepooSDKSettingHealthRemindWithRemindType:(VPDeviceHealthRemindType)remindType
                                             opCode:(NSInteger)opCode
                                        remindModel:(VPDeviceHealthRemindModel *)remindModel
-                                       resultBlock:(void(^)(BOOL success, VPDeviceHealthRemindModel *successModel))resultBlock;
+                                       resultBlock:(void(^)(BOOL success, VPDeviceHealthRemindModel *successModel))resultBlock
+                          deviceInfoDidChangeBlock:(void(^)(VPDeviceHealthRemindModel *changeModel))deviceInfoDidChangeBlock;
+
+/// 设备通讯录功能 读取、设置、删除、移动  The device address book function read, add, delete, and move
+/// @param opCode 操作类型
+/// @param opModel opCode为读取时无效
+/// @param toID 目标id 仅移动操作时有效
+/// @param resultBlock 结果回调
+- (void)veepooSDKSettingDeviceContactsWithOpCode:(VPDeviceContactsOpCode)opCode
+                                         opModel:(VPDeviceContactsModel *)opModel
+                                            toID:(int)toID
+                                     resultBlock:(void(^)(VPDeviceContactsOpState state, NSArray<VPDeviceContactsModel *> *contactModels))resultBlock;
 
 #pragma mark - User turn off the operation 用户开启关闭的操作
 /**

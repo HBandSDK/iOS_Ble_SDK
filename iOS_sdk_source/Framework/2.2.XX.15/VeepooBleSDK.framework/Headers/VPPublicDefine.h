@@ -369,7 +369,7 @@ typedef NS_ENUM(NSUInteger, VPDeviceBloodGlucoseTestState) {
     VPDeviceBloodGlucoseTestStateNotWear           // 设备佩戴检测未通过
 };
 
-
+// 健康提醒功能类型
 typedef NS_ENUM(NSUInteger, VPDeviceHealthRemindType) {
     VPDeviceHealthRemindTypeAll,             // 所有
     VPDeviceHealthRemindTypeLongSeat,        // 久坐
@@ -381,3 +381,22 @@ typedef NS_ENUM(NSUInteger, VPDeviceHealthRemindType) {
     VPDeviceHealthRemindTypeTrip,            // 出行
     VPDeviceHealthRemindTypeWashHands,       // 洗手
 };
+
+// 设备通讯录操作类型
+typedef NS_ENUM(NSUInteger, VPDeviceContactsOpCode) {
+    VPDeviceContactsOpCodeRead = 0,    // 读取
+    VPDeviceContactsOpCodeAdd,         // 添加
+    VPDeviceContactsOpCodeDelete,      // 删除
+    VPDeviceContactsOpCodeMove         // 移动
+};
+
+// 通讯录操作状态
+typedef NS_ENUM(NSUInteger, VPDeviceContactsOpState) {
+    VPDeviceContactsOpStateNoFunction = 0,  // 不支持该功能
+    VPDeviceContactsOpStateReading,         // 读取中
+    VPDeviceContactsOpStateComplete,        // 操作成功
+    VPDeviceContactsOpStateFailure          // 操作失败
+};
+
+
+

@@ -342,6 +342,10 @@ class VPRootViewController: UIViewController {
     
     // 进入血糖界面
     @IBAction func enterBloodGlucoseTestController(_ sender: UIButton) {
+        if veepooBleManager.isConnected == false {
+            _ = AppDelegate.showHUD(message: "设备没有连接", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
         let vc = VPBloodGlucoseViewController.init()
         self.navigationController?.pushViewController(vc, animated: true)
     }

@@ -164,7 +164,10 @@
 @property (nonatomic, assign) NSUInteger photoDialCount;
 
 // AGPS功能 1代表有 0表示没有
-@property (nonatomic, assign) NSInteger agpsFunction;
+@property (nonatomic, assign) NSUInteger agpsFunction;
+
+//通讯录类型 1代表有 0表示没有
+@property (nonatomic, assign) NSUInteger contactType;
 
 @property (nonatomic, strong) VPDialModel *dialModel;
 
