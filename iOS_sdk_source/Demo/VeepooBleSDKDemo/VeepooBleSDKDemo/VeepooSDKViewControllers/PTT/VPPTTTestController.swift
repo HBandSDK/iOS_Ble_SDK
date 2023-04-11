@@ -64,7 +64,10 @@ class VPPTTTestController: UIViewController {
     @IBAction func startECGTest(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestECGStart(sender.isSelected) { (state, testProgress, model) in
-            
+            if state == .complete {
+                print(model?.originalSignals as Any)
+                // 使用 模型内部自带的工厂方法进行电压转换 convertToMvWithValue:ecgType:
+            }
         }
     }
 }
