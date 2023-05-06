@@ -41,6 +41,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param fairlure 错误回调
 - (void)startTransferWithFilePath:(NSURL *)filePath transformProgress:(void(^)(double progress))transformProgress failure:(void(^)(NSError * _Nullable error))fairlure;
 
+
+/// K(杰理)系列设备使用，开启杰理的文件系统，外设模型中CPUType==1表示K(杰理)系列
+/// - Parameter action: 成功或失败
+- (void)openJLDialFileSystemWithAction:(void(^)(BOOL success))action;
+
+
+/// K(杰理)系列设备使用，获取文件系统中的文件列表，注意⚠️请先调用{@link openJLDialFileSystemWithAction:}开启文件系统
+/// - Parameter action: 文件列表的回调，要获取表盘列表，请自行使用前缀"WATCH"进行过滤
+- (void)getJLWatchNamesWithAction:(void(^)(NSArray * _Nullable array))action;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,6 +13,8 @@ class VPMarketDialViewController: UIViewController {
     @IBOutlet weak var dialTypeLabel: UILabel!
     @IBOutlet weak var readDeviceScreenButton: UIButton!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var kOpenFileSystemBtn: UIButton!
+    @IBOutlet weak var kgetWatchNamesBtn: UIButton!
     
     var supportMarketDialFunction = false
     
@@ -34,6 +36,12 @@ class VPMarketDialViewController: UIViewController {
         if !supportMarketDialFunction {
             _ = AppDelegate.showHUD(message: "不支持市场表盘功能", hudModel: MBProgressHUDModeText, showView: view)
             return
+        }
+        
+        // 不是K系列的
+        let isKDevice = VPBleCentralManage.sharedBleManager().peripheralModel.cpuType == 1
+        if isKDevice {
+            kOpenFileSystemBtn.isEnabled = true
         }
         
         self.readDeviceScreenButton.sendActions(for: .touchUpInside)
@@ -134,6 +142,22 @@ class VPMarketDialViewController: UIViewController {
 
     }
     
+    @IBAction func kOpenFileSystemBtnClick(_ sender: UIButton) {
+        marketDialManager.openJLDialFileSystem { [weak self]success in
+            if success {
+                print("开启文件系统成功")
+                _ = AppDelegate.showHUD(message: "开始K系列文件系统成功", hudModel: MBProgressHUDModeText, showView: self!.view)
+                self?.kgetWatchNamesBtn.isEnabled = true
+            }
+        }
+    }
+    
+    @IBAction func kgetWatchNamesBtnClick(_ sender: UIButton) {
+        marketDialManager.getJLWatchNames { [weak self]watchNames in
+            _ = AppDelegate.showHUD(message: "获取文件列表成功", hudModel: MBProgressHUDModeText, showView: self!.view)
+            print(watchNames as Any)
+        }
+    }
     /*
     // MARK: - Navigation
 

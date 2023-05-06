@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPMarketDialViewController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
             <connections>
                 <outlet property="dialTypeLabel" destination="eIi-Ng-n1a" id="Vmp-l8-ZyG"/>
+                <outlet property="kOpenFileSystemBtn" destination="4bl-bt-1HP" id="XLW-w0-GNB"/>
+                <outlet property="kgetWatchNamesBtn" destination="d0m-2j-XF9" id="9fj-fz-wqY"/>
                 <outlet property="readDeviceScreenButton" destination="TRc-yZ-UV5" id="8hI-9G-heR"/>
                 <outlet property="textView" destination="qtR-fM-PUK" id="UxX-hZ-R2S"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手环当前表盘为:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pc5-Rw-EqX">
-                    <rect key="frame" x="20" y="53" width="126" height="21"/>
+                    <rect key="frame" x="20" y="57" width="126" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="126" id="YBK-uo-nQG"/>
                         <constraint firstAttribute="height" constant="21" id="oqD-gf-Hfk"/>
@@ -33,13 +35,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="默认表盘1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIi-Ng-n1a">
-                    <rect key="frame" x="154" y="53" width="225" height="21"/>
+                    <rect key="frame" x="154" y="57" width="225" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6UU-C7-78I">
-                    <rect key="frame" x="217" y="89" width="177" height="44"/>
+                    <rect key="frame" x="217" y="93" width="177" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="切换为市场表盘"/>
                     <connections>
@@ -47,7 +49,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQo-e9-RZC">
-                    <rect key="frame" x="217" y="193" width="177" height="44"/>
+                    <rect key="frame" x="217" y="197" width="177" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="4.传输市场表盘"/>
                     <connections>
@@ -55,7 +57,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="naM-5b-NLm">
-                    <rect key="frame" x="20" y="193" width="177" height="44"/>
+                    <rect key="frame" x="20" y="197" width="177" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="3.下载表盘文件"/>
                     <connections>
@@ -63,7 +65,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OBw-zF-yUB">
-                    <rect key="frame" x="217" y="141" width="177" height="44"/>
+                    <rect key="frame" x="217" y="145" width="177" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="2.获取服务器市场表盘"/>
                     <connections>
@@ -71,7 +73,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TRc-yZ-UV5">
-                    <rect key="frame" x="20" y="89" width="177" height="44"/>
+                    <rect key="frame" x="20" y="93" width="177" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="5jQ-ku-T37"/>
@@ -82,18 +84,39 @@
                     </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="log" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qtR-fM-PUK">
-                    <rect key="frame" x="20" y="252" width="374" height="560"/>
+                    <rect key="frame" x="20" y="301" width="374" height="511"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <color key="textColor" systemColor="labelColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnj-sU-zCK">
-                    <rect key="frame" x="20" y="141" width="177" height="44"/>
+                    <rect key="frame" x="20" y="145" width="177" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="1.读取市场表盘信息"/>
                     <connections>
                         <action selector="readDeviceMarketDialInfoClick:" destination="-1" eventType="touchUpInside" id="xCR-Zj-BiT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0m-2j-XF9">
+                    <rect key="frame" x="217" y="249" width="177" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="K系列获取表盘列表"/>
+                    <state key="disabled" title="不支持获取表盘列表"/>
+                    <connections>
+                        <action selector="kgetWatchNamesBtnClick:" destination="-1" eventType="touchUpInside" id="Rro-i7-Xt2"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bl-bt-1HP">
+                    <rect key="frame" x="20" y="249" width="177" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="cEc-6P-NQ6"/>
+                    </constraints>
+                    <state key="normal" title="K系列开启文件系统"/>
+                    <state key="disabled" title="不支持开启文件系统"/>
+                    <connections>
+                        <action selector="kOpenFileSystemBtnClick:" destination="-1" eventType="touchUpInside" id="NPb-ZH-7yr"/>
                     </connections>
                 </button>
             </subviews>
@@ -102,11 +125,12 @@
             <constraints>
                 <constraint firstItem="TRc-yZ-UV5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="0Hb-OV-f2W"/>
                 <constraint firstItem="6UU-C7-78I" firstAttribute="top" secondItem="TRc-yZ-UV5" secondAttribute="top" id="1eT-ZE-c9i"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d0m-2j-XF9" secondAttribute="trailing" constant="20" id="2jp-Ef-ItH"/>
                 <constraint firstItem="OBw-zF-yUB" firstAttribute="leading" secondItem="fnj-sU-zCK" secondAttribute="trailing" constant="20" id="3u9-AM-JR6"/>
                 <constraint firstItem="pc5-Rw-EqX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="9" id="42n-fH-j9c"/>
+                <constraint firstItem="d0m-2j-XF9" firstAttribute="leading" secondItem="4bl-bt-1HP" secondAttribute="trailing" constant="20" id="5Ko-OQ-wEs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qtR-fM-PUK" secondAttribute="bottom" constant="50" id="5S1-a8-lKg"/>
                 <constraint firstItem="eIi-Ng-n1a" firstAttribute="top" secondItem="pc5-Rw-EqX" secondAttribute="top" id="6hg-Qi-U0U"/>
-                <constraint firstItem="qtR-fM-PUK" firstAttribute="top" secondItem="naM-5b-NLm" secondAttribute="bottom" constant="15" id="HNz-SH-VQc"/>
                 <constraint firstItem="fnj-sU-zCK" firstAttribute="top" secondItem="TRc-yZ-UV5" secondAttribute="bottom" constant="8" symbolic="YES" id="L0V-rJ-tZo"/>
                 <constraint firstItem="cQo-e9-RZC" firstAttribute="top" secondItem="OBw-zF-yUB" secondAttribute="bottom" constant="8" symbolic="YES" id="Lp1-d9-nIX"/>
                 <constraint firstItem="naM-5b-NLm" firstAttribute="leading" secondItem="TRc-yZ-UV5" secondAttribute="leading" id="LzM-02-5Ny"/>
@@ -114,20 +138,26 @@
                 <constraint firstItem="OBw-zF-yUB" firstAttribute="top" secondItem="6UU-C7-78I" secondAttribute="bottom" constant="8" symbolic="YES" id="OYe-Bw-SWv"/>
                 <constraint firstItem="cQo-e9-RZC" firstAttribute="leading" secondItem="naM-5b-NLm" secondAttribute="trailing" constant="20" id="QBV-n0-jcR"/>
                 <constraint firstItem="naM-5b-NLm" firstAttribute="height" secondItem="TRc-yZ-UV5" secondAttribute="height" id="RC5-Xi-T2B"/>
+                <constraint firstItem="qtR-fM-PUK" firstAttribute="top" secondItem="4bl-bt-1HP" secondAttribute="bottom" constant="8" id="RQ5-kh-Y6j"/>
                 <constraint firstItem="pc5-Rw-EqX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="WVf-K8-FRB"/>
+                <constraint firstItem="d0m-2j-XF9" firstAttribute="top" secondItem="cQo-e9-RZC" secondAttribute="bottom" constant="8" symbolic="YES" id="XgR-ug-2af"/>
                 <constraint firstItem="OBw-zF-yUB" firstAttribute="height" secondItem="TRc-yZ-UV5" secondAttribute="height" id="YGD-cr-QXp"/>
+                <constraint firstItem="4bl-bt-1HP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ZPL-0B-H0D"/>
                 <constraint firstItem="cQo-e9-RZC" firstAttribute="trailing" secondItem="6UU-C7-78I" secondAttribute="trailing" id="a1M-jS-MBC"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="qtR-fM-PUK" secondAttribute="trailing" constant="20" id="azR-Lw-pcT"/>
                 <constraint firstItem="6UU-C7-78I" firstAttribute="width" secondItem="TRc-yZ-UV5" secondAttribute="width" id="cBn-aG-irc"/>
                 <constraint firstItem="OBw-zF-yUB" firstAttribute="trailing" secondItem="6UU-C7-78I" secondAttribute="trailing" id="cVr-Fl-2G5"/>
                 <constraint firstItem="6UU-C7-78I" firstAttribute="height" secondItem="TRc-yZ-UV5" secondAttribute="height" id="dmh-rL-Lk6"/>
+                <constraint firstItem="d0m-2j-XF9" firstAttribute="width" secondItem="4bl-bt-1HP" secondAttribute="width" id="g4C-aX-GRA"/>
                 <constraint firstItem="6UU-C7-78I" firstAttribute="width" secondItem="TRc-yZ-UV5" secondAttribute="width" id="jUP-nf-1I5"/>
                 <constraint firstItem="naM-5b-NLm" firstAttribute="width" secondItem="TRc-yZ-UV5" secondAttribute="width" id="m0g-BP-ayH"/>
                 <constraint firstItem="eIi-Ng-n1a" firstAttribute="leading" secondItem="pc5-Rw-EqX" secondAttribute="trailing" constant="8" symbolic="YES" id="mAH-hY-U3f"/>
                 <constraint firstItem="cQo-e9-RZC" firstAttribute="height" secondItem="TRc-yZ-UV5" secondAttribute="height" id="ogQ-xG-7VX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6UU-C7-78I" secondAttribute="trailing" constant="20" id="omI-sg-Pe7"/>
                 <constraint firstItem="fnj-sU-zCK" firstAttribute="height" secondItem="TRc-yZ-UV5" secondAttribute="height" id="onx-0r-Oih"/>
+                <constraint firstItem="d0m-2j-XF9" firstAttribute="height" secondItem="4bl-bt-1HP" secondAttribute="height" id="p1k-mv-dIc"/>
                 <constraint firstItem="naM-5b-NLm" firstAttribute="top" secondItem="fnj-sU-zCK" secondAttribute="bottom" constant="8" symbolic="YES" id="qnT-Nd-xMp"/>
+                <constraint firstItem="4bl-bt-1HP" firstAttribute="top" secondItem="naM-5b-NLm" secondAttribute="bottom" constant="8" symbolic="YES" id="rPq-TM-aCd"/>
                 <constraint firstItem="6UU-C7-78I" firstAttribute="leading" secondItem="TRc-yZ-UV5" secondAttribute="trailing" constant="20" id="rzF-hU-xd1"/>
                 <constraint firstItem="6UU-C7-78I" firstAttribute="height" secondItem="TRc-yZ-UV5" secondAttribute="height" id="s0A-PJ-iOU"/>
                 <constraint firstItem="fnj-sU-zCK" firstAttribute="width" secondItem="TRc-yZ-UV5" secondAttribute="width" id="teY-Xi-N98"/>
@@ -137,12 +167,12 @@
                 <constraint firstItem="fnj-sU-zCK" firstAttribute="leading" secondItem="TRc-yZ-UV5" secondAttribute="leading" id="yvT-5C-JeZ"/>
                 <constraint firstItem="TRc-yZ-UV5" firstAttribute="top" secondItem="pc5-Rw-EqX" secondAttribute="bottom" constant="15" id="zNi-eE-IFW"/>
             </constraints>
-            <point key="canvasLocation" x="-916" y="-379"/>
+            <point key="canvasLocation" x="-917.39130434782612" y="-379.01785714285711"/>
         </view>
     </objects>
     <resources>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
