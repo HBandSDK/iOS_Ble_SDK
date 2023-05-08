@@ -49,8 +49,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// K(杰理)系列设备使用，获取文件系统中的文件列表，注意⚠️请先调用{@link openJLDialFileSystemWithAction:}开启文件系统
 /// - Parameter action: 文件列表的回调，要获取表盘列表，请自行使用前缀"WATCH"进行过滤
-- (void)getJLWatchNamesWithAction:(void(^)(NSArray * _Nullable array))action;
+- (void)getJLWatchNamesWithAction:(void(^)(NSArray<NSString *> * _Nullable array))action;
 
+
+/// K(杰理)系列设备使用，获取当前照片表盘和市场表盘的名称，array文件列表在{@link getJLWatchNamesWithAction:} 获取
+/// - Parameters:
+///   - array: 文件列表，请确保传输的数组不为空且包含WATCH的元素
+///   - result: 照片表盘和市场表盘的结果回调，照片表盘为空表示该项目无照片表盘，市场表盘为空表示设备当前未传输过照片表盘
+- (void)getJLCurrentPhotoAndMarketWatchNameWithArray:(NSArray<NSString *> *)array
+                                              result:(void(^)(NSString *_Nullable photoWatchName, NSString * _Nullable marketWatchName))result;
 
 @end
 

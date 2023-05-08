@@ -156,8 +156,22 @@ class VPMarketDialViewController: UIViewController {
         marketDialManager.getJLWatchNames { [weak self]watchNames in
             _ = AppDelegate.showHUD(message: "获取文件列表成功", hudModel: MBProgressHUDModeText, showView: self!.view)
             print(watchNames as Any)
+            if let watchNames = watchNames {
+                self?.getJLCurrentPhotoAndMarketWatchName(watchNames: watchNames.map({String($0)}))
+            }
+        }
+        
+    }
+    
+    func getJLCurrentPhotoAndMarketWatchName(watchNames:[String]) -> Void {
+        // 获取当前照片表盘和市场表盘的名称，存在都为空的可能
+        // 1.照片表盘为空则可能这个设备本身无照片表盘需求
+        // 2.市场表盘为空则表示这个设备此前没有传输过市场表盘
+        marketDialManager.getJLCurrentPhotoAndMarketWatchName(with: watchNames) { photoWatchName, marketWatchName in
+            print("照片：\(photoWatchName ?? "无") 市场：\(marketWatchName ?? "无")")
         }
     }
+    
     /*
     // MARK: - Navigation
 
