@@ -31,7 +31,7 @@ class VPFindDeviceViewController: UIViewController {
     // (-85, -70] 信号中
     // (-∞ , -85] 信号差
     @IBAction func readConnectedDeviceRSSIValue(_ sender: UIButton) {
-        VPBleCentralManage.sharedBleManager()?.veepooSDKReadConnectedPeripheralRSSIValue({ [weak self](rssiValue) in
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKReadConnectedPeripheralRSSIValue({ [weak self](rssiValue) in
             print("rssiValue: \(rssiValue)")
             self?.rssiValueLabel.text = "当前信号值:\(rssiValue)"
         })

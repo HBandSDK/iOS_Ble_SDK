@@ -41,12 +41,12 @@ class VPRootViewController: UIViewController {
     /// 获取实时计步的定时器
     var stepTimer: Timer!
     
-    let curveView: VPOxygenAnalysisSectionFourView = VPAnalysisViewFactory.createSectionFourView()
+//    let curveView: VPOxygenAnalysisSectionFourView = VPAnalysisViewFactory.createSectionFourView()
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        curveView.showType = 0;
-        curveView.update(withConnectState: true)
-        curveView.frame = CGRect(x: 0, y: 150, width: Width, height: 100)
+//        curveView.showType = 0;
+//        curveView.update(withConnectState: true)
+//        curveView.frame = CGRect(x: 0, y: 150, width: Width, height: 100)
 //        self.view.addSubview(curveView)
     }
     

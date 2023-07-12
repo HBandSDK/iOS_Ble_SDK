@@ -113,6 +113,9 @@ class VPPhotoDialViewController: UIViewController {
         case .square368_448_JL:
             image = UIColor.white.image(CGSizeMake(368, 448))
             break
+        case .square320_386_JL:
+            image = UIColor.yellow.image(CGSizeMake(320, 386))
+            break
         default:
             image = UIImage.init(named: "test_240_240")
             break

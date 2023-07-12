@@ -59,6 +59,7 @@ class VPSyncPersonalInformationController: UIViewController {
     
     @IBAction func startSyncAction(_ sender: UIButton) {//开始同步个人数据
         unowned let weakSelf = self
+        
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSynchronousPersonalInformation(withStature: UInt(statureSlider.value), weight: UInt(weightSlider.value), birth: UInt(birthSlider.value), sex: UInt(sexSegControl.selectedSegmentIndex), targetStep: UInt(stepTargetSlider.value)) { (syncState) in
             if syncState == 1 {
                 _ = AppDelegate.showHUD(message: "设置成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
@@ -66,6 +67,16 @@ class VPSyncPersonalInformationController: UIViewController {
                 _ = AppDelegate.showHUD(message: "设置失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             }
         }
+        
+        // 带目标睡眠
+//        let personalInfo:VPSyncPersonalInfo = .init()
+//        personalInfo.sex = 0
+//        personalInfo.weight = 60
+//        personalInfo.status = 175
+//        personalInfo.age = 23
+//        personalInfo.targetStep = 10000
+//        personalInfo.targetSleepDuration = (6 * 60)
+//        VPPeripheralManage.shareVPPeripheralManager().veepooSDKSynchronousPersonalInformation(personalInfo, result: nil)
     }
 }
 
