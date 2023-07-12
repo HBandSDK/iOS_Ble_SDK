@@ -82,10 +82,6 @@
 - (void)veepooSDKSynchronousPasswordWithType:(SynchronousPasswordType)type password:(NSString *)password SynchronizationResult:(SynchronizationResultBlock)result;
 
 
-/// 读取已连接设备的RSSI值  ⚠️设备未连接时无效
-/// @param block 回调函数
-- (void)veepooSDKReadConnectedPeripheralRSSIValue:(VPReadRSSIBlock)block;
-
 @end
 
 

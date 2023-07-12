@@ -138,7 +138,7 @@ typedef NS_ENUM(NSInteger, VPSettingBaseFunctionSwitchType) {//关于来电提�
     VPSettingSearchPhoneInterFace,//设置搜索手机界面是否在手环上显示
     VPSettingStopwatchInterFace,//设置秒表界面是否在手环上显示
     VPSettingOxygenLowerRemind,//设置血氧过低后警告
-    VPSettingLedGrade,//设置Led灯的等级，关闭是黑人档位，开始是正常肤色档位
+    VPSettingLedGrade,//设置Led灯的等级，关闭是黑人档位，开启是正常肤色档位
     VPSettingAutomaticHRVTest,//设置HRV夜间自动检测开关是否开启
     VPSettingAutoAnswer,//设置来电自动接听开关，耳机有效
     VPSettingDisconnectRemind,//设置断链提醒
@@ -153,6 +153,8 @@ typedef NS_ENUM(NSInteger, VPSettingBaseFunctionSwitchType) {//关于来电提�
     VPSettingAutomaticTemperatureTest = 24, //体温自动检测开关
     VPSettingTemperatureUnit = 25, //体温单位设置 1表示摄氏度 2表示华氏度
     VPSettingECGNormallyOpen = 26, //ECG 常开功能
+    VPSettingAutomaticBloodGlucoseTest = 27, //血糖自动检测开关
+    VPSettingBloodGlucoseUnit = 30, // 血糖单位设置 1表示mmol/L 2表示mg/dl
     
     //其他指令
     VPSettingAutomaticOxygenTest = 1000,//血氧夜间自动检测

@@ -39,6 +39,8 @@ typedef enum : int {
 @property (nonatomic, strong) NSString *aveResRate;
 //最终的结果QT,测试结束后界面显示
 @property (nonatomic, strong) NSString *aveQT;
+//最终的结果PWV,测试结束后界面显示
+@property (nonatomic, strong) NSString *avePWV;
 //ADC数据流
 @property (nonatomic, strong) NSArray *originalSignals;
 
@@ -58,6 +60,8 @@ typedef enum : int {
 @property (nonatomic, strong) NSArray *resRates;
 //QT数组，App手动测试每秒的QT值
 @property (nonatomic, strong) NSArray *qts;
+//PWV数组，APP手动测量每秒的PWV值
+@property (nonatomic, strong) NSArray *pwvs;
 
 //导联信号
 @property (nonatomic, strong) NSString *lead;
@@ -72,6 +76,7 @@ typedef enum : int {
 @property (nonatomic, strong) NSString *result6;
 @property (nonatomic, strong) NSString *result7;
 @property (nonatomic, strong) NSString *result8;
+@property (nonatomic, strong) NSMutableData *multipleDiagnosisTempData;
 
 //测试频率,采样频率
 @property (nonatomic, strong) NSString *frequency;
@@ -84,6 +89,7 @@ typedef enum : int {
 @property (nonatomic, strong) NSMutableArray *muRrs;
 @property (nonatomic, strong) NSMutableArray *muResRates;
 @property (nonatomic, strong) NSMutableArray *muQTs;
+@property (nonatomic, strong) NSMutableArray *muPwvs;
 
 
 - (instancetype)initWithDataType:(ECGDataType)dataType andMac:(NSString *)mac;
@@ -91,7 +97,7 @@ typedef enum : int {
 -(void)startReceiveData;
 - (void)endReceiveData;
 //接收App手动测试的数据
-- (void)receiveAppTestValueBytes:(const uint8_t *)tbyte;
+- (void)receiveAppTestValueWithData:(NSData *)data;
 //接收App手动测试的波形数据
 - (void)receiveAppTestAdcBytes:(const uint8_t *)tbyte;
 //接收App手动测试的波形数据大包

@@ -549,6 +549,10 @@
 //复位，设备会重新冷启动一遍，数据不会丢失。会与App断开连接
 - (void)veepooSDKResetDeviceData;
 
+/// 读取已连接设备的RSSI值  ⚠️设备未连接时无效
+/// @param block 回调函数
+- (void)veepooSDKReadConnectedPeripheralRSSIValue:(VPReadRSSIBlock)block;
+
 #pragma mark - 设置功能的有无, 特殊开发者使用
 - (void)veepooSDKSettingFunction:(VPOperationFuctionType)fuctionType settingType:(VPOperationType)settingType result:(void(^)(VPSettingFunctionCompleteState settingState))settingResult;
 
