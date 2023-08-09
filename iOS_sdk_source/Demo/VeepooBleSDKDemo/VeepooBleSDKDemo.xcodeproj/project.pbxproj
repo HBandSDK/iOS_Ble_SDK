@@ -80,6 +80,8 @@
 		FE373EA427B9EA4500F312C4 /* VPG15QRCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */; };
 		FE65720E25B930AD00672A8B /* VPPhotoDialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */; };
 		FE65720F25B930AD00672A8B /* VPPhotoDialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */; };
+		FE6C1C132A834691007276E6 /* VPCustomScanManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6C1C122A834691007276E6 /* VPCustomScanManage.swift */; };
+		FE6C1C152A83469C007276E6 /* VPScanDeviceV2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6C1C142A83469C007276E6 /* VPScanDeviceV2ViewController.swift */; };
 		FE6EE04625C1464800B67C70 /* VPMarketDialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6EE04425C1464800B67C70 /* VPMarketDialViewController.swift */; };
 		FE6EE04725C1464800B67C70 /* VPMarketDialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE6EE04525C1464800B67C70 /* VPMarketDialViewController.xib */; };
 		FE70FA94263A613F00074260 /* GRDFUSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE70FA85263A5F2400074260 /* GRDFUSDK.framework */; };
@@ -211,6 +213,8 @@
 		FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPG15QRCodeViewController.xib; sourceTree = "<group>"; };
 		FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPPhotoDialViewController.swift; sourceTree = "<group>"; };
 		FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPPhotoDialViewController.xib; sourceTree = "<group>"; };
+		FE6C1C122A834691007276E6 /* VPCustomScanManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPCustomScanManage.swift; sourceTree = "<group>"; };
+		FE6C1C142A83469C007276E6 /* VPScanDeviceV2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPScanDeviceV2ViewController.swift; sourceTree = "<group>"; };
 		FE6EE04425C1464800B67C70 /* VPMarketDialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMarketDialViewController.swift; sourceTree = "<group>"; };
 		FE6EE04525C1464800B67C70 /* VPMarketDialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPMarketDialViewController.xib; sourceTree = "<group>"; };
 		FE70FA85263A5F2400074260 /* GRDFUSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GRDFUSDK.framework; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 				675052241E553F3F008D45BC /* VPRootViewController.swift */,
 				675052251E553F3F008D45BC /* VPRootViewController.xib */,
 				6750522A1E557517008D45BC /* VPScanDeviceViewController.swift */,
+				FE6C1C142A83469C007276E6 /* VPScanDeviceV2ViewController.swift */,
 				67640D481E55C22E008D9D71 /* VPMessageRemindViewController.swift */,
 				67640D4B1E5698B2008D9D71 /* VPBaseFunctionRemindController.swift */,
 				67640D4E1E56CA04008D9D71 /* VPOterFunctionSettingController.swift */,
@@ -311,6 +316,7 @@
 				672E08451E5E813300F60750 /* VPTestStepController.xib */,
 				672E08581E5ED92F00F60750 /* VPDFUController.swift */,
 				672E08591E5ED92F00F60750 /* VPDFUController.xib */,
+				FE6C1C122A834691007276E6 /* VPCustomScanManage.swift */,
 			);
 			path = VeepooSDKViewControllers;
 			sourceTree = "<group>";
@@ -691,6 +697,7 @@
 				FE8E3A1626F49BD300065ADB /* VPEditTextAlarmViewController.swift in Sources */,
 				044ECB1A25E3A358002D090C /* VPPath.swift in Sources */,
 				672E08461E5E813300F60750 /* VPTestStepController.swift in Sources */,
+				FE6C1C132A834691007276E6 /* VPCustomScanManage.swift in Sources */,
 				672E08321E5D36ED00F60750 /* VPTestBloodController.swift in Sources */,
 				67640D571E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift in Sources */,
 				67FC22BA1E68FBEE0029DED3 /* VPTestOxygenController.swift in Sources */,
@@ -729,6 +736,7 @@
 				672E08381E5D5CAE00F60750 /* VPTestSleepController.swift in Sources */,
 				FED9CC892754C81A00E54DC8 /* VPRRIntervalDataViewController.swift in Sources */,
 				67CA3B6E1EF363C100203D20 /* VPDeviceNewAlarmController.swift in Sources */,
+				FE6C1C152A83469C007276E6 /* VPScanDeviceV2ViewController.swift in Sources */,
 				67FC22BF1E68FF7D0029DED3 /* VPTestFatigueController.swift in Sources */,
 				FE373EA327B9EA4500F312C4 /* VPG15QRCodeViewController.swift in Sources */,
 				672E084C1E5EC2FE00F60750 /* VPTakePhotoController.swift in Sources */,

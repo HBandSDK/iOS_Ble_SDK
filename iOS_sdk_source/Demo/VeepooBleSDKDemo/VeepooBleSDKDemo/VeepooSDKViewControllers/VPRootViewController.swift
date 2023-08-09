@@ -65,7 +65,7 @@ class VPRootViewController: UIViewController {
         
         //从2.0之后，要多加一步操作,下边两句任选其一，第一个是已经封装了SDK的，第二种是没有封装到数据库的，优点是自己对数据进行操作比较灵活
         VPBleCentralManage.sharedBleManager().isLogEnable = true
-        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()
+        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()        
 //        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
 //        VPBleCentralManage.sharedBleManager()?.automaticConnection = false
         
@@ -176,6 +176,16 @@ class VPRootViewController: UIViewController {
         VPPeripheralManage.shareVPPeripheralManager().veepooSDKSynchronousPersonalInformation(withStature: 175, weight: 60, birth: 1995, sex: 0, targetStep: 10000) { (settingResult) in
             
         }
+        // 或者用下方的接口，可以设置目标睡眠
+//        let personalInfo:VPSyncPersonalInfo = .init()
+//        personalInfo.sex = 0
+//        personalInfo.weight = 60
+//        personalInfo.status = 175
+//        personalInfo.age = 23
+//        personalInfo.targetStep = 10000
+//        personalInfo.targetSleepDuration = (8 * 60)
+//        VPPeripheralManage.shareVPPeripheralManager().veepooSDKSynchronousPersonalInformation(personalInfo, result: nil)
+        
         _ = navigationController?.popViewController(animated: true)
         vpDisconnectDeviceButton.isEnabled = true
         vpDeviceNameLabel.text = "设备名称:" + veepooBleManager.peripheralModel.deviceName
@@ -299,12 +309,21 @@ class VPRootViewController: UIViewController {
         self.navigationController?.pushViewController(scanController, animated: true)
     }
     
+    @IBAction func enterSelfScanDeviceController(_ sender: UIButton) {
+        if veepooBleManager.isConnected == true {
+            _ = AppDelegate.showHUD(message: "请先断开设备", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        let scanController = VPScanDeviceV2ViewController()
+        self.navigationController?.pushViewController(scanController, animated: true)
+    }
     
     /// 断开设备连接
     ///
     /// - Parameter sender: ——
     @IBAction func disconnectDeviceAction(_ sender: UIButton) {
         veepooBleManager.veepooSDKDisconnectDevice()
+        VPCustomScanManage.sharedInstance.cancel()
     }
     
     

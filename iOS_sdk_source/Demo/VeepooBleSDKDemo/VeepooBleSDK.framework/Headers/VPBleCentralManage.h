@@ -20,6 +20,9 @@
 //连接后是否弹系统配对窗口，默认Yes
 @property (nonatomic, assign) BOOL isAutoShowPair;
 
+//连接过程的小时制式控制，默认Yes
+@property (nonatomic, assign) BOOL is24HourFormat;
+
 //是否默认连接K系列的BT，仅在 isAutoShowPair为YES且系统版本>=iOS13才有效，默认Yes
 //如果系统版本低于13，无法自动连接BT，需要提示用户前往手机系统蓝牙自行连接
 @property (nonatomic, assign) BOOL isAutoConnectBT NS_AVAILABLE_IOS(13_0);
@@ -80,6 +83,25 @@
  @param result 0 is a failure 1 is a success 0是失败 1是成功
  */
 - (void)veepooSDKSynchronousPasswordWithType:(SynchronousPasswordType)type password:(NSString *)password SynchronizationResult:(SynchronizationResultBlock)result;
+
+#pragma mark - Custom connection
+
+/// Execute in a method 「- (void)centralManagerDidUpdateState:」
+/// 在「- (void)centralManagerDidUpdateState:」中执行本方法
+/// @param state CBManagerState
+- (void)veepooSDKUpdateState:(CBManagerState)state;
+
+/// Execute in a method 「- (void)peripheral:didDiscoverServices:」
+/// 在「- (void)peripheral:didDiscoverServices:」中执行本方法
+/// @param service CBService
+/// @param peripheral CBPeripheral
+- (void)veepooSDKDiscoverCharacteristicsForService:(CBService*)service
+                                        Peripheral:(CBPeripheral*)peripheral;
+
+/// Execute in a method 「- (void)centralManager:didDisconnectPeripheral:error:」
+/// 在「- (void)centralManager:didDisconnectPeripheral:error:」中执行本方法
+/// @param peripheral CBPeripheral
+- (void)veepooSDKDisconnectPeripheral:(CBPeripheral *)peripheral;
 
 
 @end
