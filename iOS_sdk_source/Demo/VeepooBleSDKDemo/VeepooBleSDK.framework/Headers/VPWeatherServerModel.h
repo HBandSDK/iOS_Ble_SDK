@@ -29,7 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 //返回天气的数据来源或等级免费还是付费等精准度信息
 @property(nonatomic, assign) int type;
 
-//最后更新时间2020-05-09 09:08:34
+//最后更新时间2020-05-09 09:08
+//格式为 yyyy-MM-dd HH:mm，如果不是这个格式，设备可能无法显示数据
 @property(nonatomic, strong) NSString *update;
 
 //逐3小时天气数组

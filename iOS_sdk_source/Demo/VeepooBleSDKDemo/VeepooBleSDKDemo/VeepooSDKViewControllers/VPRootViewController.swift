@@ -65,7 +65,7 @@ class VPRootViewController: UIViewController {
         
         //从2.0之后，要多加一步操作,下边两句任选其一，第一个是已经封装了SDK的，第二种是没有封装到数据库的，优点是自己对数据进行操作比较灵活
         VPBleCentralManage.sharedBleManager().isLogEnable = true
-        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()        
+        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()
 //        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
 //        VPBleCentralManage.sharedBleManager()?.automaticConnection = false
         
@@ -243,13 +243,14 @@ class VPRootViewController: UIViewController {
             print(sleepArray)
         }
         
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readBasicData(withDayNumber: 1, maxPackage: 1) { (heartArray, totalPackage, currentPackage) in
-            guard  let heartArray = heartArray  else {
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readBasicData(withDayNumber: 1, maxPackage: 1) { (oneDayBasicArray, totalPackage, currentPackage) in
+            print("totalPackage:\(totalPackage) currentPackage:\(currentPackage)")
+            guard  let oneDayBasicArray = oneDayBasicArray  else {
                 return
             }
-            print(heartArray)
+            print(oneDayBasicArray)
         }
-        
+
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readDeviceRunningData(withBlockNumber: 0) { (deviceRunningDict, totalPackage, currentPackage) in
             if currentPackage >= totalPackage {
                 print(deviceRunningDict ?? "没有运动数据")
@@ -323,7 +324,6 @@ class VPRootViewController: UIViewController {
     /// - Parameter sender: ——
     @IBAction func disconnectDeviceAction(_ sender: UIButton) {
         veepooBleManager.veepooSDKDisconnectDevice()
-        VPCustomScanManage.sharedInstance.cancel()
     }
     
     

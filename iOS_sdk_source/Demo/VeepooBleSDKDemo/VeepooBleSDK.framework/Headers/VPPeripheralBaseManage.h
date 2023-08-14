@@ -103,7 +103,7 @@
 - (void)veepooSDKReadDisconnectOxygenDataWithLastReadTime:(NSString *)lastReadTime result:(void(^)(VPOxygenDisconnectTestModel *testModel, NSInteger state))readResult;
 
 //设置语言，如果设备上没有的语言，则默认显示英语, 建议使用自动SDK跟随手机语言设置，如使用此接口systemLanguage此值设为NO
-//languageType 中文(1) 英文(2) 日语(3) 韩语(4) 德语(5) 俄语(6) 西班牙(7) 意大利(8) 法语(9) 越南语(10) 葡萄牙语(11) 泰语(13) 波兰(14) 瑞典(15) 土耳其(16) 荷兰语(17) 捷克语(18)
+//languageType 中文(1) 英文(2) 日语(3) 韩语(4) 德语(5) 俄语(6) 西班牙(7) 意大利(8) 法语(9) 越南语(10) 葡萄牙语(11) 中文繁体(12) 泰语(13) 波兰(14) 瑞典(15) 土耳其(16) 荷兰语(17) 捷克语(18) 阿拉伯(19) 匈牙利(20) 希腊(21) 罗马尼亚(22) 斯洛伐克(23) 印尼语(24) 巴西葡萄牙语(25) 克罗地亚(26) 立陶宛亚(27) 乌克兰(28) 印地语(29) 希伯来语(30) 丹麦语(31) 波斯语(32) 芬兰语(33) 马来语(34)
 - (void)veepooSDKSettingLanguage:(UInt8)languageType result:(void(^)(BOOL success))settingLangueResult;
 
 #pragma mark - 单兵SOS定制功能，App和设备只做简单指令交互，其他功能客户自己解决

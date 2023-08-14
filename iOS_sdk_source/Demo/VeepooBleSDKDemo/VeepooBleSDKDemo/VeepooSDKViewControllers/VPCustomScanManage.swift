@@ -9,8 +9,7 @@
 import UIKit
 
 /*
- 注意⚠️，自扫描连接的方式，需要自行实现重连机制，包括被系统配对的情况，也需要自行实现。
- 因为 CBPeripheral
+ 注意⚠️，自扫描连接的方式，因为CBPeripheral底层机制原因，SDK内部需要再扫描一遍，故自扫描的连接会比SDK扫描要慢一些。
  */
 
 class VPCustomScanManage: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -18,8 +17,6 @@ class VPCustomScanManage: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     static let sharedInstance = VPCustomScanManage()
     
     var centralManager: CBCentralManager?
-    
-    var mPeripheral: CBPeripheral!
     
     public func initDelegate() {
         centralManager = CBCentralManager.init(delegate: self, queue: nil)
@@ -33,21 +30,67 @@ class VPCustomScanManage: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 
         let options = [CBCentralManagerScanOptionAllowDuplicatesKey: true]
         centralManager?.scanForPeripherals(withServices: [service1, service2, service3, service4], options: options)
-//        retrieveConnected()
     }
     
-    public func cancel() {
-        if let mPeripheral = mPeripheral {
-            centralManager?.cancelPeripheralConnection(mPeripheral)
+    public func connectFromSystem() -> Void {
+        retrieveConnected()
+    }
+    
+    /// 蓝牙连接过程中的状态变化
+    ///
+    /// - Parameter connectState: 蓝牙过程中的状态
+    func handleConnectEvent(connectState: DeviceConnectState) {
+        switch connectState {
+        case .BlePoweredOff://蓝牙没有打开
+            print("手机蓝牙没有打开")
+        case .BleConnecting://蓝牙连接中
+            print("蓝牙连接中")
+        case .BleConnectSuccess://蓝牙连接成功
+            print("蓝牙连接成功")
+        case .BleConnectFailed://蓝牙连接失败
+            print("蓝牙连接失败")
+        case .BleVerifyPasswordSuccess://验证密码成功,返回上一级
+            print("验证密码成功")
+        case .BleVerifyPasswordFailure://验证密码失败
+            print("验证密码失败")
         }
     }
     
     public func connectDevice(peripheral :CBPeripheral) {
         centralManager?.stopScan()
-        mPeripheral = peripheral
-        centralManager?.connect(mPeripheral)
+        VPBleCentralManage.sharedBleManager().veepooSDKSelfScanConnectDevice(peripheral, deviceConnect: { [weak self](connectState) in
+            self?.handleConnectEvent(connectState: connectState)
+        })
     }
     
+    /// 系统蓝牙状态监听
+    /// - Parameter central: 中央管理器
+    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        print(">>centralManagerDidUpdateState")
+    }
+        
+    /// 扫描到的外设
+    /// - Parameters:
+    ///   - central: 中央管理器
+    ///   - peripheral: 外设对象
+    ///   - advertisementData: 广播包数据
+    ///   - RSSI: 信号量
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        if RSSI.intValue < 0 && RSSI.intValue >= -75 {
+            let name = advertisementData["kCBAdvDataLocalName"] as? String
+            // 这里只是举例：扫到"W8"的设备就连接
+            if let name = name {
+                print(name)
+                if name == "ET550" {
+                    print("2")
+                    connectDevice(peripheral: peripheral)
+                }
+            }
+        }
+    }
+}
+
+extension VPCustomScanManage {
     /// 获取系统蓝牙中已配对的外部设备
     public func retrieveConnected() {
         let serverStr = "F0020001-0451-4000-B000-000000000000"
@@ -65,76 +108,5 @@ class VPCustomScanManage: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
         let peripheral = peripherals.first!
         
         connectDevice(peripheral: peripheral)
-    }
-    
-    /// 系统蓝牙状态监听
-    /// - Parameter central: 中央管理器
-    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        print(">>centralManagerDidUpdateState")
-        VPBleCentralManage.sharedBleManager()?.veepooSDKUpdate(central.state)
-    }
-        
-    /// 扫描到的外设
-    /// - Parameters:
-    ///   - central: 中央管理器
-    ///   - peripheral: 外设对象
-    ///   - advertisementData: 广播包数据
-    ///   - RSSI: 信号量
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if RSSI.intValue < 0 && RSSI.intValue >= -75 {
-            let name = advertisementData["kCBAdvDataLocalName"] as? String
-            // 这里只是举例：扫到"W8"的设备就连接
-            if let name = name {
-                print(name)
-                if name == "W8" {
-                    print("2")
-                    connectDevice(peripheral: peripheral)
-                }
-            }
-        }
-    }
-    
-    /// 外部设备被连接上后会被触发
-    /// - Parameters:
-    ///   - central: 中央管理器
-    ///   - peripheral: 外部设备
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("didConnect")
-        peripheral.delegate = self
-        peripheral.discoverServices(nil)
-    }
-    
-    /// 外部设备连接断开后会被触发
-    /// - Parameters:
-    ///   - central: 中央管理器
-    ///   - peripheral: 外部设备
-    ///   - error: 异常
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("didDisconnectPeripheral")
-        VPBleCentralManage.sharedBleManager().veepooSDKDisconnectPeripheral(peripheral)
-    }
-        
-    /// 外部设备的服务被发现
-    /// - Parameters:
-    ///   - peripheral: 外部设备对象
-    ///   - error: 错误
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        guard let services = peripheral.services else {
-            return
-        }
-        // 遍历每个服务下的特征
-        for service in services {
-            peripheral.discoverCharacteristics(nil, for: service)
-        }
-    }
-        
-    /// 外部设备每个服务下的特征被发现
-    /// - Parameters:
-    ///   - peripheral: 外部设备对象
-    ///   - service: 所属服务
-    ///   - error: 错误
-    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        print("didDiscoverCharacteristicsFor")
-        VPBleCentralManage.sharedBleManager().veepooSDKDiscoverCharacteristics(for: service, peripheral: peripheral)
     }
 }

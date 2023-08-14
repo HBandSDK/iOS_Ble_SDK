@@ -18,11 +18,16 @@ class VPScanDeviceV2ViewController: UIViewController {
         VPCustomScanManage.sharedInstance.initDelegate()
         
         view.backgroundColor = UIColor.white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "测试", style: .plain, target: self, action: #selector(startScanDevices))
+        let selfScanItem = UIBarButtonItem(title: "自扫描", style: .plain, target: self, action: #selector(startScanDevices))
+        let systemItem = UIBarButtonItem(title: "系统", style: .plain, target: self, action: #selector(systemConnectDevice))
+        navigationItem.rightBarButtonItems = [selfScanItem, systemItem]
     }
     
     @objc func startScanDevices() -> Void {
         VPCustomScanManage.sharedInstance.startScanDevices()
     }
     
+    @objc func systemConnectDevice() -> Void {
+        VPCustomScanManage.sharedInstance.connectFromSystem()
+    }
 }
