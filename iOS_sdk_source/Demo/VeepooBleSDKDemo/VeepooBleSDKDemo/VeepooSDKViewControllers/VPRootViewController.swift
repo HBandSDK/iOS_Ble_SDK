@@ -17,8 +17,18 @@ class VPRootViewController: UIViewController {
     let veepooBleManager: VPBleCentralManage = VPBleCentralManage.sharedBleManager()
     
     /// 主界面下边按钮的子控制器
-    let controllers = ["VPTestHeartController","VPTestBloodController","VPTestOxygenController","VPTestFatigueController","VPTestSleepController","VPTestStepController","VPMessageRemindViewController","VPBaseFunctionRemindController","VPDFUController" ,"VPOterFunctionSettingController","VPPTTTestController"
-        ,"VPSOSViewController"]
+    let controllers = ["VPTestHeartController",
+                       "VPTestBloodController",
+                       "VPTestOxygenController",
+                       "VPTestFatigueController",
+                       "VPTestSleepController",
+                       "VPTestStepController",
+                       "VPMessageRemindViewController",
+                       "VPBaseFunctionRemindController",
+                       "VPDFUController" ,
+                       "VPOterFunctionSettingController",
+                       "VPPTTTestController"
+                       ,"VPSOSViewController"]
     
     @IBOutlet weak var vpScanDeviceButton: UIButton!
     
@@ -311,6 +321,7 @@ class VPRootViewController: UIViewController {
     }
     
     @IBAction func enterSelfScanDeviceController(_ sender: UIButton) {
+//        testVeepooSDKSettingTime()
         if veepooBleManager.isConnected == true {
             _ = AppDelegate.showHUD(message: "请先断开设备", hudModel: MBProgressHUDModeText, showView: view)
             return
@@ -416,4 +427,13 @@ class VPRootViewController: UIViewController {
                 }
             }
         }
+}
+
+extension VPRootViewController {
+    /// 测试同步时间到手环
+    func testVeepooSDKSettingTime() -> Void {
+        veepooBleManager.peripheralManage.veepooSDKSettingTime(withYear: 2023, month: 08, day: 15, hour: 18, minute: 00, second: 00, timeSystem: 0) { success in
+            print(success)
+        }
+    }
 }

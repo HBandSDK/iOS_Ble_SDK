@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -76,6 +76,14 @@
                         <action selector="localTest:" destination="-1" eventType="touchUpInside" id="7Mf-IC-ac3"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIY-jQ-8oT">
+                    <rect key="frame" x="40" y="40" width="92" height="30"/>
+                    <state key="normal" title="检查固件版本"/>
+                    <state key="selected" title="正在升级"/>
+                    <connections>
+                        <action selector="checkNetDeviceVersion:" destination="-1" eventType="touchUpInside" id="CGM-Qj-oTY"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -92,11 +100,13 @@
                 <constraint firstItem="Eq3-81-vBM" firstAttribute="leading" secondItem="8nE-dq-17p" secondAttribute="trailing" constant="40" id="ISG-Do-mUv"/>
                 <constraint firstAttribute="trailing" secondItem="zKl-b0-4wv" secondAttribute="trailing" constant="30" id="Qrp-if-JzR"/>
                 <constraint firstItem="0Ie-ja-Qga" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="QtF-NT-bTM"/>
+                <constraint firstItem="IIY-jQ-8oT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="R62-A1-p3i"/>
                 <constraint firstItem="zHI-ht-Yse" firstAttribute="trailing" secondItem="0Ie-ja-Qga" secondAttribute="trailing" id="S4h-qf-hoi"/>
                 <constraint firstAttribute="trailing" secondItem="0Ie-ja-Qga" secondAttribute="trailing" constant="30" id="X2p-kg-t2Z"/>
                 <constraint firstAttribute="bottom" secondItem="QFF-kB-GWm" secondAttribute="bottom" constant="20" id="aC3-wR-2zs"/>
                 <constraint firstItem="QFF-kB-GWm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="b6t-vx-i9D"/>
                 <constraint firstItem="Fid-7V-wGG" firstAttribute="trailing" secondItem="zHI-ht-Yse" secondAttribute="trailing" id="bnh-XV-yS3"/>
+                <constraint firstItem="IIY-jQ-8oT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="c5y-xr-Kp2"/>
                 <constraint firstItem="8nE-dq-17p" firstAttribute="top" secondItem="zKl-b0-4wv" secondAttribute="bottom" constant="30" id="f6D-Nf-Cih"/>
                 <constraint firstItem="zHI-ht-Yse" firstAttribute="leading" secondItem="0Ie-ja-Qga" secondAttribute="leading" id="jGL-kN-GRD"/>
                 <constraint firstItem="zHI-ht-Yse" firstAttribute="top" secondItem="0Ie-ja-Qga" secondAttribute="bottom" constant="15" id="mE9-b0-a6e"/>

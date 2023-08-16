@@ -35,6 +35,7 @@
 #import "VPDeviceHealthRemindModel.h"
 #import "VPG15QRCodeInfoModel.h"
 #import "VPDeviceContactsModel.h"
+#import "VPDeviceMessageTypeModel.h"
 
 @class JL_Assist;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
@@ -86,8 +87,23 @@
 //Invalid interface 无效接口
 - (void)veepooSDKSendData:(NSData *)commandData adcResult:(void(^)(NSData *gSensorADC))adcTestResult valueResult:(void(^)(NSData *gSensorADC))valueTestResult;
 
-//同步时间，特殊情况使用，默认连接的时候会自动同步时间 system 1是12小时 2是24小时，如果无用则需要通过开关设置中的制式在设置一遍
-- (void)veepooSDKSettingTimeWithYear:(int)year month:(int)month day:(int)day hour:(int)hour minute:(int)min second:(int)sec timeSystem:(int)system;
+/// 同步时间，特殊情况使用，默认连接的时候会自动同步时间
+/// @param year 年份
+/// @param month 月份 1-12
+/// @param day 日 1-31
+/// @param hour 小时 0-23
+/// @param min 分钟 0-59
+/// @param sec 秒 0-59
+/// @param system 0不设置 1是12小时 2是24小时 如果无用则需要通过开关设置中的制式再设置一遍
+/// @param result 失败/成功结果回调，内部会置空
+- (void)veepooSDKSettingTimeWithYear:(int)year
+                               month:(int)month
+                                 day:(int)day
+                                hour:(int)hour
+                              minute:(int)min
+                              second:(int)sec
+                          timeSystem:(int)system
+                              result:(void(^)(BOOL success))result;
 
 
 /// 定制功能
@@ -146,9 +162,18 @@
  @param settingState Set or read 设置还是读取
  @param settingCompleteBlock Set and read completed callbacks 设置和读取完成的回调
  */
-- (void)veepooSDKSettingMessageType:(VPSettingMessageSwitchType)messageType settingState:(VPSettingFunctionState)settingState completeBlock:(void(^)(VPSettingFunctionCompleteState completeState))settingCompleteBlock;
+- (void)veepooSDKSettingMessageType:(VPSettingMessageSwitchType)messageType
+                       settingState:(VPSettingFunctionState)settingState
+                      completeBlock:(void(^)(VPSettingFunctionCompleteState completeState))settingCompleteBlock;
 
-- (void)veepooSDKSettingMessageWithData:(NSData *)settingData completeBlock:(void(^)(VPSettingFunctionCompleteState completeState))settingCompleteBlock;
+/// 消息推送(信息提醒) 批处理接口，内部会自动忽略设备不支持的推送类型
+/// @param models 需要处理的推送类型数组
+/// @param settingCompleteBlock 设置状态Block 内部会置空
+- (void)veepooSDKBatchSettingWithMessageTypeModels:(NSArray<VPDeviceMessageTypeModel *> *)models
+                                     completeBlock:(void(^)(VPSettingFunctionCompleteState completeState))settingCompleteBlock;
+
+- (void)veepooSDKSettingMessageWithData:(NSData *)settingData
+                          completeBlock:(void(^)(VPSettingFunctionCompleteState completeState))settingCompleteBlock;
 
 /**
  The status of setting or reading the basic switch function includes: raising the screen at night to brighten the screen (only setting for 22:00-08:00 night, the rest of the time is to brighten the screen)

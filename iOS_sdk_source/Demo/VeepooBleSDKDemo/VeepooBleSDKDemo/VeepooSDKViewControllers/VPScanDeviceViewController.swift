@@ -112,11 +112,9 @@ class VPScanDeviceViewController: UIViewController , UITableViewDelegate , UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let p = deviceArray[indexPath.row]
-        
-        unowned let weakSelf: VPScanDeviceViewController = self
         //连接设备
-        VPBleCentralManage.sharedBleManager().veepooSDKConnectDevice(p) { (connectState) in
-            weakSelf.handleConnectEvent(connectState: connectState)
+        VPBleCentralManage.sharedBleManager().veepooSDKConnectDevice(p) { [weak self](connectState) in
+            self?.handleConnectEvent(connectState: connectState)
         }
     }
     

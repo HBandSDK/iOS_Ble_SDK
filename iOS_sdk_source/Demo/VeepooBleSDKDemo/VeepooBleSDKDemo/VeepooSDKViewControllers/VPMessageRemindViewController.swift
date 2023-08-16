@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VeepooBleSDK
 
 class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
     
@@ -42,12 +43,39 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
         messageRemindTableView?.tableHeaderView = headerView
     }
     
-    @objc func openOrCloseAllFunction(sender: UIButton)  {//开始设置信息提醒的开关功能
+    // 批处理操作
+    func batckOperation() -> Void {
         if VPBleCentralManage.sharedBleManager().isConnected == false {
             _ = AppDelegate.showHUD(message: "设备未连接,设置失败", hudModel: MBProgressHUDModeText, showView: view)
             return
         }
         
+        let test1 = VPDeviceMessageTypeModel.init()
+        test1.messageType = .settingWechat
+        test1.open = true
+
+        let test2 = VPDeviceMessageTypeModel.init()
+        test2.messageType = .settingSMS
+        test2.open = false
+        
+        let test3 = VPDeviceMessageTypeModel.init()
+        test3.messageType = .settingMessenger
+        test3.open = true
+        
+        let arr:[VPDeviceMessageTypeModel] = [test1, test2, test3]
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBatchSetting(with: arr) { [weak self]completeState in
+            print(completeState)
+            self?.messageRemindTableView?.reloadData()
+        }
+    }
+    
+    @objc func openOrCloseAllFunction(sender: UIButton)  {//开始设置信息提醒的开关功能
+//        batckOperation()
+        if VPBleCentralManage.sharedBleManager().isConnected == false {
+            _ = AppDelegate.showHUD(message: "设备未连接,设置失败", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+
         unowned let weakSelf = self
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingMessageType(VPSettingMessageSwitchType.settingAll, settingState: VPSettingFunctionState(rawValue: sender.tag)!) { (settingFunctionCompleteState) in
             switch settingFunctionCompleteState {
@@ -167,3 +195,4 @@ class VPMessageRemindViewController: UIViewController , UITableViewDelegate , UI
         
     }
 }
+

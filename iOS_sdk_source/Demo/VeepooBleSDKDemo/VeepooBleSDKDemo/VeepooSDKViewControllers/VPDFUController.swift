@@ -29,6 +29,10 @@ class VPDFUController: UIViewController {
         // Do any additional setup after loading the view.
         currentVersionLabel.text = "当前版本: " + VPBleCentralManage.sharedBleManager().peripheralModel.deviceVersion
         
+        reloadData()
+    }
+    
+    func reloadData() -> Void {
         if (VPBleCentralManage.sharedBleManager().peripheralModel.deviceNetVersion == nil) {
             updateVersionLabel.text = "升级版本: " + "没有新版本"
         }else {
@@ -37,7 +41,30 @@ class VPDFUController: UIViewController {
             updateDesTextView.text = VPBleCentralManage.sharedBleManager().peripheralModel.deviceNetVersionDes.replacingOccurrences(of: "$", with: "\n")
         }
     }
-
+    
+    @IBAction func checkNetDeviceVersion(_ sender: UIButton) {
+        dufOperationManager.checkDeviceOTAInfo { progress in
+            guard let progress = progress else {
+                return
+            }
+            print("OTA固件下载中>>> \(progress.completedUnitCount)----\(progress.totalUnitCount)")
+        } completionHandler: { [weak self]newVersion, describe, error in
+            // 请求成功
+            guard let error = error else {
+                if let newVersion = newVersion {
+                    print("升级版本:\(newVersion)")
+                    self?.reloadData()
+                } else {
+                    print("没有新固件")
+                }
+                return
+            }
+            
+            // 请求失败
+            print(error)
+        }
+    }
+    
     @IBAction func startDFUAction(_ sender: UIButton) {
         if sender.isSelected {
             return
