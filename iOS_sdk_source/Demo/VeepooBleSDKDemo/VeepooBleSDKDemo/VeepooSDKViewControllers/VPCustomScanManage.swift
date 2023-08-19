@@ -58,9 +58,10 @@ class VPCustomScanManage: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     
     public func connectDevice(peripheral :CBPeripheral) {
         centralManager?.stopScan()
-        VPBleCentralManage.sharedBleManager().veepooSDKSelfScanConnectDevice(peripheral, deviceConnect: { [weak self](connectState) in
-            self?.handleConnectEvent(connectState: connectState)
-        })
+//        VPBleCentralManage.sharedBleManager().veepooSDKSelfScanConnectDevice(peripheral, deviceConnect: { [weak self](connectState) in
+//            self?.handleConnectEvent(connectState: connectState)
+//        })
+        VPBleCentralManage.sharedBleManager().veepooSDKSelfScanConnectDevice(peripheral, deviceConnect: nil)
     }
     
     /// 系统蓝牙状态监听

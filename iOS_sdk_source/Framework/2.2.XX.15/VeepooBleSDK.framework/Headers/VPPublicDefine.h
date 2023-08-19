@@ -32,7 +32,8 @@ typedef NS_ENUM (NSInteger, VPCentralManagerState) {
 //蓝牙连接状态改变
 typedef NS_ENUM (NSInteger, VPDeviceConnectState) {
     VPDeviceConnectStateDisConnect = 0,//断开连接
-    VPDeviceConnectStateConnect,//已经连接
+    VPDeviceConnectStateConnecting,    //蓝牙连接中
+    VPDeviceConnectStateConnect,       //已经连接
     VPDeviceConnectStateVerifyPasswordSuccess,//验证密码成功
     VPDeviceConnectStateVerifyPasswordFailure,//验证密码失败
     VPDeviceDiscoverNewUpdateFirm,//Discover new firmware that can be upgraded 发现可以升级的新固件

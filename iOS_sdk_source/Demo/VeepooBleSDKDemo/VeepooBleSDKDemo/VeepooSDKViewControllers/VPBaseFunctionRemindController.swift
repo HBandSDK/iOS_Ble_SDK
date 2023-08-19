@@ -16,8 +16,8 @@ class VPBaseFunctionRemindController: UIViewController  , UITableViewDelegate , 
     
     //血氧自动检测功能无用，LED档位如果有1代表正常肤色档位 2代表黑色皮肤档位
     let baseFunctions = ["夜间抬手亮屏","设备防丢失","佩戴检测","公制","24小时制","心率自动检测","血压自动检测","运动量过量提醒",
-                         "心率血氧血压语音播报","手机查找","秒表功能","血氧过低通知","LED档位","HRV夜间自动检测","来电免接听",
-                         "蓝牙断链提醒","SOS页面显示","PPG(脉率)自动监测","血氧自动检测"]
+                         "心率血氧血压语音播报","手机查找","秒表功能","血氧过低通知","LED档位(黑人模式)","HRV夜间自动检测","来电免接听",
+                         "蓝牙断链提醒","SOS页面显示","PPG(脉率)自动监测(科学睡眠)","血氧自动检测"]
     
     let baseTwoFunctions = ["长按解锁", "消息亮屏", "体温自动检测", "体温单位切换", "ECG 常开", "血糖功能开关",  "梅托功能开关",
                             "压力功能开关",  "血糖单位切换"]
@@ -44,6 +44,13 @@ class VPBaseFunctionRemindController: UIViewController  , UITableViewDelegate , 
 //                    print("unkown")
 //                }
 //        })
+        subscribeDeviceSwitchDidChange()
+    }
+    
+    func subscribeDeviceSwitchDidChange() -> Void {
+        VPBleCentralManage.sharedBleManager().peripheralManage.deviceFunctionSwitchDidChangeBlock = { [weak self] in
+            self?.baseFunctionRemindTableView?.reloadData()
+        }
     }
     
     @objc func baseFunctionOpenOrCloseRemindAction(sender: UISwitch)  {//开始设置信息提醒的开关功能

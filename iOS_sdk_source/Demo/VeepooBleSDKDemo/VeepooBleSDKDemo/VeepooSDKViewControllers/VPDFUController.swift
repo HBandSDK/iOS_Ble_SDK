@@ -21,7 +21,7 @@ class VPDFUController: UIViewController {
     
     
     //要声明一个全局属性，固件升级过程中请不要操作手机
-    let dufOperationManager: VPDFUOperation = VPDFUOperation.dfuOperationShare()
+    let dfuOperationManager: VPDFUOperation = VPDFUOperation.dfuOperationShare()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,9 @@ class VPDFUController: UIViewController {
     }
     
     @IBAction func checkNetDeviceVersion(_ sender: UIButton) {
-        dufOperationManager.checkDeviceOTAInfo { progress in
+        
+        /// 注意⚠️，生产环境 debug 参数请勿传 true
+        dfuOperationManager.checkDeviceOTAInfo(withDebug: true) { progress in
             guard let progress = progress else {
                 return
             }
@@ -77,7 +79,7 @@ class VPDFUController: UIViewController {
         dfuProgressLabel.text = "准备升级"
         sender.isSelected = true
         unowned let weakSelf = self
-        dufOperationManager.veepooSDKStartDfu { (dfuProgress, deviceDFUState) in
+        dfuOperationManager.veepooSDKStartDfu { (dfuProgress, deviceDFUState) in
             switch deviceDFUState {
             case .fileNotExist:
                 sender.isSelected = false
@@ -115,7 +117,7 @@ class VPDFUController: UIViewController {
         // 拷贝到沙盒中，并返回路径
         filePath = copyToSandbox(bundlePath: filePath!)
         
-        dufOperationManager.veepooSDKStartDfu(withFilePath: filePath) { (dfuProgress, deviceDFUState) in
+        dfuOperationManager.veepooSDKStartDfu(withFilePath: filePath) { (dfuProgress, deviceDFUState) in
             switch deviceDFUState {
             case .fileNotExist:
                 sender.isSelected = false

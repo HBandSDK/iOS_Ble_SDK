@@ -26,14 +26,6 @@ class VPTestStepController: UIViewController {
         obtainOneDayStepData()
         title = "步数"
         // Do any additional setup after loading the view.
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKStartReadDeviceRunningData { state, totalTimes, currentReadTimes, readCurrentTimesProgress in
-            
-        }
-        let arr = VPDataBaseOperation.veepooSDKGetDeviceRunningData(withDate: 0.getOneDayDateString(), andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
-        
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceRunning(1, run: VPDeviceRuningMode.outdoorRun ) { type, success in
-            // to do ...
-        }
     }
 
     @IBAction func testStepLastDayAction(_ sender: UIButton) {

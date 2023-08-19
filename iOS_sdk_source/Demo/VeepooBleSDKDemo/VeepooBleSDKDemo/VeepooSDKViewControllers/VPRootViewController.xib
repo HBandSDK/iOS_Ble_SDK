@@ -236,12 +236,22 @@
                         <action selector="enterSelfScanDeviceController:" destination="-1" eventType="touchUpInside" id="9Jt-rc-3Dk"/>
                     </connections>
                 </button>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojV-NZ-Cmb">
+                    <rect key="frame" x="242" y="394" width="67.5" height="44"/>
+                    <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="手环运动"/>
+                    <connections>
+                        <action selector="enterDeviceSportController:" destination="-1" eventType="touchUpInside" id="pzV-yF-NUF"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="height" secondItem="Kvw-tf-5ON" secondAttribute="height" id="0Cs-WM-CUm"/>
                 <constraint firstItem="2NU-5a-ABH" firstAttribute="trailing" secondItem="gK4-ru-5IS" secondAttribute="trailing" id="0Dd-QN-Tcl"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="top" secondItem="Kvw-tf-5ON" secondAttribute="top" id="3VV-NT-fbk"/>
+                <constraint firstItem="ojV-NZ-Cmb" firstAttribute="height" secondItem="uBS-4b-x4K" secondAttribute="height" id="3ar-nz-w6S"/>
                 <constraint firstItem="J0R-Hf-fbP" firstAttribute="width" secondItem="jFu-zD-CUV" secondAttribute="width" id="59x-mU-JVh"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="width" secondItem="Mtq-r8-dFL" secondAttribute="width" id="77X-5p-7bI"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="width" secondItem="Kvw-tf-5ON" secondAttribute="width" id="8ha-8z-MBM"/>
@@ -268,14 +278,17 @@
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="height" secondItem="Mtq-r8-dFL" secondAttribute="height" id="IHp-9r-9B1"/>
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="top" secondItem="Kvw-tf-5ON" secondAttribute="top" id="Isu-Tt-W20"/>
                 <constraint firstItem="J0R-Hf-fbP" firstAttribute="leading" secondItem="jFu-zD-CUV" secondAttribute="trailing" constant="10.5" id="Iz2-kJ-Drx"/>
+                <constraint firstItem="ojV-NZ-Cmb" firstAttribute="leading" secondItem="uBS-4b-x4K" secondAttribute="trailing" constant="9.5" id="JRp-3E-gpW"/>
                 <constraint firstItem="jFu-zD-CUV" firstAttribute="height" secondItem="gbR-H9-B20" secondAttribute="height" id="JTY-xE-8I6"/>
                 <constraint firstItem="uBS-4b-x4K" firstAttribute="width" secondItem="J0R-Hf-fbP" secondAttribute="width" id="Jt3-ac-ETC"/>
                 <constraint firstItem="uBS-4b-x4K" firstAttribute="leading" secondItem="J0R-Hf-fbP" secondAttribute="trailing" constant="9.5" id="Lai-VY-Vro"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="top" id="LeC-7w-jnF"/>
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="leading" secondItem="zDb-ah-7Iz" secondAttribute="trailing" constant="10" id="Lkd-hb-hQi"/>
                 <constraint firstItem="gK4-ru-5IS" firstAttribute="width" secondItem="Kvw-tf-5ON" secondAttribute="width" id="NiV-XZ-RGH"/>
+                <constraint firstItem="ojV-NZ-Cmb" firstAttribute="width" secondItem="uBS-4b-x4K" secondAttribute="width" id="O93-2U-SsJ"/>
                 <constraint firstItem="mfb-Na-KAM" firstAttribute="top" secondItem="2NU-5a-ABH" secondAttribute="top" id="OBp-3Z-JPp"/>
                 <constraint firstItem="gK4-ru-5IS" firstAttribute="top" secondItem="Kvw-tf-5ON" secondAttribute="top" id="OPT-OA-M58"/>
+                <constraint firstItem="ojV-NZ-Cmb" firstAttribute="top" secondItem="Zrv-da-GvZ" secondAttribute="bottom" constant="8" symbolic="YES" id="PfO-vS-DAk"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="height" secondItem="Mtq-r8-dFL" secondAttribute="height" id="R1y-sD-6ZS"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="leading" secondItem="dnm-SM-M1c" secondAttribute="trailing" constant="10" id="RBk-jA-kKU"/>
                 <constraint firstItem="Zrv-da-GvZ" firstAttribute="top" secondItem="mfb-Na-KAM" secondAttribute="top" id="RO8-m3-6qF"/>

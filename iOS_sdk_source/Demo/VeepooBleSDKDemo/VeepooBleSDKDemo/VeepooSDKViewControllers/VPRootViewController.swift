@@ -100,13 +100,19 @@ class VPRootViewController: UIViewController {
             in
             switch deviceConnectState {
             case .connectStateDisConnect: //断开连接
+                print(">> vpBleConnectStateChangeBlock 断开连接")
                 weakSelf.deviceDidDisConnect()
+            case .connectStateConnecting: //连接中
+                print(">> vpBleConnectStateChangeBlock 连接中")
             case .connectStateConnect://连接成功
+                print(">> vpBleConnectStateChangeBlock 连接成功")
                 _ = AppDelegate.showHUD(message: "连接成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             case .connectStateVerifyPasswordSuccess://验证密码成功
+                print(">> vpBleConnectStateChangeBlock 验证密码成功")
                 _ = AppDelegate.showHUD(message: "验证密码成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
                 weakSelf.deviceVerifyPasswordSuccessful()
             case .connectStateVerifyPasswordFailure://验证密码失败
+                print(">> vpBleConnectStateChangeBlock 验证密码失败")
                 _ = AppDelegate.showHUD(message: "验证密码失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
             case .discoverNewUpdateFirm://发现新固件
                 //可以给出用户弹窗询问用户是否前去升级，先判断是否还在连接
@@ -138,15 +144,6 @@ class VPRootViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         startRealTimeStep()
-        
-        
-//        let curveView = VPOxygenCurveView(vpOxygenCurveType: VPOxygenCurveTypeHypoxiaTime)
-//        curveView?.frame = CGRect(x: 0, y: 100, width: Width, height: 200)
-//        curveView?.oneDayOxygens = nil
-//        self.view.addSubview(curveView ?? UIView())
-//        let resultView = VPAnalysisViewFactory.createSectionTwoView();
-//        resultView?.frame = CGRect(x: 0, y: 100, width: Width, height: 500)
-//        view.addSubview(resultView!)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -182,7 +179,7 @@ class VPRootViewController: UIViewController {
             print("进入固件升级模式了")
             return
         }
-        //验证密码之后如果不是在DFU模式，第一步一定要先同步一下信息，最主要的是身高，同时App端修改个人信息后也一定要同步给设备，设置成功后在做其他事情，也可以像我这么写，因为一定会设置成功
+        //验证密码之后如果不是在DFU模式，第一步一定要先同步一下信息，最主要的是身高，同时App端修改个人信息后也一定要同步给设备，设置成功后在做其他事情，也可以像下方这么写，因为一定会设置成功
         VPPeripheralManage.shareVPPeripheralManager().veepooSDKSynchronousPersonalInformation(withStature: 175, weight: 60, birth: 1995, sex: 0, targetStep: 10000) { (settingResult) in
             
         }
@@ -204,14 +201,13 @@ class VPRootViewController: UIViewController {
         
         vpDeviceVersionLabel.text = "固件版本:" + veepooBleManager.peripheralModel.deviceVersion + "-" + String(veepooBleManager.peripheralModel.deviceNumber)
         
-        unowned let weakSelf = self
 //        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryPower { (batteryLevel) in
 //            weakSelf.vpDeviceBatteryLevelLabel.text = "电池电压:" + String(batteryLevel)
 //        }
-        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryInfo { isPercent, percenTypeIsLowBat, battery in
+        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryInfo { [weak self]isPercent, percenTypeIsLowBat, battery in
             let str = isPercent ? "电量" : "电压"
             let percentSign = isPercent ? "%" : ""
-            weakSelf.vpDeviceBatteryLevelLabel.text = "电池" + str + ":" + String(battery) + percentSign
+            self?.vpDeviceBatteryLevelLabel.text = "电池" + str + ":" + String(battery) + percentSign
         }
         
         if veepooBleManager.isDFULangMode == true {//如果处于DFULang模式则不再读取数据
@@ -228,7 +224,7 @@ class VPRootViewController: UIViewController {
 //        return
             
         
-        //验证密码成功后开始读取手环的数据（睡眠、计步、心率、血压等基本数据）
+        //验证密码成功后开始读取手环的数据（睡眠、计步、心率、血压、血氧值等基本数据）
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSdkStartReadDeviceAllData {[weak self] (readDeviceBaseDataState, totalDay, currentReadDayNumber, readCurrentDayProgress) in
             switch readDeviceBaseDataState {
             case .start: //开始读取数据
@@ -245,14 +241,14 @@ class VPRootViewController: UIViewController {
                 break
             }
         }
-        
+
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readSleepData(withDayNumber: 1) { (sleepArray) in
             guard  let sleepArray = sleepArray  else {
                 return
             }
             print(sleepArray)
         }
-        
+
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readBasicData(withDayNumber: 1, maxPackage: 1) { (oneDayBasicArray, totalPackage, currentPackage) in
             print("totalPackage:\(totalPackage) currentPackage:\(currentPackage)")
             guard  let oneDayBasicArray = oneDayBasicArray  else {
@@ -380,6 +376,16 @@ class VPRootViewController: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    /// 进入设备运动调试控制器
+    @IBAction func enterDeviceSportController(_ sender: UIButton) {
+        if veepooBleManager.isConnected == false {
+            _ = AppDelegate.showHUD(message: "设备没有连接", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        let vc = VPTestDeviceSportViewController.init()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     /// 销毁定时器操作
     func DestroyStepTimer() {
         guard let stepTimer1 = stepTimer else {
@@ -388,7 +394,6 @@ class VPRootViewController: UIViewController {
         stepTimer1.invalidate()
         stepTimer = nil
     }
-    
     
     func readOxygenData() {
        let hud: MBProgressHUD = AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: view)
@@ -432,7 +437,10 @@ class VPRootViewController: UIViewController {
 extension VPRootViewController {
     /// 测试同步时间到手环
     func testVeepooSDKSettingTime() -> Void {
-        veepooBleManager.peripheralManage.veepooSDKSettingTime(withYear: 2023, month: 08, day: 15, hour: 18, minute: 00, second: 00, timeSystem: 0) { success in
+//        veepooBleManager.peripheralManage.veepooSDKSettingTime(withYear: 2023, month: 08, day: 15, hour: 18, minute: 00, second: 00, timeSystem: 0) { success in
+//            print(success)
+//        }
+        veepooBleManager.peripheralManage.veepooSDKSettingTime { success in
             print(success)
         }
     }

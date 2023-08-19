@@ -35,13 +35,12 @@ class VPHeartAlarmController: UIViewController {
         }
         
         //心率报警功能先读取
-        unowned let weakSelf = self
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceHeartAlarm(with: VPDeviceHeartAlarmModel(), settingMode: 2, successResult: { (heartAlarmModel) in
-            _ = AppDelegate.showHUD(message: "读取成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
-            weakSelf.heartAlarmModel = heartAlarmModel!
-            weakSelf.showDeviceHeartAlarmValue()
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceHeartAlarm(with: VPDeviceHeartAlarmModel(), settingMode: 2, successResult: { [weak self](heartAlarmModel) in
+            _ = AppDelegate.showHUD(message: "读取成功", hudModel: MBProgressHUDModeText, showView: self!.view)
+            self?.heartAlarmModel = heartAlarmModel!
+            self?.showDeviceHeartAlarmValue()
         }) {
-            _ = AppDelegate.showHUD(message: "读取失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+            _ = AppDelegate.showHUD(message: "读取失败", hudModel: MBProgressHUDModeText, showView: self.view)
         }
     }
     
