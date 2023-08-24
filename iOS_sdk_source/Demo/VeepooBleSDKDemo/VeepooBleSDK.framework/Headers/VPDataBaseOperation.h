@@ -255,7 +255,8 @@
  VPDeviceTemperatrueDataDayKey: day, 日
  VPDeviceTemperatrueDataHourKey: hour, 小时
  VPDeviceTemperatrueDataMinuteKey: minute, 分钟
- VPDeviceTemperatrueDataValueKey: value, 温度值（摄氏度）
+ VPDeviceTemperatrueDataValueKey: value, 温度值（摄氏度）体温
+ VPDeviceTemperatrueDataOriginalValueKey: riginalValue, 体表温度值（摄氏度）皮肤温度
  }
 */
 + (NSArray *)veepooSDKGetDeviceTemperatureDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;

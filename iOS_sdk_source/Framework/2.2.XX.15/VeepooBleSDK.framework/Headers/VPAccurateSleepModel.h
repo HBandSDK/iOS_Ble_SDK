@@ -85,6 +85,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (int)lightSleepPercent;
 - (int)deepSleepPercent;
 
+/*
+ sleepLine 睡眠曲线的解析方法，处理成字典对象，数据结构为
+ @{
+    @"index": 0, //NSNumber类型 下标，对应第几分钟的数据
+    @"type": 0   //NSNumber类型 当前下标的睡眠状态，深睡(0)、浅睡(1)、快速眼动(2)、失眠(3)、苏醒(4)
+ }
+ 注：KH系列没有【快速眼动(2)、失眠(3)】两种状态
+ */
+- (NSArray<NSDictionary *> *)parseSleepLine;
 
 @end
 

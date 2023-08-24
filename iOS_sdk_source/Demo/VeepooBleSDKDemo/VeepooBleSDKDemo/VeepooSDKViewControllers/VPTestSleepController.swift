@@ -153,6 +153,14 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
         
         if sleepType == 1 || sleepType == 3 {//精准睡眠
             sleepTestArray = VPDataBaseOperation.veepooSDKGetAccurateSleepData(withDate: self.sleepDateLabel.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
+            guard let sleepTestArray = sleepTestArray else {
+                return
+            }
+            for sleep in sleepTestArray {
+                let sleep = sleep as! VPAccurateSleepModel
+                // 睡眠曲线解析
+                print(sleep.parseSleepLine())
+            }
         } else {
             sleepTestArray = VPDataBaseOperation.veepooSDKGetSleepData(withDate: self.sleepDateLabel.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
         }

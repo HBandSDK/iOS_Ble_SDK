@@ -73,7 +73,7 @@ class VPTemperatureViewController: UIViewController {
     // 手动测量体温
     @IBAction func manualTestDataBtnClick(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_temperatureTestStart(sender.isSelected, result: { [weak self](state, enable, progress, tempValue) in
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_temperatureTestStart(sender.isSelected, result: { [weak self](state, enable, progress, tempValue, originalTempValue) in
             if state == .unsupported {
                 _ = AppDelegate.showHUD(message: "设备不支持该功能", hudModel: MBProgressHUDModeText, showView: self!.view)
             }
@@ -82,9 +82,9 @@ class VPTemperatureViewController: UIViewController {
             }
             if state == .open {
                 if enable {
-                    print("进度:\(progress), 体温:\(Double(tempValue)/Double(10))°C")
+                    print("进度:\(progress), 体温:\(Double(tempValue)/Double(10))°C , 体表温度:\(Double(tempValue)/Double(10))°C")
                     if progress == 100 {
-                        _ = AppDelegate.showHUD(message: "测量结束，体温为:\(Double(tempValue)/Double(10))°C", hudModel: MBProgressHUDModeText, showView: self!.view)
+                        _ = AppDelegate.showHUD(message: "测量结束，体温为:\(Double(tempValue)/Double(10))°C，体表温度为:\(Double(originalTempValue)/Double(10))°C", hudModel: MBProgressHUDModeText, showView: self!.view)
                         self!.manualTestDataBtn.isSelected = false
                     }
                 }else{

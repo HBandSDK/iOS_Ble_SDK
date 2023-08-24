@@ -777,7 +777,9 @@
 ///   enable 参数表示设备是否正忙
 ///   progress表示测量进度
 ///   tempValue表示体温值的10倍(单位摄氏度)
-- (void)veepooSDK_temperatureTestStart:(BOOL)start result:(void (^)(VPTemperatureTestState state, BOOL enable, NSInteger progress, NSInteger tempValue))result;
+///   originalTempValue 表示原始温度值的10倍(单位摄氏度)，对应H Band中的体表温度
+- (void)veepooSDK_temperatureTestStart:(BOOL)start
+                                result:(void (^)(VPTemperatureTestState state, BOOL enable, NSInteger progress, NSInteger tempValue, NSInteger originalTempValue))result;
 
 
 #pragma mark - G15功能
