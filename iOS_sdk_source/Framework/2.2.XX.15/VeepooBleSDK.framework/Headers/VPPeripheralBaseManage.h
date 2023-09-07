@@ -228,6 +228,19 @@
 - (void)veepooSDKReadDeviceBatteryInfo:(void(^)(BOOL isPercent, BOOL percenTypeIsLowBat, NSUInteger battery))deviceBatteryInfoBlock;
 
 /**
+ Read the battery level of your device
+ 读取设备的电池电量 带充电状态 与 {@link: veepooSDKReadDeviceBatteryInfo:} 不可共用，如果都调用，仅本接口的block生效
+ 
+ @param deviceBatteryInfoBlock The callback return battery Info
+ 读取电量的回调函数
+  - isPercent 表示电量是否为百分比；mean device battery info is  [0, 100]] or [0, 4]
+  - chargeState 充电状态
+  - percenTypeIsLowBat 表示isPercent为真的情况下，设备是否为低电状态；mean if isPercent is true，device whether is low attery
+  - battery 电池电量，如果为百分比电量，则范围为[0, 100] 否则表示电池的格数，[0, 4]
+ */
+- (void)veepooSDKReadDeviceBatteryAndChargeInfo:(void(^)(BOOL isPercent, VPDeviceChargeState chargeState, BOOL percenTypeIsLowBat, NSUInteger battery))deviceBatteryInfoBlock;
+
+/**
  Synchronize personal information, can not be read, it is recommended to call each time you connect the bracelet or change personal information, the distance and calorie obtained from the bracelet must be converted by the number of steps and the height of the set, the bracelet default Height 175
  同步个人信息，不能读取，建议每次连接手环或者变更个人信息后都要调用，从手环获取的距离和卡路里，都要通过手环的步数和设置的身高去转换，手环默认身高175
  

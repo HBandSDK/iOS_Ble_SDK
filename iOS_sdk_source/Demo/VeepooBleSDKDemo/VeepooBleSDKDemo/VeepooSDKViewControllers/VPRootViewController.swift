@@ -204,8 +204,23 @@ class VPRootViewController: UIViewController {
 //        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryPower { (batteryLevel) in
 //            weakSelf.vpDeviceBatteryLevelLabel.text = "电池电压:" + String(batteryLevel)
 //        }
-        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryInfo { [weak self]isPercent, percenTypeIsLowBat, battery in
+        
+//        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryInfo { [weak self]isPercent, percenTypeIsLowBat, battery in
+//            let str = isPercent ? "电量" : "电压"
+//            let percentSign = isPercent ? "%" : ""
+//            self?.vpDeviceBatteryLevelLabel.text = "电池" + str + ":" + String(battery) + percentSign
+//        }
+        
+        veepooBleManager.peripheralManage.veepooSDKReadDeviceBatteryAndChargeInfo { [weak self]isPercent, chargeState, percenTypeIsLowBat, battery in
             let str = isPercent ? "电量" : "电压"
+            var state = "正常使用"
+            if chargeState == .charging {
+                state = "充电中"
+            }
+            if chargeState == .full {
+                state = "已充满"
+            }
+            print("充电状态：\(state)")
             let percentSign = isPercent ? "%" : ""
             self?.vpDeviceBatteryLevelLabel.text = "电池" + str + ":" + String(battery) + percentSign
         }
@@ -213,7 +228,7 @@ class VPRootViewController: UIViewController {
         if veepooBleManager.isDFULangMode == true {//如果处于DFULang模式则不再读取数据
             print("进入固件升级模式了")
             return
-        }        
+        }
         
         
         //获取实时计步

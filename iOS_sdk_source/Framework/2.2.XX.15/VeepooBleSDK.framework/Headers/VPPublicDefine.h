@@ -528,5 +528,11 @@ typedef NS_ENUM(NSUInteger, VPDeviceContactsOpState) {
     VPDeviceContactsOpStateFailure          // 操作失败
 };
 
-
+// 设备的充电状态
+typedef NS_ENUM(NSUInteger, VPDeviceChargeState) {
+    VPDeviceChargeStateNormal = 0,      // 设备在正常使用，没有充电
+    VPDeviceChargeStateCharging,        // 充电中
+    VPDeviceChargeStateLowPressure,     // 低压状态，已被废弃
+    VPDeviceChargeStateFull             // 充满状态，不可靠
+};
 
