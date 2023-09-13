@@ -41,8 +41,8 @@
 @property (nonatomic, strong) VPPeripheralBaseManage *peripheralManage;
 
 ///Whether the device is in DFULang mode, if the password cannot be read after verifying the password in DFULang mode
-///设备是否处于DFULang模式，如果在DFULang模式验证密码后不能读取数据
-@property (nonatomic, assign) BOOL isDFULangMode;
+///设备是否处于DFULang模式，如果在DFULang模式验证密码后不能读取数据，内部会将其它非OTA指令全部屏蔽，表现为无响应
+@property (nonatomic, assign, readonly) BOOL isDFULangMode;
 
 ///System Bluetooth status change callback
 ///系统蓝牙状态改变的回调
