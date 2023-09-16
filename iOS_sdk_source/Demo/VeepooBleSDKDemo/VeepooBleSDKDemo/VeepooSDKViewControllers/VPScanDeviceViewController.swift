@@ -80,6 +80,8 @@ class VPScanDeviceViewController: UIViewController , UITableViewDelegate , UITab
             print("验证密码成功")
         case .BleVerifyPasswordFailure://验证密码失败
             print("验证密码失败")
+        case .BleConnectTimeout://连接超时
+            print("连接超时")
         }
     }
     

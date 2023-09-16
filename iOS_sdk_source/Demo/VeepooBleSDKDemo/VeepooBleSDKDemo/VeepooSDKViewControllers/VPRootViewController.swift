@@ -78,45 +78,46 @@ class VPRootViewController: UIViewController {
         VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()
 //        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
 //        VPBleCentralManage.sharedBleManager()?.automaticConnection = false
-        
-        unowned let weakSelf = self
+                
         //监听手机系统蓝牙状态改变
-        veepooBleManager.vpBleCentralManageChangeBlock = {(centralManagerState: VPCentralManagerState) -> Void
+        veepooBleManager.vpBleCentralManageChangeBlock = {[weak self](centralManagerState: VPCentralManagerState) -> Void
             in
             switch centralManagerState {
             case .poweredOff: //系统蓝牙关闭
-                _ = AppDelegate.showHUD(message: "检测到系统蓝牙关闭", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                _ = AppDelegate.showHUD(message: "检测到系统蓝牙关闭", hudModel: MBProgressHUDModeText, showView: self!.view)
             case .poweredOn://系统蓝牙打开
-                _ = AppDelegate.showHUD(message: "检测到系统蓝牙打开", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                _ = AppDelegate.showHUD(message: "检测到系统蓝牙打开", hudModel: MBProgressHUDModeText, showView: self!.view)
             case .unknown://未知
-                _ = AppDelegate.showHUD(message: "未检测到系统蓝牙状态", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                _ = AppDelegate.showHUD(message: "未检测到系统蓝牙状态", hudModel: MBProgressHUDModeText, showView: self!.view)
             default:
-                _ = AppDelegate.showHUD(message: "其他情况", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                _ = AppDelegate.showHUD(message: "其他情况", hudModel: MBProgressHUDModeText, showView: self!.view)
             }
         }
         
         //监听设备连接状态改变
-        veepooBleManager.vpBleConnectStateChangeBlock = {(deviceConnectState: VPDeviceConnectState) -> Void
+        veepooBleManager.vpBleConnectStateChangeBlock = {[weak self](deviceConnectState: VPDeviceConnectState) -> Void
             in
             switch deviceConnectState {
             case .connectStateDisConnect: //断开连接
                 print(">> vpBleConnectStateChangeBlock 断开连接")
-                weakSelf.deviceDidDisConnect()
+                self!.deviceDidDisConnect()
             case .connectStateConnecting: //连接中
                 print(">> vpBleConnectStateChangeBlock 连接中")
             case .connectStateConnect://连接成功
                 print(">> vpBleConnectStateChangeBlock 连接成功")
-                _ = AppDelegate.showHUD(message: "连接成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                _ = AppDelegate.showHUD(message: "连接成功", hudModel: MBProgressHUDModeText, showView: self!.view)
             case .connectStateVerifyPasswordSuccess://验证密码成功
                 print(">> vpBleConnectStateChangeBlock 验证密码成功")
-                _ = AppDelegate.showHUD(message: "验证密码成功", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
-                weakSelf.deviceVerifyPasswordSuccessful()
+                _ = AppDelegate.showHUD(message: "验证密码成功", hudModel: MBProgressHUDModeText, showView: self!.view)
+                self!.deviceVerifyPasswordSuccessful()
             case .connectStateVerifyPasswordFailure://验证密码失败
                 print(">> vpBleConnectStateChangeBlock 验证密码失败")
-                _ = AppDelegate.showHUD(message: "验证密码失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                _ = AppDelegate.showHUD(message: "验证密码失败", hudModel: MBProgressHUDModeText, showView: self!.view)
             case .discoverNewUpdateFirm://发现新固件
                 //可以给出用户弹窗询问用户是否前去升级，先判断是否还在连接
-                _ = AppDelegate.showHUD(message: "发现新固件", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                _ = AppDelegate.showHUD(message: "发现新固件", hudModel: MBProgressHUDModeText, showView: self!.view)
+            case .connectStateTimeout:// 连接超时
+                _ = AppDelegate.showHUD(message: "连接超时", hudModel: MBProgressHUDModeText, showView: self!.view)
             }
         }
         VPPeripheralManage.shareVPPeripheralManager()?.receiveDeviceSOSCommand = {() -> Void in
