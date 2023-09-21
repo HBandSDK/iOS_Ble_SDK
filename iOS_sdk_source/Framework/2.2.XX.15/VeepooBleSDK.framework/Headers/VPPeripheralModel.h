@@ -83,7 +83,7 @@
 //亮屏时长类型0代表没有，1代表有此功能
 @property (nonatomic, assign) NSUInteger screenDurationType;
 
-//设备ANCS信息提醒包含的功能数据结构如AD02010202000102020000000000000000000000共计20个字节的Data，前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表来电、短信、wechat、QQ、Sina、Facebook、Twitter、Flickr、LinkedIn、whatsApp、Line、Instagram、Snapchat、Skype、钉钉、企业微信，后边的带开发，每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒，最后一位是其他应用（除了上述之外的其他有通知的App），图标显示默认公共图标，0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
+//设备ANCS信息提醒包含的功能数据结构如AD02010202000102020000000000000000000000共计20个字节的Data，前两个字节是头和设置及读取，从第三个字节，即下标为2开始，依次代表来电、短信、wechat、QQ、Sina、Facebook、X(原Twitter)、Flickr、LinkedIn、whatsApp、Line、Instagram、Snapchat、Skype、钉钉、企业微信，后边的带开发，每个位置0代表没有此功能，1代表开启此提醒，2代表关闭此提醒，最后一位是其他应用（除了上述之外的其他有通知的App），图标显示默认公共图标，0代表没有此功能，1代表开启此提醒，2代表关闭此提醒
 // 下标19的高4位表示包号（第一包为0x00） 低4位表示 其它， 如果打开其它，则下标19应为0x01(高4位:0b0000,低4位:0b0001)
 @property (nonatomic, strong) NSData *deviceAncsData;
 

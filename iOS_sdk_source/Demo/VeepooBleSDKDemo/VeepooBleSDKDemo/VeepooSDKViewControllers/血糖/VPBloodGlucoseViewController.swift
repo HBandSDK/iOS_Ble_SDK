@@ -11,13 +11,21 @@ import UIKit
 class VPBloodGlucoseViewController: UIViewController {
     
     @IBOutlet weak var supportFunctionLabel: UILabel!
-    @IBOutlet weak var privateModelLabel: UILabel!
+    
+    @IBOutlet weak var privateSingleModelLabel: UILabel!
+    @IBOutlet weak var privateMultiModelLabel: UILabel!
+    
     @IBOutlet weak var readDataBtn: UIButton!
     @IBOutlet weak var manualTestDataBtn: UIButton!
-    @IBOutlet weak var privateModelBtn: UIButton!
+    
+    @IBOutlet weak var privateSingleModelBtn: UIButton!
+    @IBOutlet weak var privateMultiModelBtn: UIButton!
     
     var support: Bool = false
-    var privateModelSupport: Bool = false
+    /// 是否支持血糖单校准
+    var privateSingleModelSupport: Bool = false
+    /// 是否支持血糖多校准
+    var privateMultiModelSupport: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +33,17 @@ class VPBloodGlucoseViewController: UIViewController {
         support = VPBleCentralManage.sharedBleManager()?.peripheralModel.bloodGlucoseType != 0
         supportFunctionLabel.text = support ? "是" : "否"
         
-        privateModelSupport = VPBleCentralManage.sharedBleManager()?.peripheralModel.bloodGlucoseType == 2
-        privateModelLabel.text = privateModelSupport ? "是" : "否"
-        privateModelBtn.isEnabled = privateModelSupport
+        let bloodGlucoseType = VPBleCentralManage.sharedBleManager()?.peripheralModel.bloodGlucoseType
+        
+        // 单校准
+        privateSingleModelSupport = bloodGlucoseType == 2
+        privateSingleModelLabel.text = privateSingleModelSupport ? "是" : "否"
+//        privateSingleModelBtn.isEnabled = privateSingleModelSupport
+        
+        // 多校准
+        privateMultiModelSupport = bloodGlucoseType == 4
+        privateMultiModelLabel.text = privateMultiModelSupport ? "是" : "否"
+        privateMultiModelBtn.isEnabled = privateMultiModelSupport
     }
     
     @IBAction func readDataBtnAction(_ sender: UIButton) {
@@ -70,7 +86,8 @@ class VPBloodGlucoseViewController: UIViewController {
     }
     
     
-    @IBAction func privateModelBtnAction(_ sender: Any) {
+    @IBAction func privateSingleModelBtnAction(_ sender: Any) {
+//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBloodGlucoseMultiPersonal(withOpCode: 2, model: nil, open: true, result: nil)
         // 设置 setting
 //        let testValue = 9.13
 //        VPBleCentralManage.sharedBleManager()?.peripheralManage
@@ -85,5 +102,14 @@ class VPBloodGlucoseViewController: UIViewController {
         _ = AppDelegate.showHUD(message: "读取 \(success), \(value), \(isOpen)", hudModel: MBProgressHUDModeText, showView: self!.view)
         })
     }
+        
+    
+    @IBAction func privateMultiModelBtnAction(_ sender: Any) {
+        let model:VPMultiBloodGlucoseModel = .init()
+        model.beforeBreakfast = VPMultiBloodGlucoseItemModel(hour: 8, minute: 0, value: 8)
+//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBloodGlucoseMultiPersonal(withOpCode: 1, model: model, open: false, result: nil)
+//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBloodGlucoseMultiPersonal(withOpCode: 2, model: nil, open: true, result: nil)
+    }
     
 }
+

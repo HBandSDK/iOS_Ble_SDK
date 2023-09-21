@@ -37,7 +37,7 @@
 #import "VPDeviceContactsModel.h"
 #import "VPDeviceMessageTypeModel.h"
 
-@class JL_Assist;
+@class JL_Assist,VPMultiBloodGlucoseModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
 //Connected device model 连接的设备模型

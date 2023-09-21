@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,8 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VPBloodGlucoseViewController" customModule="VeepooBleSDKDemo" customModuleProvider="target">
             <connections>
                 <outlet property="manualTestDataBtn" destination="Ijk-tc-Dg4" id="24d-4V-m56"/>
-                <outlet property="privateModelBtn" destination="HWF-he-BRd" id="SEj-If-siK"/>
-                <outlet property="privateModelLabel" destination="d0A-Fy-7z2" id="Zho-Yd-nGo"/>
+                <outlet property="privateMultiModelBtn" destination="kZJ-qz-IeY" id="PG2-bV-wPD"/>
+                <outlet property="privateMultiModelLabel" destination="X93-Tm-khM" id="tEr-bh-d6i"/>
+                <outlet property="privateSingleModelBtn" destination="HWF-he-BRd" id="Z9j-xn-RSS"/>
+                <outlet property="privateSingleModelLabel" destination="d0A-Fy-7z2" id="9zR-2X-VJf"/>
                 <outlet property="readDataBtn" destination="dSK-4d-Xel" id="EBC-Ex-mYv"/>
                 <outlet property="supportFunctionLabel" destination="YJQ-ba-DEB" id="scR-wy-AMZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -43,7 +45,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dSK-4d-Xel">
-                    <rect key="frame" x="19" y="177" width="182" height="44"/>
+                    <rect key="frame" x="19" y="226" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="182" id="F9m-7S-lNe"/>
@@ -62,7 +64,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijk-tc-Dg4">
-                    <rect key="frame" x="20" y="229" width="182" height="44"/>
+                    <rect key="frame" x="20" y="278" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Ibx-ff-Aas"/>
@@ -81,26 +83,25 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWF-he-BRd">
-                    <rect key="frame" x="20" y="281" width="182" height="44"/>
+                    <rect key="frame" x="20" y="330" width="182" height="44"/>
                     <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Fb1-G0-V94"/>
                         <constraint firstAttribute="width" constant="182" id="ePu-Ef-hm3"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="vyk-Eh-mt3"/>
                     </constraints>
-                    <state key="normal" title="血糖校准">
+                    <state key="normal" title="血糖单校准">
                         <color key="titleColor" systemColor="systemBlueColor"/>
                     </state>
-                    <state key="disabled" title="不支持校准">
+                    <state key="disabled" title="不支持单校准">
                         <color key="titleColor" systemColor="systemGray2Color"/>
                     </state>
-                    <state key="selected" title="关闭手动测量"/>
                     <connections>
-                        <action selector="privateModelBtnAction:" destination="-1" eventType="touchUpInside" id="6Ol-Dc-rPb"/>
+                        <action selector="privateSingleModelBtnAction:" destination="-1" eventType="touchUpInside" id="UDF-eG-mIK"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否支持血糖校准:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Esa-m2-GPA">
-                    <rect key="frame" x="20" y="114" width="143.5" height="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否支持血糖单校准:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Esa-m2-GPA">
+                    <rect key="frame" x="20" y="116" width="161" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="RUj-Fm-tig"/>
                     </constraints>
@@ -109,7 +110,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="否" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0A-Fy-7z2">
-                    <rect key="frame" x="183.5" y="114" width="17.5" height="40"/>
+                    <rect key="frame" x="201" y="116" width="17.5" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="qcE-u6-jZQ"/>
                     </constraints>
@@ -117,11 +118,48 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否支持血糖多校准:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0z5-8D-Fg6">
+                    <rect key="frame" x="20" y="166" width="161" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Xfg-Bp-bho"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="否" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X93-Tm-khM">
+                    <rect key="frame" x="201" y="166" width="17.5" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="3aU-nc-qAj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kZJ-qz-IeY">
+                    <rect key="frame" x="20" y="382" width="182" height="44"/>
+                    <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="41S-qb-4vE"/>
+                        <constraint firstAttribute="width" constant="182" id="itU-jb-SN3"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="smW-uW-LJF"/>
+                    </constraints>
+                    <state key="normal" title="血糖多校准">
+                        <color key="titleColor" systemColor="systemBlueColor"/>
+                    </state>
+                    <state key="disabled" title="不支持多校准">
+                        <color key="titleColor" systemColor="systemGray2Color"/>
+                    </state>
+                    <connections>
+                        <action selector="privateMultiModelBtnAction:" destination="-1" eventType="touchUpInside" id="oac-HT-h25"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="dSK-4d-Xel" firstAttribute="top" secondItem="Esa-m2-GPA" secondAttribute="bottom" constant="23" id="1eg-P3-mUg"/>
+                <constraint firstItem="kZJ-qz-IeY" firstAttribute="leading" secondItem="HWF-he-BRd" secondAttribute="leading" id="2Kz-hc-bLx"/>
+                <constraint firstItem="0z5-8D-Fg6" firstAttribute="height" secondItem="Esa-m2-GPA" secondAttribute="height" id="4bg-UU-Dde"/>
                 <constraint firstItem="eKY-uQ-cOL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="18" id="54l-bQ-LV1"/>
                 <constraint firstItem="d0A-Fy-7z2" firstAttribute="leading" secondItem="Esa-m2-GPA" secondAttribute="trailing" constant="20" id="7W2-gq-yAo"/>
                 <constraint firstItem="d0A-Fy-7z2" firstAttribute="centerY" secondItem="Esa-m2-GPA" secondAttribute="centerY" id="7ps-94-6bm"/>
@@ -130,11 +168,17 @@
                 <constraint firstItem="YJQ-ba-DEB" firstAttribute="centerY" secondItem="eKY-uQ-cOL" secondAttribute="centerY" id="Ryk-7e-Wox"/>
                 <constraint firstItem="HWF-he-BRd" firstAttribute="top" secondItem="Ijk-tc-Dg4" secondAttribute="bottom" constant="8" symbolic="YES" id="U19-vC-FCy"/>
                 <constraint firstItem="eKY-uQ-cOL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Uzc-iq-Rlb"/>
+                <constraint firstItem="dSK-4d-Xel" firstAttribute="top" secondItem="0z5-8D-Fg6" secondAttribute="bottom" constant="20" id="ad9-lb-P9m"/>
+                <constraint firstItem="0z5-8D-Fg6" firstAttribute="leading" secondItem="Esa-m2-GPA" secondAttribute="leading" id="aum-HE-dru"/>
+                <constraint firstItem="X93-Tm-khM" firstAttribute="centerY" secondItem="0z5-8D-Fg6" secondAttribute="centerY" id="bXx-kS-n1x"/>
+                <constraint firstItem="X93-Tm-khM" firstAttribute="leading" secondItem="0z5-8D-Fg6" secondAttribute="trailing" constant="20" id="cPm-ZK-0Ob"/>
                 <constraint firstItem="Ijk-tc-Dg4" firstAttribute="top" secondItem="dSK-4d-Xel" secondAttribute="bottom" constant="8" symbolic="YES" id="dnv-N9-X9D"/>
+                <constraint firstItem="kZJ-qz-IeY" firstAttribute="top" secondItem="HWF-he-BRd" secondAttribute="bottom" constant="8" symbolic="YES" id="kM5-I8-Up0"/>
                 <constraint firstItem="Esa-m2-GPA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ocT-LA-K0d"/>
-                <constraint firstItem="Esa-m2-GPA" firstAttribute="top" secondItem="eKY-uQ-cOL" secondAttribute="bottom" constant="8" symbolic="YES" id="p47-Zv-C5I"/>
+                <constraint firstItem="Esa-m2-GPA" firstAttribute="top" secondItem="eKY-uQ-cOL" secondAttribute="bottom" constant="10" id="p47-Zv-C5I"/>
                 <constraint firstItem="dSK-4d-Xel" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="19" id="x9x-1U-Qrx"/>
                 <constraint firstItem="Ijk-tc-Dg4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="yil-d7-Bet"/>
+                <constraint firstItem="0z5-8D-Fg6" firstAttribute="top" secondItem="Esa-m2-GPA" secondAttribute="bottom" constant="10" id="ztr-x0-D3q"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="153.34821428571428"/>
         </view>

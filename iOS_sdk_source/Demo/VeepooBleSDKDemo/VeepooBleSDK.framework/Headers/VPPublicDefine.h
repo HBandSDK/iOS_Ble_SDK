@@ -99,14 +99,14 @@ typedef NS_ENUM(NSInteger, VPReadDeviceBaseDataState) {//读取设备基本数�
 
 #pragma mark - 基本功能设置的状态
 typedef NS_ENUM(NSInteger, VPSettingMessageSwitchType) {//关于来电提醒的类型选择
-    VPSettingUnkonw = 1, //未知类型
-    VPSettingCall = 2, //来电设置
-    VPSettingSMS,//短信设置
+    VPSettingUnkonw = 1,                //未知类型
+    VPSettingCall = 2,                  //来电设置
+    VPSettingSMS,                       //短信设置
     VPSettingWechat,
     VPSettingQQ,
     VPSettingSina,
     VPSettingFaceBook,
-    VPSettingTwitter,
+    VPSettingTwitter,                   //X(原Twitter)
     VPSettingFlickr,
     VPSettingLinkedln,
     VPSettingwhatsapp,

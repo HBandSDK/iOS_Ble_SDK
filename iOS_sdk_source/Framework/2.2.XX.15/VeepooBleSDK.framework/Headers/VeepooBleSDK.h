@@ -39,6 +39,7 @@
 #import "VPOxygenDisconnectTestModel.h"
 #import "VPPttValueModel.h"
 #import "VPECGTestResutHandle.h"
+#import "VPMultiBloodGlucoseModel.h"
 
 #import "VPSyncPersonalInfo.h"
 
