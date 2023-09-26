@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否已开启私人模式
 @property (nonatomic, assign) BOOL open;
-/// 早餐前
+/// 早餐前 只能设置在凌晨2:00点到12:00点之间
 @property (nonatomic, strong) VPMultiBloodGlucoseItemModel *beforeBreakfast;
 /// 早餐后
 @property (nonatomic, strong) VPMultiBloodGlucoseItemModel *afterBreakfast;
@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) VPMultiBloodGlucoseItemModel *beforeDinner;
 /// 晚餐后
 @property (nonatomic, strong) VPMultiBloodGlucoseItemModel *afterDinner;
+
 
 @end
 

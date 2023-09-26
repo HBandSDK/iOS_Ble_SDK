@@ -520,7 +520,8 @@ typedef NS_ENUM(NSUInteger, VPDeviceContactsOpCode) {
     VPDeviceContactsOpCodeRead = 0,    // 读取
     VPDeviceContactsOpCodeAdd,         // 添加
     VPDeviceContactsOpCodeDelete,      // 删除
-    VPDeviceContactsOpCodeMove         // 移动
+    VPDeviceContactsOpCodeMove,        // 移动
+    VPDeviceContactsOpCodeEdit         // 编辑 操作是否开启SOS
 };
 
 // 通讯录操作状态
@@ -529,6 +530,12 @@ typedef NS_ENUM(NSUInteger, VPDeviceContactsOpState) {
     VPDeviceContactsOpStateReading,         // 读取中
     VPDeviceContactsOpStateComplete,        // 操作成功
     VPDeviceContactsOpStateFailure          // 操作失败
+};
+
+// SOS的操作类型
+typedef NS_ENUM(NSUInteger, VPSOSOperationType) {
+    VPSOSOperationTypeSetting,     // 设置
+    VPSOSOperationTypeRead         // 读取
 };
 
 // 设备的充电状态

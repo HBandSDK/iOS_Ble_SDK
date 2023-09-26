@@ -38,7 +38,7 @@ class VPBloodGlucoseViewController: UIViewController {
         // 单校准
         privateSingleModelSupport = bloodGlucoseType == 2
         privateSingleModelLabel.text = privateSingleModelSupport ? "是" : "否"
-//        privateSingleModelBtn.isEnabled = privateSingleModelSupport
+        privateSingleModelBtn.isEnabled = privateSingleModelSupport
         
         // 多校准
         privateMultiModelSupport = bloodGlucoseType == 4
@@ -87,7 +87,6 @@ class VPBloodGlucoseViewController: UIViewController {
     
     
     @IBAction func privateSingleModelBtnAction(_ sender: Any) {
-//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBloodGlucoseMultiPersonal(withOpCode: 2, model: nil, open: true, result: nil)
         // 设置 setting
 //        let testValue = 9.13
 //        VPBleCentralManage.sharedBleManager()?.peripheralManage
@@ -105,10 +104,27 @@ class VPBloodGlucoseViewController: UIViewController {
         
     
     @IBAction func privateMultiModelBtnAction(_ sender: Any) {
-        let model:VPMultiBloodGlucoseModel = .init()
-        model.beforeBreakfast = VPMultiBloodGlucoseItemModel(hour: 8, minute: 0, value: 8)
-//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBloodGlucoseMultiPersonal(withOpCode: 1, model: model, open: false, result: nil)
-//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBloodGlucoseMultiPersonal(withOpCode: 2, model: nil, open: true, result: nil)
+        // read 读取
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBloodGlucoseMultiPersonal(withOpCode: 2, model: nil) { success, model in
+            if success {
+                guard let model = model else { return }
+                print(model)
+            }
+        }
+        
+        // setting 设置
+//        let model:VPMultiBloodGlucoseModel = .init()
+//        model.open = true
+//        model.beforeBreakfast = VPMultiBloodGlucoseItemModel(hour: 8, minute: 0, value: 8)
+//        // 检查传入的对象是否合理
+////        if model.checkAllTimeIsVaild() {
+//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKBloodGlucoseMultiPersonal(withOpCode: 1, model: model) { success, model in
+//            if success {
+//                guard let model = model else { return }
+//                print(model)
+//            }
+//        }
+////        }
     }
     
 }

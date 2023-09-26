@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, strong) NSString *phoneNumber;
 
+/// 是不是SOS联系人
+@property (nonatomic, assign) BOOL isSOS;
+
 @end
 
 NS_ASSUME_NONNULL_END

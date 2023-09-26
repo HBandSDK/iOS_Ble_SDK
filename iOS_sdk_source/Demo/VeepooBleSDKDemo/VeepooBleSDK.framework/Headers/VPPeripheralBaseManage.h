@@ -351,6 +351,14 @@
                                             toID:(int)toID
                                      resultBlock:(void(^)(VPDeviceContactsOpState state, NSArray<VPDeviceContactsModel *> *contactModels))resultBlock;
 
+/// 通讯录的SOS电话拨打次数 Number of SOS calls made in the address book
+/// @param opCode 操作类型  读取/设置
+/// @param times 次数，请自行限制在 resultBlock 读取返回的[timesMin, timesMax]内，仅设置时有效
+/// @param resultBlock 结果回调，设置操作时 返回的timesMin和timesMax为0
+- (void)veepooSDKSettingDeviceContactsSOSInfoWithOpCode:(VPSOSOperationType)opCode
+                                                  times:(int)times
+                                            resultBlock:(void(^)(VPDeviceContactsOpState state, int times, int timesMin, int timesMax))resultBlock;
+
 #pragma mark - User turn off the operation 用户开启关闭的操作
 /**
  Set and monitor the camera, after entering the camera mode, you can listen to the user's camera action through the callback. After listening to the callback of the user VPCameraTypePhoto to start taking photos, you can call the system camera to take photos and save.
@@ -445,6 +453,14 @@
                                            open:(BOOL)open
                                          result:(void(^)(BOOL success, CGFloat privateValue, NSInteger model))result;
 
+/// 血糖多校准的设置/读取，与 {@link: veepooSDKBloodGlucosePersonalWithOpCode:value:open:result:} 互斥
+/// 通过 bloodGlucoseType 判断是否支持多校准，多校准有6个时间段的血糖参考值
+/// @param opCode 1为设置 2为读取
+/// @param model 血糖多校准的模型
+/// @param result 回调函数
+- (void)veepooSDKBloodGlucoseMultiPersonalWithOpCode:(NSInteger)opCode
+                                               model:(VPMultiBloodGlucoseModel *)model
+                                              result:(void(^)(BOOL success, VPMultiBloodGlucoseModel * model))result;
 
 //Send the mobile phone pairing command. When the device is successfully connected, the system will have a pop-up window for the user to select whether the device is paired with the mobile phone. If the user chooses to cancel, if you want to pair with the mobile phone during the connection process, you can send this command. There is no callback for this command. When the transmission is successful, the system will pop up the window to the user. Note: If the device and phone are already configured with this command, it is invalid.
 //发送与手机配对指令，当设备连接成功后，系统会有一个弹窗让用户选择设备是否与手机配对，如果用户选择了取消，如果在连接过程中想与手机配对，则发送这个命令就可以了，此命令没有回调，当发送成功后系统会有弹窗给用户, 注意：如果设备和手机已经配对此命令无效

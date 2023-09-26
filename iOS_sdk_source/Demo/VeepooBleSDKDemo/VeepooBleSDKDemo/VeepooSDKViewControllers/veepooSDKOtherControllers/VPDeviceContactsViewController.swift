@@ -13,6 +13,8 @@ class VPDeviceContactsViewController: UIViewController {
     
     private var tableView : UITableView!
     private var mArr:[VPDeviceContactsModel] = []
+    
+    private var supportSOS:Bool!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +22,24 @@ class VPDeviceContactsViewController: UIViewController {
         view.backgroundColor = .white
         addSubViews()
         
-        let unsupported = VPBleCentralManage.sharedBleManager().peripheralModel.contactType == 0
+        let contactType = VPBleCentralManage.sharedBleManager().peripheralModel.contactType
+                
+        let unsupported = contactType == 0
         if unsupported {
             _ = AppDelegate.showHUD(message: "设备不支持该功能", hudModel: MBProgressHUDModeText, showView: self.view)
             return
         }
         
+        supportSOS = contactType == 2
+        
         commonFunc(opCode: .read, opModel: nil, toID: 0)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(add))
+        let addItem:UIBarButtonItem = .init(barButtonSystemItem: .add, target: self, action: #selector(add))
+        if supportSOS {
+            let sosItem:UIBarButtonItem = .init(title: "SOS", style: .plain, target: self, action: #selector(readSOSInfo))
+            navigationItem.rightBarButtonItems = [addItem, sosItem]
+        } else {
+            navigationItem.rightBarButtonItems = [addItem]
+        }
     }
     
     @objc func add() {
@@ -35,6 +47,7 @@ class VPDeviceContactsViewController: UIViewController {
         model.nickName = "test"
         model.phoneNumber = "10086"
         model.contactID = Int32(mArr.count + 1)
+        model.isSOS = true
         commonFunc(opCode: .add, opModel: model, toID: 0)
     }
     
@@ -64,6 +77,27 @@ class VPDeviceContactsViewController: UIViewController {
             }
         }
     }
+    
+    @objc func changeSOSContact(_ indexPath: IndexPath, _ didOpen: Bool) {
+        let model = mArr[indexPath.row]
+        model.isSOS = didOpen
+        model.phoneNumber = "12345"
+        commonFunc(opCode: .edit, opModel: model, toID: 0)
+    }
+    
+    @objc func readSOSInfo() {
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceContactsSOSInfo(withOpCode: .read, times: 0) { (state, curTime, timesMin, timesMax) in
+            if state == .complete {
+                print("curTime:\(curTime), timesMin:\(timesMin), timesMax:\(timesMax)")
+            }
+        }
+        
+//        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceContactsSOSInfo(withOpCode: .setting, times: 2) { (state, curTime, timesMin, timesMax) in
+//            if state == .complete {
+//                print("curTime:\(curTime), timesMin:\(timesMin), timesMax:\(timesMax)")
+//            }
+//        }
+    }
 }
 
 extension VPDeviceContactsViewController {
@@ -72,6 +106,7 @@ extension VPDeviceContactsViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isEditing = true
+        tableView.register(UINib(nibName: "VPContactCell", bundle: Bundle.main), forCellReuseIdentifier: CellId)
         view.addSubview(tableView)
     }
 }
@@ -83,14 +118,22 @@ extension VPDeviceContactsViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: CellId)
-        if cell == nil {
-            cell = UITableViewCell(style: .subtitle, reuseIdentifier: CellId)
-        }
+        let cell:VPContactCell = tableView.dequeueReusableCell(withIdentifier: CellId, for: indexPath) as! VPContactCell
         let model = mArr[indexPath.row]
-        cell?.textLabel?.text = model.nickName
-        cell?.detailTextLabel?.text = model.phoneNumber
-        return cell!
+        cell.nickNameLabel.text = model.nickName
+        cell.phoneNumberLabel.text = model.phoneNumber
+        cell.sosSwitch.isHidden = !supportSOS
+        cell.sosLabel.isHidden = !supportSOS
+        if supportSOS {
+            cell.sosSwitch.isOn = model.isSOS
+            cell.output = { [weak self] didOpen in
+                guard let weakSelf = self else {
+                    return
+                }
+                weakSelf.changeSOSContact(indexPath, didOpen)
+            }
+        }
+        return cell
     }
     
     // 移动

@@ -166,7 +166,7 @@
 // AGPS功能 1代表有 0表示没有
 @property (nonatomic, assign) NSUInteger agpsFunction;
 
-//通讯录类型 1代表有 0表示没有
+//通讯录类型 1代表有 0表示没有 2表示有SOS功能
 @property (nonatomic, assign) NSUInteger contactType;
 
 @property (nonatomic, strong) VPDialModel *dialModel;
@@ -177,7 +177,7 @@
 //体温功能 0表示没有 1有体温但无自动测量 2有体温且有自动测量
 @property (nonatomic, assign) NSUInteger temperatureType;
 
-//血糖功能 1代表有 0表示没有
+//血糖功能 1代表有 0表示没有 2有血糖且有校准 3仅有校准 4有多校准
 @property (nonatomic, assign) NSUInteger bloodGlucoseType;
 
 //设备的BT信息，内部使用
