@@ -40,6 +40,9 @@
 #import "VPPttValueModel.h"
 #import "VPECGTestResutHandle.h"
 #import "VPMultiBloodGlucoseModel.h"
+#import "VPBodyCompositionValueModel.h"
+#import "VPBloodAnalysisResultModel.h"
+#import "VPDailyBloodAnalysisModel.h"
 
 #import "VPSyncPersonalInfo.h"
 

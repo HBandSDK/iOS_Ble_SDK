@@ -93,6 +93,8 @@
 		FE722C0A25F5D41900EA675E /* VPFindDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */; };
 		FE722C2A25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */; };
 		FE722C2B25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */; };
+		FE89AA1D2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89AA1B2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift */; };
+		FE89AA1E2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89AA1C2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift */; };
 		FE8E3A0026F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E39FE26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift */; };
 		FE8E3A0126F2E3BC00065ADB /* VPG15AdvertisementDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8E39FF26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.xib */; };
 		FE8E3A0626F2E4A800065ADB /* VPG15DialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E3A0426F2E4A800065ADB /* VPG15DialViewController.swift */; };
@@ -228,6 +230,8 @@
 		FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPFindDeviceViewController.xib; sourceTree = "<group>"; };
 		FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingDeviceGPSViewController.swift; sourceTree = "<group>"; };
 		FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingDeviceGPSViewController.xib; sourceTree = "<group>"; };
+		FE89AA1B2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBloodAnalysisViewController.swift; sourceTree = "<group>"; };
+		FE89AA1C2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBodyCompositionViewController.swift; sourceTree = "<group>"; };
 		FE8E39FE26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPG15AdvertisementDataViewController.swift; sourceTree = "<group>"; };
 		FE8E39FF26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPG15AdvertisementDataViewController.xib; sourceTree = "<group>"; };
 		FE8E3A0426F2E4A800065ADB /* VPG15DialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPG15DialViewController.swift; sourceTree = "<group>"; };
@@ -331,49 +335,51 @@
 		67640D501E56CF2E008D9D71 /* veepooSDKOtherControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FED9CC842754C80300E54DC8 /* RRIntervalData */,
 				FE8E39F926F2E1BD00065ADB /* G15 */,
+				FED9CC842754C80300E54DC8 /* RRIntervalData */,
 				FE8E3A0D26F48EEA00065ADB /* TextAlarmClock */,
 				67CA7E311EF386F6000D8745 /* veepooSDKOtherSubControllers */,
-				67640D511E56D248008D9D71 /* VPSyncPersonalInformationController.swift */,
-				67640D521E56D248008D9D71 /* VPSyncPersonalInformationController.xib */,
+				67640D5E1E57E346008D9D71 /* VPAlarmClockSettingController.swift */,
+				FE89AA1B2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift */,
 				67640D551E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift */,
 				67640D561E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib */,
-				67640D591E56EFA9008D9D71 /* VPLongSeatSettingController.swift */,
-				67640D5A1E56EFA9008D9D71 /* VPLongSeatSettingController.xib */,
-				67FC22AF1E67FC660029DED3 /* VPRaiseHandSettingController.swift */,
-				67FC22B01E67FC660029DED3 /* VPRaiseHandSettingController.xib */,
-				67640D5E1E57E346008D9D71 /* VPAlarmClockSettingController.swift */,
-				6783689F1E5814A600C3BCB8 /* VPHeartAlarmController.swift */,
-				678368A01E5814A600C3BCB8 /* VPHeartAlarmController.xib */,
-				672E084A1E5EC2FE00F60750 /* VPTakePhotoController.swift */,
-				672E084B1E5EC2FE00F60750 /* VPTakePhotoController.xib */,
-				67FC22B31E6810F70029DED3 /* VPModifyPasswordController.swift */,
-				67FC22B41E6810F70029DED3 /* VPModifyPasswordController.xib */,
-				6707B09F1E72504A00207523 /* VPSettingBrightController.swift */,
-				6707B0A01E72504A00207523 /* VPSettingBrightController.xib */,
-				679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */,
+				FE89AA1C2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift */,
 				67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */,
 				67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */,
 				67CA3B6D1EF363C100203D20 /* VPDeviceNewAlarmController.swift */,
-				67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */,
-				67A4D3491F71101A00DBB53E /* VPSettingScreenStyleController.xib */,
-				6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */,
-				6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */,
-				6757E2822196D1BD0019E8B4 /* VPTapTestViewController.swift */,
-				6757E2832196D1BD0019E8B4 /* VPTapTestViewController.xib */,
-				FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */,
-				FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */,
-				FE6EE04425C1464800B67C70 /* VPMarketDialViewController.swift */,
-				FE6EE04525C1464800B67C70 /* VPMarketDialViewController.xib */,
-				FE645F022A90D180009CCD50 /* VPFindPhoneViewController.swift */,
-				FE645F032A90D180009CCD50 /* VPFindPhoneViewController.xib */,
 				FE722C0725F5D41900EA675E /* VPFindDeviceViewController.swift */,
 				FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */,
-				FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */,
-				FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */,
+				FE645F022A90D180009CCD50 /* VPFindPhoneViewController.swift */,
+				FE645F032A90D180009CCD50 /* VPFindPhoneViewController.xib */,
+				6783689F1E5814A600C3BCB8 /* VPHeartAlarmController.swift */,
+				678368A01E5814A600C3BCB8 /* VPHeartAlarmController.xib */,
+				67640D591E56EFA9008D9D71 /* VPLongSeatSettingController.swift */,
+				67640D5A1E56EFA9008D9D71 /* VPLongSeatSettingController.xib */,
 				FE27F0EB264A1DD50080CDA1 /* VPMapGPSTagViewController.swift */,
 				FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */,
+				FE6EE04425C1464800B67C70 /* VPMarketDialViewController.swift */,
+				FE6EE04525C1464800B67C70 /* VPMarketDialViewController.xib */,
+				67FC22B31E6810F70029DED3 /* VPModifyPasswordController.swift */,
+				67FC22B41E6810F70029DED3 /* VPModifyPasswordController.xib */,
+				FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */,
+				FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */,
+				67FC22AF1E67FC660029DED3 /* VPRaiseHandSettingController.swift */,
+				67FC22B01E67FC660029DED3 /* VPRaiseHandSettingController.xib */,
+				6707B09F1E72504A00207523 /* VPSettingBrightController.swift */,
+				6707B0A01E72504A00207523 /* VPSettingBrightController.xib */,
+				FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */,
+				FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */,
+				679EA6B11EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift */,
+				6786EDBD214B620C00E03882 /* VPSettingScreenDurationController.swift */,
+				6786EDBE214B620C00E03882 /* VPSettingScreenDurationController.xib */,
+				67A4D3481F71101A00DBB53E /* VPSettingScreenStyleController.swift */,
+				67A4D3491F71101A00DBB53E /* VPSettingScreenStyleController.xib */,
+				67640D511E56D248008D9D71 /* VPSyncPersonalInformationController.swift */,
+				67640D521E56D248008D9D71 /* VPSyncPersonalInformationController.xib */,
+				672E084A1E5EC2FE00F60750 /* VPTakePhotoController.swift */,
+				672E084B1E5EC2FE00F60750 /* VPTakePhotoController.xib */,
+				6757E2822196D1BD0019E8B4 /* VPTapTestViewController.swift */,
+				6757E2832196D1BD0019E8B4 /* VPTapTestViewController.xib */,
 				FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */,
 				FEFA5485266B48D50071E61B /* VPTemperatureViewController.xib */,
 			);
@@ -718,8 +724,10 @@
 				6757E2842196D1BD0019E8B4 /* VPTapTestViewController.swift in Sources */,
 				FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */,
 				679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */,
+				FE89AA1E2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift in Sources */,
 				FE722C0925F5D41900EA675E /* VPFindDeviceViewController.swift in Sources */,
 				FE6EE04625C1464800B67C70 /* VPMarketDialViewController.swift in Sources */,
+				FE89AA1D2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift in Sources */,
 				67B889EC1EFBAFBE00214EC5 /* ZCUIView+setRect.swift in Sources */,
 				FE8E3A4626F5E31200065ADB /* VPTextAlarmCell.swift in Sources */,
 				675052221E553CDD008D45BC /* VPBaseNavigationController.swift in Sources */,

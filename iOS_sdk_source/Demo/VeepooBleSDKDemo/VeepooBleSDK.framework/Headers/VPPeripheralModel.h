@@ -56,6 +56,8 @@
 
 @property (nonatomic, strong) NSData *deviceFuctionDataThird;
 
+@property (nonatomic, strong) NSData *deviceFuctionDataFour;
+
 //Judge the device to save a total of several days of data
 //设备一共保存几天的数据
 @property (nonatomic, assign) UInt8 saveDays;
@@ -185,6 +187,12 @@
 
 //设备的芯片类型 从杰理系列开始有 1表示杰理系列
 @property (nonatomic, assign) NSUInteger CPUType;
+
+//血液成分
+@property (nonatomic, assign) NSUInteger bloodAnalysisType;
+
+//身体成分
+@property (nonatomic, assign) NSUInteger bodyCompositionType;
 
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is

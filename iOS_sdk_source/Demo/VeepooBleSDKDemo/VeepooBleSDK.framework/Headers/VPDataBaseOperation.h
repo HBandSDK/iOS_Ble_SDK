@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VPAccurateSleepModel.h"
 
+@class VPECGTestDataModel,VPBodyCompositionValueModel,VPDailyBloodAnalysisModel;
 @interface VPDataBaseOperation : NSObject
 
 /**
@@ -272,6 +273,26 @@
  }
 */
 + (NSArray *)veepooSDKGetDeviceBloodGlucoseDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
+
+
+/// 获取设备某一天的血液成分自动测量数据
+/// @param queryDate 要查询的日期格式为2021-06-07
+/// @param tableID 设备的mac地址，获取哪个设备的数据
++ (NSArray<VPDailyBloodAnalysisModel *> *)veepooSDKGetDeviceBloodAnalysisDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
+
+/// 获取设备某一天的所有设备端离线存储的ECG数据
+/// @param queryDate 要查询的日期格式为2021-06-07
+/// @param tableID 设备的mac地址，获取哪个设备的数据
++ (NSArray<VPECGTestDataModel *> *)veepooSDKGetDeviceOffStoreECGWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
+
+
+
+/// 获取设备某一天的所有设备端离线存储的身体成分数据
+/// @param queryDate 要查询的日期格式为2021-06-07
+/// @param tableID 设备的mac地址，获取哪个设备的数据
++ (NSArray<VPBodyCompositionValueModel *> *)veepooSDKGetDeviceOffStoreBodyCompositionWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
+
+
 
 /*
  NSString *const VPDeviceRunningTotalTimeKey = @"totalTime";

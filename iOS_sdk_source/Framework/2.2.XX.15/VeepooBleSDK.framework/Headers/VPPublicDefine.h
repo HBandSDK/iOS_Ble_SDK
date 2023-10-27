@@ -546,3 +546,24 @@ typedef NS_ENUM(NSUInteger, VPDeviceChargeState) {
     VPDeviceChargeStateFull             // 充满状态，不可靠
 };
 
+// 设备身体成分测量状态
+typedef NS_ENUM(NSUInteger, VPDeviceBodyCompositionState) {
+    VPDeviceBodyCompositionStateNoFunction,    // 设备没有此功能
+    VPDeviceBodyCompositionStateDeviceBusy,    // 设备正忙不能开始测试
+    VPDeviceBodyCompositionStateOver,          // 测试正常结束，人为结束
+    VPDeviceBodyCompositionStateLowPower,      // 设备低电
+    VPDeviceBodyCompositionStateFailure,       // 测试失败
+    VPDeviceBodyCompositionStateComplete,      // 测试已经完成
+};
+
+// 血液成分测量状态
+typedef NS_ENUM(NSUInteger, VPDeviceBloodAnalysisState) {
+    VPDeviceBloodAnalysisStateNoFunction,    // 设备没有此功能
+    VPDeviceBloodAnalysisStateDeviceBusy,    // 设备正忙不能开始测试
+    VPDeviceBloodAnalysisStateOver,          // 测试正常结束，人为结束
+    VPDeviceBloodAnalysisStateLowPower,      // 设备低电
+    VPDeviceBloodAnalysisStateFailure,       // 测试失败
+    VPDeviceBloodAnalysisStateNotWear,       // 设备佩戴检测未通过
+    VPDeviceBloodAnalysisStateComplete,      // 测试已经完成
+};
+

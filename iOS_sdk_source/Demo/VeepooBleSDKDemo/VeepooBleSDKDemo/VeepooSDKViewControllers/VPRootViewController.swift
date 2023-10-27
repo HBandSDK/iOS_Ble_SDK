@@ -229,7 +229,7 @@ class VPRootViewController: UIViewController {
         if veepooBleManager.isDFULangMode == true {//如果处于DFULang模式则不再读取数据
             print("进入固件升级模式了")
             return
-        }        
+        }
         
         
         //获取实时计步
@@ -240,7 +240,7 @@ class VPRootViewController: UIViewController {
 //        return
             
         
-        //验证密码成功后开始读取手环的数据（睡眠、计步、心率、血压、血氧值等基本数据）
+        //验证密码成功后开始读取手环的自动测量的数据（睡眠、计步、心率、血压、血氧值等基本数据）
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSdkStartReadDeviceAllData {[weak self] (readDeviceBaseDataState, totalDay, currentReadDayNumber, readCurrentDayProgress) in
             switch readDeviceBaseDataState {
             case .start: //开始读取数据

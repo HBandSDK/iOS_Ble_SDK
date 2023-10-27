@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 //格式为 yyyy-MM-dd HH:mm，如果不是这个格式，设备可能无法显示数据
 @property(nonatomic, strong) NSString *update;
 
-//逐3小时天气数组
+//逐小时天气数组，设备端会从本数组中拿最接近当前时间的下一个小时数据显示
 @property(nonatomic, strong) NSArray <VPWeatherServerHourlyModel *>*hourly;
 
 //未来逐天的天气数组

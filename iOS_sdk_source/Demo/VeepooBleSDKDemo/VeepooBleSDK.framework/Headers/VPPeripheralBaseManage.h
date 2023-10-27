@@ -37,7 +37,7 @@
 #import "VPDeviceContactsModel.h"
 #import "VPDeviceMessageTypeModel.h"
 
-@class JL_Assist,VPMultiBloodGlucoseModel;
+@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
 //Connected device model 连接的设备模型
@@ -162,10 +162,9 @@
 - (void)veepooSDKAddPTTStateListener:(void(^)(NSInteger pttState))pttListener;
 
 /// PTT数据监听
-/// <#Description#>
-/// @param start <#start description#>
-/// @param valueBlock <#valueBlock description#>
-/// @param signalBlock <#signalBlock description#>
+/// @param start 是否开始
+/// @param valueBlock 值回调
+/// @param signalBlock 信号回调
 - (void)veepooSDKPTTTest:(BOOL)start valueBlock:(void(^)(VPPttValueModel *valueModel))valueBlock signalBlock:(void(^)(NSArray <NSNumber *>*signals))signalBlock;
 
 
@@ -432,6 +431,43 @@
  */
 - (void)veepooSDKTestECGStart:(BOOL)start testResult:(void(^)(VPTestECGState testECGState, NSUInteger testProgress, VPECGTestDataModel *testModel))testECGResultBlock;
 
+/// 设备端测量离线存储ECG功能完成回调
+@property (nonatomic, copy) void(^deviceTestOffStoreECGDidFinishBlock)(void);
+
+
+/// 身体成分单次测量开启或关闭
+/// - Parameters:
+///   - start: 开始或关闭
+///   - progress: 进度回调，lead 0表示导联过了(表示手在电极片上)，1表示导联没过
+///   - testResult: 结果回调
+- (void)veepooSDKTestBodyCompositionStart:(BOOL)start
+                                 progress:(void(^)(NSInteger lead, NSProgress *progress))progress
+                               testResult:(void(^)(VPDeviceBodyCompositionState state, VPBodyCompositionValueModel *model))testResult;
+
+/// 设备端测量身体成分完成回调
+@property (nonatomic, copy) void(^deviceTestBodyCompositionDidFinishBlock)(void);
+
+
+/// 血液成分单次测量开启或关闭
+/// @param start 开启/关闭
+/// @param isPersonalModel 是否为私人模式
+/// @param progress 进度回调
+/// @param testResult 结果回调
+- (void)veepooSDKTestBloodAnalysisStart:(BOOL)start
+                        isPersonalModel:(BOOL)isPersonalModel
+                               progress:(void(^)(NSProgress *progress))progress
+                             testResult:(void(^)(VPDeviceBloodAnalysisState state, VPBloodAnalysisResultModel *model))testResult;
+
+/// 血液成分私人模式设置
+/// @param opCode  1为设置 2为读取
+/// @param open 是否开启，开启后，则设备端自动测量的血液成分依据设置的私人模式值进行测量
+/// @param model 要设置的私人模式值，读取时可为空
+/// @param result 结果回调
+- (void)veepooSDKBloodAnalysisPersonalWithOpCode:(NSInteger)opCode
+                                            open:(BOOL)open
+                                           model:(VPBloodAnalysisResultModel *)model
+                                          result:(void(^)(BOOL success, BOOL open, VPBloodAnalysisResultModel *model))result;
+
 /**
  Turning the Blood Glucose test on or off，The structure of the returned blood glucose value is: 0.00, and the reported value is 100 times. Handle it by yourself when displaying it
  开启或者关闭血糖测试，返回的血糖值结构为: 0.00，上报的value为100倍，显示的时候自行处理，
@@ -638,7 +674,7 @@
 #pragma mark 简易的读取方式，适用于单机版本，读取完成之后可直接从SDK的数据库中提取数据，由子类VPPeripheralManage实现
 
 //Start reading all data
-//开始读取所有数据
+//开始读取所有数据（睡眠、计步、心率、血压、血氧值、HRV、血糖等基本数据）
 - (void)veepooSdkStartReadDeviceAllDataWithReadStateChangeBlock:(void(^)(VPReadDeviceBaseDataState readState, NSUInteger totalDay, NSUInteger currentReadDayNumber, NSUInteger readCurrentDayProgress))readStateChangeBlock;
 
 //Read the step data. Call each time to get the number of steps in the current bracelet, used internally by the SDK.

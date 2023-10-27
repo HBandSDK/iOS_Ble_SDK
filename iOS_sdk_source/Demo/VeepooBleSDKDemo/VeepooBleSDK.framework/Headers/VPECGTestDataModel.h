@@ -76,7 +76,7 @@ typedef enum : int {
 @property (nonatomic, strong) NSString *result6;
 @property (nonatomic, strong) NSString *result7;
 @property (nonatomic, strong) NSString *result8;
-@property (nonatomic, strong) NSMutableData *multipleDiagnosisTempData;
+@property (nonatomic, strong) NSString *multipleDiagnosisTempStr;
 
 //测试频率,采样频率
 @property (nonatomic, strong) NSString *frequency;
@@ -94,7 +94,7 @@ typedef enum : int {
 
 - (instancetype)initWithDataType:(ECGDataType)dataType andMac:(NSString *)mac;
 
--(void)startReceiveData;
+- (void)startReceiveData;
 - (void)endReceiveData;
 //接收App手动测试的数据
 - (void)receiveAppTestValueWithData:(NSData *)data;

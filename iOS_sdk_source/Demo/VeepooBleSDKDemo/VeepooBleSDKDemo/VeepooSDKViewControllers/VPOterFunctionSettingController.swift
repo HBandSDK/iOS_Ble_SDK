@@ -8,15 +8,54 @@
 
 import UIKit
 
+struct VPFunctionVCObject {
+    public var funcName:String
+    public var vcName:String
+    
+    public init(_ funcName: String,_ vcName: String) {
+        self.funcName = funcName
+        self.vcName = vcName
+    }
+}
+
 class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate , UITableViewDataSource{
 
     let otherFunctionSettingCellID = "otherFunctionSettingCellID"
     
     var otherFunctionSettingTableView: UITableView?
     
-    let otherFunctions = ["同步个人信息","闹钟设置","血压私人模式设置","久坐提醒设置","心率报警设置","拍照功能","与手机配对","翻腕亮屏","修改密码","亮度调节","女性设置","倒计时功能","新闹钟设置","文字闹钟","彩屏样式设置","亮屏时长","敲击测试","照片表盘","市场表盘","手环查找手机","手机查找手环","GPS与时区设置", "体温数据读取", "G15表盘", "G15二维码", "RR逐跳数据", "健康提醒", "联系人"]
-    
-    let otherControllers = ["VPSyncPersonalInformationController","VPAlarmClockSettingController","VPBloodPrivateSettingController","VPLongSeatSettingController","VPHeartAlarmController","VPTakePhotoController","与手机配对","VPRaiseHandSettingController","VPModifyPasswordController","VPSettingBrightController","VPSettingFemaleRelatedController","VPDeviceCountDownController","VPDeviceNewAlarmController","VPTextAlarmClockSettingController","VPSettingScreenStyleController","VPSettingScreenDurationController","VPTapTestViewController","VPPhotoDialViewController","VPMarketDialViewController","VPFindPhoneViewController","VPFindDeviceViewController","VPSettingDeviceGPSViewController", "VPTemperatureViewController", "VPG15DialViewController", "VPG15QRCodeViewController", "VPRRIntervalDataViewController", "VPDeviceHealthRemindViewController", "VPDeviceContactsViewController"]
+    let otherFuncAndVCs:[VPFunctionVCObject] = [
+        .init("同步个人信息", "VPSyncPersonalInformationController"),
+        .init("闹钟设置","VPAlarmClockSettingController"),
+        .init("血压私人模式设置","VPBloodPrivateSettingController"),
+        .init("久坐提醒设置","VPLongSeatSettingController"),
+        .init("心率报警设置","VPHeartAlarmController"),
+        .init("拍照功能","VPTakePhotoController"),
+        .init("与手机配对","与手机配对"),
+        .init("翻腕亮屏","VPRaiseHandSettingController"),
+        .init("修改密码","VPModifyPasswordController"),
+        .init("亮度调节","VPSettingBrightController"),
+        .init("女性设置","VPSettingFemaleRelatedController"),
+        .init("倒计时功能","VPDeviceCountDownController"),
+        .init("新闹钟设置","VPDeviceNewAlarmController"),
+        .init("文字闹钟","VPTextAlarmClockSettingController"),
+        .init("彩屏样式设置","VPSettingScreenStyleController"),
+        .init("亮屏时长","VPSettingScreenDurationController"),
+        .init("敲击测试","VPTapTestViewController"),
+        .init("照片表盘","VPPhotoDialViewController"),
+        .init("市场表盘","VPMarketDialViewController"),
+        .init("手环查找手机","VPFindPhoneViewController"),
+        .init("手机查找手环","VPFindDeviceViewController"),
+        .init("GPS与时区设置","VPSettingDeviceGPSViewController"),
+        .init("体温数据读取","VPTemperatureViewController"),
+        .init("G15表盘","VPG15DialViewController"),
+        .init("G15二维码","VPG15QRCodeViewController"),
+        .init("RR逐跳数据","VPRRIntervalDataViewController"),
+        .init("健康提醒","VPDeviceHealthRemindViewController"),
+        .init("联系人","VPDeviceContactsViewController"),
+        .init("身体成分","VPBodyCompositionViewController"),
+        .init("血液成分","VPBloodAnalysisViewController")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +80,7 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return otherFunctions.count
+        return otherFuncAndVCs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,7 +89,7 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: otherFunctionSettingCellID)
         }
-        cell?.textLabel?.text = otherFunctions[indexPath.row]
+        cell?.textLabel?.text = otherFuncAndVCs[indexPath.row].funcName
         
         cell?.accessoryType = .disclosureIndicator
         
@@ -60,11 +99,12 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.row == 6 {//手机配对，如果已经配对了点击没有反应，如果没有配对，系统会有弹窗询问用户是否需要配对
+        let controllerName = otherFuncAndVCs[indexPath.row].vcName
+        
+        if controllerName == "与手机配对" {//手机配对，如果已经配对了点击没有反应，如果没有配对，系统会有弹窗询问用户是否需要配对
             VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendPairedWithIphoneCommand()
             return
         }
-        let controllerName = otherControllers[indexPath.row]
         
         let controllerClass: AnyClass? = NSClassFromString(nameSpace + "." + controllerName)
         
