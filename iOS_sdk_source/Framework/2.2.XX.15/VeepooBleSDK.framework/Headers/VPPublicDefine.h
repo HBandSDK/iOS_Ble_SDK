@@ -567,3 +567,12 @@ typedef NS_ENUM(NSUInteger, VPDeviceBloodAnalysisState) {
     VPDeviceBloodAnalysisStateComplete,      // 测试已经完成
 };
 
+/// 多导心电导联类型
+typedef NS_ENUM(NSUInteger, VPECGMultiLeadType) {
+    VPECGMultiLeadTypeI = 0x01,  // I 导联
+    VPECGMultiLeadTypeII,        // II 导联
+    VPECGMultiLeadTypeIII,       // III 导联
+    VPECGMultiLeadTypeaVR,       // aVR 导联
+    VPECGMultiLeadTypeaVL,       // aVL 导联
+    VPECGMultiLeadTypeaVF,       // aVF 导联
+};

@@ -28,6 +28,10 @@
 ///如果系统版本低于13，无法自动连接BT，需要提示用户前往手机系统蓝牙自行连接
 @property (nonatomic, assign) BOOL isAutoConnectBT NS_AVAILABLE_IOS(13_0);
 
+///是否按照厂商ID进行扫描过滤，默认No。如果开启，将扫描不到非我司厂商ID的设备
+///Whether to scan and filter based on manufacturer ID, default No.
+@property (nonatomic, assign) BOOL manufacturerIDFilter;
+
 ///The timeout period after the connection is initiated. If the connection is not successful or fails within connectionTimeout seconds after the connection is initiated.
 ///the connection timeout state is triggered. The default is 30 seconds.
 ///连接发起后的超时时长，连接发起后connectionTimeout秒内未连接成功或失败，则触发连接超时状态，默认为30秒
@@ -73,9 +77,11 @@
 ///手表语言设置跟随手机系统，默认是YES
 @property (nonatomic, assign) BOOL systemLanguage;
 
-///Create an instance
-///创建实例
+///Singleton object
+///单例对象
 + (instancetype)sharedBleManager;
+
+- (instancetype)init NS_UNAVAILABLE;
 
 ///Start scanning device
 ///开始扫描设备

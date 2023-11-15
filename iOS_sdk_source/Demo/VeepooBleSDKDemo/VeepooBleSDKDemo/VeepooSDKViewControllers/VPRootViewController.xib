@@ -245,6 +245,15 @@
                         <action selector="enterDeviceSportController:" destination="-1" eventType="touchUpInside" id="pzV-yF-NUF"/>
                     </connections>
                 </button>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXT-dD-1JB">
+                    <rect key="frame" x="10" y="446" width="67.5" height="44"/>
+                    <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="多导心电"/>
+                    <connections>
+                        <action selector="enterECGMultiLeadController:" destination="-1" eventType="touchUpInside" id="4N6-hQ-ehf"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -280,6 +289,7 @@
                 <constraint firstItem="J0R-Hf-fbP" firstAttribute="leading" secondItem="jFu-zD-CUV" secondAttribute="trailing" constant="10.5" id="Iz2-kJ-Drx"/>
                 <constraint firstItem="ojV-NZ-Cmb" firstAttribute="leading" secondItem="uBS-4b-x4K" secondAttribute="trailing" constant="9.5" id="JRp-3E-gpW"/>
                 <constraint firstItem="jFu-zD-CUV" firstAttribute="height" secondItem="gbR-H9-B20" secondAttribute="height" id="JTY-xE-8I6"/>
+                <constraint firstItem="XXT-dD-1JB" firstAttribute="top" secondItem="jFu-zD-CUV" secondAttribute="bottom" constant="8" symbolic="YES" id="Jjw-WD-SZU"/>
                 <constraint firstItem="uBS-4b-x4K" firstAttribute="width" secondItem="J0R-Hf-fbP" secondAttribute="width" id="Jt3-ac-ETC"/>
                 <constraint firstItem="uBS-4b-x4K" firstAttribute="leading" secondItem="J0R-Hf-fbP" secondAttribute="trailing" constant="9.5" id="Lai-VY-Vro"/>
                 <constraint firstItem="zDb-ah-7Iz" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="top" id="LeC-7w-jnF"/>
@@ -295,8 +305,10 @@
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="top" secondItem="vFm-3K-qal" secondAttribute="top" id="Tg9-O4-rLv"/>
                 <constraint firstItem="jFu-zD-CUV" firstAttribute="width" secondItem="gbR-H9-B20" secondAttribute="width" id="XgP-7X-PYE"/>
                 <constraint firstItem="Zrv-da-GvZ" firstAttribute="bottom" secondItem="mfb-Na-KAM" secondAttribute="bottom" id="Y41-Dc-dtg"/>
+                <constraint firstItem="XXT-dD-1JB" firstAttribute="leading" secondItem="jFu-zD-CUV" secondAttribute="leading" id="aC1-29-jD0"/>
                 <constraint firstAttribute="trailing" secondItem="t7F-lM-jVu" secondAttribute="trailing" constant="10" id="bAy-it-l7r"/>
                 <constraint firstItem="uBS-4b-x4K" firstAttribute="height" secondItem="J0R-Hf-fbP" secondAttribute="height" id="d30-W4-cae"/>
+                <constraint firstItem="XXT-dD-1JB" firstAttribute="height" secondItem="jFu-zD-CUV" secondAttribute="height" id="dAu-zz-atK"/>
                 <constraint firstAttribute="trailing" secondItem="vFm-3K-qal" secondAttribute="trailing" constant="10" id="dQ3-LH-BKp"/>
                 <constraint firstItem="Kvw-tf-5ON" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="e4O-p8-Tax"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="top" id="eSH-V3-nZc"/>
@@ -325,6 +337,7 @@
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="leading" secondItem="dnm-SM-M1c" secondAttribute="trailing" constant="10" id="woA-c4-JyS"/>
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="height" secondItem="vFm-3K-qal" secondAttribute="height" id="xbe-5I-DAm"/>
                 <constraint firstItem="Zrv-da-GvZ" firstAttribute="leading" secondItem="HgM-7X-9K9" secondAttribute="leading" id="zLa-lX-tTQ"/>
+                <constraint firstItem="XXT-dD-1JB" firstAttribute="width" secondItem="jFu-zD-CUV" secondAttribute="width" id="zoW-jL-BAz"/>
             </constraints>
             <point key="canvasLocation" x="24" y="52"/>
         </view>

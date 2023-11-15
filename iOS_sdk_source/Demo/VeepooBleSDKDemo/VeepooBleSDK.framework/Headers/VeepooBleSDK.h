@@ -43,8 +43,12 @@
 #import "VPBodyCompositionValueModel.h"
 #import "VPBloodAnalysisResultModel.h"
 #import "VPDailyBloodAnalysisModel.h"
+#import "VPECGMultiLeadModel.h"
 
 #import "VPSyncPersonalInfo.h"
+
+//Delegate
+#import "VPECGMultiLeadBLEDelegate.h"
 
 //测试UI使用
 #import "VPHRVLorentView.h"

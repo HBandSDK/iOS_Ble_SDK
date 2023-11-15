@@ -73,11 +73,11 @@ class VPRootViewController: UIViewController {
         //设置导航栏上的UI
         self.setRootViewControllerNaviItemUI()
         
-        //从2.0之后，要多加一步操作,下边两句任选其一，第一个是已经封装了SDK的，第二种是没有封装到数据库的，优点是自己对数据进行操作比较灵活
         VPBleCentralManage.sharedBleManager().isLogEnable = true
+//        VPBleCentralManage.sharedBleManager()?.automaticConnection = false
+        //从2.0之后，要多加一步操作,下边两句任选其一，第一个是已经封装了SDK的，第二种是没有封装到数据库的，优点是自己对数据进行操作比较灵活
         VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralManage.shareVPPeripheralManager()
 //        VPBleCentralManage.sharedBleManager().peripheralManage = VPPeripheralAddManage.shareVPPeripheralManager()
-//        VPBleCentralManage.sharedBleManager()?.automaticConnection = false
                 
         //监听手机系统蓝牙状态改变
         veepooBleManager.vpBleCentralManageChangeBlock = {[weak self](centralManagerState: VPCentralManagerState) -> Void
@@ -230,7 +230,11 @@ class VPRootViewController: UIViewController {
             print("进入固件升级模式了")
             return
         }
-        
+                
+        //多导心电项目，不读日常数据
+        if veepooBleManager.peripheralManage.peripheralModel.ecgType == 7 {
+            return
+        }
         
         //获取实时计步
         startRealTimeStep()
@@ -401,6 +405,21 @@ class VPRootViewController: UIViewController {
         let vc = VPTestDeviceSportViewController.init()
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    /// 进入多导心电调试控制器
+    @IBAction func enterECGMultiLeadController(_ sender: UIButton) {
+        if veepooBleManager.isConnected == false {
+            _ = AppDelegate.showHUD(message: "设备没有连接", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        if veepooBleManager.peripheralManage.peripheralModel.ecgType != 7 {
+            _ = AppDelegate.showHUD(message: "设备不支持该功能", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        let vc = VPECGMultiLeadViewController.init()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     /// 销毁定时器操作
     func DestroyStepTimer() {

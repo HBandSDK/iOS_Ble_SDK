@@ -36,6 +36,7 @@
 #import "VPG15QRCodeInfoModel.h"
 #import "VPDeviceContactsModel.h"
 #import "VPDeviceMessageTypeModel.h"
+#import "VPECGMultiLeadBLEDelegate.h"
 
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
@@ -67,6 +68,9 @@
 
 //Create an instance
 + (instancetype)shareVPPeripheralManager;
+
+/// 多导心电蓝牙响应代理
+@property (nonatomic, weak) id<VPECGMultiLeadBLEDelegate> ecgMultiLeadBLEDelegate;
 
 //Send firmware upgrade command, used internally by SDK
 //发送固件升级命令，SDK内部使用
@@ -887,6 +891,13 @@
 /// 打开设备的BT开关，如果设备与手机系统未配对，会触发配对请求。
 /// BT的连接状态统一使用 {@link VPBTConnectStateChangeBlock} 进行判断
 - (void)veepooSDK_openDeviceBTSwitch;
+
+#pragma mark - 多导心电测量接口
+
+/// 开启/结束测量多导心电，只有支持这个项目才会触发代理的相应接口
+/// - Parameter start: 是否开启
+- (void)veepooSDK_ECGMultiLeadTestWithStart:(BOOL)start;
+
 
 @end
 

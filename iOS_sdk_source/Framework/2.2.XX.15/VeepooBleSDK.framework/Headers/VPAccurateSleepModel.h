@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *insomniaTimes;
 //beginTime开始时间,具体开始入睡多少分钟,endTime结束时间,具体开始入睡多少分钟
 @property (nonatomic, strong) NSArray *insomniaRecord;
-//睡眠曲线，16进制的字符串，客户端解析的时候在转换成数据流，每两个字节代表一个点, 高位在前,低位在后, 其中高3个比特代表睡眠的状态,深睡(0)、浅睡(1)、快速眼动(2)、失眠(3)、苏醒(4) 如0x1000这个数, 取高三位0x1000>>13, 得到的值看是0到5中的哪个。
+//睡眠曲线，16进制的字符串，客户端解析的时候在转换成数据流，每两个字节代表一个点(一分钟), 高位在前,低位在后, 其中高3个比特代表睡眠的状态,深睡(0)、浅睡(1)、快速眼动(2)、失眠(3)、苏醒(4) 如0x1000这个数, 取高三位0x1000>>13, 得到的值看是0到4中的哪个。
 @property (nonatomic, strong) NSString *sleepLine;
 
 //根据曲线转换的失眠时长
