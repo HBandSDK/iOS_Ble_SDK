@@ -55,10 +55,25 @@ typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
     VPDeviceScreenTypeSquare410_502_JL          = 0x3A,        // 杰理 410*502
     VPDeviceScreenTypeSquare240_292_JL          = 0x3B,        // 杰理 240*292
     VPDeviceScreenTypeCircle240_240_JL          = 0x3C,        // 杰理 240*240
+    VPDeviceScreenTypeSquare200_320_JL          = 0x3D,        // 杰理 200*320
+    VPDeviceScreenTypeSquare172_320_JL          = 0x3E,        // 杰理 172*320
+    VPDeviceScreenTypeCircle390_390_JL          = 0x3F,        // 杰理 390*390
+    VPDeviceScreenTypeSquare390_450_JL          = 0x40,        // 杰理 390*450
+    VPDeviceScreenTypeCircle416_416_JL          = 0x41,        // 杰理 416*416
+    VPDeviceScreenTypeSquare240_296_JL_Apple    = 0x42,        // 杰理 240*296 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeCircle320_320_JL          = 0x43,        // 杰理 320*320
+    VPDeviceScreenTypeSquare240_280_JL_Apple    = 0x44,        // 杰理 240*280 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeSquare240_284_JL_Apple    = 0x45,        // 杰理 240*284 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeSquare240_286_JL_Apple    = 0x46,        // 杰理 240*286 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeSquare368_448_JL_Apple    = 0x47,        // 杰理 368*448 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeSquare320_380_JL_Apple    = 0x48,        // 杰理 320*380 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeSquare320_386_JL_Apple    = 0x49,        // 杰理 320*386 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeSquare410_502_JL_Apple    = 0x4A,        // 杰理 410*502 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeSquare240_292_JL_Apple    = 0x4B,        // 杰理 240*292 苹果款，用以区分自定义背景
 };
 
 typedef NS_ENUM(NSUInteger, VPPhotoDialTimePosition) {
-    // 上中下
+    // 上中下 有些方屏比较窄，也设计成上中下三个位置
     VPPhotoDialTimePositionTop = 1,         // top
     VPPhotoDialTimePositionMiddle,          // middle
     VPPhotoDialTimePositionBottom,          // bottom
@@ -90,12 +105,15 @@ typedef NS_ENUM(NSUInteger, VPPhotoDialTimeTopAndBottomElement) {
 
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class VPPhotoDialConfigModel;
 @interface VPPhotoDialModel : NSObject
 
 @property (nonatomic, assign, readonly) NSUInteger index;
 /// 屏幕的类型
 @property (nonatomic, assign, readonly) VPDeviceScreenType screenType;
+/// 设备表盘的基本配置信息，根据screenType做的映射配置
+/// 如果获取到的为nil，可能是SDK未适配该屏型
+@property (nonatomic, strong, readonly) VPPhotoDialConfigModel *configModel;
 /// 是否是默认背景
 @property (nonatomic, assign) BOOL isDefaultBG;
 

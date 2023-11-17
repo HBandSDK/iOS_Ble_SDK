@@ -84,43 +84,7 @@ class VPPhotoDialViewController: UIViewController {
 //        self.photoDialModel.timePosition = .bottom
         self.photoDialModel.setColor = "FF0000"
         // 传输的图片宽高必须与屏幕的宽高一致 请注意⚠️分辨率为显示分辨率，即1x
-        var image:UIImage!
-        switch self.photoDialModel.screenType {
-        // 240*240
-        case .circle240_240,
-             .square240_240,
-             .circle240_240_QFN:
-            image = UIImage.init(named: "test_240_240")
-            break
-        // 240*280
-        case .square240_280,
-             .square240_280_QFN,
-             .square240_280_QFN_RIG:
-            image = UIImage.init(named: "test_240_280")
-            break
-        // 240*295
-        case .square240_295,
-             .square240_295_QFN:
-            image = UIImage.init(named: "test_240_295")
-            break
-        // 360*360
-        case .circle360_360_QFN:
-            image = UIImage.init(named: "test_360_360")
-            break
-        case .square320_380_JL:
-            image = UIColor.cyan.image(CGSizeMake(320, 380))
-            break
-        case .square368_448_JL:
-            image = UIColor.white.image(CGSizeMake(368, 448))
-            break
-        case .square320_386_JL:
-            image = UIColor.yellow.image(CGSizeMake(320, 386))
-            break
-        default:
-            image = UIImage.init(named: "test_240_240")
-            break
-        }
-        self.photoDialModel.transformImage = image
+        self.photoDialModel.transformImage = UIColor.cyan.image(self.photoDialModel.configModel.screenSize)
         VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_dialChannel(with: .setupPhotoDial, dialType: .photo, photoDialModel: self.photoDialModel, result: { ( photoDialModel, deviceMarketDialModel, error) in
             print(error! as NSError)
         }, transformProgress: { (progress) in

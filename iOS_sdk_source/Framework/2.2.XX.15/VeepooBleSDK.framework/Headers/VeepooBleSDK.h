@@ -32,6 +32,7 @@
 #import "VPLowPowerModel.h"
 #import "VPDialModel.h"
 #import "VPPhotoDialModel.h"
+#import "VPPhotoDialConfigModel.h"
 #import "VPPhotoDialView.h"
 #import "VPDeviceMarketDialModel.h"
 #import "VPServerMarketDialModel.h"
