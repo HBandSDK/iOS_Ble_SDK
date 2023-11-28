@@ -157,7 +157,10 @@ typedef NS_ENUM(NSInteger, VPSettingBaseFunctionSwitchType) {//关于来电提�
     VPSettingTemperatureUnit = 25,              //体温单位设置 1表示摄氏度 2表示华氏度
     VPSettingECGNormallyOpen = 26,              //ECG 常开功能
     VPSettingAutomaticBloodGlucoseTest = 27,    //血糖自动检测开关
-    VPSettingBloodGlucoseUnit = 30,             // 血糖单位设置 1表示mmol/L 2表示mg/dl
+    VPSettingBloodGlucoseUnit = 30,             //血糖单位设置 1表示mmol/L 2表示mg/dl
+    VPSettingAutomaticBloodCompTest = 31,       //血液成分自动检测开关
+    VPSettingUricAcidUnit = 32,                 //尿酸单位设置 1表示μmol/L 2表示mg/dl
+    VPSettingLipidUnit = 33,                    //血脂单位设置 1表示mmol/L 2表示mg/dl
     
     //其他指令
     VPSettingAutomaticOxygenTest = 1000,//血氧夜间自动检测
