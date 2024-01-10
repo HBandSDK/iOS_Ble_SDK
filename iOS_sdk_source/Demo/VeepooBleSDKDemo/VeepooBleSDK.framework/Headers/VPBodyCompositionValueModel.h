@@ -19,46 +19,58 @@ NS_ASSUME_NONNULL_BEGIN
 /// 测量时间(结束时间) HH:mm:ss
 @property (nonatomic, strong) NSString *testTime;
 
+/// 是否为设备端测量
+@property (nonatomic, assign) BOOL isDeviceTest;
+
+/// 身高 cm 需先调用设置个人信息接口
+@property (nonatomic, assign) NSUInteger stature;
+
+/// 体重 kg
+@property (nonatomic, assign) NSUInteger weight;
+
+/// 性别 0表示女性 1表示男性
+@property (nonatomic, assign) NSUInteger gender;
+
 /// BMI
 @property (nonatomic, strong) NSString *bmi;
 
-/// 体脂率
+/// 体脂率 百分比
 @property (nonatomic, strong) NSString *bodyFatPercentage;
 
-/// 脂肪量
+/// 脂肪量 单位kg
 @property (nonatomic, strong) NSString *fatMass;
 
-/// 去脂体重
+/// 去脂体重 单位kg
 @property (nonatomic, strong) NSString *leanBodyMass;
 
-/// 肌肉率
+/// 肌肉率 百分比
 @property (nonatomic, strong) NSString *muscleRate;
 
-/// 肌肉量
+/// 肌肉量 单位kg
 @property (nonatomic, strong) NSString *muscleMass;
 
-/// 皮下脂肪
+/// 皮下脂肪 百分比
 @property (nonatomic, strong) NSString *subcutaneousFat;
 
-/// 体内水分
+/// 体内水分 百分比
 @property (nonatomic, strong) NSString *bodyMoisture;
 
-/// 含水量
+/// 含水量 单位kg
 @property (nonatomic, strong) NSString *waterContent;
 
-/// 骨骼肌率
+/// 骨骼肌率 百分比
 @property (nonatomic, strong) NSString *skeletalMuscleRate;
 
-/// 骨量
+/// 骨量 单位kg
 @property (nonatomic, strong) NSString *boneMass;
 
-/// 蛋白质占比
+/// 蛋白质占比 百分比
 @property (nonatomic, strong) NSString *proportionOfProtein;
 
-/// 蛋白质量
+/// 蛋白质量 单位kg
 @property (nonatomic, strong) NSString *proteinAmount;
 
-/// 基础代谢率
+/// 基础代谢率 kcal
 @property (nonatomic, strong) NSString *basalMetabolicRate;
 
 /// 蓝牙数据解析方法

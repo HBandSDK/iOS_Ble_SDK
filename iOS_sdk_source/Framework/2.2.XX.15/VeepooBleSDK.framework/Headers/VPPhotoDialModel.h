@@ -70,6 +70,11 @@ typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
     VPDeviceScreenTypeSquare320_386_JL_Apple    = 0x49,        // 杰理 320*386 苹果款，用以区分自定义背景
     VPDeviceScreenTypeSquare410_502_JL_Apple    = 0x4A,        // 杰理 410*502 苹果款，用以区分自定义背景
     VPDeviceScreenTypeSquare240_292_JL_Apple    = 0x4B,        // 杰理 240*292 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeCircle240_240_JL_Apple    = 0x4C,        // 杰理 240*240 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeCircle360_360_JL_Apple    = 0x4D,        // 杰理 360*360 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeCircle412_412_JL_Apple    = 0x4E,        // 杰理 412*412 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeCircle466_466_JL_Apple    = 0x4F,        // 杰理 466*466 苹果款，用以区分自定义背景
+    VPDeviceScreenTypeCircle480_480_JL          = 0x50,        // 杰理 480*480
 };
 
 typedef NS_ENUM(NSUInteger, VPPhotoDialTimePosition) {

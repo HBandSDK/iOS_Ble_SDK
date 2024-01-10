@@ -79,8 +79,10 @@
 @property (nonatomic, assign) NSUInteger screenTypes;
 
 //Height in equipment data
-//设备资料中的身高
+//设备资料中的身高、体重、性别
 @property (nonatomic, assign) NSUInteger deviceStature;
+@property (nonatomic, assign) NSUInteger deviceWeight;
+@property (nonatomic, assign) NSUInteger deviceGender;
 
 //Bright screen duration type 0 means no, 1 means there is this function
 //亮屏时长类型0代表没有，1代表有此功能

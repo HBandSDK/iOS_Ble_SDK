@@ -292,6 +292,9 @@
 /// @param tableID 设备的mac地址，获取哪个设备的数据
 + (NSArray<VPBodyCompositionValueModel *> *)veepooSDKGetDeviceOffStoreBodyCompositionWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
 
+/// 存储APP端测量的身体成分到数据库中
+/// @param model APP端测量的身体成分数据，从{veepooSDKTestBodyCompositionStart:progress:testResult:}接口中返回
++ (void)veepooSDKSaveAPPTestToDBWithBodyCompositionModel:(VPBodyCompositionValueModel *)model;
 
 
 /*

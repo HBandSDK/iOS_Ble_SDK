@@ -341,7 +341,7 @@
 - (void)veepooSDKSettingHealthRemindWithRemindType:(VPDeviceHealthRemindType)remindType
                                             opCode:(NSInteger)opCode
                                        remindModel:(VPDeviceHealthRemindModel *)remindModel
-                                       resultBlock:(void(^)(BOOL success, VPDeviceHealthRemindModel *successModel))resultBlock
+                                       resultBlock:(void(^)(BOOL success, BOOL complete, VPDeviceHealthRemindModel *successModel))resultBlock
                           deviceInfoDidChangeBlock:(void(^)(VPDeviceHealthRemindModel *changeModel))deviceInfoDidChangeBlock;
 
 /// 设备通讯录功能 读取、设置、删除、移动  The device address book function read, add, delete, and move

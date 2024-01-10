@@ -50,7 +50,7 @@ typedef void(^DeviceDFUBlock)(double progress, DeviceDFUState deviceDFUState);
 
 /// 开发者自己传入升级文件路径升级
 /// @param filePath 升级文件路径
-/// @param dfuBlock 升级回掉,文件路径不存在和文件格式不对都反回文件路径不存在
+/// @param dfuBlock 升级回调,文件路径不存在和文件格式不对都返回文件路径不存在
 - (void)veepooSDKStartDfuWithFilePath:(NSString *)filePath result:(DeviceDFUBlock)dfuBlock;
 
 @end

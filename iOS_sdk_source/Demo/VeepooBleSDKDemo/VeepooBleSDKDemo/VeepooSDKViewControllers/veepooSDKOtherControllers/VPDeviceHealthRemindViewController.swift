@@ -155,7 +155,7 @@ class VPDeviceHealthRemindViewController: UIViewController {
         
         addSubViews()
                 
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingHealthRemind(with: .all, opCode: 2, remindModel: nil) { [weak self]success, model in
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingHealthRemind(with: .all, opCode: 2, remindModel: nil) { [weak self] success, finish, model in
             if (success) {
                 if let model = model {
                     let index = Int(model.type.rawValue)
@@ -178,7 +178,7 @@ class VPDeviceHealthRemindViewController: UIViewController {
     }
     
     private func changeModel(model: VPDeviceHealthRemindModel) { //修改信息提醒
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingHealthRemind(with: model.type, opCode: 1, remindModel: model) { [weak self] success, model in
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingHealthRemind(with: model.type, opCode: 1, remindModel: model) { [weak self] success, finish, model in
             if (success) {
                 if let model = model {
                     let index = Int(model.type.rawValue)
