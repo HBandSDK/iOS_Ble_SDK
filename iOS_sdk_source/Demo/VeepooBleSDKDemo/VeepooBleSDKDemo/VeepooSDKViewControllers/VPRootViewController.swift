@@ -125,7 +125,7 @@ class VPRootViewController: UIViewController {
         }
         
         // BT连接状态监听，仅支持双模芯片
-        VPPeripheralManage.shareVPPeripheralManager()?.vpbtConnectStateChangeBlock = {(btState: VPDeviceBTState, mediaSwitch: Bool) -> Void
+        VPPeripheralManage.shareVPPeripheralManager()?.vpbtConnectStateChangeBlock = {(btState: VPDeviceBTState, btSwitchOpen:Bool, mediaSwitch: Bool) -> Void
             in
             switch btState {
             case .disConnect:

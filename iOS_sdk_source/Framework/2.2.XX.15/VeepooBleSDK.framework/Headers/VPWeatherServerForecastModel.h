@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) NSNumber *dayCode;
 
 //夜间天气状态码
-@property(nonatomic, assign) NSNumber *nightCode;
+@property(nonatomic, strong) NSNumber *nightCode;
 
 //风向等级1-2
 @property(nonatomic, strong) NSString *wind_sc;

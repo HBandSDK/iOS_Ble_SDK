@@ -64,7 +64,7 @@
 @property (nonatomic, copy) void(^ReceiveGreenLightData)(NSArray <NSNumber *>*values);
 
 //Callback of device BT connection status change 设备BT连接状态改变的回调
-@property (nonatomic, copy) void(^VPBTConnectStateChangeBlock)(VPDeviceBTState btState, BOOL mediaSwitchOpen);
+@property (nonatomic, copy) void(^VPBTConnectStateChangeBlock)(VPDeviceBTState btState, BOOL btSwitchOpen, BOOL mediaSwitchOpen);
 
 //Create an instance
 + (instancetype)shareVPPeripheralManager;
