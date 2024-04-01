@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *qrsTime;
 /// QRS振幅 ，单位mv 【float 软件乘100取整】
 @property (nonatomic, strong) NSString *qrsAmp;
-/// pwv的实时均值，测量范围[6,20]m/s,动脉粥样硬化指标，异常范围 > 15m/s 【float 软件乘100取整】
+/// pwv的实时均值，测量范围[6,20]m/s,动脉粥样硬化指标，异常范围 > 15m/s 【float 软件乘10取整】
 @property (nonatomic, strong) NSString *pwvMeanVal;
 /// 平均st段振幅 ，单位mv，[-0.05,0.1]mv为正常范围 【float 软件乘100取整】
 @property (nonatomic, strong) NSString *stMeanAmp;

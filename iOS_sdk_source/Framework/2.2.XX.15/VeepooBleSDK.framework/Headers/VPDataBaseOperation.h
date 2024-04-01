@@ -20,8 +20,8 @@
  @return 返回的格式以时间为key 具体的dict为value 格式如下
  {
  "10:40" = {
- diastolic = 0;//高压值
- systolic = 0;//低压值
+ diastolic = 0;//舒张压
+ systolic = 0;//收缩压
  heartValue = 0;//心率值
  sportValue = 17;//运动量
  stepValue = 0;//步数
