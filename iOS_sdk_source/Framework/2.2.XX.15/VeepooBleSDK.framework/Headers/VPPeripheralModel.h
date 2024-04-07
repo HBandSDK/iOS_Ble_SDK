@@ -179,7 +179,7 @@
 //手机查找手环功能 0代表没有，1代表有
 @property (nonatomic, assign) NSUInteger searchDeviceFunction;
 
-//体温功能 0表示没有 1有体温但无自动测量 2有体温且有自动测量
+//体温功能 0表示没有 1有体温但无自动测量 2/4有体温且有自动测量
 @property (nonatomic, assign) NSUInteger temperatureType;
 
 //血糖功能 1代表有 0表示没有 2有血糖且有校准 3仅有校准 4有多校准
