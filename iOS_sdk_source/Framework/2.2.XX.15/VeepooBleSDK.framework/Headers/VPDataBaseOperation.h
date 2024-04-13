@@ -270,6 +270,7 @@
  NSDictionary *dataDic =  {
     "time" = "16:30";
     "bloodGlucoses" =  [@"0.00"]; // 每5分钟的血糖值数组，数组中元素最少1个，至多5个。
+    "bloodGlucoseLevels" = [@"0"];//血糖值对应的风险等级，1-3分别为低、中、高，设备的血糖类型(bloodGlucoseType)为5才支持，如果有则与血糖值是一一对应的。注意这个Key使用前需要做非空判断
  }
 */
 + (NSArray *)veepooSDKGetDeviceBloodGlucoseDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;

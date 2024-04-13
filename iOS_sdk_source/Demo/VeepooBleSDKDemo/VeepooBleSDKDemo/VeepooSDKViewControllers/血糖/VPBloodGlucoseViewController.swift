@@ -21,7 +21,6 @@ class VPBloodGlucoseViewController: UIViewController {
     @IBOutlet weak var privateSingleModelBtn: UIButton!
     @IBOutlet weak var privateMultiModelBtn: UIButton!
     
-    var support: Bool = false
     /// 是否支持血糖单校准
     var privateSingleModelSupport: Bool = false
     /// 是否支持血糖多校准
@@ -30,18 +29,25 @@ class VPBloodGlucoseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "血糖功能"
-        support = VPBleCentralManage.sharedBleManager()?.peripheralModel.bloodGlucoseType != 0
-        supportFunctionLabel.text = support ? "是" : "否"
-        
         let bloodGlucoseType = VPBleCentralManage.sharedBleManager()?.peripheralModel.bloodGlucoseType
         
+        if bloodGlucoseType != 0 {
+            if bloodGlucoseType == 5 {
+                supportFunctionLabel.text = "是(支持风险等级)"
+            } else {
+                supportFunctionLabel.text = "是"
+            }
+        } else {
+            supportFunctionLabel.text = "否"
+        }
+        
         // 单校准
-        privateSingleModelSupport = bloodGlucoseType == 2
+        privateSingleModelSupport = bloodGlucoseType == 2 || bloodGlucoseType == 6
         privateSingleModelLabel.text = privateSingleModelSupport ? "是" : "否"
         privateSingleModelBtn.isEnabled = privateSingleModelSupport
         
         // 多校准
-        privateMultiModelSupport = bloodGlucoseType == 4
+        privateMultiModelSupport = bloodGlucoseType == 4 || bloodGlucoseType == 5 || bloodGlucoseType == 7
         privateMultiModelLabel.text = privateMultiModelSupport ? "是" : "否"
         privateMultiModelBtn.isEnabled = privateMultiModelSupport
     }
@@ -59,7 +65,7 @@ class VPBloodGlucoseViewController: UIViewController {
     
     @IBAction func manualTestDataBtnAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKTestBloodGlucoseStart(sender.isSelected, testResult: { [weak self](state, progress, value) in
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKTestBloodGlucoseStart(sender.isSelected, testResult: { [weak self](state, progress, value, level) in
             var txt = ""
             
             if state == .unsupported{
@@ -78,7 +84,7 @@ class VPBloodGlucoseViewController: UIViewController {
                 txt = "设备佩戴检测失败"
             }
             if state == .open {
-                txt = "进度：\(progress) % 值：\(value)"
+                txt = "进度：\(progress) % 值：\(value) 等级：\(level)"
             }
             
             _ = AppDelegate.showHUD(message: txt, hudModel: MBProgressHUDModeText, showView: self!.view)

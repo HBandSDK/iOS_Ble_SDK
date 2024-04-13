@@ -476,11 +476,14 @@
  Turning the Blood Glucose test on or off，The structure of the returned blood glucose value is: 0.00, and the reported value is 100 times. Handle it by yourself when displaying it
  开启或者关闭血糖测试，返回的血糖值结构为: 0.00，上报的value为100倍，显示的时候自行处理，
  血糖值单位转换，mmol/L => mg/dL, 公式：floor((X mmol/l ) *18 +0.5f) = Y mg/dl
+ The level parameters were only working for bloodGlucoseType == 5
+ 血糖类型(bloodGlucoseType)为5情况下，level风险等级才有效
  
  @param start Start and End
  @param testResult Callback of test results
  */
-- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value))testResult;
+- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start 
+                            testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value, NSUInteger level))testResult;
 
 
 /// 血糖校准读取/设置
@@ -679,6 +682,7 @@
 
 //Start reading all data
 //开始读取所有数据（睡眠、计步、心率、血压、血氧值、HRV、血糖等基本数据）
+//temperatureType == 5时，本接口包含读取体温数据
 - (void)veepooSdkStartReadDeviceAllDataWithReadStateChangeBlock:(void(^)(VPReadDeviceBaseDataState readState, NSUInteger totalDay, NSUInteger currentReadDayNumber, NSUInteger readCurrentDayProgress))readStateChangeBlock;
 
 //Read the step data. Call each time to get the number of steps in the current bracelet, used internally by the SDK.
@@ -701,8 +705,8 @@
 //开始读取Hrv数据
 - (void)veepooSdkStartReadDeviceHrvData:(void(^)(VPReadDeviceBaseDataState readState, NSUInteger totalDay, NSUInteger currentReadDayNumber, NSUInteger readCurrentDayProgress))readStateChangeBlock;
 
-//Start reading Temperature data
-//开始读取体温数据
+/// Start reading Temperature data。This method cannot be unsupported when temperatureType is 5
+/// 开始读取体温数据, temperatureType为5时这个方法无法不被支持，使用{@link:veepooSdkStartReadDeviceAllDataWithReadStateChangeBlock:}
 - (void)veepooSdkStartReadDeviceTemperatureData:(void(^)(VPReadDeviceBaseDataState readState, NSUInteger totalDay, NSUInteger currentReadDayNumber, NSUInteger readCurrentDayProgress))readStateChangeBlock;
 
 #pragma mark - It is suitable for storing data by itself. It is more flexible in the development process, and the data is stored by itself. It is suitable for data uploading server and multi-account multi-handle development. It is implemented by subclass VPPeripheralAddManage, temporarily not implemented.
@@ -759,6 +763,7 @@
 
 
 /// 读取自动测量的体温数据
+/// temperatureType类型为5时，不支持本接口，使用{@link: veepooSDK_readBasicDataWithDayNumber:}
 /// @param dayNumber 代表哪一天0代表今天，1代表昨天，2代表前天，不能大于saveDays
 /// @param maxPackage 一天的数据比较多，每次读取可以从选择的包数读取，仅当天有效
 /// @param readDeviceTemperatureDataBlock 回调函数
