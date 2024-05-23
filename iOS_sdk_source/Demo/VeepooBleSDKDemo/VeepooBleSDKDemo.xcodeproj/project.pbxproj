@@ -79,6 +79,8 @@
 		FE27F0EE264A1DD50080CDA1 /* VPMapGPSTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */; };
 		FE373EA327B9EA4500F312C4 /* VPG15QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE373EA127B9EA4500F312C4 /* VPG15QRCodeViewController.swift */; };
 		FE373EA427B9EA4500F312C4 /* VPG15QRCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */; };
+		FE3F5ED82BFF611A00A43838 /* VPG08WViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3F5ED52BFF611A00A43838 /* VPG08WViewController.swift */; };
+		FE3F5ED92BFF611A00A43838 /* VPG08WViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE3F5ED62BFF611A00A43838 /* VPG08WViewController.xib */; };
 		FE645EFA2A90CB0E009CCD50 /* VPTestDeviceSportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE645EF92A90CB0E009CCD50 /* VPTestDeviceSportViewController.swift */; };
 		FE645F042A90D181009CCD50 /* VPFindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE645F022A90D180009CCD50 /* VPFindPhoneViewController.swift */; };
 		FE645F052A90D181009CCD50 /* VPFindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE645F032A90D180009CCD50 /* VPFindPhoneViewController.xib */; };
@@ -223,6 +225,8 @@
 		FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPMapGPSTagViewController.xib; sourceTree = "<group>"; };
 		FE373EA127B9EA4500F312C4 /* VPG15QRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPG15QRCodeViewController.swift; sourceTree = "<group>"; };
 		FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPG15QRCodeViewController.xib; sourceTree = "<group>"; };
+		FE3F5ED52BFF611A00A43838 /* VPG08WViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPG08WViewController.swift; sourceTree = "<group>"; };
+		FE3F5ED62BFF611A00A43838 /* VPG08WViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPG08WViewController.xib; sourceTree = "<group>"; };
 		FE645EF92A90CB0E009CCD50 /* VPTestDeviceSportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestDeviceSportViewController.swift; sourceTree = "<group>"; };
 		FE645F022A90D180009CCD50 /* VPFindPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPFindPhoneViewController.swift; sourceTree = "<group>"; };
 		FE645F032A90D180009CCD50 /* VPFindPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPFindPhoneViewController.xib; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 		67640D501E56CF2E008D9D71 /* veepooSDKOtherControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE3F5ED72BFF611A00A43838 /* G08W */,
 				FE8E39F926F2E1BD00065ADB /* G15 */,
 				FED9CC842754C80300E54DC8 /* RRIntervalData */,
 				FE8E3A0D26F48EEA00065ADB /* TextAlarmClock */,
@@ -512,6 +517,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FE3F5ED72BFF611A00A43838 /* G08W */ = {
+			isa = PBXGroup;
+			children = (
+				FE3F5ED52BFF611A00A43838 /* VPG08WViewController.swift */,
+				FE3F5ED62BFF611A00A43838 /* VPG08WViewController.xib */,
+			);
+			path = G08W;
+			sourceTree = "<group>";
+		};
 		FE8E39F926F2E1BD00065ADB /* G15 */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +668,7 @@
 				FE8E3A4726F5E31200065ADB /* VPTextAlarmCell.xib in Resources */,
 				67CA7E361EF3BAD5000D8745 /* VPEditNewAlarmController.xib in Resources */,
 				675052271E553F3F008D45BC /* VPRootViewController.xib in Resources */,
+				FE3F5ED92BFF611A00A43838 /* VPG08WViewController.xib in Resources */,
 				FE722C0A25F5D41900EA675E /* VPFindDeviceViewController.xib in Resources */,
 				67CB1CB21E52D26E00805649 /* Assets.xcassets in Resources */,
 				672E08391E5D5CAE00F60750 /* VPTestSleepController.xib in Resources */,
@@ -758,6 +773,7 @@
 				67B889EC1EFBAFBE00214EC5 /* ZCUIView+setRect.swift in Sources */,
 				FE8E3A4626F5E31200065ADB /* VPTextAlarmCell.swift in Sources */,
 				675052221E553CDD008D45BC /* VPBaseNavigationController.swift in Sources */,
+				FE3F5ED82BFF611A00A43838 /* VPG08WViewController.swift in Sources */,
 				678368A11E5814A600C3BCB8 /* VPHeartAlarmController.swift in Sources */,
 				6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */,
 				FE27F0ED264A1DD50080CDA1 /* VPMapGPSTagViewController.swift in Sources */,

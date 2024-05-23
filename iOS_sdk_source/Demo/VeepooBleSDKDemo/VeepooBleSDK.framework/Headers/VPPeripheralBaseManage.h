@@ -903,6 +903,24 @@
 /// - Parameter start: 是否开启
 - (void)veepooSDK_ECGMultiLeadTestWithStart:(BOOL)start;
 
+#pragma mark - G08W定制项目适用，非该项目调用下方接口无回调
+
+/// G08W项目PPG原始信号订阅
+/// - Parameter result: 回调结果，type[0,1,2]分别是[绿光，红光，红外]
+- (void)veepooSDK_G08WProjectPPGSubscribe:(void (^)(int type, NSArray<NSNumber *> *valueArr))result;
+
+
+/// 读取、设置数据警报，不可以与心率警报接口共用{@link: veepooSDKSettingDeviceHeartAlarmWithHeartAlarmModel:settingMode:successResult:failureResult:}
+/// - Parameters:
+///   - opCode: 操作类型，0是关闭，1是开启，2是读取
+///   - type: 类型 [0,1,2,3] 分别是 ["心率报警", "血压报警", "体温过高", "血氧过低"]
+///   - upper: 上限值，血氧过低警报无效
+///   - floor: 下限值，体温过高警报无效
+- (void)veepooSDK_G08WProjectDataAlertWithOpCode:(int)opCode type:(int)type upper:(int)upper floor:(int)floor;
+
+/// 数据警报读取和设置后的回调函数
+/// - Parameter result: 结果回调
+- (void)veepooSDK_G08WProjectDataAlertSubscribe:(void (^)(int type, int upper, int floor, bool open, NSError *error))result;
 
 @end
 

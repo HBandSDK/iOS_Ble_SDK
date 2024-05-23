@@ -113,6 +113,7 @@ typedef enum : int {
 /// 如果传入的ADC值不为0，但是返回的值全为0，则表示SDK未适配该ecgType类型。
 /// - Parameter value: ADC值，filterSignals 中的值
 /// - Parameter ectType: ECG的类型，传ecgType
-+ (CGFloat)convertToMvWithValue:(CGFloat)value ecgType:(NSString *)ecgType;
+/// - Parameter testType: 测试类型，传type
++ (CGFloat)convertToMvWithValue:(CGFloat)value ecgType:(NSString *)ecgType testType:(NSString *)testType;
 
 @end
