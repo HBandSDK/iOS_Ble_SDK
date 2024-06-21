@@ -20,7 +20,7 @@ class VPBaseFunctionRemindController: UIViewController  , UITableViewDelegate , 
                          "蓝牙断链提醒","SOS页面显示","PPG(脉率)自动监测(科学睡眠)","血氧自动检测"]
     
     let baseTwoFunctions = ["长按解锁", "消息亮屏", "体温自动检测", "体温单位切换", "ECG 常开", "血糖功能开关",  "梅托功能开关",
-                            "压力功能开关", "血糖单位切换", "血液成分开关", "尿酸单位切换", "血脂单位切换"]
+                            "压力功能开关", "血糖单位切换", "血液成分开关", "尿酸单位切换", "血脂单位切换", "跌倒提醒"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

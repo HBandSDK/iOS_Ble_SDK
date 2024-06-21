@@ -161,6 +161,7 @@ typedef NS_ENUM(NSInteger, VPSettingBaseFunctionSwitchType) {//关于来电提�
     VPSettingAutomaticBloodCompTest = 31,       //血液成分自动检测开关
     VPSettingUricAcidUnit = 32,                 //尿酸单位设置 1表示μmol/L 2表示mg/dl
     VPSettingLipidUnit = 33,                    //血脂单位设置 1表示mmol/L 2表示mg/dl
+    VPSettingFallDetection = 34,                //跌倒检测
     
     //其他指令
     VPSettingAutomaticOxygenTest = 1000,//血氧夜间自动检测
@@ -579,3 +580,21 @@ typedef NS_ENUM(NSUInteger, VPECGMultiLeadType) {
     VPECGMultiLeadTypeaVL,       // aVL 导联
     VPECGMultiLeadTypeaVF,       // aVF 导联
 };
+
+/// 设备磁疗功能状态枚举
+typedef NS_ENUM(NSUInteger, VPDevicePulseState) {
+    VPDevicePulseStateNoFunction,   // 不支持该功能
+    VPDevicePulseStateOpen,         // 开启
+    VPDevicePulseStateClose,        // 关闭
+};
+
+/// 设备磁疗功能状态枚举
+typedef NS_ENUM(NSUInteger, VPDevicePulseResponceType) {
+    VPDevicePulseResponceTypeNuknown,      // 未知
+    VPDevicePulseResponceTypeSuccess,      // 成功
+    VPDevicePulseResponceTypeDeviceBusy,   // 设备正忙，指设备正在测量数据或者运动中
+    VPDevicePulseResponceTypeCharging,     // 充电中
+    VPDevicePulseResponceTypeNotWear,      // 佩戴检测未通过
+    VPDevicePulseResponceTypeLowBattery,   // 设备低电量，不允许开启
+};
+

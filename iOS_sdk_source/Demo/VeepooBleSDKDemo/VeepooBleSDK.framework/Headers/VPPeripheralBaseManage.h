@@ -922,6 +922,46 @@
 /// - Parameter result: 结果回调
 - (void)veepooSDK_G08WProjectDataAlertSubscribe:(void (^)(int type, int upper, int floor, bool open, NSError *error))result;
 
+#pragma mark - 脉冲磁疗
+
+/**
+ 定制功能-磁疗功能(非所有项目支持)
+ 回调使用 {@link:veepooSDK_pulseResultSubscribe:}，不支持该功能的设备回调无响应
+ - Parameters:
+ - open: 是否开启
+ - type: 类型 0表示脉冲磁疗(辅助睡眠) 1表示常规磁疗
+ - minute: 持续分钟时间 (1-15)，默认1
+ - level: 档位强度 (1-7)，默认1
+ 
+ Custom function-Magnetic therapy function(Not all projects supported)
+ callback use {@link:veepooSDK_pulseResultSubscribe:}，the callback does not trigger if the device does not support this function
+ - Parameters:
+ - open: whether to open
+ - type: Type 0 indicates pulsed magnetic therapy (sleep aid) and 1 indicates conventional magnetic therapy
+ - minute: duration in minutes (1-15), default 1
+ - level: gear strength (1-7), default 1
+ */
+- (void)veepooSDK_setPulseAction:(BOOL)open type:(int)type minute:(int)minute level:(int)level;
+
+/** 
+ 磁疗功能的响应回调
+ - Parameter result: 响应回调
+ - state: 操作类型
+ - isDeviceChange: 是否为设备端主动上报
+ - respType: 设备端响应类型
+ - type: 类型 0表示脉冲磁疗(辅助睡眠) 1表示常规磁疗
+ - level: 档位强度 (1-7)，默认1
+ 
+ Callback of magnetic therapy function
+ - Parameter result: callback
+ - state: Pulse state
+ - isDeviceChange: Whether device change
+ - respType: Response type of the device
+ - type: Type 0 indicates pulsed magnetic therapy (sleep aid) and 1 indicates conventional magnetic therapy
+ - level: gear strength (1-7), default 1, value will change when device change
+ */
+- (void)veepooSDK_pulseResultSubscribe:(void (^)(VPDevicePulseState state, BOOL isDeviceChange, VPDevicePulseResponceType respType, int type, int level))result;
+
 @end
 
 

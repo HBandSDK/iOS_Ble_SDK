@@ -96,6 +96,8 @@
 		FE722C0A25F5D41900EA675E /* VPFindDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */; };
 		FE722C2A25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */; };
 		FE722C2B25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */; };
+		FE776C222C2575F1003CEA82 /* VPDevicePulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE776C202C2575F1003CEA82 /* VPDevicePulseViewController.swift */; };
+		FE776C232C2575F1003CEA82 /* VPDevicePulseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE776C212C2575F1003CEA82 /* VPDevicePulseViewController.xib */; };
 		FE89AA1D2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89AA1B2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift */; };
 		FE89AA1E2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89AA1C2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift */; };
 		FE8E3A0026F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E39FE26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift */; };
@@ -241,6 +243,8 @@
 		FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPFindDeviceViewController.xib; sourceTree = "<group>"; };
 		FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingDeviceGPSViewController.swift; sourceTree = "<group>"; };
 		FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingDeviceGPSViewController.xib; sourceTree = "<group>"; };
+		FE776C202C2575F1003CEA82 /* VPDevicePulseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDevicePulseViewController.swift; sourceTree = "<group>"; };
+		FE776C212C2575F1003CEA82 /* VPDevicePulseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPDevicePulseViewController.xib; sourceTree = "<group>"; };
 		FE89AA1B2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBloodAnalysisViewController.swift; sourceTree = "<group>"; };
 		FE89AA1C2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBodyCompositionViewController.swift; sourceTree = "<group>"; };
 		FE8E39FE26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPG15AdvertisementDataViewController.swift; sourceTree = "<group>"; };
@@ -362,11 +366,13 @@
 				67640D551E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift */,
 				67640D561E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib */,
 				FE89AA1C2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift */,
-				FE0FA3012B046AA9001F9277 /* VPDeviceHealthRemindViewController.swift */,
 				FECF31F92AFC846B00012184 /* VPDeviceContactsViewController.swift */,
 				67CA3B561EF25AB500203D20 /* VPDeviceCountDownController.swift */,
 				67CA3B571EF25AB500203D20 /* VPDeviceCountDownController.xib */,
+				FE0FA3012B046AA9001F9277 /* VPDeviceHealthRemindViewController.swift */,
 				67CA3B6D1EF363C100203D20 /* VPDeviceNewAlarmController.swift */,
+				FE776C202C2575F1003CEA82 /* VPDevicePulseViewController.swift */,
+				FE776C212C2575F1003CEA82 /* VPDevicePulseViewController.xib */,
 				FE722C0725F5D41900EA675E /* VPFindDeviceViewController.swift */,
 				FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */,
 				FE645F022A90D180009CCD50 /* VPFindPhoneViewController.swift */,
@@ -675,6 +681,7 @@
 				67CA3B741EF3783A00203D20 /* VPNewAlarmCell.xib in Resources */,
 				67640D581E56E1BE008D9D71 /* VPBloodPrivateSettingController.xib in Resources */,
 				672E08471E5E813300F60750 /* VPTestStepController.xib in Resources */,
+				FE776C232C2575F1003CEA82 /* VPDevicePulseViewController.xib in Resources */,
 				FE645F052A90D181009CCD50 /* VPFindPhoneViewController.xib in Resources */,
 				FE722C2B25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib in Resources */,
 				672E08331E5D36ED00F60750 /* VPTestBloodController.xib in Resources */,
@@ -752,6 +759,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */,
+				FE776C222C2575F1003CEA82 /* VPDevicePulseViewController.swift in Sources */,
 				FE8E3A1626F49BD300065ADB /* VPEditTextAlarmViewController.swift in Sources */,
 				044ECB1A25E3A358002D090C /* VPPath.swift in Sources */,
 				672E08461E5E813300F60750 /* VPTestStepController.swift in Sources */,

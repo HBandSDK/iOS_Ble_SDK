@@ -170,7 +170,7 @@ class VPSettingDeviceGPSViewController: UIViewController {
     
     @IBAction func AGPSBtn(_ sender: UIButton) {
         let apgsFunction = VPBleCentralManage.sharedBleManager()?.peripheralModel.agpsFunction;
-        print("是否有AGPS功能: \(apgsFunction == 1 ? "是":"否")")
+        self.printText("是否有AGPS功能: \(apgsFunction != 0 ? "是":"否")")
         
 //        let path = Bundle.main.path(forResource: "LTEPH_GPS_1", ofType: "rtcm")
 //        let fileUrl = URL(fileURLWithPath: path!)
@@ -178,7 +178,7 @@ class VPSettingDeviceGPSViewController: UIViewController {
         AGPSButton.isEnabled = false
         
         var fileUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        fileUrl?.appendPathComponent("LTEPH_GPS_1-7.rtcm")
+        fileUrl?.appendPathComponent("vpxltest.pgl")
         
         let timestamp = Int(timestampField2.text!) ?? 0
         VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDK_AGPSTransform(withFileUrl: fileUrl, timestamp: timestamp, result: { [weak self](photoDialModel, marketDialModel, error) in

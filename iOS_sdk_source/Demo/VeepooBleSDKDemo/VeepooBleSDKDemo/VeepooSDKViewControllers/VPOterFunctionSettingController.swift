@@ -55,7 +55,8 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("联系人","VPDeviceContactsViewController"),
         .init("身体成分","VPBodyCompositionViewController"),
         .init("血液成分","VPBloodAnalysisViewController"),
-        .init("G08W项目","VPG08WViewController")
+        .init("G08W项目","VPG08WViewController"),
+        .init("脉冲磁疗功能","VPDevicePulseViewController")
     ]
     
     override func viewDidLoad() {
