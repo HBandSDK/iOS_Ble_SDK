@@ -913,7 +913,7 @@
 /// 读取、设置数据警报，不可以与心率警报接口共用{@link: veepooSDKSettingDeviceHeartAlarmWithHeartAlarmModel:settingMode:successResult:failureResult:}
 /// - Parameters:
 ///   - opCode: 操作类型，0是关闭，1是开启，2是读取
-///   - type: 类型 [0,1,2,3] 分别是 ["心率报警", "血压报警", "体温过高", "血氧过低"]
+///   - type: 类型 [0,1,2,3] 分别是 ["心率报警", "血压(只针对收缩压)报警", "体温过高", "血氧过低"]
 ///   - upper: 上限值，血氧过低警报无效
 ///   - floor: 下限值，体温过高警报无效
 - (void)veepooSDK_G08WProjectDataAlertWithOpCode:(int)opCode type:(int)type upper:(int)upper floor:(int)floor;
