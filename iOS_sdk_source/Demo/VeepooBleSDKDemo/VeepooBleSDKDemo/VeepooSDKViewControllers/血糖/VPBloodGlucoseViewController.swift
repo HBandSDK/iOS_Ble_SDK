@@ -65,7 +65,8 @@ class VPBloodGlucoseViewController: UIViewController {
     
     @IBAction func manualTestDataBtnAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKTestBloodGlucoseStart(sender.isSelected, testResult: { [weak self](state, progress, value, level) in
+                
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKTestBloodGlucoseStart(sender.isSelected, isPersonalModel: false, testResult: { [weak self](state, progress, value, level) in
             var txt = ""
             
             if state == .unsupported{

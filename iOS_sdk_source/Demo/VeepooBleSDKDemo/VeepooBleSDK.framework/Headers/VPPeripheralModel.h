@@ -174,6 +174,9 @@
 //通讯录类型 1代表有 0表示没有 2表示有SOS功能
 @property (nonatomic, assign) NSUInteger contactType;
 
+//肤色类型 0和1只有2档位[1-2]，2有6个档位[1-6](底层是映射成4个)
+@property (nonatomic, assign) NSUInteger skinType;
+
 @property (nonatomic, strong) VPDialModel *dialModel;
 
 //手机查找手环功能 0代表没有，1代表有

@@ -480,9 +480,11 @@
  血糖类型(bloodGlucoseType)为5情况下，level风险等级才有效
  
  @param start Start and End
+ @param isPersonalModel 是否为私人模式 
  @param testResult Callback of test results
  */
-- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start 
+- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start
+                       isPersonalModel:(BOOL)isPersonalModel
                             testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value, NSUInteger level))testResult;
 
 

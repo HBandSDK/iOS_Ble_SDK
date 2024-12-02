@@ -44,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 导联类型
 @property (nonatomic, assign) VPECGMultiLeadType leadType;
 
+/// 增益
+@property (nonatomic, assign) uint8_t gain;
+
 /// 该导联类型的波形返回数据，单位mv
 @property (nonatomic, strong) NSArray<NSNumber *> *waveFormArr;
 
