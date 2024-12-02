@@ -10,6 +10,7 @@
 | 1.0.5 | 表盘传输和OTA添加电池电量限制等相关描述                      | 2023.09.11 |
 | 1.0.6 | 添加身体成分、血液成分、血糖多校准、联系人SOS设置、ECG离线存储等相关文档 | 2023.10.31 |
 | 1.0.7 | 添加血糖风险等级、体温整合到日常数据接口中相关文档           | 2024.04.15 |
+| 1.0.8 | 添加肤色多档位设置、血糖手动测量支持私人模式                 | 2024.12.02 |
 
 # SDK初始化
 
@@ -616,7 +617,16 @@ typedef NS_ENUM(NSInteger, VPSettingFunctionCompleteState) {//设置某个功能
     }
 ```
 
+**多档位肤色设置用例**
 
+```swift
+// let support = VPPeripheralModel.skinType == 2
+// rawValue is [1, 6], 1为最靠近白色肤色，6为最靠近黑色肤色，5和6都是原来的黑人模式，1-4佩戴有不同的阈值
+let state = VPSettingFunctionState(rawValue: 6) ?? .settingFunctionOpen
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingBaseFunctionType(.ledGrade, settingState: state) { state in
+    print(state)
+}
+```
 
 
 
@@ -3737,15 +3747,18 @@ NSDictionary *dataDic = {
 **血糖类型(bloodGlucoseType)为5情况下，level风险等级才有效**
 
 ```objective-c
-- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value, NSUInteger level))testResult;
+- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start
+                       isPersonalModel:(BOOL)isPersonalModel
+                            testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value, NSUInteger level))testResult;
 ```
 
 ### 参数解释
 
-| 参数名     | 类型  | 备注           |
-| ---------- | ----- | -------------- |
-| start      | BOOL  | 开始或结束测量 |
-| testResult | Block | 测量结果回调   |
+| 参数名          | 类型  | 备注           |
+| --------------- | ----- | -------------- |
+| start           | BOOL  | 开始或结束测量 |
+| isPersonalModel | BOOL  | 是否为私人模式 |
+| testResult      | Block | 测量结果回调   |
 
 ```objective-c
 // 血糖功能指令测试状态
@@ -3764,7 +3777,7 @@ typedef NS_ENUM(NSUInteger, VPDeviceBloodGlucoseTestState) {
 ```swift
 @IBAction func manualTestDataBtnAction(_ sender: UIButton) {
     sender.isSelected = !sender.isSelected
-    VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKTestBloodGlucoseStart(sender.isSelected, testResult: { [weak self](state, progress, value, level) in
+    VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKTestBloodGlucoseStart(sender.isSelected, isPersonalModel:false, testResult: { [weak self](state, progress, value, level) in
         var txt = ""
         if state == .unsupported{
             txt = "设备不支持该功能"

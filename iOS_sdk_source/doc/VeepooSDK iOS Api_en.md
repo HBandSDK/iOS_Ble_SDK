@@ -10,6 +10,7 @@
 | 1.0.5   | Description of watch face transmission and battery power limit added to OTA | 2023.09.11        |
 | 1.0.6   | Added documents related to body composition, blood composition, blood glucose multi-calibration, contact SOS settings, ECG offline storage, etc. | 2023.10.31        |
 | 1.0.7   | Added documents related to blood glucose risk level and body temperature integration into daily data interface | 2024.04.15        |
+| 1.0.8   | Add multi settings for skin colour, private mode support for manual blood glucose measurement | 2024.12.02        |
 
 # SDK initialization
 
@@ -612,7 +613,16 @@ typedef NS_ENUM(NSInteger, VPSettingFunctionCompleteState) {//Set the state afte
     }
 ```
 
+**Multi LedGrade Setting(Skin Color)**
 
+```swift
+// let support = VPPeripheralModel.skinType == 2
+// rawValue is [1, 6], 1为最靠近白色肤色，6为最靠近黑色肤色，5和6都是原来的黑人模式，1-4佩戴有不同的阈值
+let state = VPSettingFunctionState(rawValue: 6) ?? .settingFunctionOpen
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingBaseFunctionType(.ledGrade, settingState: state) { state in
+    print(state)
+}
+```
 
 
 
@@ -3715,15 +3725,18 @@ Formula：`floor((X mmol/L ) * 18 +0.5f) = Y mg/dL`
 **The level risk level is only valid when bloodGlucoseType is 5**
 
 ```objective-c
-- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value, NSUInteger level))testResult;
+- (void)veepooSDKTestBloodGlucoseStart:(BOOL)start
+                       isPersonalModel:(BOOL)isPersonalModel
+                            testResult:(void(^)(VPDeviceBloodGlucoseTestState testState, NSUInteger testProgress, NSUInteger value, NSUInteger level))testResult;
 ```
 
 ### Parameter Explanation
 
-| Parameter name | Type  | Remarks                     |
-| -------------- | ----- | --------------------------- |
-| start          | BOOL  | Start or end measurement    |
-| testResult     | Block | Measurement result callback |
+| Parameter name  | Type  | Remarks                     |
+| --------------- | ----- | --------------------------- |
+| start           | BOOL  | Start or end measurement    |
+| isPersonalModel | BOOL  | Private mode or not         |
+| testResult      | Block | Measurement result callback |
 
 ```objective-c
 // Blood glucose function command test state
@@ -3742,7 +3755,7 @@ typedef NS_ENUM(NSUInteger, VPDeviceBloodGlucoseTestState) {
 ```swift
 @IBAction func manualTestDataBtnAction(_ sender: UIButton) {
 sender.isSelected = !sender.isSelected
-VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKTestBloodGlucoseStart(sender.isSelected, testResult: { [weak self](state, progress, value, level) in
+VPBleCentralManage.sharedBleManager()?.peripheralManage.veepooSDKTestBloodGlucoseStart(sender.isSelected, isPersonalModel:false, testResult: { [weak self](state, progress, value, level) in
 				var txt = ""
 				if state == .unsupported{
 					 txt = "The device does not support this function"
