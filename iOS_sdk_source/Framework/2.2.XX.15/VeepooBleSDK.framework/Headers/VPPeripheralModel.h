@@ -193,7 +193,7 @@
 //设备的BT信息，内部使用
 @property (nonatomic, strong) NSData *deviceBTInfoData;
 
-//设备的芯片类型 从杰理系列开始有 1表示杰理系列
+//设备的芯片类型 从杰理系列开始有 1表示杰理系列 3/4表示中科系列
 @property (nonatomic, assign) NSUInteger CPUType;
 
 //血液成分

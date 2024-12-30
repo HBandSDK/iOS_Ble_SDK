@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *getUpToDeepAve;
 //曲线上一个点代表的时间，单位秒，现在是60s
 @property (nonatomic, strong) NSString *onePointDuration;
-//精准睡眠类型, 1是精准睡眠, 0是普通睡眠
+//精准睡眠类型, 1是精准睡眠, 0是普通睡眠, 中科为2
 @property (nonatomic, strong) NSString *accurateType;
 //失眠标志
 @property (nonatomic, strong) NSString *insomniaTag;

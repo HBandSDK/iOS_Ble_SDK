@@ -79,6 +79,37 @@ typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
     VPDeviceScreenTypeSquare228_460_JL          = 0x52,        // 杰理 228*460 方屏
     VPDeviceScreenTypeSquare320_360_JL          = 0x53,        // 杰理 320*360 方屏
     VPDeviceScreenTypeCircle360_360_JL_JF       = 0x54,        // 杰理 360*360 JE101P/JE105P，用以区分自定义背景
+    VPDeviceScreenTypeSquare410_502_JL_XMD      = 0x55,        // 杰理 410*502 JM18A_5519_ET588，用以区分自定义背景
+    VPDeviceScreenTypeSquare360_360_JL          = 0x56,        // 杰理 360*360 方屏
+        
+    // 中科（568x）中科平台必须导入 ABParTool.framework
+    // Zhongke(ZK) platform must be imported ABParTool.framework
+    VPDeviceScreenTypeCircle466_466_ZK          = 0x5B,        // 中科 圆屏 466*466
+    VPDeviceScreenTypeCircle360_360_ZK          = 0x5C,        // 中科 圆屏 360*360
+    VPDeviceScreenTypeSquare240_296_ZK          = 0x5D,        // 中科 方屏 240*296
+    VPDeviceScreenTypeSquare240_280_ZK          = 0x5E,        // 中科 方屏 240*280
+    VPDeviceScreenTypeSquare240_284_ZK          = 0x5F,        // 中科 方屏 240*284
+    VPDeviceScreenTypeSquare200_320_ZK          = 0x61,        // 中科 方屏 200*320
+    VPDeviceScreenTypeSquare240_296_ZK_HY       = 0x62,        // 中科 方屏 240*296 ZT26_7226_H08自定义背景
+    VPDeviceScreenTypeSquare368_448_ZK          = 0x63,        // 中科 方屏 368*448
+    VPDeviceScreenTypeSquare240_284_ZK_XMD      = 0x64,        // 中科 方屏 240*284 ZT50_7250_T92自定义背景
+    VPDeviceScreenTypeSquare172_320_ZK          = 0x65,        // 中科 方屏 172*320
+    VPDeviceScreenTypeSquare320_385_ZK          = 0x66,        // 中科 方屏 320*385
+    VPDeviceScreenTypeSquare410_502_ZK          = 0x70,        // 中科 方屏 410*502
+    VPDeviceScreenTypeSquare390_450_ZK          = 0x72,        // 中科 方屏 390*450
+    
+    // 中科（569x）
+    VPDeviceScreenTypeCircle466_466_ZK_569x     = 0x67,        // 中科 圆屏 466*466
+    VPDeviceScreenTypeCircle360_360_ZK_569x     = 0x68,        // 中科 圆屏 360*360
+    VPDeviceScreenTypeSquare240_296_ZK_569x     = 0x69,        // 中科 方屏 240*296
+    VPDeviceScreenTypeSquare240_280_ZK_569x     = 0x6A,        // 中科 方屏 240*280
+    VPDeviceScreenTypeSquare240_284_ZK_569x     = 0x6B,        // 中科 方屏 240*284
+    VPDeviceScreenTypeSquare200_320_ZK_569x     = 0x6C,        // 中科 方屏 200*320
+    VPDeviceScreenTypeSquare368_448_ZK_569x     = 0x6D,        // 中科 方屏 368*448
+    VPDeviceScreenTypeSquare172_320_ZK_569x     = 0x6E,        // 中科 方屏 172*320
+    VPDeviceScreenTypeSquare320_385_ZK_569x     = 0x6F,        // 中科 方屏 320*385
+    VPDeviceScreenTypeSquare410_502_ZK_569x     = 0x71,        // 中科 方屏 410*502
+    VPDeviceScreenTypeSquare390_450_ZK_569X     = 0x73,        // 中科 方屏 390*450
 };
 
 typedef NS_ENUM(NSUInteger, VPPhotoDialTimePosition) {
@@ -160,6 +191,8 @@ NS_ASSUME_NONNULL_BEGIN
    基于以上原因，会导致手机上显示的颜色与设备的颜色有差异
    如果要减少颜色的差异，可以对下发的颜色进行校准，如：
    APP显示 0xFF0000 红色，下发设备 0xF00000。映射关系：0xFF0000 -> 0xF00000
+ ⚠️中科平台不支持修改元素的显示颜色，底层不支持
+ ⚠️Zhongke platform does not support to modify the display color of the element, the underlying does not support
 */
 @property (nonatomic, strong) NSString *setColor;
 

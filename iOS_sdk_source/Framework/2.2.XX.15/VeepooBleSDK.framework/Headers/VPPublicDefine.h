@@ -479,6 +479,7 @@ typedef NS_ENUM(NSUInteger, VPTemperatureTestState) {
     VPTemperatureTestStateUnsupported,
     VPTemperatureTestStateOpen,
     VPTemperatureTestStateClose,
+    VPTemperatureTestStateNotWear = 0x09,
 };
 
 // 赛米加G15定制需求 界面的传输类型

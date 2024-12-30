@@ -109,7 +109,9 @@
 		FE8E3A1726F49BD300065ADB /* VPEditTextAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8E3A1526F49BD300065ADB /* VPEditTextAlarmViewController.xib */; };
 		FE8E3A4626F5E31200065ADB /* VPTextAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E3A4426F5E31200065ADB /* VPTextAlarmCell.swift */; };
 		FE8E3A4726F5E31200065ADB /* VPTextAlarmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8E3A4526F5E31200065ADB /* VPTextAlarmCell.xib */; };
-		FE8F1D822A5EB21000B6D9E9 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE8F1D812A5EB21000B6D9E9 /* VeepooBleSDK.framework */; };
+		FEA658792D22872100FB7469 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658782D22872100FB7469 /* VeepooBleSDK.framework */; };
+		FEA6587A2D22879A00FB7469 /* ABParTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; };
+		FEA6587B2D22879A00FB7469 /* ABParTool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */; };
 		FECB0D9D289CF58A00D434D2 /* VPBloodGlucoseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */; };
 		FECF31FA2AFC846B00012184 /* VPDeviceContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF31F92AFC846B00012184 /* VPDeviceContactsViewController.swift */; };
@@ -139,6 +141,7 @@
 				FEFDBB2229BF445100264276 /* ZipZap.framework in Embed Frameworks */,
 				FEFDBB2429BF445E00264276 /* JLDialUnit.framework in Embed Frameworks */,
 				FE70FA95263A613F00074260 /* GRDFUSDK.framework in Embed Frameworks */,
+				FEA6587B2D22879A00FB7469 /* ABParTool.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,7 +259,8 @@
 		FE8E3A1526F49BD300065ADB /* VPEditTextAlarmViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPEditTextAlarmViewController.xib; sourceTree = "<group>"; };
 		FE8E3A4426F5E31200065ADB /* VPTextAlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTextAlarmCell.swift; sourceTree = "<group>"; };
 		FE8E3A4526F5E31200065ADB /* VPTextAlarmCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPTextAlarmCell.xib; sourceTree = "<group>"; };
-		FE8F1D812A5EB21000B6D9E9 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = SOURCE_ROOT; };
+		FEA658742D2286ED00FB7469 /* ABParTool.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ABParTool.framework; sourceTree = "<group>"; };
+		FEA658782D22872100FB7469 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPBloodGlucoseViewController.swift; sourceTree = "<group>"; };
 		FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPBloodGlucoseViewController.xib; sourceTree = "<group>"; };
 		FECF31F92AFC846B00012184 /* VPDeviceContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceContactsViewController.swift; sourceTree = "<group>"; };
@@ -281,9 +285,10 @@
 			files = (
 				FEFDBB2329BF445E00264276 /* JLDialUnit.framework in Frameworks */,
 				FEFDBB1E29BF444A00264276 /* DFUnits.framework in Frameworks */,
-				FE8F1D822A5EB21000B6D9E9 /* VeepooBleSDK.framework in Frameworks */,
 				FEFDBB2129BF445000264276 /* ZipZap.framework in Frameworks */,
+				FEA6587A2D22879A00FB7469 /* ABParTool.framework in Frameworks */,
 				FE70FA94263A613F00074260 /* GRDFUSDK.framework in Frameworks */,
+				FEA658792D22872100FB7469 /* VeepooBleSDK.framework in Frameworks */,
 				FEFDBB1F29BF444A00264276 /* JL_BLEKit.framework in Frameworks */,
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
 			);
@@ -483,12 +488,13 @@
 		67CB1CA91E52D26E00805649 /* VeepooBleSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				FE8F1D812A5EB21000B6D9E9 /* VeepooBleSDK.framework */,
+				FEA658782D22872100FB7469 /* VeepooBleSDK.framework */,
 				FEFDBB1A29BF444900264276 /* DFUnits.framework */,
 				FEFDBB1B29BF444A00264276 /* JL_BLEKit.framework */,
 				FEFDBB1929BF444900264276 /* JLDialUnit.framework */,
 				FEFDBB1C29BF444A00264276 /* ZipZap.framework */,
 				FE70FA85263A5F2400074260 /* GRDFUSDK.framework */,
+				FEA658742D2286ED00FB7469 /* ABParTool.framework */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
 				67057F991E655D830084D6AB /* VeepooTools */,
