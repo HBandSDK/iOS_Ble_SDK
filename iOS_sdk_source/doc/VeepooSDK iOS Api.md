@@ -11,6 +11,8 @@
 | 1.0.6 | 添加身体成分、血液成分、血糖多校准、联系人SOS设置、ECG离线存储等相关文档 | 2023.10.31 |
 | 1.0.7 | 添加血糖风险等级、体温整合到日常数据接口中相关文档           | 2024.04.15 |
 | 1.0.8 | 添加肤色多档位设置、血糖手动测量支持私人模式                 | 2024.12.02 |
+| 1.0.9 | Z系列(中科)平台兼容                                          | 2024.12.30 |
+|       |                                                              |            |
 
 # SDK初始化
 
@@ -1863,6 +1865,8 @@ public func getHRVDataFromDB(date: Date) -> [[String : Any]] {
 
 * 设备已连接
 * 设备不处于同步日常数据状态
+* 如果主控是杰理平台，参考《Veepoo_iOS_2.2.XX集成文档.png》导入厂商所需的库
+* ⚠️注意，如果是中科平台，需要引入ABParTool.framework
 
 ### 类名
 
@@ -1934,6 +1938,8 @@ typedef NS_ENUM(NSUInteger, VPDeviceDialType) {
 ### 前提
 
 * 需要提前获取到设备市场表盘数据 VPDeviceMarketDialModel
+* 如果主控是杰理平台，参考《Veepoo_iOS_2.2.XX集成文档.png》导入厂商所需的库
+* ⚠️注意，如果是中科平台，需要引入ABParTool.framework
 
 ### 类名
 

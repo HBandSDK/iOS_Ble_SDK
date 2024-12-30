@@ -11,6 +11,8 @@
 | 1.0.6   | Added documents related to body composition, blood composition, blood glucose multi-calibration, contact SOS settings, ECG offline storage, etc. | 2023.10.31        |
 | 1.0.7   | Added documents related to blood glucose risk level and body temperature integration into daily data interface | 2024.04.15        |
 | 1.0.8   | Add multi settings for skin colour, private mode support for manual blood glucose measurement | 2024.12.02        |
+| 1.0.9   | Compatibility with Z-series (Zhongke) platforms              | 2024.12.30        |
+|         |                                                              |                   |
 
 # SDK initialization
 
@@ -1843,6 +1845,8 @@ How to get it：**VPBleCentralManage.sharedBleManager().peripheralManage.periphe
 
 * The device is connected
 * The device is not in the state of synchronizing daily data
+* If the main control is on the JL (Jieli) platform, refer to the "Veepoo_iOS_2.2.XX集成文档.png" to import the libraries required by the manufacturer
+* ⚠️ Note that if it is the Zhongke platform, the ABParTool.framework needs to be imported
 
 ### Class Name
 
@@ -1914,6 +1918,8 @@ typedef NS_ENUM(NSUInteger, VPDeviceDialType) {
 ### Prerequisites
 
 * Need to get the device market dial data VPDeviceMarketDialModel in advance
+* If the main control is on the JL (Jieli) platform, refer to the "Veepoo_iOS_2.2.XX集成文档.png" to import the libraries required by the manufacturer
+* ⚠️ Note that if it is the Zhongke platform, the ABParTool.framework needs to be imported
 
 ### Class Name
 

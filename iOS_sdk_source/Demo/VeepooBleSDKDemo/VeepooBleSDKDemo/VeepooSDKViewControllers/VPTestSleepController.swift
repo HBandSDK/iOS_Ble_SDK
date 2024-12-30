@@ -28,11 +28,15 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         title = "睡眠"
         let sleepState = VPBleCentralManage.sharedBleManager()?.peripheralModel.sleepType
-        if sleepState == 1 || sleepState == 3 {//精准睡眠
+        if let sleepState = sleepState, isAccSleepType(sleepType: sleepState) {//精准睡眠
             sleepDayIndex = 0;
-            sleepType = sleepState!;
+            sleepType = sleepState;
         }
         obtainOneDaySleepData()
+    }
+    
+    private func isAccSleepType(sleepType: Int) -> Bool {
+        return sleepType == 1 || sleepType == 3 || sleepType == 4 || sleepType == 5
     }
     
     @IBAction func sleepLastDayAction(_ sender: UIButton) {
@@ -53,7 +57,7 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sleepArray = sleepTestArray else {
+        guard sleepTestArray != nil else {
             return 0
         }
 //        let sleepDict = sleepArray[section] as! [String : String]
@@ -97,7 +101,7 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
             return cell!;
         }
         
-        if sleepType == 3 {//精准睡眠3的结构 只有下方的数据有效，其他数据无效与睡眠类型1不同
+        if sleepType == 3 || sleepType == 4 || sleepType == 5 {//精准睡眠3的结构 只有下方的数据有效，其他数据无效与睡眠类型1不同
             let sleepModel = sleepArray[indexPath.section] as! VPAccurateSleepModel
             
             if indexPath.row == 0 {//入睡时间
@@ -151,7 +155,7 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
     func obtainOneDaySleepData() {
         self.sleepDateLabel.text = sleepDayIndex.getOneDayDateString()
         
-        if sleepType == 1 || sleepType == 3 {//精准睡眠
+        if isAccSleepType(sleepType: sleepType) {//精准睡眠
             sleepTestArray = VPDataBaseOperation.veepooSDKGetAccurateSleepData(withDate: self.sleepDateLabel.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
             guard let sleepTestArray = sleepTestArray else {
                 return
@@ -167,7 +171,10 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
         
         sleepTestTableView.reloadData()
     }
+    
+    
 }
+
 
 
 
