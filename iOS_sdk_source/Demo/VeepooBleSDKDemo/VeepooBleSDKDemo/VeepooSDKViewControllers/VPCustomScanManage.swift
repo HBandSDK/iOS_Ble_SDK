@@ -82,7 +82,8 @@ class VPCustomScanManage: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     ///   - peripheral: 外设对象
     ///   - advertisementData: 广播包数据
     ///   - RSSI: 信号量
-    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
+                        advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if RSSI.intValue < 0 && RSSI.intValue >= -55 {
             let name = advertisementData["kCBAdvDataLocalName"] as? String
             // 这里只是举例：扫到"W8"的设备就连接
