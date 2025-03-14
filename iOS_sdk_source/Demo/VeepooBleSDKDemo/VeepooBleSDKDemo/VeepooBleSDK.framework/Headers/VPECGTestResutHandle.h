@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "VPECGTestDataModel.h"
+#import "VPTCMTestDataModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VPECGTestResultModle : NSObject
@@ -66,6 +67,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取多诊断的结果对象
 /// - Parameter ecgTestDataModel: ecg测量结果对象
 + (VPECGTestResultReportModle *)resultReportWithModel:(VPECGTestDataModel *)ecgTestDataModel;
+
+/// 获取多诊断的结果对象
+/// - Parameter tcmTestDataModel: tcm测量结果对象
++ (VPECGTestResultReportModle *)resultReportWithTCMModel:(VPTCMTestDataModel *)tcmTestDataModel;
 
 //+ (NSArray <VPECGTestResultModle *>*)resultWithPTTModel:(VPECGPTTTestDataModel *)pttTestDataModel;
 

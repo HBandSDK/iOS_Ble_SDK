@@ -22,6 +22,7 @@
 #import "VPScreenDurationModel.h"
 #import "VPOxygenApneaRemindModel.h"
 #import "VPECGTestDataModel.h"
+#import "VPTCMTestDataModel.h"
 #import "VPLowPowerModel.h"
 #import "VPOxygenDisconnectTestModel.h"
 #import "VPPttValueModel.h"
@@ -963,6 +964,19 @@
  - level: gear strength (1-7), default 1, value will change when device change
  */
 - (void)veepooSDK_pulseResultSubscribe:(void (^)(VPDevicePulseState state, BOOL isDeviceChange, VPDevicePulseResponceType respType, int type, int level))result;
+
+#pragma mark - JM19A定制项目适用，非该项目调用下方接口无回调
+
+/// 原始数据订阅-注意在合适的时机取消订阅,否则其它测量可能会产生异常
+/// - Parameter result: 回调结果，type[0,1,2]分别是[ppg1，ppg2，ppg3]
+- (void)veepooSDK_JM19AProjectTCMPPGADCSubscribe:(void (^)(int type, NSArray<NSNumber *> *valueArr))result;
+
+/// TCM测量开启与否
+/// - Parameters:
+///   - start: 开启/关闭
+///   - testResultBlock: 结果回调
+- (void)veepooSDK_JM19AProjectTCMTestWithStart:(BOOL)start
+                                    testResult:(void(^)(VPTestECGState state, NSUInteger progress, VPTCMTestDataModel *))testResultBlock;
 
 @end
 

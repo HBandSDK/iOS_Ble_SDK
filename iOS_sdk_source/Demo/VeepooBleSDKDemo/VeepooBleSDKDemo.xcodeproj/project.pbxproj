@@ -109,6 +109,8 @@
 		FE8E3A1726F49BD300065ADB /* VPEditTextAlarmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8E3A1526F49BD300065ADB /* VPEditTextAlarmViewController.xib */; };
 		FE8E3A4626F5E31200065ADB /* VPTextAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E3A4426F5E31200065ADB /* VPTextAlarmCell.swift */; };
 		FE8E3A4726F5E31200065ADB /* VPTextAlarmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8E3A4526F5E31200065ADB /* VPTextAlarmCell.xib */; };
+		FE915C0D2D844BF1004417A3 /* VPJM19AViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */; };
+		FE915C0E2D844BF1004417A3 /* VPJM19AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE915C0A2D844BF1004417A3 /* VPJM19AViewController.swift */; };
 		FEA658792D22872100FB7469 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658782D22872100FB7469 /* VeepooBleSDK.framework */; };
 		FEA6587A2D22879A00FB7469 /* ABParTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; };
 		FEA6587B2D22879A00FB7469 /* ABParTool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -259,6 +261,8 @@
 		FE8E3A1526F49BD300065ADB /* VPEditTextAlarmViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPEditTextAlarmViewController.xib; sourceTree = "<group>"; };
 		FE8E3A4426F5E31200065ADB /* VPTextAlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTextAlarmCell.swift; sourceTree = "<group>"; };
 		FE8E3A4526F5E31200065ADB /* VPTextAlarmCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPTextAlarmCell.xib; sourceTree = "<group>"; };
+		FE915C0A2D844BF1004417A3 /* VPJM19AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPJM19AViewController.swift; sourceTree = "<group>"; };
+		FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPJM19AViewController.xib; sourceTree = "<group>"; };
 		FEA658742D2286ED00FB7469 /* ABParTool.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ABParTool.framework; sourceTree = "<group>"; };
 		FEA658782D22872100FB7469 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPBloodGlucoseViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE915C0C2D844BF1004417A3 /* JM19A */,
 				FEFD27AD2AF62E5A00425247 /* 多导心电 */,
 				FECB0D97289CF3F000D434D2 /* 血糖 */,
 				0409742F24986ED5006076EC /* 联定制 */,
@@ -561,6 +566,15 @@
 			path = TextAlarmClock;
 			sourceTree = "<group>";
 		};
+		FE915C0C2D844BF1004417A3 /* JM19A */ = {
+			isa = PBXGroup;
+			children = (
+				FE915C0A2D844BF1004417A3 /* VPJM19AViewController.swift */,
+				FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */,
+			);
+			path = JM19A;
+			sourceTree = "<group>";
+		};
 		FECB0D97289CF3F000D434D2 /* 血糖 */ = {
 			isa = PBXGroup;
 			children = (
@@ -689,6 +703,7 @@
 				672E08471E5E813300F60750 /* VPTestStepController.xib in Resources */,
 				FE776C232C2575F1003CEA82 /* VPDevicePulseViewController.xib in Resources */,
 				FE645F052A90D181009CCD50 /* VPFindPhoneViewController.xib in Resources */,
+				FE915C0D2D844BF1004417A3 /* VPJM19AViewController.xib in Resources */,
 				FE722C2B25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib in Resources */,
 				672E08331E5D36ED00F60750 /* VPTestBloodController.xib in Resources */,
 				FE373EA427B9EA4500F312C4 /* VPG15QRCodeViewController.xib in Resources */,
@@ -720,7 +735,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
@@ -728,7 +742,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
@@ -805,6 +818,7 @@
 				6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */,
 				67BA7254235813C8004E6E1E /* VPPTTTestController.swift in Sources */,
 				67FC22B11E67FC660029DED3 /* VPRaiseHandSettingController.swift in Sources */,
+				FE915C0E2D844BF1004417A3 /* VPJM19AViewController.swift in Sources */,
 				0409743724986F0A006076EC /* VPSOSViewController.swift in Sources */,
 				FE722C2A25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift in Sources */,
 				FE8E3A1226F494CA00065ADB /* VPTextAlarmClockSettingController.swift in Sources */,
@@ -976,8 +990,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
 					"\"FMDB\"",
 					"-framework",
 					"\"iOSDFULibrary\"",
@@ -1011,8 +1023,6 @@
 				MARKETING_VERSION = 2.9.23;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					"\"AFNetworking\"",
 					"-framework",
 					"\"FMDB\"",
 					"-framework",

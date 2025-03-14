@@ -1,19 +1,4 @@
 PODS:
-  - AFNetworking (4.0.1):
-    - AFNetworking/NSURLSession (= 4.0.1)
-    - AFNetworking/Reachability (= 4.0.1)
-    - AFNetworking/Security (= 4.0.1)
-    - AFNetworking/Serialization (= 4.0.1)
-    - AFNetworking/UIKit (= 4.0.1)
-  - AFNetworking/NSURLSession (4.0.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (4.0.1)
-  - AFNetworking/Security (4.0.1)
-  - AFNetworking/Serialization (4.0.1)
-  - AFNetworking/UIKit (4.0.1):
-    - AFNetworking/NSURLSession
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
@@ -23,26 +8,23 @@ PODS:
   - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
-  - AFNetworking (~> 4.0)
   - FMDB
   - iOSDFULibrary (~> 4.11.1)
   - MJExtension
 
 SPEC REPOS:
   trunk:
-    - AFNetworking
     - FMDB
     - iOSDFULibrary
     - MJExtension
     - ZIPFoundation
 
 SPEC CHECKSUMS:
-  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  iOSDFULibrary: 3500ac00451aa7d8ec48a752e91099669a2c1d27
+  iOSDFULibrary: 1f4139c6c1bb2b2f1f7b127f67dc52504778f8be
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: f0bf057aa3ea053d4fb1e6f2cfa2c2268a31b43f
+PODFILE CHECKSUM: d8433cf2b01b7c818071161794070e22f47e7035
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.16.2
