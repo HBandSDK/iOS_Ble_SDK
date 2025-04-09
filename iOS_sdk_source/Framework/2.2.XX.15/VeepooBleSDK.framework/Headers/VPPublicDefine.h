@@ -593,6 +593,7 @@ typedef NS_ENUM(NSUInteger, VPDevicePulseState) {
 typedef NS_ENUM(NSUInteger, VPDevicePulseResponceType) {
     VPDevicePulseResponceTypeNuknown,      // 未知
     VPDevicePulseResponceTypeSuccess,      // 成功
+    VPDevicePulseResponceTypeFailure,      // 失败
     VPDevicePulseResponceTypeDeviceBusy,   // 设备正忙，指设备正在测量数据或者运动中
     VPDevicePulseResponceTypeCharging,     // 充电中
     VPDevicePulseResponceTypeNotWear,      // 佩戴检测未通过
