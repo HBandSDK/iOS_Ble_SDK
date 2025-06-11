@@ -202,6 +202,18 @@
 //身体成分
 @property (nonatomic, assign) NSUInteger bodyCompositionType;
 
+//血压类型
+@property (nonatomic, assign) NSUInteger bloodPressureType;
+
+//世界时钟类型，0表示不支持
+@property (nonatomic, assign) NSUInteger worldClockType;
+
+//自动测量范围时间设置类型，0为不支持
+@property (nonatomic, assign) NSUInteger autoMonitSwitchType;
+
+//mtu size
+@property (nonatomic, assign, readonly) NSInteger mtu;
+
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is
 //设备网络升级版本，当用户收到有新固件版本的时候，告知用户升级的版本是多少

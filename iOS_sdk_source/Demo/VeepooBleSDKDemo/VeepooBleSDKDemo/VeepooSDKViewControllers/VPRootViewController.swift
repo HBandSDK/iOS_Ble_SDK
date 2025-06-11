@@ -94,6 +94,7 @@ class VPRootViewController: UIViewController {
             }
         }
         
+        
         //监听设备连接状态改变
         veepooBleManager.vpBleConnectStateChangeBlock = {[weak self](deviceConnectState: VPDeviceConnectState) -> Void
             in
@@ -125,7 +126,7 @@ class VPRootViewController: UIViewController {
         }
         
         // BT连接状态监听，仅支持双模芯片
-        VPPeripheralManage.shareVPPeripheralManager()?.vpbtConnectStateChangeBlock = {(btState: VPDeviceBTState, btSwitchOpen:Bool, mediaSwitch: Bool) -> Void
+        VPPeripheralManage.shareVPPeripheralManager()?.vpbtConnectStateChangeBlock = {(btState: VPDeviceBTState, btSwitchOpen:Bool , mediaSwitch: Bool) -> Void
             in
             switch btState {
             case .disConnect:
@@ -420,6 +421,38 @@ class VPRootViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    
+    @IBAction func enterAutoMonitSwitchVC(_ sender: UIButton) {
+        guard veepooBleManager.isConnected else {
+            AppDelegate.showHUD(message: "设备没有连接", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        if veepooBleManager.peripheralManage.peripheralModel.autoMonitSwitchType == 0 {
+            AppDelegate.showHUD(message: "设备不支持该功能", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        let vc: VPAutoMonitSwitchVC = .init()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @IBAction func enterManualTestVC(_ sender: UIButton) {
+        guard veepooBleManager.isConnected else {
+            AppDelegate.showHUD(message: "设备没有连接", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        
+        // 需根据不同功能类型去判断
+        let bpSupport: [UInt] = [0x03]
+        let bpType = veepooBleManager.peripheralManage.peripheralModel.bloodPressureType
+        
+        guard bpSupport.contains(bpType) else {
+            AppDelegate.showHUD(message: "设备不支持该功能", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        
+        let vc: VPManualTestDataVC = .init()
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     /// 销毁定时器操作
     func DestroyStepTimer() {

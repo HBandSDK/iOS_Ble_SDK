@@ -121,6 +121,8 @@
 		FECF31FE2AFC8DB900012184 /* VPContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECF31FC2AFC8DB900012184 /* VPContactCell.xib */; };
 		FED9CC892754C81A00E54DC8 /* VPRRIntervalDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED9CC872754C81A00E54DC8 /* VPRRIntervalDataViewController.swift */; };
 		FED9CC8A2754C81A00E54DC8 /* VPRRIntervalDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED9CC882754C81A00E54DC8 /* VPRRIntervalDataViewController.xib */; };
+		FEF1EEC52DF97AA3006ACCC8 /* VPManualTestDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1EEC12DF97AA3006ACCC8 /* VPManualTestDataVC.swift */; };
+		FEF1EEC62DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1EEC32DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift */; };
 		FEFA5486266B48D50071E61B /* VPTemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */; };
 		FEFA5487266B48D50071E61B /* VPTemperatureViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEFA5485266B48D50071E61B /* VPTemperatureViewController.xib */; };
 		FEFD27B02AF62E5A00425247 /* VPECGMultiLeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFD27AE2AF62E5A00425247 /* VPECGMultiLeadViewController.swift */; };
@@ -272,6 +274,8 @@
 		FECF31FC2AFC8DB900012184 /* VPContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPContactCell.xib; sourceTree = "<group>"; };
 		FED9CC872754C81A00E54DC8 /* VPRRIntervalDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPRRIntervalDataViewController.swift; sourceTree = "<group>"; };
 		FED9CC882754C81A00E54DC8 /* VPRRIntervalDataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPRRIntervalDataViewController.xib; sourceTree = "<group>"; };
+		FEF1EEC12DF97AA3006ACCC8 /* VPManualTestDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPManualTestDataVC.swift; sourceTree = "<group>"; };
+		FEF1EEC32DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAutoMonitSwitchVC.swift; sourceTree = "<group>"; };
 		FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTemperatureViewController.swift; sourceTree = "<group>"; };
 		FEFA5485266B48D50071E61B /* VPTemperatureViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPTemperatureViewController.xib; sourceTree = "<group>"; };
 		FEFD27AE2AF62E5A00425247 /* VPECGMultiLeadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPECGMultiLeadViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +334,8 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEF1EEC22DF97AA3006ACCC8 /* 手动测量数据 */,
+				FEF1EEC42DF97AA3006ACCC8 /* 自动测量设置 */,
 				FE915C0C2D844BF1004417A3 /* JM19A */,
 				FEFD27AD2AF62E5A00425247 /* 多导心电 */,
 				FECB0D97289CF3F000D434D2 /* 血糖 */,
@@ -593,6 +599,22 @@
 			path = RRIntervalData;
 			sourceTree = "<group>";
 		};
+		FEF1EEC22DF97AA3006ACCC8 /* 手动测量数据 */ = {
+			isa = PBXGroup;
+			children = (
+				FEF1EEC12DF97AA3006ACCC8 /* VPManualTestDataVC.swift */,
+			);
+			path = "手动测量数据";
+			sourceTree = "<group>";
+		};
+		FEF1EEC42DF97AA3006ACCC8 /* 自动测量设置 */ = {
+			isa = PBXGroup;
+			children = (
+				FEF1EEC32DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift */,
+			);
+			path = "自动测量设置";
+			sourceTree = "<group>";
+		};
 		FEFD27AD2AF62E5A00425247 /* 多导心电 */ = {
 			isa = PBXGroup;
 			children = (
@@ -778,6 +800,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */,
+				FEF1EEC52DF97AA3006ACCC8 /* VPManualTestDataVC.swift in Sources */,
+				FEF1EEC62DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift in Sources */,
 				FE776C222C2575F1003CEA82 /* VPDevicePulseViewController.swift in Sources */,
 				FE8E3A1626F49BD300065ADB /* VPEditTextAlarmViewController.swift in Sources */,
 				044ECB1A25E3A358002D090C /* VPPath.swift in Sources */,

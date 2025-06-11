@@ -101,8 +101,7 @@ class VPECGMultiLeadChartReportLineView: UIView {
         let oneMillivoltHeight:CGFloat = ECGPerCell * 10
         let startYPoint:CGFloat = frame.size.height * 1/2
         for i in 0..<dataArr.count {
-            let millivolts:CGFloat = VPECGMultiLeadWaveFormModel.convertToMv(withValue: dataArr[i])
-            let yValue:CGFloat = startYPoint - millivolts * oneMillivoltHeight
+            let yValue:CGFloat = startYPoint - dataArr[i].doubleValue * oneMillivoltHeight
             if i == 0 {
                 bezierPath.move(to: CGPointMake(0, yValue))
             } else {

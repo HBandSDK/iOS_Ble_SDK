@@ -97,6 +97,14 @@ typedef NS_ENUM(NSInteger, VPReadDeviceBaseDataState) {//读取设备基本数�
     VPReadDeviceBaseDataInvalid,        //SDK不提供使用
 };
 
+typedef NS_ENUM(NSUInteger, VPDeviceDataSyncState) {
+    VPDeviceDataSyncStateIdle,    // 空闲
+    VPDeviceDataSyncStateReading, // 读取中
+    VPDeviceDataSyncStateSuccess, // 成功
+    VPDeviceDataSyncStateFailure, // 失败
+    VPDeviceDataSyncStateTimeout, // 超时
+};
+
 #pragma mark - 基本功能设置的状态
 typedef NS_ENUM(NSInteger, VPSettingMessageSwitchType) {//关于来电提醒的类型选择
     VPSettingUnkonw = 1,                //未知类型
@@ -142,7 +150,7 @@ typedef NS_ENUM(NSInteger, VPSettingBaseFunctionSwitchType) {//关于来电提�
     VPSettingStopwatchInterFace,                //设置秒表界面是否在手环上显示
     VPSettingOxygenLowerRemind,                 //设置血氧过低后警告
     VPSettingLedGrade,                          //设置Led灯的等级，关闭是黑人档位，开启是正常肤色档位
-    VPSettingAutomaticHRVTest,                  //设置HRV夜间自动检测开关是否开启
+    VPSettingAutomaticHRVTest,                  //设置HRV自动检测开关是否开启
     VPSettingAutoAnswer,                        //设置来电自动接听开关，耳机有效
     VPSettingDisconnectRemind,                  //设置断链提醒
     VPSettingSOSRemind,                         //SOS，类似查找手机功能
@@ -262,6 +270,13 @@ typedef NS_ENUM(NSInteger,VPTestECGState) {//测试ECG过程中的状态变化
     VPTestECGStateFailure,              //测试失败
     VPTestECGStateComplete,             //测试已经完成
     VPTestECGStateNoFunction,           //设备没有此功能
+};
+
+typedef NS_OPTIONS(NSUInteger, VPManualTestDataType) {
+    VPManualTestDataNone = 0,
+    VPManualTestDataBloodPressure = 1 << 0,
+    VPManualTestDataHeartRate = 1 << 1,
+    VPManualTestDataAll = 0xFFFFFFFF
 };
 
 #pragma mark - SDK 1.7后新添加
@@ -600,3 +615,11 @@ typedef NS_ENUM(NSUInteger, VPDevicePulseResponceType) {
     VPDevicePulseResponceTypeLowBattery,   // 设备低电量，不允许开启
 };
 
+// 世界时钟协议操作类型
+typedef NS_ENUM(NSUInteger, VPWorldClockCommand) {
+    VPWorldClockCommandAdd = 0x01,
+    VPWorldClockCommandRead = 0x02,
+    VPWorldClockCommandAdjustOrder = 0x03,
+    VPWorldClockCommandDelete = 0x04,
+    VPWorldClockCommandDeviceDeleteReport = 0x05
+};

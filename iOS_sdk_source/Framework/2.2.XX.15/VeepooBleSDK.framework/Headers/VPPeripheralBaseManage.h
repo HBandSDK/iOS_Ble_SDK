@@ -36,10 +36,13 @@
 #import "VPDeviceHealthRemindModel.h"
 #import "VPG15QRCodeInfoModel.h"
 #import "VPDeviceContactsModel.h"
+#import "VPAutoMonitTestModel.h"
 #import "VPDeviceMessageTypeModel.h"
 #import "VPECGMultiLeadBLEDelegate.h"
+#import "VPWorldClockModel.h"
 
-@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel;
+@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,
+VPManualTestDataModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
 //Connected device model 连接的设备模型
@@ -210,6 +213,17 @@
 /// 设备端开关状态变更主动上报回调
 @property (nonatomic, copy) void(^deviceFunctionSwitchDidChangeBlock)(void);
 
+
+/// 读取设备自动测量的数据
+/// - Parameter result: 数据回调
+- (void)veepooSDKReadAutoMonitSwitchInfo:(void(^)(NSArray<VPAutoMonitTestModel *> *))result;
+
+/// 设置设备自动测量
+/// @param model 单个测量数据
+/// @param result 设置结果回调
+- (void)veepooSDKSetAutoMonitSwitchWithModel:(VPAutoMonitTestModel *)model
+                                      result:(void(^)(BOOL success, VPAutoMonitTestModel *))result;
+
 /**
  Read the battery level of your device
  读取设备的电池电量
@@ -286,6 +300,35 @@
  */
 - (void)veepooSDKSettingDeviceAlarmWithAlarmModel1:(VPDeviceAlarmModel *)alarmModel1 alarmModel2:(VPDeviceAlarmModel *)alarmModel2 alarmModel3:(VPDeviceAlarmModel *)alarmModel3 settingMode:(VPOperationAlarmMode)settingMode successResult:(void(^)(VPDeviceAlarmModel *alarmModel1,VPDeviceAlarmModel *alarmModel2,VPDeviceAlarmModel *alarmModel3))settingAlarmResultBlock failureResult:(void(^)(void))settingAlarmFailureBlock;
 
+
+/// 读取世界时钟
+/// @param models 本地缓存的世界时钟，应用层对返回数据进行缓存，内部会校验缓存数据是否需要更新，避免多次重复读取
+/// @param result 回调结果
+- (void)veepooSDKWorldClockReadWithModels:(NSArray<VPWorldClockModel *> *)models
+                                   result:(void(^)(BOOL, NSArray<VPWorldClockModel *> *))result;
+
+/// 添加世界时钟
+/// @param model 单个世界时钟
+/// @param result 回调结果
+- (void)veepooSDKWorldClockAddWithModel:(VPWorldClockModel *)model result:(void(^)(BOOL))result;
+
+
+/// 调整世界时钟的顺序
+/// @param fromIndex 指定世界时钟在列表中的原顺序
+/// @param toIndex 指定世界时钟在列表中的目标顺序
+/// @param result 回调结果
+- (void)veepooSDKWorldClockAdjustOrderFromArrIndex:(uint8_t)fromIndex
+                                        toArrIndex:(uint8_t)toIndex
+                                            result:(void(^)(BOOL))result;
+
+/// 设备端操作世界时钟删除的订阅
+/// @param deleteID 要删除的世界时钟的dataID
+/// @param result 回调结果
+- (void)veepooSDKWorldClockDeleteWithID:(uint8_t)deleteID result:(void(^)(BOOL))result;
+
+/// 设备删除世界时钟状态订阅
+/// @param result 回调结果
+- (void)veepooSDKWorldClockDeviceDeleteSubscribe:(void (^)(uint8_t deleteID))result;
 
 /**
  Set up and read sedentary data
@@ -977,6 +1020,17 @@
 ///   - testResultBlock: 结果回调
 - (void)veepooSDK_JM19AProjectTCMTestWithStart:(BOOL)start
                                     testResult:(void(^)(VPTestECGState state, NSUInteger progress, VPTCMTestDataModel *))testResultBlock;
+
+#pragma mark - 手动测量数据
+
+/// 读取设备手动测量存储的数据
+/// - Parameters:
+///   - timestamp: 秒级时间戳，只返回时间戳之后的数据
+///   - dataType: 需要返回的数据类型
+///   - result: 结果回调
+- (void)readManualTestDataWithTimestamp:(uint32_t)timestamp
+                               dataType:(VPManualTestDataType)dataType
+                                 result:(void(^)(VPManualTestDataModel *))result;
 
 @end
 

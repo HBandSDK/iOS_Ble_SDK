@@ -37,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 // 进度 0-100
 @property (nonatomic, assign) uint8_t progress;
 
+/// 是否全部导联都过了
+- (BOOL)leadsFail;
+
 @end
 
 @interface VPECGMultiLeadWaveFormModel : VPECGMultiLeadBaseModel
@@ -47,12 +50,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 增益
 @property (nonatomic, assign) uint8_t gain;
 
-/// 该导联类型的波形返回数据，单位mv
+/// 该导联类型的波形返回数据，单位mv，直接可以进行绘制，无需转换
 @property (nonatomic, strong) NSArray<NSNumber *> *waveFormArr;
 
-/// 转换成电压值的方法，转换后的电压单位为mv
-/// - Parameter value: waveFormArr 数组元素
-+ (CGFloat)convertToMvWithValue:(NSNumber *)value;
+/// ECG类型
+@property (nonatomic, assign, readonly) NSInteger ecgType;
+
+- (instancetype)initWithData:(NSData *)rspData ecgType:(NSInteger)ecgType;
 
 @end
 

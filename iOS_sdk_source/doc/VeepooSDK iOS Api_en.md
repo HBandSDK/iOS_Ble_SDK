@@ -12,7 +12,7 @@
 | 1.0.7   | Added documents related to blood glucose risk level and body temperature integration into daily data interface | 2024.04.15        |
 | 1.0.8   | Add multi settings for skin colour, private mode support for manual blood glucose measurement | 2024.12.02        |
 | 1.0.9   | Compatibility with Z-series (Zhongke) platforms              | 2024.12.30        |
-|         |                                                              |                   |
+| 1.1.0   | Added world clock, automatic measurement and detection time setting, manual measurement - air pump blood pressure related interfaces | 2025.06.11        |
 
 # SDK initialization
 
@@ -4924,3 +4924,227 @@ let tableID = VPBleCentralManage.sharedBleManager()?.peripheralModel.deviceAddre
         }
 ```
 
+# World Clock Function
+
+### Precondition
+
+This function exists. It can be determined by VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.worldClockType. A value of 0 indicates no support.
+
+### Class Name
+
+VPPeripheralBaseManage
+
+### Interfaces
+
+```objective-c
+/// Add world clocks
+/// @param models Local cached world clocks. The application layer caches the returned data, and the internal system will verify if the cached data needs to be updated to avoid repeated reading.
+/// @param result Callback result
+- (void)veepooSDKWorldClockReadWithModels:(NSArray<VPWorldClockModel *> *)models
+                                   result:(void(^)(BOOL, NSArray<VPWorldClockModel *> *))result;
+
+/// Adjust the order of world clocks
+/// @param model A single world clock
+/// @param result Callback result
+- (void)veepooSDKWorldClockAddWithModel:(VPWorldClockModel *)model result:(void(^)(BOOL))result;
+
+
+/// Delete a world clock
+/// @param fromIndex The original order of the world clock in the list
+/// @param toIndex The target order of the world clock in the list
+/// @param result Callback result
+- (void)veepooSDKWorldClockAdjustOrderFromArrIndex:(uint8_t)fromIndex
+                                        toArrIndex:(uint8_t)toIndex
+                                            result:(void(^)(BOOL))result;
+
+/// Subscription for device-side operation to delete a world clock
+/// @param deleteID The dataID of the world clock to be deleted
+/// @param result Callback result
+- (void)veepooSDKWorldClockDeleteWithID:(uint8_t)deleteID result:(void(^)(BOOL))result;
+
+/// Subscription for device deletion status of world clock
+/// @param result Callback result
+- (void)veepooSDKWorldClockDeviceDeleteSubscribe:(void (^)(uint8_t deleteID))result;
+```
+
+### Parameter Explanation
+
+VPWorldClockModel
+
+
+
+| Parameter              | Parameter Type | Remarks                                                      |
+| ---------------------- | -------------- | ------------------------------------------------------------ |
+| cityName               | NSString       | City/region name, using UTF-8 encoding when sent             |
+| dataID                 | uint8_t        | ID starts from 1, maximum is 10 (up to 10 world clocks can be added) |
+| standardTimeZoneDiffer | NSNumber       | Time zone value (number of 15-minute intervals from GMT, converted to int8_t type when used, with positive and negative values) |
+
+### Sample Code
+
+```swift
+// Reading
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKWorldClockRead(with: []) { success, models in
+    guard let models = models else {
+        return
+    }
+    if success {
+        print("\(models.count)")
+    }
+}
+```
+
+# Automatic Measurement Interval
+
+### Precondition
+
+This function exists. It can be determined by VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.autoMonitSwitchType. A value of 0 indicates no support.
+
+Note: If the automatic measurement interval setting is supported, taking heart rate as an example, it should not be used together with the following interface:
+
+
+
+> veepooSDKSettingBaseFunctionType:settingState:completeBlock
+
+### Class Name
+
+`VPPeripheralBaseManage`, refer to the implementation of `VPAutoMonitSwitchVC` in the Demo.
+
+### Interfaces
+
+```objective-c
+/// Read the device's automatic measurement data
+/// - Parameter result: Data callback
+- (void)veepooSDKReadAutoMonitSwitchInfo:(void(^)(NSArray<VPAutoMonitTestModel *> *))result;
+
+/// Set the device's automatic measurement
+/// @param model Single measurement data
+/// @param result Setting result callback
+- (void)veepooSDKSetAutoMonitSwitchWithModel:(VPAutoMonitTestModel *)model
+                                      result:(void(^)(BOOL success, VPAutoMonitTestModel *))result;
+```
+
+### Parameter Explanation
+
+```objective-c
+// Type enumeration
+typedef NS_ENUM(NSUInteger, VPAutoMonitTestType) {
+    VPAutoMonitTestTypeHeartRate = 0x00,    // Heart rate
+    VPAutoMonitTestTypeBloodPressure,       // Blood pressure
+    VPAutoMonitTestTypeBloodGlucose,        // Blood glucose
+    VPAutoMonitTestTypeStress,              // Stress
+    VPAutoMonitTestTypeBloodOxygen,         // Blood oxygen
+    VPAutoMonitTestTypeBodyTemperature,     // Body temperature
+    VPAutoMonitTestTypeLorentz,             // Lorentz
+    VPAutoMonitTestTypeHRV,                 // HRV
+    VPAutoMonitTestTypeBloodComponents      // Blood components
+};
+```
+
+
+
+VPAutoMonitTestModel
+
+
+
+| Parameter        | Parameter Type      | Remarks                                  |
+| ---------------- | ------------------- | ---------------------------------------- |
+| type             | VPAutoMonitTestType | Data type                                |
+| on               | BOOL                | Whether to enable                        |
+| minStepValue     | uint16_t            | Minimum step                             |
+| supportRangeTime | BOOL                | Whether to support time range adjustment |
+| startHourRef     | uint8_t             | Start time reference - hour              |
+| startMinuteRef   | uint8_t             | Start time reference - minute            |
+| endHourRef       | uint8_t             | End time reference - hour                |
+| endMinuteRef     | uint8_t             | End time reference - minute              |
+| timeInterval     | uint16_t            | Current measurement interval, in minutes |
+| startHour        | uint8_t             | Current start measurement time - hour    |
+| startMinute      | uint8_t             | Current start measurement time - minute  |
+| endHour          | uint8_t             | Current end measurement time - hour      |
+| endMinute        | uint8_t             | Current end measurement time - minute    |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKReadAutoMonitSwitchInfo { [weak self] models in
+            guard let someModels = models else {
+                return
+            }
+            self?.dataSource = someModels
+            print(">>> \(someModels.count)")
+        }
+```
+
+# Manually Measured Stored Data - Air Pump Blood Pressure
+
+### Precondition
+
+This function is supported. It can be determined by VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.bloodPressureType. A value of 3 indicates support for reading air pump blood pressure.
+
+### Class Name
+
+`VPPeripheralBaseManage`, refer to the implementation of `VPManualTestDataVC` in the Demo.
+
+### Interfaces
+
+```objective-c
+/// Read the device's manually measured stored data
+/// - Parameters:
+///   - timestamp: Second-level timestamp, only returns data after the timestamp
+///   - dataType: Data type to be returned
+///   - result: Result callback
+- (void)readManualTestDataWithTimestamp:(uint32_t)timestamp
+                               dataType:(VPManualTestDataType)dataType
+                                 result:(void(^)(VPManualTestDataModel *))result;
+```
+
+### Parameter Explanation
+
+VPManualTestDataModel
+
+
+
+| Parameter        | Parameter Type                          | Remarks                   |
+| ---------------- | --------------------------------------- | ------------------------- |
+| mac              | NSString                                | Device MAC                |
+| bloodPressureArr | NSArray<VPManualBloodPressureModel *> * | Blood pressure data array |
+
+
+
+VPManualBloodPressureModel
+
+
+
+| Parameter   | Parameter Type | Remarks                                                      |
+| ----------- | -------------- | ------------------------------------------------------------ |
+| timestamp   | uint32_t       | Measurement timestamp, in seconds                            |
+| testModel   | uint8_t        | Measurement mode: 0 for photoelectric, 1 for airbag          |
+| heart       | uint8_t        | Heart rate                                                   |
+| h_bp        | uint16_t       | Systolic blood pressure                                      |
+| l_bp        | uint16_t       | Diastolic blood pressure                                     |
+| state       | uint8_t        | Test status: 2 for measurement completed with wrong posture, 9 for measurement completed without keeping still during the process |
+| credibility | uint8_t        | Result credibility                                           |
+| height      | uint8_t        | Height                                                       |
+| weight      | uint8_t        | Weight                                                       |
+| age         | uint8_t        | Age                                                          |
+| sex         | uint8_t        | Gender: 0 for female, 1 for male                             |
+
+### Sample Code
+
+```swift
+// You can get the latest synchronized timestamp of the current device from the DB
+        let timestamp: UInt32 = 0
+        VPBleCentralManage.sharedBleManager().peripheralManage.readManualTestData(withTimestamp: timestamp,
+                                                                                  dataType: .bloodPressure) { [weak self] model in
+            guard let someModel = model else {
+                return
+            }
+            self?.readBtn.isEnabled = true
+            // Output the log content to the UITextView
+            let logText = "someModel = \(someModel.bloodPressureArr)"
+            if let existingText = self?.logTextView.text {
+                self?.logTextView.text = existingText + "\n" + logText
+            } else {
+                self?.logTextView.text = logText
+            }
+        }
+```

@@ -12,7 +12,7 @@
 | 1.0.7 | 添加血糖风险等级、体温整合到日常数据接口中相关文档           | 2024.04.15 |
 | 1.0.8 | 添加肤色多档位设置、血糖手动测量支持私人模式                 | 2024.12.02 |
 | 1.0.9 | Z系列(中科)平台兼容                                          | 2024.12.30 |
-|       |                                                              |            |
+| 1.1.0 | 添加世界时钟、自动测量检测时间设置、手动测量-气泵血压相关接口 | 2025.06.11 |
 
 # SDK初始化
 
@@ -4945,6 +4945,217 @@ let tableID = VPBleCentralManage.sharedBleManager()?.peripheralModel.deviceAddre
         guard let arr = arr else {
             print("当日没有血液成分数据")
             return
+        }
+```
+
+# 世界时钟功能
+
+### 前提
+
+有该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.worldClockType判断，为0表示不支持
+
+### 类名
+
+VPPeripheralBaseManage
+
+### 接口
+
+```objective-c
+/// 添加世界时钟
+/// @param models 本地缓存的世界时钟，应用层对返回数据进行缓存，内部会校验缓存数据是否需要更新，避免多次重复读取
+/// @param result 回调结果
+- (void)veepooSDKWorldClockReadWithModels:(NSArray<VPWorldClockModel *> *)models
+                                   result:(void(^)(BOOL, NSArray<VPWorldClockModel *> *))result;
+
+/// 调整世界时钟的顺序
+/// @param model 单个世界时钟
+/// @param result 回调结果
+- (void)veepooSDKWorldClockAddWithModel:(VPWorldClockModel *)model result:(void(^)(BOOL))result;
+
+
+/// 删除世界时钟
+/// @param fromIndex 指定世界时钟在列表中的原顺序
+/// @param toIndex 指定世界时钟在列表中的目标顺序
+/// @param result 回调结果
+- (void)veepooSDKWorldClockAdjustOrderFromArrIndex:(uint8_t)fromIndex
+                                        toArrIndex:(uint8_t)toIndex
+                                            result:(void(^)(BOOL))result;
+
+/// 设备端操作世界时钟删除的订阅
+/// @param deleteID 要删除的世界时钟的dataID
+/// @param result 回调结果
+- (void)veepooSDKWorldClockDeleteWithID:(uint8_t)deleteID result:(void(^)(BOOL))result;
+
+/// 设备删除世界时钟状态订阅
+/// @param result 回调结果
+- (void)veepooSDKWorldClockDeviceDeleteSubscribe:(void (^)(uint8_t deleteID))result;
+```
+
+### 参数解释
+
+VPWorldClockModel
+
+| 参数                   | 参数类型 | 备注                                                         |
+| ---------------------- | -------- | ------------------------------------------------------------ |
+| cityName               | NSString | 城市/地区名 下发时使用UTF-8编码                              |
+| dataID                 | uint8_t  | ID 从1开始，最大为10（世界时钟最多添加10个）                 |
+| standardTimeZoneDiffer | NSNumber | 时区的值(相较GMT时区有多少个15分钟，使用时转为int8_t类型，有正负 |
+
+### 示例代码
+
+```swift
+// 读取
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKWorldClockRead(with: []) { success, models in
+    guard let models = models else {
+        return
+    }
+    if success {
+        print("\(models.count)")
+    }
+}
+```
+
+# 自动测量时间间隔
+
+### 前提
+
+有该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.autoMonitSwitchType判断，为0表示不支持
+
+注意，如果支持自动测量时间间隔设置，以心率为例，则不应该与下方接口混用
+
+> veepooSDKSettingBaseFunctionType:settingState:completeBlock
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPAutoMonitSwitchVC`的实现
+
+### 接口
+
+```objective-c
+/// 读取设备自动测量的数据
+/// - Parameter result: 数据回调
+- (void)veepooSDKReadAutoMonitSwitchInfo:(void(^)(NSArray<VPAutoMonitTestModel *> *))result;
+
+/// 设置设备自动测量
+/// @param model 单个测量数据
+/// @param result 设置结果回调
+- (void)veepooSDKSetAutoMonitSwitchWithModel:(VPAutoMonitTestModel *)model
+                                      result:(void(^)(BOOL success, VPAutoMonitTestModel *))result;
+```
+
+### 参数解释
+
+```objective-c
+// 类型枚举
+typedef NS_ENUM(NSUInteger, VPAutoMonitTestType) {
+    VPAutoMonitTestTypeHeartRate = 0x00,    // 脉率
+    VPAutoMonitTestTypeBloodPressure,       // 血压
+    VPAutoMonitTestTypeBloodGlucose,        // 血糖
+    VPAutoMonitTestTypeStress,              // 压力
+    VPAutoMonitTestTypeBloodOxygen,         // 血氧
+    VPAutoMonitTestTypeBodyTemperature,     // 体温
+    VPAutoMonitTestTypeLorentz,             // 洛伦兹
+    VPAutoMonitTestTypeHRV,                 // HRV
+    VPAutoMonitTestTypeBloodComponents      // 血液成分
+};
+```
+
+VPAutoMonitTestModel
+
+| 参数             | 参数类型            | 备注                     |
+| ---------------- | ------------------- | ------------------------ |
+| type             | VPAutoMonitTestType | 数据类型                 |
+| on               | BOOL                | 是否开启                 |
+| minStepValue     | uint16_t            | 最小的步进               |
+| supportRangeTime | BOOL                | 是否支持时间范围调整     |
+| startHourRef     | uint8_t             | 开始时间参考-小时        |
+| startMinuteRef   | uint8_t             | 开始时间参考-分钟        |
+| endHourRef       | uint8_t             | 结束时间参考-小时        |
+| endMinuteRef     | uint8_t             | 结束时间参考-分钟        |
+| timeInterval     | uint16_t            | 当前的测量时间间隔，分钟 |
+| startHour        | uint8_t             | 当前的开始测量时间-小时  |
+| startMinute      | uint8_t             | 当前的开始测量时间-分钟  |
+| endHour          | uint8_t             | 当前的结束测量时间-小时  |
+| endMinute        | uint8_t             | 当前的结束测量时间-分钟  |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKReadAutoMonitSwitchInfo { [weak self] models in
+            guard let someModels = models else {
+                return
+            }
+            self?.dataSource = someModels
+            print(">>> \(someModels.count)")
+        }
+```
+
+# 手动测量存储数据-气泵血压
+
+### 前提
+
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.bloodPressureType判断，为3表示支持气泵血压的读取
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPManualTestDataVC`的实现
+
+### 接口
+
+```objective-c
+/// 读取设备手动测量存储的数据
+/// - Parameters:
+///   - timestamp: 秒级时间戳，只返回时间戳之后的数据
+///   - dataType: 需要返回的数据类型
+///   - result: 结果回调
+- (void)readManualTestDataWithTimestamp:(uint32_t)timestamp
+                               dataType:(VPManualTestDataType)dataType
+                                 result:(void(^)(VPManualTestDataModel *))result;
+```
+
+### 参数解释
+
+VPManualTestDataModel
+
+| 参数             | 参数类型                                | 备注         |
+| ---------------- | --------------------------------------- | ------------ |
+| mac              | NSString                                | 设备MAC      |
+| bloodPressureArr | NSArray<VPManualBloodPressureModel *> * | 血压数据数组 |
+
+VPManualBloodPressureModel
+
+| 参数        | 参数类型 | 备注                                                         |
+| ----------- | -------- | ------------------------------------------------------------ |
+| timestamp   | uint32_t | 测量时间戳，秒级                                             |
+| testModel   | uint8_t  | 测量模式 0光电，1气囊                                        |
+| heart       | uint8_t  | 心率                                                         |
+| h_bp        | uint16_t | 收缩压                                                       |
+| l_bp        | uint16_t | 舒张压                                                       |
+| state       | uint8_t  | 测试状态，2 测量完成，测量姿势错误，9 测量完成，期间未保持静止 |
+| credibility | uint8_t  | 结果可信度                                                   |
+| height      | uint8_t  | 身高                                                         |
+| weight      | uint8_t  | 体重                                                         |
+| age         | uint8_t  | 年龄                                                         |
+| sex         | uint8_t  | 性别 0:女 1:男                                               |
+
+### 示例代码
+
+```swift
+// 可以从DB中获取当前设备最近的同步过的时间戳
+        let timestamp: UInt32 = 0
+        VPBleCentralManage.sharedBleManager().peripheralManage.readManualTestData(withTimestamp: timestamp,
+                                                                                  dataType: .bloodPressure) { [weak self] model in
+            guard let someModel = model else {
+                return
+            }
+            self?.readBtn.isEnabled = true
+            // 将日志内容输出到 UITextView 中
+            let logText = "someModel = \(someModel.bloodPressureArr)"
+            if let existingText = self?.logTextView.text {
+                self?.logTextView.text = existingText + "\n" + logText
+            } else {
+                self?.logTextView.text = logText
+            }
         }
 ```
 

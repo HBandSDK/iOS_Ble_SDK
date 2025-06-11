@@ -45,6 +45,9 @@
 #import "VPBloodAnalysisResultModel.h"
 #import "VPDailyBloodAnalysisModel.h"
 #import "VPECGMultiLeadModel.h"
+#import "VPAutoMonitTestModel.h"
+#import "VPManualTestDataModel.h"
+#import "VPManualBloodPressureModel.h"
 
 #import "VPSyncPersonalInfo.h"
 

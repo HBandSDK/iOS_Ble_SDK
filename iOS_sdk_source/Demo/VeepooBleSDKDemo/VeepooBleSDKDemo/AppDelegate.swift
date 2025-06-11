@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
+    @discardableResult
     class func showHUD(message: String, hudModel: MBProgressHUDMode, showView: UIView) -> MBProgressHUD {
         
         hud.labelText = message
@@ -52,6 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return hud
     }
     
+    @discardableResult
     class func showHUDNoHide(message: String, hudModel: MBProgressHUDMode, showView: UIView) -> MBProgressHUD {
         hud1.labelText = message
         hud1.mode = hudModel

@@ -27,7 +27,7 @@ VPECGMultiLeadDiagnosisResultModel;
 /// - Parameter waveFormModel: 每秒波形返回，波形值转电压方法可以用[VPECGMultiLeadWaveFormModel convertToMvWithValue:]
 - (void)VPECGMultiLeadDidResponseWaveFormData:(VPECGMultiLeadWaveFormModel *)waveFormModel;
 
-/// 最终诊断结果响应，仅测量成果并且解析成果才会触发，接口受限
+/// 最终诊断结果响应，仅测量成功并且解析成功才会触发，接口受限
 /// - Parameter diagnosisResultModel: 诊断结果model
 - (void)VPECGMultiLeadDidResponseDiagnosisResult:(VPECGMultiLeadDiagnosisResultModel *)diagnosisResultModel;
 
@@ -40,7 +40,8 @@ VPECGMultiLeadDiagnosisResultModel;
 /// - Parameters:
 ///   - frequency: 频率，固定250
 ///   - leads: 多少个导联，固定6
-- (void)VPECGMultiLeadDidResponsePreInfoFrequency:(uint16_t)frequency leads:(uint8_t)leads;
+///   - status: 手环状态，0为正常，其余同单导
+- (void)VPECGMultiLeadDidResponsePreInfoFrequency:(uint16_t)frequency leads:(uint8_t)leads status:(uint8_t)status;
 
 /// 指令响应了关闭测量时触发
 - (void)VPECGMultiLeadDidResponseEndTest;
