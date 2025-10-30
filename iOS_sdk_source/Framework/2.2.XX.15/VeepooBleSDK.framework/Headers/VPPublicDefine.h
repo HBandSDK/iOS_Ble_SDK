@@ -623,3 +623,11 @@ typedef NS_ENUM(NSUInteger, VPWorldClockCommand) {
     VPWorldClockCommandDelete = 0x04,
     VPWorldClockCommandDeviceDeleteReport = 0x05
 };
+
+
+// 测量模式类型
+typedef NS_ENUM(NSUInteger, VPJH58MeasurementModeState) {
+    VPJH58MeasurementModeStateOff = 0x01,
+    VPJH58MeasurementModeStateModeOne = 0x02,
+    VPJH58MeasurementModeStateModeTwo = 0x03,
+};

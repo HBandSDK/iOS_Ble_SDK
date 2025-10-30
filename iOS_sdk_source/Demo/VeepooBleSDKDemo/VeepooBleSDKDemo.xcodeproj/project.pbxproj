@@ -81,6 +81,7 @@
 		FE373EA427B9EA4500F312C4 /* VPG15QRCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */; };
 		FE3F5ED82BFF611A00A43838 /* VPG08WViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3F5ED52BFF611A00A43838 /* VPG08WViewController.swift */; };
 		FE3F5ED92BFF611A00A43838 /* VPG08WViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE3F5ED62BFF611A00A43838 /* VPG08WViewController.xib */; };
+		FE47C4B52EB38F4A0038B3BE /* VPTextImageTransmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE47C4B32EB38F4A0038B3BE /* VPTextImageTransmissionViewController.swift */; };
 		FE645EFA2A90CB0E009CCD50 /* VPTestDeviceSportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE645EF92A90CB0E009CCD50 /* VPTestDeviceSportViewController.swift */; };
 		FE645F042A90D181009CCD50 /* VPFindPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE645F022A90D180009CCD50 /* VPFindPhoneViewController.swift */; };
 		FE645F052A90D181009CCD50 /* VPFindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE645F032A90D180009CCD50 /* VPFindPhoneViewController.xib */; };
@@ -236,6 +237,7 @@
 		FE373EA227B9EA4500F312C4 /* VPG15QRCodeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPG15QRCodeViewController.xib; sourceTree = "<group>"; };
 		FE3F5ED52BFF611A00A43838 /* VPG08WViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPG08WViewController.swift; sourceTree = "<group>"; };
 		FE3F5ED62BFF611A00A43838 /* VPG08WViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPG08WViewController.xib; sourceTree = "<group>"; };
+		FE47C4B32EB38F4A0038B3BE /* VPTextImageTransmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTextImageTransmissionViewController.swift; sourceTree = "<group>"; };
 		FE645EF92A90CB0E009CCD50 /* VPTestDeviceSportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPTestDeviceSportViewController.swift; sourceTree = "<group>"; };
 		FE645F022A90D180009CCD50 /* VPFindPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPFindPhoneViewController.swift; sourceTree = "<group>"; };
 		FE645F032A90D180009CCD50 /* VPFindPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPFindPhoneViewController.xib; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE47C4B42EB38F4A0038B3BE /* 图文传输 */,
 				FEF1EEC22DF97AA3006ACCC8 /* 手动测量数据 */,
 				FEF1EEC42DF97AA3006ACCC8 /* 自动测量设置 */,
 				FE915C0C2D844BF1004417A3 /* JM19A */,
@@ -547,6 +550,14 @@
 				FE3F5ED62BFF611A00A43838 /* VPG08WViewController.xib */,
 			);
 			path = G08W;
+			sourceTree = "<group>";
+		};
+		FE47C4B42EB38F4A0038B3BE /* 图文传输 */ = {
+			isa = PBXGroup;
+			children = (
+				FE47C4B32EB38F4A0038B3BE /* VPTextImageTransmissionViewController.swift */,
+			);
+			path = "图文传输";
 			sourceTree = "<group>";
 		};
 		FE8E39F926F2E1BD00065ADB /* G15 */ = {
@@ -817,6 +828,7 @@
 				6757E2842196D1BD0019E8B4 /* VPTapTestViewController.swift in Sources */,
 				FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */,
 				679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */,
+				FE47C4B52EB38F4A0038B3BE /* VPTextImageTransmissionViewController.swift in Sources */,
 				FE89AA1E2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift in Sources */,
 				FE722C0925F5D41900EA675E /* VPFindDeviceViewController.swift in Sources */,
 				FE6EE04625C1464800B67C70 /* VPMarketDialViewController.swift in Sources */,

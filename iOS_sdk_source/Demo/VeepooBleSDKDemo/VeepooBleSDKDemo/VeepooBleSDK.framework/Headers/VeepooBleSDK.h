@@ -82,6 +82,8 @@
 #import "VPRRIntervalDataModel.h"
 #import "VPRRIntervalDataHRVHandle.h"
 
+#import "VPImageTransmissionModel.h"
+#import "VPFileHandleManager.h"
 //! Project version number for VeepooBleSDK.
 FOUNDATION_EXPORT double VeepooBleSDKVersionNumber;
 

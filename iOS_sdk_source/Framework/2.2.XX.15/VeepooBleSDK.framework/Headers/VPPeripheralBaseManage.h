@@ -40,7 +40,9 @@
 #import "VPDeviceMessageTypeModel.h"
 #import "VPECGMultiLeadBLEDelegate.h"
 #import "VPWorldClockModel.h"
-
+#import "VPImageTransmissionModel.h"
+#import "VPJH58PPGAccelerationModel.h"
+#import "VPMiniHealthCheckModel.h"
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,
 VPManualTestDataModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
@@ -1032,6 +1034,58 @@ VPManualTestDataModel;
                                dataType:(VPManualTestDataType)dataType
                                  result:(void(^)(VPManualTestDataModel *))result;
 
+
+///文本传输
+/// - Parameters:
+///   - msg: 传输的文本
+///   - sendResult: 结果回调
+-(void)veepooSDKSendStartTransmissionMessage:(NSString*)msg AndResult:(void(^_Nonnull)(NSError * _Nullable error))sendResult;
+
+//图片传输
+/// - Parameters:
+///   - image: 传输的图片
+///   - sendResult: 结果回调
+///   - progress: 传输进度回调
+-(void)veepooSDKSendStartTransmissionImage:(UIImage*)image andResult:(void(^_Nonnull)(NSError * _Nullable error))sendResult andProgress:(void(^_Nonnull)(double progress))progress;
+
+
+//查询设备支持可传输图片的信息
+/// - Parameters:
+///   - sendResult: 结果回调
+-(void)veepooSDKSendCheckDeviceSupportImageInfoAndResult:(void(^_Nonnull)(VPImageTransmissionModel * _Nonnull model))sendResult;
+
+
+#pragma mark JH58项目定制功能
+
+//获取测试模式开关状态
+/// - Parameters:
+///   - sendResult: 结果回调 state 测试模式 VPJH58MeasurementModeStateOff:全关 VPJH58MeasurementModeStateModeOne:模式1开 VPJH58MeasurementModeStateModeTwo:模式2开
+-(void)veepooSDK_JH58GetMeasurementMode:(void(^_Nonnull)(VPJH58MeasurementModeState state))sendResult;
+
+
+//设置测试模式开关状态
+/// - Parameters:
+///   - state: 测试模式 VPJH58MeasurementModeStateOff:全关 VPJH58MeasurementModeStateModeOne:模式1开 VPJH58MeasurementModeStateModeTwo:模式2开
+///   - sendResult: 结果回调
+-(void)veepooSDK_JH58SetMeasurementMode:(VPJH58MeasurementModeState)state andResult:(void(^)(NSError *error,VPJH58MeasurementModeState state))sendResult;
+
+//监听测试模式开关状态 - 设备修改主动上报,APP修改不触发
+/// - Parameters:
+///   - state: 测试模式 VPJH58MeasurementModeStateOff:全关 VPJH58MeasurementModeStateModeOne:模式1开 3:模式2开
+-(void)veepooSDK_JH58MonitorMeasurementMode:(void(^_Nonnull)(VPJH58MeasurementModeState state))sendResult;
+
+//读取原始数据
+/// - Parameters:
+///   - state 测试模式 VPJH58MeasurementModeStateModeOne:获取模式1的 VPJH58MeasurementModeStateModeTwo:获取模式2的
+///   - timestamp:获取这个时间戳以后的数据,为0就是所有数据
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58GetPPGAndAccelerationRawDataWithMeasurementMode:(VPJH58MeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPJH58PPGAccelerationModel*> *array))sendResult;
+
+
+#pragma mark 微体检
+-(void)veepooSDKStartMiniHealthCheckProgress:(void(^)(int progress))progressResult andFail:(void(^)(NSError *error))failResult andSuccess:(void(^)(VPMiniHealthCheckModel *miniCheckModel))successResult;
+
+-(void)veepooSDKEndMiniHealthCheckoProgress:(void(^)(NSError *error))sendResult;
 @end
 
 

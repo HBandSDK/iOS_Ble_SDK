@@ -59,6 +59,9 @@
 
 @property (nonatomic, strong) NSData *deviceFuctionDataFour;
 
+//设备功能的数据包含的功能数据结构如A702010202000102020000000000000000000000共计20个字节的Data，从第二个字节，即下标为1开始 依次代表 图文推送功能
+@property (nonatomic, strong) NSData *deviceFuctionDataFive;
+
 //Judge the device to save a total of several days of data
 //设备一共保存几天的数据
 @property (nonatomic, assign) UInt8 saveDays;
@@ -210,6 +213,12 @@
 
 //自动测量范围时间设置类型，0为不支持
 @property (nonatomic, assign) NSUInteger autoMonitSwitchType;
+
+//图文传输，0为不支持
+@property (nonatomic, assign) NSUInteger textAndImageTransmissionType;
+
+//图文传输，0为不支持
+@property (nonatomic, assign) NSUInteger miniHealthCheckType;
 
 //mtu size
 @property (nonatomic, assign, readonly) NSInteger mtu;
