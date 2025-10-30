@@ -13,6 +13,7 @@
 | 1.0.8 | 添加肤色多档位设置、血糖手动测量支持私人模式                 | 2024.12.02 |
 | 1.0.9 | Z系列(中科)平台兼容                                          | 2024.12.30 |
 | 1.1.0 | 添加世界时钟、自动测量检测时间设置、手动测量-气泵血压相关接口 | 2025.06.11 |
+| 1.1.1 | 添加文本传输和图片传输 JH58定制原始数据上报                  | 2025.10.27 |
 
 # SDK初始化
 
@@ -5155,6 +5156,260 @@ VPManualBloodPressureModel
                 self?.logTextView.text = existingText + "\n" + logText
             } else {
                 self?.logTextView.text = logText
+            }
+        }
+```
+
+# 文本传输
+
+### 前提
+
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.textAndImageTransmissionType判断，为1表示支持文本传输。传入的文本内容不能为空
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPTextImageTransmissionViewController`的实现
+
+### 接口
+
+```objective-c
+///文本传输
+/// - Parameters:
+///  - msg: 传输的文本
+///  - sendResult: 结果回调
+-(void)veepooSDKSendStartTransmissionMessage:(NSString*)msg AndResult:(void(^)(BOOL success))sendResult
+```
+
+### 参数解释
+
+| 参数 | 参数类型 | 备注       |
+| ---- | -------- | ---------- |
+| msg  | NSString | 传输的文本 |
+
+### 示例代码
+
+```swift
+				let text = "你好"
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendStartTransmissionMessage(text) { success in
+            success ? print("完成") : print("失败")
+        }
+```
+
+# 查询设备支持传输图片的尺寸
+
+### 前提
+
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.textAndImageTransmissionType判断，为1表示支持查询传输图片的尺寸。
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPTextImageTransmissionViewController`的实现
+
+### 接口
+
+```objective-c
+//查询设备支持可传输图片的尺寸
+/// - Parameters:
+///   - sendResult: 结果回调
+-(void)veepooSDKSendCheckDeviceSupportImageInfoAndResult:(void(^_Nonnull)(VPImageTransmissionModel * _Nonnull model))sendResult;
+```
+
+### 参数解释
+
+VPImageTransmissionModel
+
+| 参数       | 参数类型  | 备注                   |
+| ---------- | --------- | ---------------------- |
+| dataLength | NSInteger | 可传输的图片的最大长度 |
+| width      | NSInteger | 可传输的图片的宽       |
+| height     | NSInteger | 可传输的图片的高       |
+
+### 示例代码
+
+```swift
+//
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendCheckDeviceSupportImageInfoAndResult { model in
+            print("可传输的图片的最大长度:" + String(model.dataLength) + "可传输的图片的宽:" + String(model.width) + "可传输的图片的高:" + String(model.height))
+        }
+```
+
+
+
+# 图片传输
+
+### 前提
+
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.textAndImageTransmissionType判断，为1表示支持图片传输。传入的图片内容不能为空,这个接口调用会判断传入的图片尺寸是否合规。
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPTextImageTransmissionViewController`的实现
+
+### 接口
+
+```objective-c
+//图片传输
+/// - Parameters:
+///   - image: 传输的图片
+///   - sendResult: 结果回调
+///   - progress: 传输进度回调
+-(void)veepooSDKSendStartTransmissionImage:(UIImage*)image andResult:(void(^_Nonnull)(NSError * _Nullable error))sendResult andProgress:(void(^_Nonnull)(double progress))progress;
+```
+
+### 参数解释
+
+| 参数  | 参数类型 | 备注       |
+| ----- | -------- | ---------- |
+| image | UIImage  | 传输的图片 |
+
+### 示例代码
+
+```swift
+//图片传输
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendStartTransmissionImage(UIImage(named: "")) { error in
+            guard let er = error as? NSError else {return}
+            print(er)
+        } andProgress: { [weak self] progress in
+            guard let weakself = self else { return }
+            DispatchQueue.main.async {
+                weakself.progressLabel.text = "传输进度:" + String(format: "%.0f", progress*100) + "%"
+            }
+        }
+```
+
+# 获取测试模式状态
+
+### 前提
+
+JH58定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPGreenLightAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+//获取测试模式开关状态
+/// - Parameters:
+///   - sendResult: 结果回调 state 测试模式 VPMeasurementModeStateOff:全关 VPMeasurementModeStateModeOne:模式1开 VPMeasurementModeStateModeTwo:模式2开
+-(void)veepooSDKGetMeasurementMode:(void(^_Nonnull)(VPMeasurementModeState state))sendResult
+```
+
+### 参数解释
+
+VPMeasurementModeState
+
+| 参数                          | 参数类型   | 备注  |
+| ----------------------------- | ---------- | ----- |
+| VPMeasurementModeStateOff     | NSUInteger | 全关  |
+| VPMeasurementModeStateModeOne | NSUInteger | 模式1 |
+| VPMeasurementModeStateModeTwo | NSUInteger | 模式2 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKGetMeasurementMode { [weak self] state in
+            guard let weakSelf = self else {return}
+            
+}
+```
+
+# 设置测试模式
+
+### 前提
+
+JH58定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPGreenLightAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+//设置测试模式状态
+/// - Parameters:
+///   - state: 测试模式 VPMeasurementModeStateOff:全关 VPMeasurementModeStateModeOne:模式1开 VPMeasurementModeStateModeTwo:模式2开
+///   - sendResult: 结果回调
+-(void)veepooSDKSetMeasurementMode:(VPMeasurementModeState)state andResult:(void(^)(NSError *error,VPMeasurementModeState state))sendResult;
+```
+
+### 参数解释
+
+VPMeasurementModeState
+
+| 参数                          | 参数类型   | 备注  |
+| ----------------------------- | ---------- | ----- |
+| VPMeasurementModeStateOff     | NSUInteger | 全关  |
+| VPMeasurementModeStateModeOne | NSUInteger | 模式1 |
+| VPMeasurementModeStateModeTwo | NSUInteger | 模式2 |
+
+### 示例代码
+
+```swift
+let state :VPMeasurementModeState = .off
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetMeasurementMode(state) { [weak self] error ,backState in
+            guard let weakSelf = self else {return}
+            if error == nil {
+                
+            }
+        }
+```
+
+# 获取绿光加速度原始数据
+
+### 前提
+
+JH58定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPGreenLightAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+//读取原始数据
+/// - Parameters:
+///   - state 测试模式 VPMeasurementModeStateModeOne:获取模式1的 VPMeasurementModeStateModeTwo:获取模式2的
+///   - timestamp:获取这个时间戳以后的数据,为0就是所有数据
+///   - sendResult:结果回调
+-(void)veepooSDKGetGreenLightAndAccelerationRawDataWithMeasurementMode:(VPMeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPGreenLightAccelerationModel*> *array))sendResult
+```
+
+### 参数解释
+
+| 参数      | 参数类型       | 备注   |
+| --------- | -------------- | ------ |
+| timestamp | NSTimeInterval | 时间戳 |
+
+VPMeasurementModeState
+
+| 参数                          | 参数类型   | 备注            |
+| ----------------------------- | ---------- | --------------- |
+| VPMeasurementModeStateModeOne | NSUInteger | 获取模式1的数据 |
+| VPMeasurementModeStateModeTwo | NSUInteger | 获取模式2的数据 |
+
+VPGreenLightAccelerationModel
+
+| 参数               | 参数类型       | 备注           |
+| ------------------ | -------------- | -------------- |
+| timestamp          | NSTimeInterval | 数据产生的时间 |
+| greenValueArray    | NSMutableArray | 绿光数据       |
+| accelerationXArray | NSMutableArray | 加速度X        |
+| accelerationYArray | NSMutableArray | 加速度Y        |
+| accelerationZArray | NSMutableArray | 加速度Z        |
+
+
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKGetGreenLightAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval) {[weak self] error,array in
+            guard let array = array,let weakSelf = self else {return}
+            if error == nil {
+                
             }
         }
 ```

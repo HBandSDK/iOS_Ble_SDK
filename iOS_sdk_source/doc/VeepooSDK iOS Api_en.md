@@ -13,6 +13,7 @@
 | 1.0.8   | Add multi settings for skin colour, private mode support for manual blood glucose measurement | 2024.12.02        |
 | 1.0.9   | Compatibility with Z-series (Zhongke) platforms              | 2024.12.30        |
 | 1.1.0   | Added world clock, automatic measurement and detection time setting, manual measurement - air pump blood pressure related interfaces | 2025.06.11        |
+| 1.1.1   | Add ‘Text Transmission’ and ‘Image Transmission’，JH58 Customized Raw Data Reporting | 2025.10.27        |
 
 # SDK initialization
 
@@ -5148,3 +5149,256 @@ VPManualBloodPressureModel
             }
         }
 ```
+
+# Text Transmission
+
+### Precondition
+
+Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.textAndImageTransmissionType Judgment:  value of 1 indicates support for text transmission. The incoming text content cannot be empty
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPTextImageTransmissionViewController` in the Demo.
+
+### Interfaces
+
+```objective-c
+///Text Transmission
+/// - Parameters:
+///  - msg: Transferred text
+///  - sendResult: Result callback
+-(void)veepooSDKSendStartTransmissionMessage:(NSString*)msg AndResult:(void(^)(BOOL success))sendResult
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks          |
+| --------- | -------------- | ---------------- |
+| msg       | NSString       | Transferred text |
+
+### Sample Code
+
+```swift
+				let text = "Hello"
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendStartTransmissionMessage(text) { success in
+            success ? print("success") : print("fail")
+        }
+```
+
+# Query the size of the device that supports image transmission
+
+### Precondition
+
+Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.textAndImageTransmissionType Judgment: value of 1 indicates support for querying the size of transmitted images。
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPTextImageTransmissionViewController` in the Demo.
+
+### Interfaces
+
+```objective-c
+//Query the size of the device that supports image transmission
+/// - Parameters:
+///   - sendResult: Result callback
+-(void)veepooSDKSendCheckDeviceSupportImageInfoAndResult:(void(^_Nonnull)(VPImageTransmissionModel * _Nonnull model))sendResult;
+```
+
+### Parameter Explanation
+
+VPImageTransmissionModel
+
+| Parameter  | Parameter Type | Remarks                                   |
+| ---------- | -------------- | ----------------------------------------- |
+| dataLength | NSInteger      | The maximum length of transferable images |
+| width      | NSInteger      | Width of transferable images              |
+| height     | NSInteger      | Hight transferable image quality          |
+
+### Sample Code
+
+```swift
+//
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendCheckDeviceSupportImageInfoAndResult { model in
+            print("Length:" + String(model.dataLength) + "Width:" + String(model.width) + "Height:" + String(model.height))
+        }
+```
+
+
+
+# Image Transmission
+
+### Precondition
+
+Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.textAndImageTransmissionType Judgment: value of 1 indicates support for image transmission. The content of the incoming image cannot be empty,This interface call will determine whether the size of the incoming image is compliant
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPTextImageTransmissionViewController` in the Demo.
+
+### Interfaces
+
+```objective-c
+//Image Transmission
+/// - Parameters:
+///   - image: transferred images
+///   - sendResult: Result callback
+///   - progress: Progress callback
+-(void)veepooSDKSendStartTransmissionImage:(UIImage*)image andResult:(void(^_Nonnull)(NSError * _Nullable error))sendResult andProgress:(void(^_Nonnull)(double progress))progress;
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks            |
+| --------- | -------------- | ------------------ |
+| image     | UIImage        | transferred images |
+
+### Sample Code
+
+```swift
+//Image Transmission
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendStartTransmissionImage(UIImage(named: "")) { error in
+            guard let er = error as? NSError else {return}
+            print(er)
+        } andProgress: { [weak self] progress in
+            guard let weakself = self else { return }
+            DispatchQueue.main.async {
+                weakself.progressLabel.text = "Progress:" + String(format: "%.0f", progress*100) + "%"
+            }
+        }
+```
+
+# Get Test Mode Status
+
+### Precondition
+
+JH58 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPGreenLightAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+//Get test mode status
+/// - Parameters:
+///   - sendResult: Result callback state VPMeasurementModeStateOff:Off VPMeasurementModeStateModeOne:Mode 1 on VPMeasurementModeStateModeTwo:Mode 2 on
+-(void)veepooSDKGetMeasurementMode:(void(^_Nonnull)(VPMeasurementModeState state))sendResult
+```
+
+### Parameter Explanation
+
+VPMeasurementModeState
+
+| Parameter                     | Parameter Type | Remarks |
+| ----------------------------- | -------------- | ------- |
+| VPMeasurementModeStateOff     | NSUInteger     | OFF     |
+| VPMeasurementModeStateModeOne | NSUInteger     | Mode 1  |
+| VPMeasurementModeStateModeTwo | NSUInteger     | Mode 2  |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKGetMeasurementMode { [weak self] state in
+            guard let weakSelf = self else {return}
+            
+}
+```
+
+# Set Test Mode
+
+### Precondition
+
+JH58 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPGreenLightAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+//Set test mode
+/// - Parameters:
+///   - state: VPMeasurementModeStateOff:Off VPMeasurementModeStateModeOne:Mode 1 onVPMeasurementModeStateModeTwo:Mode 2 on
+///   - sendResult: Result callback
+-(void)veepooSDKSetMeasurementMode:(VPMeasurementModeState)state andResult:(void(^)(NSError *error,VPMeasurementModeState state))sendResult;
+```
+
+### Parameter Explanation
+
+VPMeasurementModeState
+
+| Parameter                     | Parameter Type | Remarks |
+| ----------------------------- | -------------- | ------- |
+| VPMeasurementModeStateOff     | NSUInteger     | Off     |
+| VPMeasurementModeStateModeOne | NSUInteger     | Mode 1  |
+| VPMeasurementModeStateModeTwo | NSUInteger     | Mode 2  |
+
+### Sample Code
+
+```swift
+let state :VPMeasurementModeState = .off
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetMeasurementMode(state) { [weak self] error ,backState in
+            guard let weakSelf = self else {return}
+            if error == nil {
+                
+            }
+        }
+```
+
+# Obtain raw data of green light and acceleration
+
+### Precondition
+
+JH58 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPGreenLightAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+//Obtain raw data of green light and acceleration
+/// - Parameters:
+///   - state VPMeasurementModeStateModeOne:Obtain Mode 1 VPMeasurementModeStateModeTwo:Obtain Mode 2
+///   - timestamp:Get the data after this timestamp, 0 is all the data
+///   - sendResult:Result callback
+-(void)veepooSDKGetGreenLightAndAccelerationRawDataWithMeasurementMode:(VPMeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPGreenLightAccelerationModel*> *array))sendResult
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks   |
+| --------- | -------------- | --------- |
+| timestamp | NSTimeInterval | timestamp |
+
+VPMeasurementModeState
+
+| Parameter                     | Parameter Type | Remarks       |
+| ----------------------------- | -------------- | ------------- |
+| VPMeasurementModeStateModeOne | NSUInteger     | Obtain Mode 1 |
+| VPMeasurementModeStateModeTwo | NSUInteger     | Obtain Mode 2 |
+
+VPGreenLightAccelerationModel
+
+| Parameter          | Parameter Type | Remarks                 |
+| ------------------ | -------------- | ----------------------- |
+| timestamp          | NSTimeInterval | Time of data generation |
+| greenValueArray    | NSMutableArray | Green light data        |
+| accelerationXArray | NSMutableArray | Acceleration X          |
+| accelerationYArray | NSMutableArray | Acceleration Y          |
+| accelerationZArray | NSMutableArray | Acceleration Z          |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKGetGreenLightAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval) {[weak self] error,array in
+            guard let array = array,let weakSelf = self else {return}
+            if error == nil {
+                
+            }
+        }
+```
+
