@@ -5285,34 +5285,33 @@ JH58定制功能
 
 ### 类名
 
-`VPPeripheralBaseManage`，可参考Demo中`VPGreenLightAccelerationViewController`的实现
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
 
 ### 接口
 
 ```objective-c
 //获取测试模式开关状态
 /// - Parameters:
-///   - sendResult: 结果回调 state 测试模式 VPMeasurementModeStateOff:全关 VPMeasurementModeStateModeOne:模式1开 VPMeasurementModeStateModeTwo:模式2开
--(void)veepooSDKGetMeasurementMode:(void(^_Nonnull)(VPMeasurementModeState state))sendResult
+///   - sendResult: 结果回调 state 测试模式 VPJH58MeasurementModeStateOff:全关 VPJH58MeasurementModeStateModeOne:模式1开 VPJH58MeasurementModeStateModeTwo:模式2开
+-(void)veepooSDK_JH58GetMeasurementMode:(void(^_Nonnull)(VPJH58MeasurementModeState state))sendResult
 ```
 
 ### 参数解释
 
-VPMeasurementModeState
+VPJH58MeasurementModeState
 
-| 参数                          | 参数类型   | 备注  |
-| ----------------------------- | ---------- | ----- |
-| VPMeasurementModeStateOff     | NSUInteger | 全关  |
-| VPMeasurementModeStateModeOne | NSUInteger | 模式1 |
-| VPMeasurementModeStateModeTwo | NSUInteger | 模式2 |
+| 参数                              | 参数类型   | 备注  |
+| --------------------------------- | ---------- | ----- |
+| VPJH58MeasurementModeStateOff     | NSUInteger | 全关  |
+| VPJH58MeasurementModeStateModeOne | NSUInteger | 模式1 |
+| VPJH58MeasurementModeStateModeTwo | NSUInteger | 模式2 |
 
 ### 示例代码
 
 ```swift
-VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKGetMeasurementMode { [weak self] state in
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58GetMeasurementMode { [weak self] state in
             guard let weakSelf = self else {return}
-            
-}
+ }
 ```
 
 # 设置测试模式
@@ -5323,41 +5322,39 @@ JH58定制功能
 
 ### 类名
 
-`VPPeripheralBaseManage`，可参考Demo中`VPGreenLightAccelerationViewController`的实现
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
 
 ### 接口
 
 ```objective-c
 //设置测试模式状态
 /// - Parameters:
-///   - state: 测试模式 VPMeasurementModeStateOff:全关 VPMeasurementModeStateModeOne:模式1开 VPMeasurementModeStateModeTwo:模式2开
+///   - state: 测试模式 VPJH58MeasurementModeStateOff:全关 VPJH58MeasurementModeStateModeOne:模式1开 VPJH58MeasurementModeStateModeTwo:模式2开
 ///   - sendResult: 结果回调
--(void)veepooSDKSetMeasurementMode:(VPMeasurementModeState)state andResult:(void(^)(NSError *error,VPMeasurementModeState state))sendResult;
+-(void)veepooSDK_JH58SetMeasurementMode:(VPJH58MeasurementModeState)state andResult:(void(^)(NSError *error,VPJH58MeasurementModeState state))sendResult;
 ```
 
 ### 参数解释
 
-VPMeasurementModeState
+VPJH58MeasurementModeState
 
-| 参数                          | 参数类型   | 备注  |
-| ----------------------------- | ---------- | ----- |
-| VPMeasurementModeStateOff     | NSUInteger | 全关  |
-| VPMeasurementModeStateModeOne | NSUInteger | 模式1 |
-| VPMeasurementModeStateModeTwo | NSUInteger | 模式2 |
+| 参数                              | 参数类型   | 备注  |
+| --------------------------------- | ---------- | ----- |
+| VPJH58MeasurementModeStateOff     | NSUInteger | 全关  |
+| VPJH58MeasurementModeStateModeOne | NSUInteger | 模式1 |
+| VPJH58MeasurementModeStateModeTwo | NSUInteger | 模式2 |
 
 ### 示例代码
 
 ```swift
-let state :VPMeasurementModeState = .off
-VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetMeasurementMode(state) { [weak self] error ,backState in
+let state :VPJH58MeasurementModeState = .off
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58SetMeasurementMode(state) { [weak self] error ,backState in
             guard let weakSelf = self else {return}
-            if error == nil {
-                
-            }
+            
         }
 ```
 
-# 获取绿光加速度原始数据
+# 获取PPG和加速度原始数据
 
 ### 前提
 
@@ -5365,17 +5362,17 @@ JH58定制功能
 
 ### 类名
 
-`VPPeripheralBaseManage`，可参考Demo中`VPGreenLightAccelerationViewController`的实现
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
 
 ### 接口
 
 ```objective-c
 //读取原始数据
 /// - Parameters:
-///   - state 测试模式 VPMeasurementModeStateModeOne:获取模式1的 VPMeasurementModeStateModeTwo:获取模式2的
+///   - state 测试模式 VPJH58MeasurementModeStateModeOne:获取模式1的 VPJH58MeasurementModeStateModeTwo:获取模式2的
 ///   - timestamp:获取这个时间戳以后的数据,为0就是所有数据
 ///   - sendResult:结果回调
--(void)veepooSDKGetGreenLightAndAccelerationRawDataWithMeasurementMode:(VPMeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPGreenLightAccelerationModel*> *array))sendResult
+-(void)veepooSDK_JH58GetPPGAndAccelerationRawDataWithMeasurementMode:(VPJH58MeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPJH58PPGAccelerationModel*> *array))sendResult
 ```
 
 ### 参数解释
@@ -5384,33 +5381,221 @@ JH58定制功能
 | --------- | -------------- | ------ |
 | timestamp | NSTimeInterval | 时间戳 |
 
-VPMeasurementModeState
+VPJH58MeasurementModeState
 
-| 参数                          | 参数类型   | 备注            |
-| ----------------------------- | ---------- | --------------- |
-| VPMeasurementModeStateModeOne | NSUInteger | 获取模式1的数据 |
-| VPMeasurementModeStateModeTwo | NSUInteger | 获取模式2的数据 |
+| 参数                              | 参数类型   | 备注            |
+| --------------------------------- | ---------- | --------------- |
+| VPJH58MeasurementModeStateModeOne | NSUInteger | 获取模式1的数据 |
+| VPJH58MeasurementModeStateModeTwo | NSUInteger | 获取模式2的数据 |
 
-VPGreenLightAccelerationModel
+VPJH58PPGAccelerationModel
 
-| 参数               | 参数类型       | 备注           |
-| ------------------ | -------------- | -------------- |
-| timestamp          | NSTimeInterval | 数据产生的时间 |
-| greenValueArray    | NSMutableArray | 绿光数据       |
-| accelerationXArray | NSMutableArray | 加速度X        |
-| accelerationYArray | NSMutableArray | 加速度Y        |
-| accelerationZArray | NSMutableArray | 加速度Z        |
+| 参数              | 参数类型                             | 备注           |
+| ----------------- | ------------------------------------ | -------------- |
+| timestamp         | NSTimeInterval                       | 数据产生的时间 |
+| ppgValueArray     | NSMutableArray                       | PPG数据        |
+| accelerationArray | NSMutableArray<VPAccelerationModel*> | 加速度数据     |
 
+VPAccelerationModel
 
+| 参数 | 参数类型 | 备注    |
+| ---- | -------- | ------- |
+| x    | double   | 加速度x |
+| y    | double   | 加速度y |
+| z    | double   | 加速度z |
 
 ### 示例代码
 
 ```swift
-VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKGetGreenLightAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval) {[weak self] error,array in
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58GetPPGAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval) {[weak self] error,array in
             guard let array = array,let weakSelf = self else {return}
-            if error == nil {
-                
-            }
+            
+        }
+```
+
+# APP向设备请求实时传输
+
+### 前提
+
+JH58定制功能，这个功能暂时设备确定是否开启。
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+//APP向设备请求实时传输
+/// - Parameters:
+///   - open :YES 请求开启 NO:请求关闭
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58ReqRealTimeTransmission:(BOOL)open andResult:(void(^)(BOOL success))sendResult
+```
+
+### 参数解释
+
+| 参数 | 参数类型 | 备注                      |
+| ---- | -------- | ------------------------- |
+| open | BOOL     | YES: 请求开启 NO:请求关闭 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ReqRealTimeTransmission(btn.tag == 1000 ? true : false) {[weak self] success in
+            guard let weakSelf = self else {return}
+            let str = success ? "成功" : "失败"
+        }
+```
+
+# APP监听设备实时传输请求
+
+### 前提
+
+JH58定制功能，设备在模式2时会发送实时传输请求
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+//监听设备请求实时传输
+/// - Parameters:
+///   - sendResult:结果回调 YES:请求开启 NO:请求关闭
+-(void)veepooSDK_JH58MonitorDeviceReqRealTimeTransmission:(void(^)(BOOL open))sendResult
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorDeviceReqRealTimeTransmission {[weak self] open in
+            guard let weakSelf = self else {return}
+            
+        }
+```
+
+# APP响应设备实时传输请求
+
+### 前提
+
+JH58定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+//响应设备实时传输请求
+/// - Parameters:
+///   - agree :YES:同意开启,NO:拒绝开启
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58ResDeviceRealTimeTransmission:(BOOL)agree
+```
+
+### 参数解释
+
+| 参数  | 参数类型 | 备注                     |
+| ----- | -------- | ------------------------ |
+| agree | BOOL     | YES:同意开启,NO:拒绝开启 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ResDeviceRealTimeTransmission(true)
+```
+
+# APP监听设备测试模式开关变化状态上报
+
+### 前提
+
+JH58定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+/// - Parameters:
+///   - state: 测试模式 VPJH58MeasurementModeStateOff:全关 VPJH58MeasurementModeStateModeOne:模式1开
+-(void)veepooSDK_JH58MonitorMeasurementMode:(void(^_Nonnull)(VPJH58MeasurementModeState state))sendResult
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorMeasurementMode {[weak self] state in
+            guard let weakSelf = self else {return}
+            
+        }
+```
+
+# APP监听设备实时传输PPG数据
+
+### 前提
+
+JH58定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+/// - Parameters:
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58MonitorRealTimeTransmissionPPGData:(void(^)(NSMutableArray *array))sendResult;
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorRealTimeTransmissionPPGData {[weak self] array in
+            guard let weakSelf = self else {return}
+           
+        }
+```
+
+# APP监听设备实时传输加速度数据
+
+### 前提
+
+JH58定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+/// - Parameters:
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData:(void(^)(NSMutableArray <VPAccelerationModel*> *array))sendResult;
+```
+
+### 参数解释
+
+VPAccelerationModel
+
+| 参数 | 参数类型 | 备注    |
+| ---- | -------- | ------- |
+| x    | double   | 加速度x |
+| y    | double   | 加速度y |
+| z    | double   | 加速度z |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData { [weak self] array in
+            guard let weakSelf = self else {return}
+    
         }
 ```
 

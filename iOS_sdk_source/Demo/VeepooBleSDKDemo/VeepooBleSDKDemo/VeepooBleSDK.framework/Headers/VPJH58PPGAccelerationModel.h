@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "VPAccelerationModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VPJH58PPGAccelerationModel : NSObject
@@ -16,11 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong) NSMutableArray *ppgValueArray;
 
-@property (nonatomic,strong) NSMutableArray *accelerationXArray;
-
-@property (nonatomic,strong) NSMutableArray *accelerationYArray;
-
-@property (nonatomic,strong) NSMutableArray *accelerationZArray;
+@property (nonatomic,strong) NSMutableArray<VPAccelerationModel*> *accelerationArray;
 
 - (void)parsePPGAccelerationData:(NSData *)data;
 

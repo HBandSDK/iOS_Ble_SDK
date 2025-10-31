@@ -43,6 +43,8 @@
 #import "VPImageTransmissionModel.h"
 #import "VPJH58PPGAccelerationModel.h"
 #import "VPMiniHealthCheckModel.h"
+#import "VPManualMeasurementMicroTestModel.h"
+#import "VPAccelerationModel.h"
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,
 VPManualTestDataModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
@@ -1069,9 +1071,9 @@ VPManualTestDataModel;
 ///   - sendResult: 结果回调
 -(void)veepooSDK_JH58SetMeasurementMode:(VPJH58MeasurementModeState)state andResult:(void(^)(NSError *error,VPJH58MeasurementModeState state))sendResult;
 
-//监听测试模式开关状态 - 设备修改主动上报,APP修改不触发
+//监听设备测试模式开关变化状态上报 - 设备修改主动上报,APP修改不触发
 /// - Parameters:
-///   - state: 测试模式 VPJH58MeasurementModeStateOff:全关 VPJH58MeasurementModeStateModeOne:模式1开 3:模式2开
+///   - state: 测试模式 VPJH58MeasurementModeStateOff:全关 VPJH58MeasurementModeStateModeOne:模式1开
 -(void)veepooSDK_JH58MonitorMeasurementMode:(void(^_Nonnull)(VPJH58MeasurementModeState state))sendResult;
 
 //读取原始数据
@@ -1082,10 +1084,55 @@ VPManualTestDataModel;
 -(void)veepooSDK_JH58GetPPGAndAccelerationRawDataWithMeasurementMode:(VPJH58MeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPJH58PPGAccelerationModel*> *array))sendResult;
 
 
-#pragma mark 微体检
--(void)veepooSDKStartMiniHealthCheckProgress:(void(^)(int progress))progressResult andFail:(void(^)(NSError *error))failResult andSuccess:(void(^)(VPMiniHealthCheckModel *miniCheckModel))successResult;
+//向设备请求实时传输
+/// - Parameters:
+///   - open :YES 请求开启 NO:请求关闭
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58ReqRealTimeTransmission:(BOOL)open andResult:(void(^)(BOOL success))sendResult;
 
--(void)veepooSDKEndMiniHealthCheckoProgress:(void(^)(NSError *error))sendResult;
+
+//响应设备实时传输请求
+/// - Parameters:
+///   - agree :YES:同意开启,NO:拒绝开启
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58ResDeviceRealTimeTransmission:(BOOL)agree;
+
+
+//监听设备请求实时传输
+/// - Parameters:
+///   - sendResult:结果回调 YES:请求开启 NO:请求关闭
+-(void)veepooSDK_JH58MonitorDeviceReqRealTimeTransmission:(void(^)(BOOL open))sendResult;
+
+
+//监听设备实时传输PPG数据
+/// - Parameters:
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58MonitorRealTimeTransmissionPPGData:(void(^)(NSMutableArray *array))sendResult;
+
+
+//监听设备实时传输加速度数据
+/// - Parameters:
+///   - sendResult:结果回调
+-(void)veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData:(void(^)(NSMutableArray <VPAccelerationModel*> *array))sendResult;
+
+#pragma mark 微体检
+
+//开启/关闭微体检
+/// - Parameters:
+///   - open:YES 开启 NO 关闭
+///   - progressResult :进度回调
+///   - failResult :失败回调
+///   - successResult :结束成功回调
+///   - heartRateBlock: 测量中心率数据回调
+///   - ppgBlock: 测量中PPG数据回调
+-(void)veepooSDKMiniHealthCheckState:(BOOL)open andProgress:(void(^)(int progress))progressResult andFail:(void(^)(NSError *error))failResult andSuccess:(void(^)(VPMiniHealthCheckModel *miniCheckModel))successResult andHeartRate:(void(^)(int heartRateStatus))heartRateBlock andPPG:(void(^)(NSMutableArray *ppgArray))ppgBlock;
+
+
+//获取微体检手动测量数据
+/// - Parameters:
+///   - timestamp:秒级时间戳，只返回时间戳之后的数据
+///   - sendBlock :结果回调
+-(void)veepooSDKMicroTestManualMeasurement:(NSTimeInterval)timestamp andPPG:(void(^)(NSMutableArray<VPManualMeasurementMicroTestModel*> *microTestArray))sendBlock;
 @end
 
 

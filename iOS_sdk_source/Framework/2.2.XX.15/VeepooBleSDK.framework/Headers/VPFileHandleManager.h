@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)configureFilePath:(NSString *)fileName;
 
-- (void)clearLogFile;
+- (void)clearFile;
 
 - (void)writeText:(NSString *)text;
 

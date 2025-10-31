@@ -5275,34 +5275,33 @@ JH58 customization function
 
 ### Class Name
 
-`VPPeripheralBaseManage`，refer to the implementation of`VPGreenLightAccelerationViewController` in the Demo
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
 
 ### Interfaces
 
 ```objective-c
 //Get test mode status
 /// - Parameters:
-///   - sendResult: Result callback state VPMeasurementModeStateOff:Off VPMeasurementModeStateModeOne:Mode 1 on VPMeasurementModeStateModeTwo:Mode 2 on
--(void)veepooSDKGetMeasurementMode:(void(^_Nonnull)(VPMeasurementModeState state))sendResult
+///   - sendResult: Result callback state VPJH58MeasurementModeStateOff:Off VPJH58MeasurementModeStateModeOne:Mode 1 on VPJH58MeasurementModeStateModeTwo:Mode 2 on
+-(void)veepooSDK_JH58GetMeasurementMode:(void(^_Nonnull)(VPJH58MeasurementModeState state))sendResult
 ```
 
 ### Parameter Explanation
 
-VPMeasurementModeState
+VPJH58MeasurementModeState
 
-| Parameter                     | Parameter Type | Remarks |
-| ----------------------------- | -------------- | ------- |
-| VPMeasurementModeStateOff     | NSUInteger     | OFF     |
-| VPMeasurementModeStateModeOne | NSUInteger     | Mode 1  |
-| VPMeasurementModeStateModeTwo | NSUInteger     | Mode 2  |
+| Parameter                         | Parameter Type | Remarks |
+| --------------------------------- | -------------- | ------- |
+| VPJH58MeasurementModeStateOff     | NSUInteger     | OFF     |
+| VPJH58MeasurementModeStateModeOne | NSUInteger     | Mode 1  |
+| VPJH58MeasurementModeStateModeTwo | NSUInteger     | Mode 2  |
 
 ### Sample Code
 
 ```swift
-VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKGetMeasurementMode { [weak self] state in
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58GetMeasurementMode { [weak self] state in
             guard let weakSelf = self else {return}
-            
-}
+ }
 ```
 
 # Set Test Mode
@@ -5313,41 +5312,39 @@ JH58 customization function
 
 ### Class Name
 
-`VPPeripheralBaseManage`，refer to the implementation of`VPGreenLightAccelerationViewController` in the Demo
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
 
 ### Interfaces
 
 ```objective-c
 //Set test mode
 /// - Parameters:
-///   - state: VPMeasurementModeStateOff:Off VPMeasurementModeStateModeOne:Mode 1 onVPMeasurementModeStateModeTwo:Mode 2 on
+///   - state: VPJH58MeasurementModeStateOff:Off VPJH58MeasurementModeStateModeOne:Mode 1 onVPJH58MeasurementModeStateModeTwo:Mode 2 on
 ///   - sendResult: Result callback
--(void)veepooSDKSetMeasurementMode:(VPMeasurementModeState)state andResult:(void(^)(NSError *error,VPMeasurementModeState state))sendResult;
+-(void)veepooSDK_JH58SetMeasurementMode:(VPJH58MeasurementModeState)state andResult:(void(^)(NSError *error,VPJH58MeasurementModeState state))sendResult;
 ```
 
 ### Parameter Explanation
 
-VPMeasurementModeState
+VPJH58MeasurementModeState
 
-| Parameter                     | Parameter Type | Remarks |
-| ----------------------------- | -------------- | ------- |
-| VPMeasurementModeStateOff     | NSUInteger     | Off     |
-| VPMeasurementModeStateModeOne | NSUInteger     | Mode 1  |
-| VPMeasurementModeStateModeTwo | NSUInteger     | Mode 2  |
+| Parameter                         | Parameter Type | Remarks |
+| --------------------------------- | -------------- | ------- |
+| VPJH58MeasurementModeStateOff     | NSUInteger     | Off     |
+| VPJH58MeasurementModeStateModeOne | NSUInteger     | Mode 1  |
+| VPJH58MeasurementModeStateModeTwo | NSUInteger     | Mode 2  |
 
 ### Sample Code
 
 ```swift
-let state :VPMeasurementModeState = .off
-VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetMeasurementMode(state) { [weak self] error ,backState in
+let state :VPJH58MeasurementModeState = .off
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58SetMeasurementMode(state) { [weak self] error ,backState in
             guard let weakSelf = self else {return}
-            if error == nil {
-                
-            }
+            
         }
 ```
 
-# Obtain raw data of green light and acceleration
+# Obtain raw data of PPG and acceleration
 
 ### Precondition
 
@@ -5355,17 +5352,17 @@ JH58 customization function
 
 ### Class Name
 
-`VPPeripheralBaseManage`，refer to the implementation of`VPGreenLightAccelerationViewController` in the Demo
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
 
 ### Interfaces
 
 ```objective-c
 //Obtain raw data of green light and acceleration
 /// - Parameters:
-///   - state VPMeasurementModeStateModeOne:Obtain Mode 1 VPMeasurementModeStateModeTwo:Obtain Mode 2
+///   - state VPJH58MeasurementModeStateModeOne:Obtain Mode 1 VPJH58MeasurementModeStateModeTwo:Obtain Mode 2
 ///   - timestamp:Get the data after this timestamp, 0 is all the data
 ///   - sendResult:Result callback
--(void)veepooSDKGetGreenLightAndAccelerationRawDataWithMeasurementMode:(VPMeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPGreenLightAccelerationModel*> *array))sendResult
+-(void)veepooSDK_JH58GetPPGAndAccelerationRawDataWithMeasurementMode:(VPJH58MeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPJH58PPGAccelerationModel*> *array))sendResult
 ```
 
 ### Parameter Explanation
@@ -5374,31 +5371,222 @@ JH58 customization function
 | --------- | -------------- | --------- |
 | timestamp | NSTimeInterval | timestamp |
 
-VPMeasurementModeState
+VPJH58MeasurementModeState
 
-| Parameter                     | Parameter Type | Remarks       |
-| ----------------------------- | -------------- | ------------- |
-| VPMeasurementModeStateModeOne | NSUInteger     | Obtain Mode 1 |
-| VPMeasurementModeStateModeTwo | NSUInteger     | Obtain Mode 2 |
+| Parameter                         | Parameter Type | Remarks       |
+| --------------------------------- | -------------- | ------------- |
+| VPJH58MeasurementModeStateModeOne | NSUInteger     | Obtain Mode 1 |
+| VPJH58MeasurementModeStateModeTwo | NSUInteger     | Obtain Mode 2 |
 
 VPGreenLightAccelerationModel
 
-| Parameter          | Parameter Type | Remarks                 |
-| ------------------ | -------------- | ----------------------- |
-| timestamp          | NSTimeInterval | Time of data generation |
-| greenValueArray    | NSMutableArray | Green light data        |
-| accelerationXArray | NSMutableArray | Acceleration X          |
-| accelerationYArray | NSMutableArray | Acceleration Y          |
-| accelerationZArray | NSMutableArray | Acceleration Z          |
+| Parameter         | Parameter Type                       | Remarks                 |
+| ----------------- | ------------------------------------ | ----------------------- |
+| timestamp         | NSTimeInterval                       | Time of data generation |
+| ppgValueArray     | NSMutableArray                       | PPG data                |
+| accelerationArray | NSMutableArray<VPAccelerationModel*> | Acceleration            |
+
+VPAccelerationModel
+
+| Parameter | Parameter Type | Remarks       |
+| --------- | -------------- | ------------- |
+| x         | double         | Accelerationx |
+| y         | double         | Accelerationy |
+| z         | double         | Accelerationz |
+
+### 
 
 ### Sample Code
 
 ```swift
-VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKGetGreenLightAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval) {[weak self] error,array in
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58GetPPGAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval) {[weak self] error,array in
             guard let array = array,let weakSelf = self else {return}
-            if error == nil {
-                
-            }
+            
         }
 ```
 
+# APP Requests Real-Time Transmission Mode From Device
+
+### Precondition
+
+JH58 customization function, only when the measurement mode is enabled can the request be successful
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+//APP requests real-time transmission mode from device
+/// - Parameters:
+///   - open :YES Request to activate NO:Request to close
+///   - sendResult:Result callback
+-(void)veepooSDK_JH58ReqRealTimeTransmission:(BOOL)open andResult:(void(^)(BOOL success))sendResult
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                                      |
+| --------- | -------------- | -------------------------------------------- |
+| open      | BOOL           | YES: Request to activate NO:Request to close |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ReqRealTimeTransmission(btn.tag == 1000 ? true : false) {[weak self] success in
+            guard let weakSelf = self else {return}
+            let str = success ? "success" : "fail"
+        }
+```
+
+# APP Monitors Real-Time Transmission Requests From Devices
+
+### Precondition
+
+JH58 customization function, the device will send real-time transmission requests after enabling measurement mode
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+//APP Monitors Real-Time Transmission Requests From Devices
+/// - Parameters:
+///   - sendResult:Result callback YES:Request to activate NO:Request to close
+-(void)veepooSDK_JH58MonitorDeviceReqRealTimeTransmission:(void(^)(BOOL open))sendResult
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorDeviceReqRealTimeTransmission {[weak self] open in
+            guard let weakSelf = self else {return}
+            
+        }
+```
+
+# APP Responds To Real-Time Transmission Requests From Devices
+
+### Precondition
+
+JH58 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+//APP responds to real-time transmission requests from devices
+/// - Parameters:
+///   - agree :YES:Agree to activate,NO:Refuse to open
+///   - sendResult:Result callback
+-(void)veepooSDK_JH58ResDeviceRealTimeTransmission:(BOOL)agree
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                                 |
+| --------- | -------------- | --------------------------------------- |
+| agree     | BOOL           | YES:Agree to activate,NO:Refuse to open |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ResDeviceRealTimeTransmission(true)
+```
+
+# APP Monitoring Device Test Mode Switch Change Status Report
+
+### Precondition
+
+JH58 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+/// - Parameters:
+///   - state: VPJH58MeasurementModeStateOff:OFF VPJH58MeasurementModeStateModeOne:Mode1 ON
+-(void)veepooSDK_JH58MonitorMeasurementMode:(void(^_Nonnull)(VPJH58MeasurementModeState state))sendResult
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorMeasurementMode {[weak self] state in
+            guard let weakSelf = self else {return}
+            
+        }
+```
+
+# Real Time Transmission Of PPG Data by APP Monitoring Devices
+
+### Precondition
+
+JH58 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+/// - Parameters:
+///   - sendResult:Result callback
+-(void)veepooSDK_JH58MonitorRealTimeTransmissionPPGData:(void(^)(NSMutableArray *array))sendResult;
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorRealTimeTransmissionPPGData {[weak self] array in
+            guard let weakSelf = self else {return}
+           
+        }
+```
+
+# Real Time Transmission Of Acceleration Data by APP Monitoring Devices
+
+### Precondition
+
+JH58 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPPPGAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+/// - Parameters:
+///   - sendResult:Result callback
+-(void)veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData:(void(^)(NSMutableArray <VPAccelerationModel*> *array))sendResult;
+```
+
+### Parameter Explanation
+
+VPAccelerationModel
+
+| Parameter | Parameter Type | Remarks       |
+| --------- | -------------- | ------------- |
+| x         | double         | AccelerationX |
+| y         | double         | AccelerationY |
+| z         | double         | AccelerationZ |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData { [weak self] array in
+            guard let weakSelf = self else {return}
+    
+        }
+```

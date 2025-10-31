@@ -59,6 +59,8 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("脉冲磁疗功能","VPDevicePulseViewController"),
         .init("中医诊断定制","VPJM19AViewController"),
         .init("图文传输","VPTextImageTransmissionViewController"),
+        .init("JH58PPG和加速度原始数据","VPPPGAccelerationViewController"),
+        .init("微体检","VPMiniHealthCheckViewController")
     ]
     
     override func viewDidLoad() {

@@ -21,12 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 //压力
 @property (nonatomic,assign)int pressure;
 
-//情绪[-10,10]
-@property (nonatomic,assign)int emotion;
-
-//疲劳度
-@property (nonatomic,assign)int fatigueLevel;
-
 //血糖
 @property (nonatomic,assign)CGFloat bloodSugar;
 

@@ -217,7 +217,7 @@
 //图文传输，0为不支持
 @property (nonatomic, assign) NSUInteger textAndImageTransmissionType;
 
-//图文传输，0为不支持
+//微体检，0为不支持
 @property (nonatomic, assign) NSUInteger miniHealthCheckType;
 
 //mtu size
