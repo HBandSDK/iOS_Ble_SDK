@@ -42,7 +42,7 @@
 #import "VPWorldClockModel.h"
 #import "VPImageTransmissionModel.h"
 #import "VPJH58PPGAccelerationModel.h"
-#import "VPMiniHealthCheckModel.h"
+#import "VPMicroTestModel.h"
 #import "VPManualMeasurementMicroTestModel.h"
 #import "VPAccelerationModel.h"
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,
@@ -1125,7 +1125,7 @@ VPManualTestDataModel;
 ///   - successResult :结束成功回调
 ///   - heartRateBlock: 测量中心率数据回调
 ///   - ppgBlock: 测量中PPG数据回调
--(void)veepooSDKMiniHealthCheckState:(BOOL)open andProgress:(void(^)(int progress))progressResult andFail:(void(^)(NSError *error))failResult andSuccess:(void(^)(VPMiniHealthCheckModel *miniCheckModel))successResult andHeartRate:(void(^)(int heartRateStatus))heartRateBlock andPPG:(void(^)(NSMutableArray *ppgArray))ppgBlock;
+-(void)veepooSDKMicroTestOpenState:(BOOL)open andProgress:(void(^)(int progress))progressResult andFail:(void(^)(NSError *error))failResult andSuccess:(void(^)(BOOL endState,VPMicroTestModel *miniCheckModel))successResult andHeartRate:(void(^)(int heartRateStatus))heartRateBlock andPPG:(void(^)(NSMutableArray *ppgArray))ppgBlock;
 
 
 //获取微体检手动测量数据

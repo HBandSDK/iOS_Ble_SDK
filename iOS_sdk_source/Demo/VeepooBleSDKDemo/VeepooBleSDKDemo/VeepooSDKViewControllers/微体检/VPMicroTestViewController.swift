@@ -1,5 +1,5 @@
 //
-//  VPMiniHealthCheckViewController.swift
+//  VPMicroTestViewController.swift
 //  VeepooBleSDKDemo
 //
 //  Created by fengye on 2025/10/29.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VPMiniHealthCheckViewController: UIViewController {
+class VPMicroTestViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,22 +133,21 @@ class VPMiniHealthCheckViewController: UIViewController {
         self.progressLabel.text = ""
         self.resultLabel.text = ""
         
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMiniHealthCheckState(btn.tag == 1000 ? true : false) {[weak self] progress in
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestOpenState(btn.tag == 1000 ? true : false) { [weak self] progress in
             guard let self = self else {return}
             self.progressLabel.text = "测量进度:" + progress.description + "%"
         } andFail: { error in
-            print("失败")
-        } andSuccess: { [weak self] model in
-            print("成功")
+            
+        } andSuccess: { [weak self] endState, model in
             guard let self = self else {return}
             if let resultModel = model {
                 self.resultLabel.text = String(format: "心率:%d-血氧:%d-压力:%d-血糖:%.1f-体温:%.1f-高压:%d-低压:%d-HRV:%d", resultModel.heartRate,resultModel.bloodOxygen,resultModel.pressure,resultModel.bloodSugar,resultModel.bodyTemperature,resultModel.systolicBloodPressure,resultModel.diastolicBloodPressure,resultModel.hrv)
             }
-        } andHeartRate: {[weak self] heart in
+        } andHeartRate: { [weak self] heart in
             guard let self = self else {return}
             self.heartRateLabel.text = "心率:" + String(heart)
         } andPPG: { ppgArray in
-//            print(ppgArray)
+            
         }
     }
     /*

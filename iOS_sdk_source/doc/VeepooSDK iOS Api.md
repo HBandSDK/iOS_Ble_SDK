@@ -14,6 +14,7 @@
 | 1.0.9 | Z系列(中科)平台兼容                                          | 2024.12.30 |
 | 1.1.0 | 添加世界时钟、自动测量检测时间设置、手动测量-气泵血压相关接口 | 2025.06.11 |
 | 1.1.1 | 添加文本传输和图片传输 JH58定制原始数据上报                  | 2025.10.27 |
+| 1.1.2 | 添加微体检开启/关闭，获取微体检手动测量数据                  | 2025.11.03 |
 
 # SDK初始化
 
@@ -5400,9 +5401,9 @@ VPAccelerationModel
 
 | 参数 | 参数类型 | 备注    |
 | ---- | -------- | ------- |
-| x    | double   | 加速度x |
-| y    | double   | 加速度y |
-| z    | double   | 加速度z |
+| x    | int16_t  | 加速度x |
+| y    | int16_t  | 加速度y |
+| z    | int16_t  | 加速度z |
 
 ### 示例代码
 
@@ -5586,9 +5587,9 @@ VPAccelerationModel
 
 | 参数 | 参数类型 | 备注    |
 | ---- | -------- | ------- |
-| x    | double   | 加速度x |
-| y    | double   | 加速度y |
-| z    | double   | 加速度z |
+| x    | int16_t  | 加速度x |
+| y    | int16_t  | 加速度y |
+| z    | int16_t  | 加速度z |
 
 ### 示例代码
 
@@ -5596,6 +5597,111 @@ VPAccelerationModel
 VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData { [weak self] array in
             guard let weakSelf = self else {return}
     
+        }
+```
+
+# 微体检的开启/关闭
+
+### 前提
+
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.microTestType判断，为1表示支持微体检
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPMicroTestViewController`的实现
+
+### 接口
+
+```objective-c
+//开启/关闭微体检
+/// - Parameters:
+///   - open:YES 开启 NO 关闭
+///   - progressResult :进度回调
+///   - failResult :失败回调
+///   - successResult :结束成功回调
+///   - heartRateBlock: 测量中心率数据回调
+///   - ppgBlock: 测量中PPG数据回调
+-(void)veepooSDKMicroTestOpenState:(BOOL)open andProgress:(void(^)(int progress))progressResult andFail:(void(^)(NSError *error))failResult andSuccess:(void(^)(BOOL endState,VPMicroTestModel *miniCheckModel))successResult andHeartRate:(void(^)(int heartRateStatus))heartRateBlock andPPG:(void(^)(NSMutableArray *ppgArray))ppgBlock;
+```
+
+### 参数解释
+
+VPMicroTestModel
+
+| 参数                   | 参数类型 | 备注         |
+| ---------------------- | -------- | ------------ |
+| heartRate              | int      | 心率         |
+| bloodOxygen            | int      | 血氧         |
+| pressure               | int      | 压力         |
+| bloodSugar             | CGFloat  | 血糖         |
+| bodyTemperature        | CGFloat  | 体温         |
+| systolicBloodPressure  | int      | 血压(收缩压) |
+| diastolicBloodPressure | int      | 血压(舒缩压) |
+| hrv                    | int      | HRV          |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestOpenState(btn.tag == 1000 ? true : false) { [weak self] progress in
+            guard let self = self else {return}
+           
+        } andFail: { error in
+            
+        } andSuccess: { [weak self] endState, model in
+            guard let self = self else {return}
+            if let resultModel = model {
+                
+            }
+        } andHeartRate: { [weak self] heart in
+            guard let self = self else {return}
+           
+        } andPPG: { ppgArray in
+            
+        }
+```
+
+# 获取微体检的手动测量数据
+
+### 前提
+
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.microTestType判断，为1表示支持微体检
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPMicroTestViewController`的实现
+
+### 接口
+
+```objective-c
+//获取微体检手动测量数据
+/// - Parameters:
+///   - timestamp:秒级时间戳，只返回时间戳之后的数据
+///   - sendBlock :结果回调
+-(void)veepooSDKMicroTestManualMeasurement:(NSTimeInterval)timestamp andPPG:(void(^)(NSMutableArray<VPManualMeasurementMicroTestModel*> *microTestArray))sendBlock
+```
+
+### 参数解释
+
+VPManualMeasurementMicroTestModel
+
+| 参数                   | 参数类型 | 备注         |
+| ---------------------- | -------- | ------------ |
+| heartRate              | int      | 心率         |
+| bloodOxygen            | int      | 血氧         |
+| pressure               | int      | 压力         |
+| bloodSugar             | CGFloat  | 血糖         |
+| bodyTemperature        | CGFloat  | 体温         |
+| skinTemperature        | CGFloat  | 表皮温度     |
+| systolicBloodPressure  | int      | 血压(收缩压) |
+| diastolicBloodPressure | int      | 血压(舒缩压) |
+| hrv                    | int      | HRV          |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestManualMeasurement(self.checkTimeInterval) {[weak self] array in
+            guard let weakSelf = self else {return}
+            
         }
 ```
 

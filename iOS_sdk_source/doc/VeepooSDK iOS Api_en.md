@@ -14,6 +14,7 @@
 | 1.0.9   | Compatibility with Z-series (Zhongke) platforms              | 2024.12.30        |
 | 1.1.0   | Added world clock, automatic measurement and detection time setting, manual measurement - air pump blood pressure related interfaces | 2025.06.11        |
 | 1.1.1   | Add ‘Text Transmission’ and ‘Image Transmission’，JH58 Customized Raw Data Reporting | 2025.10.27        |
+| 1.1.2   | Add Micro-test on/off，Obtain manual measurement data for microtests | 2025.11.03        |
 
 # SDK initialization
 
@@ -5390,9 +5391,9 @@ VPAccelerationModel
 
 | Parameter | Parameter Type | Remarks       |
 | --------- | -------------- | ------------- |
-| x         | double         | Accelerationx |
-| y         | double         | Accelerationy |
-| z         | double         | Accelerationz |
+| x         | int16_t        | Accelerationx |
+| y         | int16_t        | Accelerationy |
+| z         | int16_t        | Accelerationz |
 
 ### 
 
@@ -5578,9 +5579,9 @@ VPAccelerationModel
 
 | Parameter | Parameter Type | Remarks       |
 | --------- | -------------- | ------------- |
-| x         | double         | AccelerationX |
-| y         | double         | AccelerationY |
-| z         | double         | AccelerationZ |
+| x         | int16_t        | AccelerationX |
+| y         | int16_t        | AccelerationY |
+| z         | int16_t        | AccelerationZ |
 
 ### Sample Code
 
@@ -5590,3 +5591,109 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorReal
     
         }
 ```
+
+# Micro-test on/off
+
+### Precondition
+
+Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.microTestType Judgment:  value of 1 indicates support Microtest
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPMicroTestViewController`in the Demo
+
+### Interfaces
+
+```objective-c
+//Micro-test on/off
+/// - Parameters:
+///   - open:YES Open NO Close
+///   - progressResult :progress callback
+///   - failResult :fail callback
+///   - successResult :success callback
+///   - heartRateBlock: heartRate callback
+///   - ppgBlock: PPG callback
+-(void)veepooSDKMicroTestOpenState:(BOOL)open andProgress:(void(^)(int progress))progressResult andFail:(void(^)(NSError *error))failResult andSuccess:(void(^)(BOOL endState,VPMicroTestModel *miniCheckModel))successResult andHeartRate:(void(^)(int heartRateStatus))heartRateBlock andPPG:(void(^)(NSMutableArray *ppgArray))ppgBlock;
+```
+
+### Parameter Explanation
+
+VPMicroTestModel
+
+| Parameter              | Parameter Type | Remarks                  |
+| ---------------------- | -------------- | ------------------------ |
+| heartRate              | int            | Heart rate               |
+| bloodOxygen            | int            | Blood oxygen             |
+| pressure               | int            | Pressure                 |
+| bloodSugar             | CGFloat        | Blood sugar              |
+| bodyTemperature        | CGFloat        | Body temperature         |
+| systolicBloodPressure  | int            | Systolic blood pressure  |
+| diastolicBloodPressure | int            | Diastolic blood pressure |
+| hrv                    | int            | HRV                      |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestOpenState(btn.tag == 1000 ? true : false) { [weak self] progress in
+            guard let self = self else {return}
+           
+        } andFail: { error in
+            
+        } andSuccess: { [weak self] endState, model in
+            guard let self = self else {return}
+            if let resultModel = model {
+                
+            }
+        } andHeartRate: { [weak self] heart in
+            guard let self = self else {return}
+           
+        } andPPG: { ppgArray in
+            
+        }
+```
+
+# Obtain Manual Measurement Data For Microtests
+
+### Precondition
+
+Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.microTestType Judgment:  value of 1 indicates support Microtest
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPMicroTestViewController`in the Demo
+
+### Interfaces
+
+```objective-c
+//Obtain manual measurement data for microtests
+/// - Parameters:
+///   - timestamp: Second-level timestamp, only returns data after the timestamp
+///   - sendBlock :Result callback
+-(void)veepooSDKMicroTestManualMeasurement:(NSTimeInterval)timestamp andPPG:(void(^)(NSMutableArray<VPManualMeasurementMicroTestModel*> *microTestArray))sendBlock
+```
+
+### Parameter Explanation
+
+VPManualMeasurementMicroTestModel
+
+| Parameter              | Parameter Type | Remarks                  |
+| ---------------------- | -------------- | ------------------------ |
+| heartRate              | int            | Heart rate               |
+| bloodOxygen            | int            | Blood oxygen             |
+| pressure               | int            | Pressure                 |
+| bloodSugar             | CGFloat        | Blood sugar              |
+| bodyTemperature        | CGFloat        | Body temperature         |
+| skinTemperature        | CGFloat        | Skin temperature         |
+| systolicBloodPressure  | int            | Systolic blood pressure  |
+| diastolicBloodPressure | int            | Diastolic blood pressure |
+| hrv                    | int            | HRV                      |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestManualMeasurement(self.checkTimeInterval) {[weak self] array in
+            guard let weakSelf = self else {return}
+            
+        }
+```
+

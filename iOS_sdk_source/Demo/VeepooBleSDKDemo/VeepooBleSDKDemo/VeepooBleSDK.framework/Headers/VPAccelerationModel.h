@@ -12,11 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface VPAccelerationModel : NSObject
 
-@property(nonatomic, assign) double x;
+@property(nonatomic, assign) int16_t x;
 
-@property(nonatomic, assign) double y;
+@property(nonatomic, assign) int16_t y;
 
-@property(nonatomic, assign) double z;
+@property(nonatomic, assign) int16_t z;
 
 @end
 

@@ -224,18 +224,27 @@ class VPPPGAccelerationViewController: UIViewController {
                             let time = weakSelf.timestampToDateString(TimeInterval(model1.timestamp))
                             weakSelf.ppgAccfileHandle.writeText("数据时间:"+time)
                             weakSelf.ppgAccfileHandle.writeText("PPG数据:"+model1.ppgValueArray.componentsJoined(by: " "))
-                            var textArray = [String]()
+                            var xTextArray = [String]()
+                            var yTextArray = [String]()
+                            var zTextArray = [String]()
                             if let array = model1.accelerationArray as? Array<Any> {
                                 for model in array {
                                     if let accModel = model as? VPAccelerationModel {
-                                        let str = "加速度x:" + String(accModel.x) + " y:" + String(accModel.y) + " z:" + String(accModel.z)
-                                        textArray.append(str)
+                                        let strX = String(accModel.x)
+                                        xTextArray.append(strX)
+                                        let strY = String(accModel.y)
+                                        yTextArray.append(strY)
+                                        let strZ = String(accModel.z)
+                                        zTextArray.append(strZ)
                                     }
                                 }
                             }
-                            let str = String(textArray.joined(separator: " "))
-                            
-                            weakSelf.ppgAccfileHandle.writeText(str)
+                            let str1 = "加速度X:" + String(xTextArray.joined(separator: " "))
+                            let str2 = "加速度Y:" + String(yTextArray.joined(separator: " "))
+                            let str3 = "加速度Z:" + String(zTextArray.joined(separator: " "))
+                            weakSelf.ppgAccfileHandle.writeText(str1)
+                            weakSelf.ppgAccfileHandle.writeText(str2)
+                            weakSelf.ppgAccfileHandle.writeText(str3)
                         }
                     }
                     weakSelf.hud?.labelText = "获取数据成功"

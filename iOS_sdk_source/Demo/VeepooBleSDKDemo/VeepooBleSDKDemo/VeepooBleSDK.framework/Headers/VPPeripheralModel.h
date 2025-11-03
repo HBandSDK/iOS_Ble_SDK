@@ -218,7 +218,7 @@
 @property (nonatomic, assign) NSUInteger textAndImageTransmissionType;
 
 //微体检，0为不支持
-@property (nonatomic, assign) NSUInteger miniHealthCheckType;
+@property (nonatomic, assign) NSUInteger microTestType;
 
 //mtu size
 @property (nonatomic, assign, readonly) NSInteger mtu;
