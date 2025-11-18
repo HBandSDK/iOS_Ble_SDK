@@ -220,6 +220,9 @@
 //微体检，0为不支持
 @property (nonatomic, assign) NSUInteger microTestType;
 
+//HRV是否支持全天 YES:支持00:00到23:59,NO:支持00:00到08:00
+@property (nonatomic, assign) BOOL hrvSupportAllDay;
+
 //mtu size
 @property (nonatomic, assign, readonly) NSInteger mtu;
 

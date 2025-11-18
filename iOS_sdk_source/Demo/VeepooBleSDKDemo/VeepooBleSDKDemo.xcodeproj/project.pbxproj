@@ -792,15 +792,11 @@
 				"${PODS_ROOT}/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
-				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
-				"${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1051,8 +1047,6 @@
 					"$(inherited)",
 					"-framework",
 					"\"FMDB\"",
-					"-framework",
-					"\"iOSDFULibrary\"",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemoTestFlight;
@@ -1085,8 +1079,6 @@
 					"$(inherited)",
 					"-framework",
 					"\"FMDB\"",
-					"-framework",
-					"\"iOSDFULibrary\"",
 					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.veepoo.VeepooBleSDKDemoTestFlight;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VPPublicDefine.h"
 
+// 注意，从"2.2.61.15"开始，因OTA库问题，SDK不在支持老旧项目的 nordic 平台OTA
 
 /**
  升级接口中的回调

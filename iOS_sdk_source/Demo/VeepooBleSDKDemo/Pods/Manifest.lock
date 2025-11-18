@@ -2,29 +2,21 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - iOSDFULibrary (4.11.1):
-    - ZIPFoundation (= 0.9.11)
   - MJExtension (3.0.15.1)
-  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - FMDB
-  - iOSDFULibrary (~> 4.11.1)
   - MJExtension
 
 SPEC REPOS:
   trunk:
     - FMDB
-    - iOSDFULibrary
     - MJExtension
-    - ZIPFoundation
 
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  iOSDFULibrary: 1f4139c6c1bb2b2f1f7b127f67dc52504778f8be
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
-  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: d8433cf2b01b7c818071161794070e22f47e7035
+PODFILE CHECKSUM: c7d68bcb7a191392d53412e60f0089fedea9533e
 
 COCOAPODS: 1.16.2

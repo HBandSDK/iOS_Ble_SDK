@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ZIPFoundation
+
 class VPPPGAccelerationViewController: UIViewController {
     
     override func viewDidLoad() {
@@ -26,6 +26,11 @@ class VPPPGAccelerationViewController: UIViewController {
         return seg
     }()
     
+    lazy var textView: UITextView = {
+
+        return UITextView()
+    }()
+    
     var hud: MBProgressHUD?
     
     var checkTimeInterval:TimeInterval = 0
@@ -34,6 +39,8 @@ class VPPPGAccelerationViewController: UIViewController {
     let realTimePPGfileHandle = VPFileHandleManager()
     let realTimeAccfileHandle = VPFileHandleManager()
 
+    var currentGroup :Int = 0
+    var currentText :String = ""
     
     func dataToHexString(_ data: Data) -> String {
         return data.map { String(format: "%02x", $0) }.joined()
@@ -165,6 +172,11 @@ class VPPPGAccelerationViewController: UIViewController {
         closeRealTimeBtn.addTarget(self, action: #selector(realTimeAction(btn:)), for: .touchUpInside)
         
         self.hud=AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: self.view)
+        
+        textView.frame = CGRect(x: 20, y: CGRectGetMaxY(closeRealTimeBtn.frame)+10, width: UIScreen.main.bounds.width-40, height: CGRectGetHeight(self.view.frame) - CGRectGetMaxY(closeRealTimeBtn.frame)-80)
+        textView.isEditable = false
+        textView.layoutManager.allowsNonContiguousLayout = false
+        view.addSubview(textView)
     }
     
     func showDeviceReqRealTimeAlertView(open :Bool){
@@ -213,8 +225,19 @@ class VPPPGAccelerationViewController: UIViewController {
     }
     
     func getPPGAccelerationData(mode :VPJH58MeasurementModeState){
-        
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58GetPPGAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval) {[weak self] error,array in
+        self.currentText = mode == .modeOne ? "获取模式1数据" : "获取模式2数据"
+        self.textView.text = ""
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58GetPPGAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval){[weak self] group, DT, DTS in
+            guard let weakSelf = self else {return}
+            weakSelf.currentGroup = group
+            weakSelf.textView.text = weakSelf.currentText + "\n" + String(format: "第%d组,(%d/%d)", group+1,DT,DTS)
+            if DT == 0 {
+                weakSelf.textView.scrollToBottom()
+            }
+            if DT == DTS {
+                weakSelf.currentText = weakSelf.textView.text
+            }
+        } andResult: {[weak self] error,array in
             guard let array = array,let weakSelf = self else {return}
             weakSelf.hud?.show(true)
             if error == nil {
@@ -248,8 +271,12 @@ class VPPPGAccelerationViewController: UIViewController {
                         }
                     }
                     weakSelf.hud?.labelText = "获取数据成功"
+                    weakSelf.textView.text = weakSelf.currentText + "\n" + "结束"
+                    weakSelf.textView.scrollToBottom()
                 }else{
                     weakSelf.hud?.labelText = "无数据"
+                    weakSelf.textView.text = weakSelf.currentText + "\n" + "无数据"
+                    weakSelf.textView.scrollToBottom()
                 }
             }else{
                 if let error = error as? NSError {
@@ -271,39 +298,14 @@ class VPPPGAccelerationViewController: UIViewController {
     }
     
     @objc func shareAction(){
-        let path = ppgAccfileHandle.currentFilePath()
         let array = ppgAccfileHandle.getFilesWithDetails()
         let cachesURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
 
         // 创建归档文件路径
         let archiveURL = cachesURL.appendingPathComponent("PPG加速度数据.zip")
-        
-        if FileManager.default.fileExists(atPath: archiveURL.path) {
-            do {
-                try? FileManager.default.removeItem(at: archiveURL)
-            }
-        }
-        
-        guard let archive = Archive(url: archiveURL, accessMode: .create) else { return }
-
-        do {
-            // 将本地文件添加到归档的 "documents/notes" 目录下
-            if let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-                for dic in array {
-                    if let dic = dic as? [String:Any] {
-                        if let name = dic["name"] as? String {
-                            try archive.addEntry(with: name, relativeTo: documentsURL.appendingPathComponent(path))
-                        }
-                    }
-                }
-            }
-        } catch {
-            
-        }
-        
-        
+        let newUrl = ppgAccfileHandle.getZipFile(archiveURL, andFilePath: array)
         DispatchQueue.main.async {
-            let activityViewController = UIActivityViewController(activityItems: [archiveURL], applicationActivities: nil)
+            let activityViewController = UIActivityViewController(activityItems: [newUrl], applicationActivities: nil)
             activityViewController.excludedActivityTypes = [.addToReadingList, .assignToContact]
             // 在iPad上需要指定弹出视图的位置
             if let popoverController = activityViewController.popoverPresentationController {
@@ -368,4 +370,12 @@ class VPPPGAccelerationViewController: UIViewController {
     }
     */
 
+}
+
+extension UITextView {
+    func scrollToBottom(animated: Bool = true) {
+        guard !text.isEmpty else { return }
+        let bottomRange = NSRange(location: (text as NSString).length - 1, length: 1)
+        scrollRangeToVisible(bottomRange)
+    }
 }

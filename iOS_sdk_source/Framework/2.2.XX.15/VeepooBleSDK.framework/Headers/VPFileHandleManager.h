@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)currentFileName;
 
 - (NSArray<NSDictionary *> *)getFilesWithDetails;
+
+-(NSURL*)getZipFile:(NSURL*)path andFilePath:(NSArray*)fielPaths;
 @end
 
 NS_ASSUME_NONNULL_END

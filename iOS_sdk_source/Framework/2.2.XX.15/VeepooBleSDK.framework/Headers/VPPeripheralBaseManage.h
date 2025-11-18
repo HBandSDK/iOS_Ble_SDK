@@ -1080,8 +1080,9 @@ VPManualTestDataModel;
 /// - Parameters:
 ///   - state 测试模式 VPJH58MeasurementModeStateModeOne:获取模式1的 VPJH58MeasurementModeStateModeTwo:获取模式2的
 ///   - timestamp:获取这个时间戳以后的数据,为0就是所有数据
+///   - progressBlock:进度回调 group:第几组 DT:一组内第几包 DTS:一组内总包数
 ///   - sendResult:结果回调
--(void)veepooSDK_JH58GetPPGAndAccelerationRawDataWithMeasurementMode:(VPJH58MeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andResult:(void(^)(NSError *error,NSMutableArray<VPJH58PPGAccelerationModel*> *array))sendResult;
+-(void)veepooSDK_JH58GetPPGAndAccelerationRawDataWithMeasurementMode:(VPJH58MeasurementModeState)state andTimestamp:(NSTimeInterval)timestamp andProgress:(void(^)(NSInteger group,NSInteger DT ,NSInteger DTS))progressBlock andResult:(void(^)(NSError *error,NSMutableArray<VPJH58PPGAccelerationModel*> *array))sendResult;
 
 
 //向设备请求实时传输
