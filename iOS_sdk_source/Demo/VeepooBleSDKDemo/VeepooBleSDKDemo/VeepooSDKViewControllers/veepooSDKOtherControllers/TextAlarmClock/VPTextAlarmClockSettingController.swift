@@ -29,7 +29,11 @@ class VPTextAlarmClockSettingController: UIViewController,UITableViewDelegate,UI
         }
         var tbyte:[UInt8] = Array(repeating: 0x00, count: 20)
         VPBleCentralManage.sharedBleManager().peripheralModel.deviceFuctionData.copyBytes(to: &tbyte, count: tbyte.count)
-        if tbyte[17] != 0x05 && tbyte[17] != 0x06 {//先判断一下是否有这个功能
+        if tbyte[17] == 0xFE {
+            _ = AppDelegate.showHUD(message: "手环没有闹钟功能", hudModel: MBProgressHUDModeText, showView: view)
+            return
+        }
+        if tbyte[17] < 0x05 {//先判断一下是否有这个功能
             _ = AppDelegate.showHUD(message: "手环没有文字闹钟功能", hudModel: MBProgressHUDModeText, showView: view)
             return
         }
