@@ -207,6 +207,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithData:(NSData *)data;
 
+/// 时间位置只能是上中下的屏型
++ (NSSet<NSNumber *> *)topMiddleBottomTypes;
+
+/// 时间位置只能是左上、右上、左下、右下 的屏型
++ (NSSet<NSNumber *> *)allAroundTypes;
+
 @end
 
 NS_ASSUME_NONNULL_END
