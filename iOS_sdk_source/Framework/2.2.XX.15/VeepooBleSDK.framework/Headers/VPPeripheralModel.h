@@ -220,6 +220,12 @@
 //微体检，0为不支持
 @property (nonatomic, assign) NSUInteger microTestType;
 
+//梅脱，0/1为不支持
+@property (nonatomic, assign) NSUInteger metType;
+
+//压力，0/1为不支持
+@property (nonatomic, assign) NSUInteger stressType;
+
 //HRV是否支持全天 YES:支持00:00到23:59,NO:支持00:00到08:00
 @property (nonatomic, assign) BOOL hrvSupportAllDay;
 

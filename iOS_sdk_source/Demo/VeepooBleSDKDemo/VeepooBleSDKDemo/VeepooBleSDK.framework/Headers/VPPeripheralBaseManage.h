@@ -1134,6 +1134,19 @@ VPManualTestDataModel;
 ///   - timestamp:秒级时间戳，只返回时间戳之后的数据
 ///   - sendBlock :结果回调
 -(void)veepooSDKMicroTestManualMeasurement:(NSTimeInterval)timestamp andPPG:(void(^)(NSMutableArray<VPManualMeasurementMicroTestModel*> *microTestArray))sendBlock;
+
+
+//合镁ZT163定制项目
+// 设置设备常灭屏
+/// - Parameters:
+///   - open:YES:开启常灭屏,NO:关闭常灭屏
+///   - sendResult :结果回调
+- (void)veepooSDK_ZT163SetDeviceAlwaysOffScreen:(BOOL)open andResult:(void(^)(BOOL success))sendResult;
+
+// 获取设备常灭屏功能状态
+/// - Parameters:
+///   - sendResult :结果回调
+- (void)veepooSDK_ZT163GetDeviceAlwaysOffScreenState:(void(^)(VPZT163AlwaysOffScreenState state))sendResult;
 @end
 
 
