@@ -1147,6 +1147,16 @@ VPManualTestDataModel;
 /// - Parameters:
 ///   - sendResult :结果回调
 - (void)veepooSDK_ZT163GetDeviceAlwaysOffScreenState:(void(^)(VPZT163AlwaysOffScreenState state))sendResult;
+
+#pragma mark - 压力功能
+
+/// 手动测量压力
+/// - Parameters:
+///   - start: 开启/关闭
+///   - result: 回调函数
+- (void)veepooSDK_stressTestStart:(BOOL)start
+                           result:(void (^)(VPDeviceStressTestState state, NSInteger progress, NSInteger stress))result;
+
 @end
 
 

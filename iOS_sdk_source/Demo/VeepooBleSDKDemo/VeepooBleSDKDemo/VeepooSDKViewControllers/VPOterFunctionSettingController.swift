@@ -61,7 +61,8 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("图文传输","VPTextImageTransmissionViewController"),
         .init("JH58PPG和加速度原始数据","VPPPGAccelerationViewController"),
         .init("微体检","VPMicroTestViewController"),
-        .init("ZT163常灭屏", "VPAlwaysOffScreenViewController")
+        .init("ZT163常灭屏", "VPAlwaysOffScreenViewController"),
+        .init("压力测量","VPStressTestViewController")
     ]
     
     override func viewDidLoad() {

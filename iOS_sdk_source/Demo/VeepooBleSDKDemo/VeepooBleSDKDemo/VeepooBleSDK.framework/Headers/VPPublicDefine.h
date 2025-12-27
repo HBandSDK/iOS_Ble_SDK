@@ -587,6 +587,16 @@ typedef NS_ENUM(NSUInteger, VPDeviceBloodAnalysisState) {
     VPDeviceBloodAnalysisStateComplete,      // 测试已经完成
 };
 
+// 设备压力测量状态
+typedef NS_ENUM(NSUInteger, VPDeviceStressTestState) {
+    VPDeviceStressTestStateNoFunction,    // 设备没有此功能
+    VPDeviceStressTestStateDeviceBusy,    // 设备正忙不能开始测试
+    VPDeviceStressTestStateOver,          // 测试正常结束，人为结束
+    VPDeviceStressTestStateLowPower,      // 设备低电
+    VPDeviceStressTestStateNotWear,       // 设备佩戴检测未通过
+    VPDeviceStressTestStateComplete,      // 测试已经完成
+};
+
 /// 多导心电导联类型
 typedef NS_ENUM(NSUInteger, VPECGMultiLeadType) {
     VPECGMultiLeadTypeI = 0x01,  // I 导联

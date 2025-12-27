@@ -15,6 +15,8 @@
 | 1.1.0 | 添加世界时钟、自动测量检测时间设置、手动测量-气泵血压相关接口 | 2025.06.11 |
 | 1.1.1 | 添加文本传输和图片传输 JH58定制原始数据上报                  | 2025.10.27 |
 | 1.1.2 | 添加微体检开启/关闭，获取微体检手动测量数据                  | 2025.11.03 |
+| 1.1.3 | 添加ZT163的常灭屏功能                                        | 2025.12.26 |
+| 1.1.4 | 添加梅脱功能，压力功能                                       | 2025.12.27 |
 
 # SDK初始化
 
@@ -887,6 +889,8 @@ typedef NS_ENUM(NSInteger,VPTestHeartState) {//测试心率过程中的状态变
  disValue = 0;//距离
  ppgs = [数组]; //使用的时, 如果有heartValue用heartValue,如果没有则优先使用ecgs,如果heartValue和ecgs都没有就用ppgs, ppgs和ecgs是这个时间段的心率数组
  ecgs = [数组];
+ met = 0.9;// 梅脱
+ stress = 1;// 压力 
  };
  "10:45" = {
  diastolic = 0;
@@ -898,6 +902,8 @@ typedef NS_ENUM(NSInteger,VPTestHeartState) {//测试心率过程中的状态变
  disValue = 0;
  ppgs = [数组]; 
  ecgs = [数组];
+ met = 0.9;// 梅脱
+ stress = 1;// 压力 
  };
  }
 ```
@@ -5705,3 +5711,165 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestManualM
         }
 ```
 
+# 获取常灭屏状态
+
+### 前提
+
+ZT163定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPAlwaysOffScreenViewController`的实现
+
+### 接口
+
+```objective-c
+// 获取设备常灭屏功能状态
+/// - Parameters:
+///   - sendResult :结果回调
+- (void)veepooSDK_ZT163GetDeviceAlwaysOffScreenState:(void(^)(VPZT163AlwaysOffScreenState state))sendResult
+```
+
+### 参数解释
+
+VPZT163AlwaysOffScreenState
+
+| 参数                             | 备注   |
+| -------------------------------- | ------ |
+| VPZT163AlwaysOffScreenStateNoSup | 不支持 |
+| VPZT163AlwaysOffScreenStateOpen  | 开启   |
+| VPZT163AlwaysOffScreenStateClose | 关闭   |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_ZT163GetDeviceAlwaysOffScreenState {[weak self] state in
+                                                                                                     
+}
+```
+
+# 设置常灭屏
+
+### 前提
+
+ZT163定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPAlwaysOffScreenViewController`的实现
+
+### 接口
+
+```objective-c
+// 设置设备常灭屏
+/// - Parameters:
+///   - open:YES:开启常灭屏,NO:关闭常灭屏
+///   - sendResult :结果回调 success：YES：成功，NO：失败
+- (void)veepooSDK_ZT163SetDeviceAlwaysOffScreen:(BOOL)open andResult:(void(^)(BOOL success))sendResult
+```
+
+### 参数解释
+
+| 参数 | 参数类型 | 备注             |
+| ---- | -------- | ---------------- |
+| open | BOOL     | YES:开启,NO:关闭 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_ZT163SetDeviceAlwaysOffScreen(sw.isOn) { success in
+
+}
+```
+
+# 梅脱功能
+
+## 判断设备是否有梅脱功能
+
+### 前提
+
+* 设备已连接
+* 梅脱不支持单项测量
+
+### 类名
+
+`VPPeripheralModel`
+
+获取途径：[VPBleCentralManage sharedBleManager].peripheralModel
+
+```objective-c
+//梅脱，0和1为不支持
+@property (nonatomic, assign) NSUInteger metType;
+```
+
+### 示例代码
+
+```objective-c
+  if ([VPBleCentralManage sharedBleManager].peripheralModel.metType > 1) {
+    
+  }
+```
+
+# 压力功能
+
+## 判断设备是否有压力功能
+
+### 前提
+
+* 设备已连接
+
+### 类名
+
+`VPPeripheralModel`
+
+获取途径：[VPBleCentralManage sharedBleManager].peripheralModel
+
+```objective-c
+//压力，0和1为不支持
+@property (nonatomic, assign) NSUInteger stressType;
+```
+
+### 示例代码
+
+```objective-c
+  if ([VPBleCentralManage sharedBleManager].peripheralModel.stressType > 1) {
+    
+  }
+```
+
+# 压力测量
+
+### 前提
+
+设备支持压力功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPStressTestViewController`的实现
+
+### 接口
+
+```objective-c
+/// 手动测量压力
+/// - Parameters:
+///   - start: 开启/关闭
+///   - result: 回调函数
+- (void)veepooSDK_stressTestStart:(BOOL)start
+                           result:(void (^)(VPDeviceStressTestState state, NSInteger progress, NSInteger stress))result;
+```
+
+### 参数解释
+
+| 参数                    | 参数类型  | 备注     |
+| ----------------------- | --------- | -------- |
+| VPDeviceStressTestState | 枚举      | 测量状态 |
+| progress                | NSInteger | 进度     |
+| stress                  | NSInteger | 结果     |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_stressTestStart(btn.isSelected) {[weak self] state, progress, stress in
+            
+ }
+```

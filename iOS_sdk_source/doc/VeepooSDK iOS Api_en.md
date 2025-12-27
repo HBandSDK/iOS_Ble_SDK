@@ -15,6 +15,8 @@
 | 1.1.0   | Added world clock, automatic measurement and detection time setting, manual measurement - air pump blood pressure related interfaces | 2025.06.11        |
 | 1.1.1   | Add ‘Text Transmission’ and ‘Image Transmission’，JH58 Customized Raw Data Reporting | 2025.10.27        |
 | 1.1.2   | Add Micro-test on/off，Obtain manual measurement data for microtests | 2025.11.03        |
+| 1.1.3   | Add Always off screen                                        | 2025.12.26        |
+| 1.1.3   | Add met function, stress function                            | 2025.12.27        |
 
 # SDK initialization
 
@@ -881,6 +883,8 @@ Get the raw data of a certain day. Usually it is every 5 minutes or 10 minutes. 
   disValue = 0; // distance
   ppgs = [array]; // when using, if there is heartValue, use heartValue, if not, use ecgs first, if there is neither heartValue nor ecgs, use ppgs, ppgs and ecgs are the heart rate arrays of this time period
   ecgs = [array];
+  met = 0.9;// met
+ 	stress = 1;// stress
  };
 	"10:45" = {
 	diastolic = 0;
@@ -892,6 +896,8 @@ Get the raw data of a certain day. Usually it is every 5 minutes or 10 minutes. 
   disValue = 0;
   ppgs = [array];
   ecgs = [array];
+  met = 0.9;// met
+ 	stress = 1;// stress
  };
 }
 ```
@@ -5697,3 +5703,167 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestManualM
         }
 ```
 
+# Get the always off screen state
+
+### Precondition
+
+ZT163 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of `VPAlwaysOffScreenViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+// Get the always off screen state
+/// - Parameters:
+///   - sendResult :Result callback
+- (void)veepooSDK_ZT163GetDeviceAlwaysOffScreenState:(void(^)(VPZT163AlwaysOffScreenState state))sendResult
+```
+
+### Parameter Explanation
+
+VPZT163AlwaysOffScreenState
+
+| Parameter                        | Remarks       |
+| -------------------------------- | ------------- |
+| VPZT163AlwaysOffScreenStateNoSup | Not supported |
+| VPZT163AlwaysOffScreenStateOpen  | Open          |
+| VPZT163AlwaysOffScreenStateClose | Close         |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_ZT163GetDeviceAlwaysOffScreenState {[weak self] state in
+                                                                                                     
+}
+```
+
+# Set always-off screen
+
+### Precondition
+
+ZT163 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of `VPAlwaysOffScreenViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+// Set always-off screen
+/// - Parameters:
+///   - open:YES:Open,NO:Close
+///   - sendResult :Result callback
+- (void)veepooSDK_ZT163SetDeviceAlwaysOffScreen:(BOOL)open andResult:(void(^)(BOOL success))sendResult
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks           |
+| --------- | -------------- | ----------------- |
+| open      | BOOL           | YES:open,NO:close |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_ZT163SetDeviceAlwaysOffScreen(sw.isOn) { success in
+
+}
+```
+
+# Met
+
+## Determine whether the device has a Met function
+
+### Precondition
+
+* The device is connected
+* Met does not support single item measurement
+
+### Class Name
+
+`VPPeripheralModel`
+
+How to get it：[VPBleCentralManage sharedBleManager].peripheralModel
+
+```objective-c
+//met，0 and 1 are not supported
+@property (nonatomic, assign) NSUInteger metType;
+```
+
+### Sample Code
+
+```objective-c
+  if ([VPBleCentralManage sharedBleManager].peripheralModel.metType > 1) {
+    
+  }
+```
+
+# Stress
+
+## Determine whether the device has a Stress function
+
+### Precondition
+
+* The device is connected
+
+### Class Name
+
+`VPPeripheralModel`
+
+How to get it：[VPBleCentralManage sharedBleManager].peripheralModel
+
+```objective-c
+//Stress，0 and 1 are not supported
+@property (nonatomic, assign) NSUInteger stressType;
+```
+
+### Sample Code
+
+```objective-c
+  if ([VPBleCentralManage sharedBleManager].peripheralModel.stressType > 1) {
+    
+  }
+```
+
+# Stress measurement 
+
+### Precondition
+
+The device supports stress function
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPStressTestViewController`in the demo
+
+### Interfaces
+
+```objective-c
+/// Stress measurement 
+/// - Parameters:
+///   - start: open/close
+///   - result: result callback
+- (void)veepooSDK_stressTestStart:(BOOL)start
+                           result:(void (^)(VPDeviceStressTestState state, NSInteger progress, NSInteger stress))result;
+```
+
+### Parameter Explanation
+
+| Parameter               | Parameter Type | Remarks            |
+| ----------------------- | -------------- | ------------------ |
+| VPDeviceStressTestState | NS_ENUM        | measurement status |
+| progress                | NSInteger      | Progress           |
+| stress                  | NSInteger      | Result             |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_stressTestStart(btn.isSelected) {[weak self] state, progress, stress in
+            
+ }
+```
+
+# 
