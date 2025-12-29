@@ -36,7 +36,7 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func isAccSleepType(sleepType: Int) -> Bool {
-        return sleepType == 1 || sleepType == 3 || sleepType == 4 || sleepType == 5
+        return sleepType != 0 && sleepType != 2
     }
     
     @IBAction func sleepLastDayAction(_ sender: UIButton) {
@@ -75,7 +75,7 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
             return cell!
         }
         
-        if sleepType == 1 {//精准睡眠
+        if isAccSleepType(sleepType: sleepType) {//精准睡眠
             let sleepModel = sleepArray[indexPath.section] as! VPAccurateSleepModel
             
             if indexPath.row == 0 {//入睡时间
@@ -100,33 +100,6 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
             
             return cell!;
         }
-        
-        if sleepType == 3 || sleepType == 4 || sleepType == 5 {//精准睡眠3的结构 只有下方的数据有效，其他数据无效与睡眠类型1不同
-            let sleepModel = sleepArray[indexPath.section] as! VPAccurateSleepModel
-            
-            if indexPath.row == 0 {//入睡时间
-                cell?.textLabel?.text = "入睡时间"
-                cell?.detailTextLabel?.text = sleepModel.sleepTime
-            }else if (indexPath.row == 1) {
-                cell?.textLabel?.text = "起床时间"
-                cell?.detailTextLabel?.text = sleepModel.wakeTime
-            }else if (indexPath.row == 2) {//总的睡眠时间就是深睡时间加上浅睡时间
-                cell?.textLabel?.text = "深睡时间"
-                cell?.detailTextLabel?.text = sleepModel.deepDuration
-            }else if (indexPath.row == 3) {
-                cell?.textLabel?.text = "浅睡时间"
-                cell?.detailTextLabel?.text = sleepModel.lightDuration
-            }else if (indexPath.row == 4) {
-                cell?.textLabel?.text = "苏醒次数"
-                cell?.detailTextLabel?.text = sleepModel.getUpTimes
-            }else if (indexPath.row == 5) {// 具体的定义去看sdk中对应字段的解释
-                cell?.textLabel?.text = "睡眠曲线"
-                cell?.detailTextLabel?.text = sleepModel.sleepLine
-            }
-            
-            return cell!;
-        }
-                
         
         let sleepDict = sleepArray[indexPath.section] as! [String : String]
         
@@ -157,13 +130,12 @@ class VPTestSleepController: UIViewController, UITableViewDelegate, UITableViewD
         
         if isAccSleepType(sleepType: sleepType) {//精准睡眠
             sleepTestArray = VPDataBaseOperation.veepooSDKGetAccurateSleepData(withDate: self.sleepDateLabel.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
-            guard let sleepTestArray = sleepTestArray else {
-                return
-            }
-            for sleep in sleepTestArray {
-                let sleep = sleep as! VPAccurateSleepModel
-                // 睡眠曲线解析
-                print(sleep.parseSleepLine())
+            if let sleepTestArray = sleepTestArray {
+                for sleep in sleepTestArray {
+                    let sleep = sleep as! VPAccurateSleepModel
+                    // 睡眠曲线解析
+                    print(sleep.parseSleepLine())
+                }
             }
         } else {
             sleepTestArray = VPDataBaseOperation.veepooSDKGetSleepData(withDate: self.sleepDateLabel.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
