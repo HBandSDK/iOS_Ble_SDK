@@ -81,7 +81,14 @@ typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
     VPDeviceScreenTypeCircle360_360_JL_JF       = 0x54,        // 杰理 360*360 JE101P/JE105P，用以区分自定义背景
     VPDeviceScreenTypeSquare410_502_JL_XMD      = 0x55,        // 杰理 410*502 JM18A_5519_ET588，用以区分自定义背景
     VPDeviceScreenTypeSquare360_360_JL          = 0x56,        // 杰理 360*360 方屏
-        
+    VPDeviceScreenTypeCircle480_480_JL_Earth    = 0x57,        // 杰理 480*480 地球背景
+    VPDeviceScreenTypeSquare360_360_JL_House    = 0x58,        // 杰理 360*360 方屏房子背景
+    VPDeviceScreenTypeSquare320_386_JL_Earth    = 0x59,        // 杰理 320*386 方屏地球背景
+    VPDeviceScreenTypeSquare320_386_JL_GZTG     = 0x5A,        // 杰理 320*386 方屏广州塔背景
+    VPDeviceScreenTypeCircle466_466_JL_Earth    = 0x7B,        // 杰里 圆屏 466x466 🌍背景
+    VPDeviceScreenTypeSquare410_502_JL_Earth    = 0x7D,        // 杰理 方屏 410*502 地球背景
+    VPDeviceScreenTypeSquare410_502_JL_Aurora   = 0x7E,        // 杰理 方屏 410*502 黑色极光背景
+    
     // 中科（568x）中科平台必须导入 ABParTool.framework
     // Zhongke(ZK) platform must be imported ABParTool.framework
     VPDeviceScreenTypeCircle466_466_ZK          = 0x5B,        // 中科 圆屏 466*466
@@ -97,7 +104,8 @@ typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
     VPDeviceScreenTypeSquare320_385_ZK          = 0x66,        // 中科 方屏 320*385
     VPDeviceScreenTypeSquare410_502_ZK          = 0x70,        // 中科 方屏 410*502
     VPDeviceScreenTypeSquare390_450_ZK          = 0x72,        // 中科 方屏 390*450
-    
+    VPDeviceScreenTypeSquare360_360_ZK          = 0x74,        // 中科 方屏 360*360
+    VPDeviceScreenTypeCircle240_240_ZK          = 0x7A,        // 中科 方屏 240*240
     // 中科（569x）
     VPDeviceScreenTypeCircle466_466_ZK_569x     = 0x67,        // 中科 圆屏 466*466
     VPDeviceScreenTypeCircle360_360_ZK_569x     = 0x68,        // 中科 圆屏 360*360
@@ -110,6 +118,12 @@ typedef NS_ENUM(NSUInteger, VPDeviceScreenType) {
     VPDeviceScreenTypeSquare320_385_ZK_569x     = 0x6F,        // 中科 方屏 320*385
     VPDeviceScreenTypeSquare410_502_ZK_569x     = 0x71,        // 中科 方屏 410*502
     VPDeviceScreenTypeSquare390_450_ZK_569X     = 0x73,        // 中科 方屏 390*450
+    VPDeviceScreenTypeSquare360_360_ZK_569X           = 0x75,  // 中科 方屏 360*360 房子背景
+    VPDeviceScreenTypeCircle360_360_ZK_569X_Earth     = 0x76,  // 中科 圆屏 360*360 🌍背景
+    VPDeviceScreenTypeSquare320_385_ZK_569X_Earth     = 0x77,  // 中科 方屏 320*385 🌍背景
+    VPDeviceScreenTypeCircle466_466_ZK_569X_Earth     = 0x78,  // 中科 圆屏 466*466 🌍背景
+    VPDeviceScreenTypeSquare410_502_ZK_569X_Earth     = 0x79,  // 中科 方屏 410*502 🌍背景
+    VPDeviceScreenTypeSquare320_385_ZK_569X_GZTG      = 0x7C,  // 中科 方屏 320*38X 广州塔背景
 };
 
 typedef NS_ENUM(NSUInteger, VPPhotoDialTimePosition) {

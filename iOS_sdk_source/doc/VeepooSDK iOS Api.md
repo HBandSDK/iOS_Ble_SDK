@@ -14,9 +14,12 @@
 | 1.0.9 | Z系列(中科)平台兼容                                          | 2024.12.30 |
 | 1.1.0 | 添加世界时钟、自动测量检测时间设置、手动测量-气泵血压相关接口 | 2025.06.11 |
 | 1.1.1 | 添加文本传输和图片传输 JH58定制原始数据上报                  | 2025.10.27 |
-| 1.1.2 | 添加微体检开启/关闭，获取微体检手动测量数据                  | 2025.11.03 |
+| 1.1.2 | 添加微体检（定制）开启/关闭，获取微体检（定制）手动测量数据  | 2025.11.03 |
 | 1.1.3 | 添加ZT163的常灭屏功能                                        | 2025.12.26 |
 | 1.1.4 | 添加梅脱功能，压力功能                                       | 2025.12.27 |
+| 1.1.5 | 添加健康辅助功能，皮电和微体检（公版）功能                   | 2025.12.30 |
+| 1.1.6 | 添加4G功能和APP开启戒指的运动功能                            | 2026.01.05 |
+| 1.1.7 | 添加AI功能                                                   | 2026.01.07 |
 
 # SDK初始化
 
@@ -5606,11 +5609,11 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorReal
         }
 ```
 
-# 微体检的开启/关闭
+# 微体检的开启/关闭（定制）
 
 ### 前提
 
-支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.microTestType判断，为1表示支持微体检
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.healthGlanceType判断，为1表示支持微体检
 
 ### 类名
 
@@ -5666,11 +5669,11 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestOpenSta
         }
 ```
 
-# 获取微体检的手动测量数据
+# 获取微体检的手动测量数据（定制）
 
 ### 前提
 
-支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.microTestType判断，为1表示支持微体检
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.healthGlanceType判断，为1表示支持微体检
 
 ### 类名
 
@@ -5872,4 +5875,1195 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_ZT163SetDeviceA
 VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_stressTestStart(btn.isSelected) {[weak self] state, progress, stress in
             
  }
+```
+
+# 读取健康辅助功能支持的列表类型
+
+### 前提
+
+设备支持健康辅助功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPHealthFuncAssessmentViewController`的实现
+
+### 接口
+
+```swift
+/// 判断是否支持健康辅助功能
+VPBleCentralManage.sharedBleManager().peripheralModel.funcAssessmentType != []
+```
+
+```objective-c
+/// 读取健康辅助功能支持的列表类型
+/// - Parameter result: 健康辅助功能列表回调
+- (void)veepooSDK_readFuncAssessment:(void (^)(NSArray<VPHealthFunctionModel *> *))result
+```
+
+### 参数解释
+
+VPHealthFunctionModel
+
+| 参数                 | 参数类型   | 备注      |
+| -------------------- | ---------- | --------- |
+| VPHealthFunctionType | NS_OPTIONS | 功能类型  |
+| support              | BOOL       | 是否支持  |
+| open                 | BOOL       | 开启/关闭 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readFuncAssessment {[weak self] models in
+            
+ }
+```
+
+# 设置健康辅助功能
+
+### 前提
+
+设备支持健康辅助功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPHealthFuncAssessmentViewController`的实现
+
+### 接口
+
+```objective-c
+/// 设置健康辅助功能
+/// - Parameters:
+///   - type: 对应类型，从peripheralModel获取VPFuncAssessmentType
+///   - open: 开启或关闭
+///   - result: 结果，成功或失败
+- (void)veepooSDK_setFuncAssessmentWithType:(VPFuncAssessmentType)type open:(BOOL)open result:(void(^)(BOOL))result
+```
+
+### 参数解释
+
+| 参数                 | 参数类型   | 备注      |
+| -------------------- | ---------- | --------- |
+| VPFuncAssessmentType | NS_OPTIONS | 功能类型  |
+| open                 | BOOL       | 开启/关闭 |
+
+VPFuncAssessmentType
+
+| 参数                             | 参数类型   | 备注     |
+| -------------------------------- | ---------- | -------- |
+| VPFuncAssessmentTypeBloodGlucose | NSUInteger | 血糖     |
+| VPFuncAssessmentTypeBloodComp    | NSUInteger | 血液成分 |
+| VPFuncAssessmentTypeBodyComp     | NSUInteger | 身体成分 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_setFuncAssessment(with: type, open: sw.isOn) { state in
+            
+}
+```
+
+# 皮电功能
+
+### 前提
+
+设备支持皮电功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPGSRViewController`的实现
+
+### 接口
+
+判断是否支持皮电功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.gsrType != 0
+```
+
+```objective-c
+#pragma mark - 皮电测量
+/// - Parameters:
+///   - start:YES 开启 NO 关闭
+///   - progress :进度回调
+///   - testResult :结束成功回调
+- (void)veepooSDKTestGSRStart:(BOOL)start
+                     progress:(void(^)(NSProgress *progress))progress
+                   testResult:(void(^)(VPDeviceGSRState state, VPGSRResultModel *model))testResult
+```
+
+### 参数解释
+
+```objective-c
+// 皮电测量状态
+typedef NS_ENUM(NSUInteger, VPDeviceGSRState) {
+    VPDeviceGSRStateNoFunction,    // 设备没有此功能
+    VPDeviceGSRStateDeviceBusy,    // 设备正忙不能开始测试
+    VPDeviceGSRStateOver,          // 测试正常结束，人为结束
+    VPDeviceGSRStateLowPower,      // 设备低电
+    VPDeviceGSRStateFailure,       // 测试失败
+    VPDeviceGSRStateNotWear,       // 设备佩戴检测未通过
+    VPDeviceGSRStateComplete,      // 测试已经完成
+};
+```
+
+```objective-c
+@interface VPGSRResultModel : NSObject
+/// 情绪 [-10,10]
+@property (nonatomic, assign) int emotin_level;
+
+/// 皮肤含水量 [1,99]
+@property (nonatomic, assign) int skin_moisture;
+
+/// 抑郁症风险 [0,2] 0:低风险 1：中风险 2：高风险
+@property (nonatomic, assign) int depression_risk;
+
+/// 交感神经活跃度 [1,99]
+@property (nonatomic, assign) int sns_activation;
+
+/// 皮质醇浓度，[0,500]，单位ug/L
+@property (nonatomic, assign) int cortisol_value;
+
+@end
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestGSRStart(btn.isSelected) {[weak self] progress in
+    guard let self = self, let pro = progress else { return }
+    let value = Double(pro.completedUnitCount) / Double(pro.totalUnitCount)
+    self.progressLabel.text = "进度:\(value*100)%"
+} testResult: {[weak self] state, resultModel in
+    guard let self = self else { return }
+    if state == .complete {
+        guard let res = resultModel else { return }
+        self.resultLabel.text = "情绪:\(res.emotin_level) 皮肤含水量:\(res.skin_moisture) 抑郁症风险:\(res.depression_risk) 交感神经活跃度:\(res.sns_activation) 皮质醇浓度:\(res.cortisol_value)"
+    }else if state == .over {
+
+    }else {
+
+    }
+}
+```
+
+# 微体检功能（公版）
+
+### 前提
+
+设备支持微体检功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPHealthGlanceViewController`的实现
+
+### 接口
+
+判断是否支持微体检功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.healthGlanceType > 1
+```
+
+```objective-c
+#pragma mark - 微体检测量
+/// - Parameters:
+///   - open:YES 开启 NO 关闭
+///   - progressResult :进度回调
+///   - result :结束成功回调
+-(void)veepooSDK_healthGlanceTestStart:(BOOL)start andProgress:(void(^)(NSInteger progress))progressResult andResult:(void(^)(VPDeviceHealthGlanceState state,VPHealthGlanceTestModel *healthGlanceModel))result;
+```
+
+### 参数解释
+
+```objective-c
+// 微体检测量状态(公版)
+typedef NS_ENUM(NSUInteger, VPDeviceHealthGlanceState) {
+    VPDeviceHealthGlanceStateNoFunction,    // 设备没有此功能
+    VPDeviceHealthGlanceStateDeviceBusy,    // 设备正忙不能开始测试
+    VPDeviceHealthGlanceStateOver,          // 测试正常结束，人为结束
+    VPDeviceHealthGlanceStateLowPower,      // 设备低电
+    VPDeviceHealthGlanceStateFailure,       // 测试失败
+    VPDeviceHealthGlanceStateNotWear,       // 设备佩戴检测未通过
+    VPDeviceHealthGlanceStateComplete,      // 测试已经完成
+    VPDeviceHealthGlanceStateNotLead,      // 导联脱落
+};
+```
+
+```objective-c
+@interface VPHealthGlanceTestModel : NSObject
+/// 心率
+@property (nonatomic, assign) UInt8 heartRate;
+/// 血氧
+@property (nonatomic, assign) UInt8 bloodOxygen;
+/// 压力
+@property (nonatomic, assign) UInt8 stress;
+/// 疲劳度
+@property (nonatomic, assign) UInt8 fatigueLevel;
+/// 血糖
+@property (nonatomic, assign) double bloodSugar;
+/// 血糖类型
+@property (nonatomic, assign) UInt8 bloodSugarType;
+/// 血糖等级
+@property (nonatomic, assign) UInt8 bloodSugarLevel;
+/// 体温
+@property (nonatomic, assign) double bodyTemperature;
+/// 原始体温
+@property (nonatomic, assign) double orgTemperature;
+/// 血压(收缩压)
+@property (nonatomic, assign) UInt8 systolicBloodPressure;
+/// 血压(舒缩压)
+@property (nonatomic, assign) UInt8 diastolicBloodPressure;
+/// HRV
+@property (nonatomic, assign) UInt8 hrv;
+/// 光电血压 高
+@property (nonatomic, assign) UInt8 ppgBloodPressureHigh;
+/// 光电血压 低
+@property (nonatomic, assign) UInt8 ppgBloodPressureLow;
+/// 气泵血压 高
+@property (nonatomic, assign) UInt8 cuffBloodPressureHigh;
+/// 气泵血压 低
+@property (nonatomic, assign) UInt8 cuffBloodPressureLow;
+/// 总胆固醇，两位小数点
+@property (nonatomic, assign) double totalCholesterol;
+/// 甘油三酯，两位小数点
+@property (nonatomic, assign) double triglyceride;
+/// 高密度脂蛋白，两位小数点
+@property (nonatomic, assign) double highDensityLipoprotein;
+/// 低密度脂蛋白，两位小数点
+@property (nonatomic, assign) double lowDensityLipoprotein;
+/// 尿酸值，一位小数点
+@property (nonatomic, assign) double uricAcid;
+/// 支持哪些功能
+@property (nonatomic, assign) NSUInteger functionSupport;
+/// 体重 kg
+@property (nonatomic, assign) UInt8 weight;
+/// 身高 cm
+@property (nonatomic, assign) UInt8 height;
+/// 年龄
+@property (nonatomic, assign) UInt8 age;
+/// 性别，0女，1男
+@property (nonatomic, assign) UInt8 gender;
+/// BMI
+@property (nonatomic, assign) double bmi;
+/// 体脂率 百分比
+@property (nonatomic, assign) double bodyFatPercentage;
+/// 脂肪量 单位kg
+@property (nonatomic, assign) double fatMass;
+/// 去脂体重 单位kg
+@property (nonatomic, assign) double leanBodyMass;
+/// 肌肉率 百分比
+@property (nonatomic, assign) double muscleRate;
+/// 肌肉量 单位kg
+@property (nonatomic, assign) double muscleMass;
+/// 皮下脂肪 百分比
+@property (nonatomic, assign) double subcutaneousFat;
+/// 体内水分 百分比
+@property (nonatomic, assign) double bodyMoisture;
+/// 含水量 单位kg
+@property (nonatomic, assign) double waterContent;
+/// 骨骼肌率 百分比
+@property (nonatomic, assign) double skeletalMuscleRate;
+/// 骨量 单位kg
+@property (nonatomic, assign) double boneMass;
+/// 蛋白质占比 百分比
+@property (nonatomic, assign) double proportionOfProtein;
+/// 蛋白质量 单位kg
+@property (nonatomic, assign) double proteinAmount;
+/// 基础代谢率 kcal
+@property (nonatomic, assign) double basalMetabolicRate;
+/// 情绪 [-10,10]
+@property (nonatomic, assign) NSInteger emotionLevel;
+/// 皮肤含水量 [1,99]
+@property (nonatomic, assign) UInt8 skinMoisture;
+/// 抑郁症风险 [0,2] 0:低风险 1:中风险 2:高风险
+@property (nonatomic, assign) UInt8 depressionRisk;
+/// 交感神经活跃度 [1,99]
+@property (nonatomic, assign) UInt8 snsActivation;
+/// 皮质醇浓度，有效范围 [0,500]ug/L
+@property (nonatomic, assign) UInt16 cortisolValue;
+@end
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_healthGlanceTestStart(btn.isSelected) {[weak self] progress in
+    guard let self = self else { return }
+    self.progressLabel.text = "进度:\(progress)%"
+} andResult: {[weak self] state, resultModel in
+    guard let self = self else { return }
+    if state == .complete {
+        guard let res = resultModel else { return }
+        var result = "测量完成 "
+        //支持心率,其他以此类推,判断微体检结果是否包含这项功能,支持输出对应结果,不支持不输出.
+        if res.functionSupport & VPHealthGlanceType.heartValue.rawValue != 0 {
+            let str = "心率:\(res.heartRate)"
+            result += str
+        }
+        if res.functionSupport & VPHealthGlanceType.bloodOxy.rawValue != 0 {
+            let str = "血氧:\(res.bloodOxygen)"
+            result += str
+        }
+        //其他结果参考上述实现
+        self.resultLabel.text = result + " *其他结果参考心率,血氧实现*"
+    }else if state == .over {
+        
+    }else {
+        
+    }
+}
+```
+
+# 4G功能
+
+### 前提
+
+设备支持4G功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VP4GViewController`的实现
+
+### 接口
+
+判断是否支持4G功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// 读取 4G 设备配置信息
+- (void)veepooSDK_read4GDeviceConfigInfoSubscribe:(void (^)(BOOL isReadAckInfo, VP4GFunctionConfigurationInfoModel *deviceConfigInfo))result;
+```
+
+### 参数解释
+
+VP4GFunctionConfigurationInfoModel
+
+| 参数                   | 参数类型   | 备注                        |
+| ---------------------- | ---------- | --------------------------- |
+| deviceHost             | NSUInteger | 设备端域名信息（IP 地址）   |
+| devicePort             | uint16_t   | 设备端口信息                |
+| account                | NSString   | 设备端登录的账号名称        |
+| password               | NSString   | 设备端登录的账号密码        |
+| is4GSwitchEnable       | BOOL       | 4G 开关， 0为关，1为开      |
+| isSyncDataSwitchEnable | BOOL       | 数据上传开关， 0为关，1为开 |
+| intervalTime           | uint8_t    | 上报时间间隔                |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_read4GDeviceConfigInfoSubscribe {[weak self] state, config in
+    guard let self = self, let config = config else { return }
+    print("host:\(config.deviceHost),port:\(config.devicePort),账号:\(config.account),密码:\(config.password)")
+    switch4g?.isOn = config.is4GSwitchEnable
+    switchSync?.isOn = config.isSyncDataSwitchEnable
+    intervalTimeLab?.text = "同步频率:\(config.intervalTime)分钟"
+    hostTextFiled?.text = config.deviceHost
+    portTextField?.text = "\(config.devicePort)"
+    accountTextFiled?.text = config.account
+    passwordTextField?.text = config.password
+}
+```
+
+# 4G功能-  绑定设备
+
+### 前提
+
+设备支持4G功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VP4GViewController`的实现
+
+### 接口
+
+判断是否支持4G功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// 绑定设备
+/// - Parameter account: App 账号
+/// - Parameter password: App 随机生成的密码
+/// - Parameter callback: 绑定结果
+- (void)veepooSDK_bind4GDeviceAccount:(NSString *)account password:(NSString *)password callback:(void (^)(BOOL isSucc))result;
+```
+
+### 参数解释
+
+| 参数     | 参数类型 | 备注               |
+| -------- | -------- | ------------------ |
+| account  | NSString | App 账号           |
+| password | NSString | App 随机生成的密码 |
+
+### 示例代码
+
+```swift
+guard let acc = accountTextFiled?.text, let pass = passwordTextField?.text else { return }
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_bind4GDeviceAccount(acc, password: pass) { success in
+    if success {
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_sendVerifyInfoSucc()
+    }
+}
+```
+
+
+
+# 4G功能- 修改移动网络开关启用状态
+
+### 前提
+
+设备支持4G功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VP4GViewController`的实现
+
+### 接口
+
+判断是否支持4G功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// 修改移动网络开关启用状态
+/// - Parameter state: 开启状态
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modify4GSwitchEnableState:(NSInteger)state callback:(void (^)(BOOL isSucc))result;
+```
+
+### 参数解释
+
+| 参数  | 参数类型  | 备注        |
+| ----- | --------- | ----------- |
+| state | NSInteger | 0关闭 1开启 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modify4GSwitchEnableState(switch4g!.isOn ? 1 : 0) { success in
+            
+        }
+```
+
+# 4G功能- 修改移动数据同步开关启用状态
+
+### 前提
+
+设备支持4G功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VP4GViewController`的实现
+
+### 接口
+
+判断是否支持4G功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// 修改移动数据同步开关启用状态
+/// - Parameter state: 开启状态
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modify4GSyncSwitchEnableState:(NSInteger)state callback:(void (^)(BOOL isSucc))result
+```
+
+### 参数解释
+
+| 参数  | 参数类型  | 备注        |
+| ----- | --------- | ----------- |
+| state | NSInteger | 0关闭 1开启 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modify4GSyncSwitchEnableState(switchSync!.isOn ? 1 : 0) { success in
+            
+        }
+```
+
+# 4G功能- 修改设备数据上报间隔时间
+
+### 前提
+
+设备支持4G功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VP4GViewController`的实现
+
+### 接口
+
+判断是否支持4G功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// 修改设备数据上报间隔时间
+/// - Parameter time: 时间间隔
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modifySyncTimeInterval:(NSInteger)time callback:(void (^)(BOOL isSucc))result
+```
+
+### 参数解释
+
+| 参数 | 参数类型  | 备注                         |
+| ---- | --------- | ---------------------------- |
+| time | NSInteger | 单位分钟 例如5分钟，time = 5 |
+
+### 示例代码
+
+```swift
+let times = [5,10,15]
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modifySyncTimeInterval(times[seg.selectedSegmentIndex]) {[weak self] success in
+            
+            
+ }
+```
+
+# 4G功能- 修改设备MQTT配置
+
+### 前提
+
+设备支持4G功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VP4GViewController`的实现
+
+### 接口
+
+判断是否支持4G功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// 修改设备MQTT配置
+/// - Parameter host: IP
+/// - Parameter port: 端口
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modifyMQTTConfig:(NSString *)host port:(NSInteger)port callback:(void (^)(BOOL isSucc))result
+```
+
+### 参数解释
+
+| 参数 | 参数类型  | 备注   |
+| ---- | --------- | ------ |
+| host | NSString  | IP地址 |
+| port | NSInteger | 端口   |
+
+### 示例代码
+
+```swift
+guard let host = hostTextFiled?.text, let port = portTextField?.text, let p = Int(port) else { return }
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modifyMQTTConfig(host, port: p) { success in
+    
+}
+```
+
+# App开启设备运动
+
+### 前提
+
+戒指和无屏手环设备支持
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPDeviceSportViewController`的实现
+
+### 接口
+
+```objective-c
+/// 运动模式控制接口
+/// - Parameters:
+///   - code: 操作符
+///   - type: 运动模式类型
+- (void)veepooSDK_deviceSportControlWithCode:(VPDeviceSportControlOpCode)code type:(VPDeviceRuningMode)type;
+```
+
+### 参数解释
+
+VPDeviceSportControlOpCode
+
+```
+// 运动模式控制操作符
+typedef NS_ENUM(NSUInteger, VPDeviceSportControlOpCode) {
+    VPDeviceSportControlOpCodeStart = 0x01,
+    VPDeviceSportControlOpCodePause = 0x02,
+    VPDeviceSportControlOpCodeContinue = 0x03,
+    VPDeviceSportControlOpCodeStop = 0x04,
+};
+```
+
+
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_deviceSportControl(with: opCode!, type: .outdoorRun)
+```
+
+# 查询当前App开启设备运动的信息
+
+### 前提
+
+戒指和无屏手环设备支持
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPDeviceSportViewController`的实现
+
+### 接口
+
+```objective-c
+/// 订阅当前设备运动状态的变更接口
+/// - Parameter result: callback
+- (void)veepooSDK_deviceSportRunninStateSubscribe:(void (^)(VPSportControlRunState))result
+```
+
+```objective-c
+/// 订阅当前设备运动信息的变更接口
+/// - Parameter result: callback
+- (void)veepooSDK_deviceSportInfoSubscribe:(void (^)(VPDeviceSportControlModel *))result
+```
+
+```objective-c
+/// 读取当前设备的运动状态
+- (void)veepooSDK_readDeviceSportState
+```
+
+### 参数解释
+
+VPSportControlRunState
+
+```
+typedef NS_ENUM(NSInteger, VPSportControlRunState) {
+    VPSportControlRunStateNotStarted = 0x00,
+    VPSportControlRunStateRunning = 0x01,
+    VPSportControlRunStatePaused = 0x02
+};
+```
+
+VPDeviceSportControlModel
+
+```
+@interface VPDeviceSportControlModel : NSObject
+
+// 运动模式
+@property (nonatomic, assign) VPSportControlProtocolSportMode sportMode;
+// 操作码
+@property (nonatomic, assign) NSInteger operationCode;
+// 运动状态
+@property (nonatomic, assign) VPSportControlRunState runState;
+// 设备状态
+@property (nonatomic, assign) VPSportControlDeviceState deviceState;
+// 运动时间(秒)
+@property (nonatomic, assign) uint32_t duration;
+// 运动距离
+@property (nonatomic, assign) uint32_t distance;
+// 心率值
+@property (nonatomic, assign) uint8_t heartRate;
+// 卡路里
+@property (nonatomic, assign) uint32_t calories;
+// 配速
+@property (nonatomic, assign) uint16_t pace;
+// 速度
+@property (nonatomic, assign) uint16_t speed;
+```
+
+### 示例代码
+
+```swift
+readTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { timer in
+    VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readDeviceSportState()
+})
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_deviceSportRunninStateSubscribe { state in
+    print("veepooSDK_deviceSportRunninStateSubscribe:\(state)")
+}
+
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_deviceSportInfoSubscribe {[weak self] model in
+    guard let self = self, let model = model else { return }
+    var runState =  "未开始"
+    if model.runState == .paused {
+        runState =  "暂停"
+    } else if model.runState == .running {
+        runState =  "运动中"
+    }
+    let result = "运动状态:\(runState),时长:\(model.duration),距离:\(model.distance),心率:\(model.heartRate),卡路里:\(model.calories),配速:\(model.pace),速度:\(model.speed)"
+    if textView!.text != "" {
+        textView!.text = textView!.text + "\n" + result
+    } else {
+        textView!.text = result
+    }
+
+    textView!.scrollToBottom()
+    print(result)
+}
+```
+
+# 读取设备运动记录
+
+### 前提
+
+戒指和无屏手环设备支持
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPDeviceSportViewController`的实现
+
+### 接口
+
+```objective-c
+/// 读取设备存储的运动模式数据CRC列表
+/// - Parameter result: CRC数组回调，NSNumber 的类型是 uint16
+- (void)readDeviceSportCRCArr:(void(^)(bool success, NSArray<NSNumber *> * _Nullable))result
+```
+
+```objective-c
+/// 读取给定CRC列表的运动模式详情数据
+/// - Parameters:
+///   - crcArr: CRC列表，由读取接口获取，并在应用层过滤已经读取的CRC
+///   - result: 读取结果回调
+- (void)readDeviceSportWithCRC:(NSArray<NSNumber *> *)crcArr result:(void(^)(NSArray<VPDeviceSportModel *> * _Nullable, NSArray<VPDeviceSportWithGPSModel *> * _Nullable))result
+```
+
+### 参数解释
+
+VPDeviceSportModel
+
+```
+@interface VPDeviceSportModel : NSObject
+
+/// 协议类型
+@property (nonatomic, assign) uint8_t dsProtocol;
+/// 运动类型
+@property (nonatomic, assign) uint16_t type;
+/// 数据的CRC，去重使用
+@property (nonatomic, assign) uint16_t crc;
+/// 日期 由开始运动时间分割而得，yyyy-MM-dd
+@property (nonatomic, strong) NSString *date;
+/// 运动开始时间 "2023-03-24 14:38:42"
+@property (nonatomic, strong) NSString *beginTime;
+/// 运动结束时间
+@property (nonatomic, strong) NSString *endTime;
+/// 总的步数
+@property (nonatomic, assign) uint32_t totalStep;
+/// 总的运动量
+@property (nonatomic, assign) uint32_t totalSport;
+/// 总的路程单位m
+@property (nonatomic, assign) uint32_t totalDis;
+/// 总的卡路里 单位 kcal
+@property (nonatomic, assign) uint32_t totalCal;
+/// 总暂停时间
+@property (nonatomic, assign) uint16_t pauseTotalTime;
+/// 平均配速
+@property (nonatomic, assign) uint32_t averPace;
+/// 有氧运动时间 单位s
+@property (nonatomic, assign) uint32_t aerobTime;
+/// 运动总的时间 单位s
+@property (nonatomic, assign) uint32_t totalTime;
+/// 平均心率
+@property (nonatomic, assign) uint8_t averHeart;
+/// 暂停次数
+@property (nonatomic, assign) uint8_t pauseCount;
+/// 运动的总的条数
+@property (nonatomic, assign) uint16_t recordCount;
+
+@property (nonatomic, strong) NSArray<VPDeviceSportMinuteModel *> *oneMinuteData;
+
+- (instancetype)initWithData:(NSData *)sourceData;
+
+```
+
+VPDeviceSportWithGPSModel
+
+```
+@interface VPDeviceSportWithGPSModel : NSObject
+
+/// 协议类型
+@property (nonatomic, assign) uint8_t dsProtocol;
+/// 运动开始时间戳
+@property (nonatomic, assign) uint32_t startTimestamp;
+/// 运动结束时间戳
+@property (nonatomic, assign) uint32_t stopTimestamp;
+/// 运动总的时间 秒数
+@property (nonatomic, assign) uint32_t duration;
+
+@property (nonatomic, assign) uint32_t step;
+@property (nonatomic, assign) uint32_t dis;
+@property (nonatomic, assign) uint32_t cal;
+@property (nonatomic, assign) uint32_t sport;
+
+/// 心率
+@property (nonatomic, assign) uint8_t maxHeart;
+@property (nonatomic, assign) uint8_t aveHeart;
+@property (nonatomic, assign) uint8_t minHeart;
+
+/// 配速
+@property (nonatomic, assign) uint16_t maxPace;
+@property (nonatomic, assign) uint16_t avePace;
+@property (nonatomic, assign) uint16_t minPace;
+
+/// 速度
+@property (nonatomic, assign) uint16_t maxSpeed;
+@property (nonatomic, assign) uint16_t aveSpeed;
+@property (nonatomic, assign) uint16_t minSpeed;
+
+/// 步频
+@property (nonatomic, assign) uint16_t maxCadence;
+@property (nonatomic, assign) uint16_t aveCadence;
+@property (nonatomic, assign) uint16_t minCadence;
+
+/// 运动总的有氧时间
+@property (nonatomic, assign) uint16_t aerobicCount;
+/// 总记录条数，与分钟数量应相等
+@property (nonatomic, assign) uint16_t recordCount;
+/// 暂停次数
+@property (nonatomic, assign) uint8_t pauseCount;
+/// 暂停总时长
+@property (nonatomic, assign) uint16_t pauseDuration;
+@property (nonatomic, assign) uint16_t crc;
+@property (nonatomic, assign) uint16_t sportType;
+/// 显示类型
+/// 0未知
+/// 1有GPS+有步数;
+/// 2有GPS+无步数，如骑行;
+/// 3无GPS+有步数;
+/// 4无GPS+无步数(一定无距离);
+/// 5有GPS+有步数+有海拔
+/// 6有GPS+无步数+有海拔，如骑行;
+/// 7无GPS+有步数+有海拔
+@property (nonatomic, assign) uint8_t showType;
+
+/// 运动详细数据-每分钟数组
+@property (nonatomic, strong) NSArray<VPDSOneMinuteModel *> *minutes;
+
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.readDeviceSportCRCArr {[weak self] success, crcs in
+    guard let self = self else { return }
+    if crcs?.count != 0 {
+        VPBleCentralManage.sharedBleManager().peripheralManage.readDeviceSport(withCRC: crcs) {[weak self] sportModels, sportGpsModels in
+            guard let sportModels = sportModels, let sportGpsModels = sportGpsModels, let self = self else { return }
+            print(sportModels)
+            print(sportGpsModels)
+        }
+    } else {
+        
+    }
+}
+```
+
+# AI功能-AI问答
+
+### 前提
+
+设备支持AI功能，AI问答的流程：设备开启AI问答，说出一个问题设备会录音，录音结束后，App会收到录音文件opusData，App需要把Opus 转成 PCM 语音文件，得到的语音文件通过第三方AI转成文字发送到设备，同时通过第三方AI得到问题的答案再发到设备。SDK只提供跟设备的交互，不提供第三方AI，请自行集成第三方AI。
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPAIViewController`的实现
+
+### 接口
+
+是否支持AI功能
+
+```
+(VPBleCentralManage.sharedBleManager().peripheralModel.aiChatType != 0 || VPBleCentralManage.sharedBleManager().peripheralModel.aiDialType != 0) ? true : false
+```
+
+```objective-c
+/// 外部网络状态变更，赋值，保证AI流程在无网络情况下能正确结束和相应
+/// - Parameter status: 网络状态
+- (void)veepooSDK_aiFuncAINetworkStatus:(VPAINetworkStatus)status
+```
+
+### 参数解释
+
+VPAINetworkStatus
+
+```
+typedef NS_ENUM(uint8_t, VPAINetworkStatus){
+    VPAINetworkStatusNotReachable,              // 不可用
+    VPAINetworkStatusReachableViaWiFi,
+    VPAINetworkStatusReachableViaWWAN
+};
+```
+
+### 示例代码
+
+```swift
+//设置当前网络情况      
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncAINetworkStatus(.reachableViaWiFi)
+```
+
+
+
+```objective-c
+//监听设备AI功能使用情况
+- (void)veepooSDK_aiFuncOpusDataSubscribe:(void (^)(VPCurrentAIFunctionType, NSData *opusData))result
+```
+
+### 参数解释
+
+VPCurrentAIFunctionType
+
+```
+// 当前AI事件类型
+typedef NS_ENUM(NSUInteger, VPCurrentAIFunctionType){
+    VPCurrentAIFunctionTypeEndInteraction,          // 非AI功能进行中
+    VPCurrentAIFunctionTypeDeviceAIChatUsing,       // 设备端正在使用AI问答功能
+    VPCurrentAIFunctionTypeDeviceAIDialUsing,       // 设备端正在使用AI表盘功能
+    VPCurrentAIFunctionTypeAppAIChatUsing,          // App端正在使用AI问答功能
+    VPCurrentAIFunctionTypeAppAIDialUsing,          // App端正在使用AI表盘功能
+};
+```
+
+| 参数     | 参数类型 | 备注                   |
+| -------- | -------- | ---------------------- |
+| opusData | NSData   | 设备返回的录音opus数据 |
+
+### 示例代码
+
+```swift
+// 监听 opus 数据通道 语言问答数据流
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncOpusDataSubscribe {[weak self] type, opusData in
+    if type == .deviceAIChatUsing {//AI问答
+        self?.handleAnswer(questionData: opusData!)
+    } else if type == .deviceAIDialUsing {//AI表盘
+        self?.handleAnswerGenerateImage(questionData: opusData!)
+    }
+}
+```
+
+
+
+```objective-c
+// 监听设备触发AI再次回答
+/// - Parameters:
+///  - askBlock: 结果文字
+- (void)veepooSDK_aiFuncReceiveAnswerAgainSubscribe:(void (^)(NSString *ask))askBlock
+```
+
+### 参数解释
+
+| 参数 | 参数类型 | 备注 |
+| ---- | -------- | ---- |
+| ask  | NSString | 问题 |
+
+### 示例代码
+
+```swift
+// 监听收到再次回答
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncReceiveAnswerAgainSubscribe {[weak self] text in
+    print("重新获取回答\(text!)")
+    self?.handleReplyAnswerToDevice(result: "再次发送AI得出的结论")
+}
+```
+
+
+
+```objective-c
+// 发送语音转成文字的结果给设备
+/// - Parameters:
+///  - resultStr: 结果文字
+- (void)veepooSDK_aiFuncSendSpeechConvertWithTextResult:(NSString *)resultStr
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendSpeechConvert(withTextResult: text)
+```
+
+
+
+```objective-c
+// 发送AI回答的结果给设备
+/// - Parameters:
+///  - resultStr: 结果文字
+- (void)veepooSDK_aiFuncSendChatAnswerWithTextResult:(NSString *)resultSt
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendChatAnswer(withTextResult: result)
+```
+
+# AI功能-AI表盘
+
+### 前提
+
+设备支持AI功能，AI表盘的流程：设备开启AI表盘，说出一句话设备会录音，录音结束后，App会收到录音文件opusData，App需要把Opus 转成 PCM 语音文件，得到的语音文件通过第三方AI转成文字发送到设备，设备上可以选择生成图片，App会收到生成图片的通知，通过第三方AI把文字生成图片后发送图片到设备，设备上可以选择是否设置成表盘，如果选择设置表盘，App会收到通知后会把图片设置成设备的图片表盘。SDK只提供跟设备的交互，不提供第三方AI，请自行集成第三方AI。
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPAIViewController`的实现
+
+### 接口
+
+是否支持AI功能
+
+```
+(VPBleCentralManage.sharedBleManager().peripheralModel.aiChatType != 0 || VPBleCentralManage.sharedBleManager().peripheralModel.aiDialType != 0) ? true : false
+```
+
+```objective-c
+/// 外部网络状态变更，赋值，保证AI流程在无网络情况下能正确结束和相应
+/// - Parameter status: 网络状态
+- (void)veepooSDK_aiFuncAINetworkStatus:(VPAINetworkStatus)status
+```
+
+### 参数解释
+
+VPAINetworkStatus
+
+```
+typedef NS_ENUM(uint8_t, VPAINetworkStatus){
+    VPAINetworkStatusNotReachable,              // 不可用
+    VPAINetworkStatusReachableViaWiFi,
+    VPAINetworkStatusReachableViaWWAN
+};
+```
+
+### 示例代码
+
+```swift
+//设置当前网络情况      
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncAINetworkStatus(.reachableViaWiFi)
+```
+
+
+
+```objective-c
+//监听设备AI功能使用情况
+- (void)veepooSDK_aiFuncOpusDataSubscribe:(void (^)(VPCurrentAIFunctionType, NSData *opusData))result
+```
+
+### 参数解释
+
+VPCurrentAIFunctionType
+
+```
+// 当前AI事件类型
+typedef NS_ENUM(NSUInteger, VPCurrentAIFunctionType){
+    VPCurrentAIFunctionTypeEndInteraction,          // 非AI功能进行中
+    VPCurrentAIFunctionTypeDeviceAIChatUsing,       // 设备端正在使用AI问答功能
+    VPCurrentAIFunctionTypeDeviceAIDialUsing,       // 设备端正在使用AI表盘功能
+    VPCurrentAIFunctionTypeAppAIChatUsing,          // App端正在使用AI问答功能
+    VPCurrentAIFunctionTypeAppAIDialUsing,          // App端正在使用AI表盘功能
+};
+```
+
+| 参数     | 参数类型 | 备注                   |
+| -------- | -------- | ---------------------- |
+| opusData | NSData   | 设备返回的录音opus数据 |
+
+### 示例代码
+
+```swift
+// 监听 opus 数据通道 语言问答数据流
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncOpusDataSubscribe {[weak self] type, opusData in
+    if type == .deviceAIChatUsing {//AI问答
+        self?.handleAnswer(questionData: opusData!)
+    } else if type == .deviceAIDialUsing {//AI表盘
+        self?.handleAnswerGenerateImage(questionData: opusData!)
+    }
+}
+```
+
+
+
+```objective-c
+/// AI表盘 监听收到了设备获取图片
+/// - Parameters:
+///  - result: lastAsk:结果文字,style:图片风格
+- (void)veepooSDK_aiFuncCanGetImageActionSubscribe:(void (^)(NSString *lastAsk, NSInteger style))result
+```
+
+### 参数解释
+
+| 参数    | 参数类型  | 备注         |
+| ------- | --------- | ------------ |
+| lastAsk | NSString  | 之前录的文字 |
+| style   | NSInteger | 图片风格     |
+
+### 示例代码
+
+```swift
+// AI表盘 收到了设备再次获取图片
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncCanGetImageActionSubscribe { string, style in
+    print("收到了设备再次获取图片:\(string)\(style)")
+    let img = UIImage(named: "test_390_450") // 这是测试图片,正常要是AI生成的图片需自行集成AI实现
+    if let pngData = UIImagePNGRepresentation(img!) {
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendImageData(pngData)
+    }
+}
+```
+
+
+
+```objective-c
+/// 监听设备触发发送AI表盘
+///  - result: start:是否开始,success:是否成功 image:发送的图片
+- (void)veepooSDK_aiFuncImageTransformResultSubscribe:(void (^)(BOOL start, BOOL success, UIImage *image))result
+```
+
+### 参数解释
+
+| 参数    | 参数类型 | 备注           |
+| ------- | -------- | -------------- |
+| start   | BOOL     | 是否开始       |
+| success | BOOL     | 是否成功       |
+| image   | UIImage  | 传输完成的图片 |
+
+### 示例代码
+
+```swift
+// AI表盘 收到了设备设置表盘
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncImageTransformResultSubscribe { [weak self] start, success, image in
+    if start {
+        print("开始传输")
+    } else {
+        if success {
+            print("传输完成")
+        }
+    }
+}
+
+```
+
+
+
+```objective-c
+/// 发送AI表盘预览图
+/// /// - Parameters:
+///  - imageData: 图片转成NSData
+- (void)veepooSDK_aiFuncSendImageData:(NSData *)imageData
+```
+
+### 示例代码
+
+```swift
+let img = UIImage(named: "test_390_450") // 这是测试图片,正常要是AI生成的图片需自行集成AI实现
+if let pngData = UIImagePNGRepresentation(img!) {
+    VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendImageData(pngData)
+}
 ```

@@ -74,6 +74,12 @@
 		67FC22BF1E68FF7D0029DED3 /* VPTestFatigueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FC22BD1E68FF7D0029DED3 /* VPTestFatigueController.swift */; };
 		67FC22C01E68FF7D0029DED3 /* VPTestFatigueController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67FC22BE1E68FF7D0029DED3 /* VPTestFatigueController.xib */; };
 		AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */; };
+		FE03AEF32F0E8576008C1C73 /* VP4GViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE03AEE92F0E8576008C1C73 /* VP4GViewController.swift */; };
+		FE03AEF42F0E8576008C1C73 /* VPGSRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE03AEED2F0E8576008C1C73 /* VPGSRViewController.swift */; };
+		FE03AEF52F0E8576008C1C73 /* VPDeviceSportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE03AEEF2F0E8576008C1C73 /* VPDeviceSportViewController.swift */; };
+		FE03AEF62F0E8576008C1C73 /* VPHealthFuncAssessmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE03AEEB2F0E8576008C1C73 /* VPHealthFuncAssessmentViewController.swift */; };
+		FE03AEF72F0E8576008C1C73 /* VPHealthGlanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE03AEF12F0E8576008C1C73 /* VPHealthGlanceViewController.swift */; };
+		FE03AEFA2F0E867F008C1C73 /* VPAIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE03AEF82F0E867F008C1C73 /* VPAIViewController.swift */; };
 		FE0FA3022B046AA9001F9277 /* VPDeviceHealthRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FA3012B046AA9001F9277 /* VPDeviceHealthRemindViewController.swift */; };
 		FE27F0ED264A1DD50080CDA1 /* VPMapGPSTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27F0EB264A1DD50080CDA1 /* VPMapGPSTagViewController.swift */; };
 		FE27F0EE264A1DD50080CDA1 /* VPMapGPSTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */; };
@@ -234,6 +240,12 @@
 		67FC22BE1E68FF7D0029DED3 /* VPTestFatigueController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPTestFatigueController.xib; sourceTree = "<group>"; };
 		8ADCC1E39C7B06805F3E9386 /* Pods-VeepooBleSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeepooBleSDKDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VeepooBleSDKDemo/Pods-VeepooBleSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		A75064C534A7C08FD1E8AB4B /* Pods_VeepooBleSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VeepooBleSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE03AEE92F0E8576008C1C73 /* VP4GViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VP4GViewController.swift; sourceTree = "<group>"; };
+		FE03AEEB2F0E8576008C1C73 /* VPHealthFuncAssessmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHealthFuncAssessmentViewController.swift; sourceTree = "<group>"; };
+		FE03AEED2F0E8576008C1C73 /* VPGSRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPGSRViewController.swift; sourceTree = "<group>"; };
+		FE03AEEF2F0E8576008C1C73 /* VPDeviceSportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPDeviceSportViewController.swift; sourceTree = "<group>"; };
+		FE03AEF12F0E8576008C1C73 /* VPHealthGlanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHealthGlanceViewController.swift; sourceTree = "<group>"; };
+		FE03AEF82F0E867F008C1C73 /* VPAIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIViewController.swift; sourceTree = "<group>"; };
 		FE0FA3012B046AA9001F9277 /* VPDeviceHealthRemindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceHealthRemindViewController.swift; sourceTree = "<group>"; };
 		FE27F0EB264A1DD50080CDA1 /* VPMapGPSTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMapGPSTagViewController.swift; sourceTree = "<group>"; };
 		FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPMapGPSTagViewController.xib; sourceTree = "<group>"; };
@@ -344,9 +356,15 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE03AEF22F0E8576008C1C73 /* 微体检(公版) */,
+				FE47C4BD2EB4BE8C0038B3BE /* 微体检(定制) */,
+				FE03AEF02F0E8576008C1C73 /* 设备运动(戒指,无屏手环) */,
+				FE03AEF92F0E867F008C1C73 /* AI功能 */,
+				FE03AEEA2F0E8576008C1C73 /* 4G */,
+				FE03AEEC2F0E8576008C1C73 /* 健康辅助功能 */,
+				FE03AEEE2F0E8576008C1C73 /* 皮电 */,
 				FE42E42B2EFFD18300558A41 /* 压力 */,
 				FE42D5632EFE78C000558A41 /* ZT163常灭屏 */,
-				FE47C4BD2EB4BE8C0038B3BE /* 微体检 */,
 				FE47C4BF2EB4BE8C0038B3BE /* PPG和加速度原始数据 */,
 				FE47C4B42EB38F4A0038B3BE /* 图文传输 */,
 				FEF1EEC22DF97AA3006ACCC8 /* 手动测量数据 */,
@@ -555,6 +573,54 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FE03AEEA2F0E8576008C1C73 /* 4G */ = {
+			isa = PBXGroup;
+			children = (
+				FE03AEE92F0E8576008C1C73 /* VP4GViewController.swift */,
+			);
+			path = 4G;
+			sourceTree = "<group>";
+		};
+		FE03AEEC2F0E8576008C1C73 /* 健康辅助功能 */ = {
+			isa = PBXGroup;
+			children = (
+				FE03AEEB2F0E8576008C1C73 /* VPHealthFuncAssessmentViewController.swift */,
+			);
+			path = "健康辅助功能";
+			sourceTree = "<group>";
+		};
+		FE03AEEE2F0E8576008C1C73 /* 皮电 */ = {
+			isa = PBXGroup;
+			children = (
+				FE03AEED2F0E8576008C1C73 /* VPGSRViewController.swift */,
+			);
+			path = "皮电";
+			sourceTree = "<group>";
+		};
+		FE03AEF02F0E8576008C1C73 /* 设备运动(戒指,无屏手环) */ = {
+			isa = PBXGroup;
+			children = (
+				FE03AEEF2F0E8576008C1C73 /* VPDeviceSportViewController.swift */,
+			);
+			path = "设备运动(戒指,无屏手环)";
+			sourceTree = "<group>";
+		};
+		FE03AEF22F0E8576008C1C73 /* 微体检(公版) */ = {
+			isa = PBXGroup;
+			children = (
+				FE03AEF12F0E8576008C1C73 /* VPHealthGlanceViewController.swift */,
+			);
+			path = "微体检(公版)";
+			sourceTree = "<group>";
+		};
+		FE03AEF92F0E867F008C1C73 /* AI功能 */ = {
+			isa = PBXGroup;
+			children = (
+				FE03AEF82F0E867F008C1C73 /* VPAIViewController.swift */,
+			);
+			path = "AI功能";
+			sourceTree = "<group>";
+		};
 		FE3F5ED72BFF611A00A43838 /* G08W */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,12 +654,12 @@
 			path = "图文传输";
 			sourceTree = "<group>";
 		};
-		FE47C4BD2EB4BE8C0038B3BE /* 微体检 */ = {
+		FE47C4BD2EB4BE8C0038B3BE /* 微体检(定制) */ = {
 			isa = PBXGroup;
 			children = (
 				FE47C4D42EB8CC110038B3BE /* VPMicroTestViewController.swift */,
 			);
-			path = "微体检";
+			path = "微体检(定制)";
 			sourceTree = "<group>";
 		};
 		FE47C4BF2EB4BE8C0038B3BE /* PPG和加速度原始数据 */ = {
@@ -857,6 +923,11 @@
 				FE8E3A1626F49BD300065ADB /* VPEditTextAlarmViewController.swift in Sources */,
 				044ECB1A25E3A358002D090C /* VPPath.swift in Sources */,
 				672E08461E5E813300F60750 /* VPTestStepController.swift in Sources */,
+				FE03AEF32F0E8576008C1C73 /* VP4GViewController.swift in Sources */,
+				FE03AEF42F0E8576008C1C73 /* VPGSRViewController.swift in Sources */,
+				FE03AEF52F0E8576008C1C73 /* VPDeviceSportViewController.swift in Sources */,
+				FE03AEF62F0E8576008C1C73 /* VPHealthFuncAssessmentViewController.swift in Sources */,
+				FE03AEF72F0E8576008C1C73 /* VPHealthGlanceViewController.swift in Sources */,
 				FE6C1C132A834691007276E6 /* VPCustomScanManage.swift in Sources */,
 				672E08321E5D36ED00F60750 /* VPTestBloodController.swift in Sources */,
 				67640D571E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift in Sources */,
@@ -872,6 +943,7 @@
 				FE89AA1E2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift in Sources */,
 				FE47C4C12EB4BE8C0038B3BE /* VPPPGAccelerationViewController.swift in Sources */,
 				FE722C0925F5D41900EA675E /* VPFindDeviceViewController.swift in Sources */,
+				FE03AEFA2F0E867F008C1C73 /* VPAIViewController.swift in Sources */,
 				FE6EE04625C1464800B67C70 /* VPMarketDialViewController.swift in Sources */,
 				FE89AA1D2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift in Sources */,
 				67B889EC1EFBAFBE00214EC5 /* ZCUIView+setRect.swift in Sources */,

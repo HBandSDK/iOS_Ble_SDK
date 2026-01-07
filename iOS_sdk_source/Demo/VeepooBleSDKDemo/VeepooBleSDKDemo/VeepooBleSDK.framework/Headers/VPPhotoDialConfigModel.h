@@ -25,6 +25,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// 预览图的外边框图片名称，在SDKResours.bundle资源中，如果发生异常，请检查资源中是否存在该图片
 @property (nonatomic, strong, readonly) NSString *previewBorderImageName;
 
+/// 是否为中科569X平台
+@property (nonatomic, assign, readonly) BOOL isZK569X;
+/// 中科569X平台，方屏的圆角大小，大图用
+@property (nonatomic, assign, readonly) CGFloat radius;
+/// 中科569X平台，方屏的圆角大小，缩略图内图用
+@property (nonatomic, assign, readonly) CGFloat preViewRadius;
+
 - (instancetype)init NS_UNAVAILABLE;
 
 - (instancetype)initWithScreenSize:(CGSize)screenSize

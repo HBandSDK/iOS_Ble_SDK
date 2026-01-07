@@ -10,7 +10,7 @@
 #import <CoreBluetooth/CoreBluetooth.h>
 #import "VPLowPowerModel.h"
 #import "VPDialModel.h"
-
+#import "VPHealthFunctionModel.h"
 @interface VPPeripheralModel : NSObject
 
 #pragma mark - Attribute value obtained at scan time 扫描时候获取的属性值
@@ -217,9 +217,6 @@
 //图文传输，0为不支持
 @property (nonatomic, assign) NSUInteger textAndImageTransmissionType;
 
-//微体检，0为不支持
-@property (nonatomic, assign) NSUInteger microTestType;
-
 //梅脱，0/1为不支持
 @property (nonatomic, assign) NSUInteger metType;
 
@@ -232,6 +229,23 @@
 //mtu size
 @property (nonatomic, assign, readonly) NSInteger mtu;
 
+// 健康辅助评估支持的功能 NS_OPTIONS
+@property (nonatomic, assign) VPFuncAssessmentType funcAssessmentType;
+
+//皮电功能 0:不支持、1:支持
+@property (nonatomic, assign) NSInteger gsrType;
+
+//微体检，0为不支持 1:为定制功能 2:公版功能
+@property (nonatomic, assign) NSUInteger healthGlanceType;
+
+// AI问答 0:不支持
+@property (nonatomic, assign) NSUInteger aiChatType;
+
+// AI表盘 0:不支持
+@property (nonatomic, assign) NSUInteger aiDialType;
+
+//4G功能 0:不支持、1:支持
+@property (nonatomic, assign) NSUInteger isSupport4GType;
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is
 //设备网络升级版本，当用户收到有新固件版本的时候，告知用户升级的版本是多少

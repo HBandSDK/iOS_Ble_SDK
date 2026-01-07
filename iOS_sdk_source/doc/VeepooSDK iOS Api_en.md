@@ -14,9 +14,12 @@
 | 1.0.9   | Compatibility with Z-series (Zhongke) platforms              | 2024.12.30        |
 | 1.1.0   | Added world clock, automatic measurement and detection time setting, manual measurement - air pump blood pressure related interfaces | 2025.06.11        |
 | 1.1.1   | Add ‘Text Transmission’ and ‘Image Transmission’，JH58 Customized Raw Data Reporting | 2025.10.27        |
-| 1.1.2   | Add Micro-test on/off，Obtain manual measurement data for microtests | 2025.11.03        |
+| 1.1.2   | Add Micro-test(custom) on/off，Obtain manual measurement data for microtests | 2025.11.03        |
 | 1.1.3   | Add Always off screen                                        | 2025.12.26        |
-| 1.1.3   | Add met function, stress function                            | 2025.12.27        |
+| 1.1.4   | Add met function, stress function                            | 2025.12.27        |
+| 1.1.5   | Add Health Assistance，GSR and Health Glance functions       | 2025.12.30        |
+| 1.1.6   | Add 4G function and activate the ring's sports function through the app | 2026.01.05        |
+| 1.1.7   | Add AI function                                              | 2026.01.07        |
 
 # SDK initialization
 
@@ -5602,7 +5605,7 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorReal
 
 ### Precondition
 
-Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.microTestType Judgment:  value of 1 indicates support Microtest
+Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.healthGlanceType Judgment:  value of 1 indicates support Microtest
 
 ### Class Name
 
@@ -5662,7 +5665,7 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKMicroTestOpenSta
 
 ### Precondition
 
-Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.microTestType Judgment:  value of 1 indicates support Microtest
+Support this feature through VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.healthGlanceType Judgment:  value of 1 indicates support Microtest
 
 ### Class Name
 
@@ -5866,4 +5869,1184 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_stressTestStart
  }
 ```
 
-# 
+# Read the list types supported by health assistance features
+
+### Precondition
+
+The device supports health assistance functions
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPHealthFuncAssessmentViewController`in the demo
+
+### Interfaces
+
+```swift
+/// Determine whether health assistance functions are supported
+VPBleCentralManage.sharedBleManager().peripheralModel.funcAssessmentType != []
+```
+
+```objective-c
+/// read the list types supported by health assistance features
+/// - Parameter result: Health assistance function list callback
+- (void)veepooSDK_readFuncAssessment:(void (^)(NSArray<VPHealthFunctionModel *> *))result
+```
+
+### Parameter Explanation
+
+VPHealthFunctionModel
+
+| Parameter            | Parameter Type | Remarks         |
+| -------------------- | -------------- | --------------- |
+| VPHealthFunctionType | NS_OPTIONS     | functional type |
+| support              | BOOL           | Is it supported |
+| open                 | BOOL           | Open/Close      |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readFuncAssessment {[weak self] models in
+            
+ }
+```
+
+# Set up health assistance functions
+
+### Precondition
+
+The device supports health assistance functions
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPHealthFuncAssessmentViewController`in the demo
+
+### Interfaces
+
+```objective-c
+/// Set up health assistance functions
+/// - Parameters:
+///   - type: VPFuncAssessmentType
+///   - open: Open/Close
+///   - result: result callback
+- (void)veepooSDK_setFuncAssessmentWithType:(VPFuncAssessmentType)type open:(BOOL)open result:(void(^)(BOOL))result
+```
+
+### Parameter Explanation
+
+| Parameter            | Parameter Type | Remarks         |
+| -------------------- | -------------- | --------------- |
+| VPFuncAssessmentType | NS_OPTIONS     | functional type |
+| open                 | BOOL           | Open/Close      |
+
+VPFuncAssessmentType
+
+| Parameter                        | Parameter Type | Remarks          |
+| -------------------------------- | -------------- | ---------------- |
+| VPFuncAssessmentTypeBloodGlucose | NSUInteger     | BloodGlucose     |
+| VPFuncAssessmentTypeBloodComp    | NSUInteger     | Blood components |
+| VPFuncAssessmentTypeBodyComp     | NSUInteger     | Body composition |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_setFuncAssessment(with: type, open: sw.isOn) { state in
+            
+}
+```
+
+# Galvanic Skin Response
+
+### Precondition
+
+The device supports Galvanic Skin Response functions
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPGSRViewController`in the demo
+
+### Interfaces
+
+Determine whether the Galvanic Skin Response is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.gsrType != 0
+```
+
+```objective-c
+#pragma mark - Galvanic Skin Response test
+/// - Parameters:
+///   - start:YES Open NO Close
+///   - progress :progress callback
+///   - testResult :result callback
+- (void)veepooSDKTestGSRStart:(BOOL)start
+                     progress:(void(^)(NSProgress *progress))progress
+                   testResult:(void(^)(VPDeviceGSRState state, VPGSRResultModel *model))testResult
+```
+
+### Parameter Explanation
+
+```objective-c
+// Galvanic Skin Response test state
+typedef NS_ENUM(NSUInteger, VPDeviceGSRState) {
+    VPDeviceGSRStateNoFunction,    // The device does not have this function
+    VPDeviceGSRStateDeviceBusy,    // The device is busy and cannot start testing
+    VPDeviceGSRStateOver,          // The test has ended normally, but it was manually terminated
+    VPDeviceGSRStateLowPower,      // Equipment low power
+    VPDeviceGSRStateFailure,       // Test failed
+    VPDeviceGSRStateNotWear,       // Device wearing detection failed
+    VPDeviceGSRStateComplete,      // The test has been completed
+};
+```
+
+```objective-c
+@interface VPGSRResultModel : NSObject
+///
+@property (nonatomic, assign) int emotin_level;
+
+///
+@property (nonatomic, assign) int skin_moisture;
+
+///
+@property (nonatomic, assign) int depression_risk;
+
+///
+@property (nonatomic, assign) int sns_activation;
+
+///
+@property (nonatomic, assign) int cortisol_value;
+
+@end
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestGSRStart(btn.isSelected) {[weak self] progress in
+    guard let self = self, let pro = progress else { return }
+    let value = Double(pro.completedUnitCount) / Double(pro.totalUnitCount)
+    self.progressLabel.text = "Progress:\(value*100)%"
+} testResult: {[weak self] state, resultModel in
+    guard let self = self else { return }
+    if state == .complete {
+        guard let res = resultModel else { return }
+        self.resultLabel.text = "emotion:\(res.emotin_level) skin_moisture:\(res.skin_moisture) depression_risk:\(res.depression_risk) sns_activation:\(res.sns_activation) cortisol_value:\(res.cortisol_value)"
+    }else if state == .over {
+
+    }else {
+
+    }
+}
+```
+
+# Health Glance（public domain）
+
+### Precondition
+
+The device supports Health Glance functions
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPHealthGlanceViewController`in the demo
+
+### Interfaces
+
+Determine whether the Health Glance function is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.healthGlanceType > 1
+```
+
+```objective-c
+#pragma mark - Health Glance test
+/// - Parameters:
+///   - open:YES Open NO Close
+///   - progressResult :progress callback
+///   - result :result callback
+-(void)veepooSDK_healthGlanceTestStart:(BOOL)start andProgress:(void(^)(NSInteger progress))progressResult andResult:(void(^)(VPDeviceHealthGlanceState state,VPHealthGlanceTestModel *healthGlanceModel))result;
+```
+
+### Parameter Explanation
+
+```objective-c
+// Health Glance test state
+typedef NS_ENUM(NSUInteger, VPDeviceHealthGlanceState) {
+    VPDeviceHealthGlanceStateNoFunction,    // The device does not have this function
+    VPDeviceHealthGlanceStateDeviceBusy,    // The device is busy and cannot start testing
+    VPDeviceHealthGlanceStateOver,          // The test has ended normally, but it was manually terminated
+    VPDeviceHealthGlanceStateLowPower,      // Equipment low power
+    VPDeviceHealthGlanceStateFailure,       // Test failed
+    VPDeviceHealthGlanceStateNotWear,       // Device wearing detection failed
+    VPDeviceHealthGlanceStateComplete,      // The test has been completed
+    VPDeviceHealthGlanceStateNotLead,      // lead detachment
+};
+```
+
+```objective-c
+@interface VPHealthGlanceTestModel : NSObject
+///
+@property (nonatomic, assign) UInt8 heartRate;
+///
+@property (nonatomic, assign) UInt8 bloodOxygen;
+///
+@property (nonatomic, assign) UInt8 stress;
+///
+@property (nonatomic, assign) UInt8 fatigueLevel;
+///
+@property (nonatomic, assign) double bloodSugar;
+///
+@property (nonatomic, assign) UInt8 bloodSugarType;
+///
+@property (nonatomic, assign) UInt8 bloodSugarLevel;
+///
+@property (nonatomic, assign) double bodyTemperature;
+///
+@property (nonatomic, assign) double orgTemperature;
+///
+@property (nonatomic, assign) UInt8 systolicBloodPressure;
+///
+@property (nonatomic, assign) UInt8 diastolicBloodPressure;
+///
+@property (nonatomic, assign) UInt8 hrv;
+///
+@property (nonatomic, assign) UInt8 ppgBloodPressureHigh;
+///
+@property (nonatomic, assign) UInt8 ppgBloodPressureLow;
+///
+@property (nonatomic, assign) UInt8 cuffBloodPressureHigh;
+///
+@property (nonatomic, assign) UInt8 cuffBloodPressureLow;
+///
+@property (nonatomic, assign) double totalCholesterol;
+///
+@property (nonatomic, assign) double triglyceride;
+///
+@property (nonatomic, assign) double highDensityLipoprotein;
+///
+@property (nonatomic, assign) double lowDensityLipoprotein;
+///
+@property (nonatomic, assign) double uricAcid;
+///
+@property (nonatomic, assign) NSUInteger functionSupport;
+///
+@property (nonatomic, assign) UInt8 weight;
+///
+@property (nonatomic, assign) UInt8 height;
+///
+@property (nonatomic, assign) UInt8 age;
+///
+@property (nonatomic, assign) UInt8 gender;
+///
+@property (nonatomic, assign) double bmi;
+///
+@property (nonatomic, assign) double bodyFatPercentage;
+///
+@property (nonatomic, assign) double fatMass;
+///
+@property (nonatomic, assign) double leanBodyMass;
+///
+@property (nonatomic, assign) double muscleRate;
+///
+@property (nonatomic, assign) double muscleMass;
+///
+@property (nonatomic, assign) double subcutaneousFat;
+///
+@property (nonatomic, assign) double bodyMoisture;
+///
+@property (nonatomic, assign) double waterContent;
+//
+@property (nonatomic, assign) double skeletalMuscleRate;
+///
+@property (nonatomic, assign) double boneMass;
+///
+@property (nonatomic, assign) double proportionOfProtein;
+///
+@property (nonatomic, assign) double proteinAmount;
+///
+@property (nonatomic, assign) double basalMetabolicRate;
+///
+@property (nonatomic, assign) NSInteger emotionLevel;
+///
+@property (nonatomic, assign) UInt8 skinMoisture;
+///
+@property (nonatomic, assign) UInt8 depressionRisk;
+///
+@property (nonatomic, assign) UInt8 snsActivation;
+//
+@property (nonatomic, assign) UInt16 cortisolValue;
+@end
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_healthGlanceTestStart(btn.isSelected) {[weak self] progress in
+    guard let self = self else { return }
+    self.progressLabel.text = "Progress:\(progress)%"
+} andResult: {[weak self] state, resultModel in
+    guard let self = self else { return }
+    if state == .complete {
+        guard let res = resultModel else { return }
+        var result = "Measurement completed "
+        //Support heart rate, and so on, to determine whether the micro physical examination results include this function. Support outputting the corresponding results, but do not support not outputting
+        if res.functionSupport & VPHealthGlanceType.heartValue.rawValue != 0 {
+            let str = "heart rate:\(res.heartRate)"
+            result += str
+        }
+        if res.functionSupport & VPHealthGlanceType.bloodOxy.rawValue != 0 {
+            let str = "blood oxygen:\(res.bloodOxygen)"
+            result += str
+        }
+        //Other results refer to the above implementation
+        self.resultLabel.text = result + " *Other results refer to the above implementation*"
+    }else if state == .over {
+        
+    }else {
+        
+    }
+}
+```
+
+# 4G Function
+
+### Precondition
+
+The device supports 4G functionality
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VP4GViewController`in the demo
+
+### Interfaces
+
+Determine whether 4G functionality is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// Read 4G device configuration information
+- (void)veepooSDK_read4GDeviceConfigInfoSubscribe:(void (^)(BOOL isReadAckInfo, VP4GFunctionConfigurationInfoModel *deviceConfigInfo))result;
+```
+
+### Parameter Explanation
+
+VP4GFunctionConfigurationInfoModel
+
+| Parameter              | Parameter Type | Remarks                                                |
+| ---------------------- | -------------- | ------------------------------------------------------ |
+| deviceHost             | NSUInteger     | Device domain name information (IP address)            |
+| devicePort             | uint16_t       | Device port information                                |
+| account                | NSString       | Account name for device login                          |
+| password               | NSString       | Account and password for logging in on the device side |
+| is4GSwitchEnable       | BOOL           | 4G switch, 0 for off, 1 for on                         |
+| isSyncDataSwitchEnable | BOOL           | Data upload switch, 0 for off, 1 for on                |
+| intervalTime           | uint8_t        | Reporting time interval                                |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_read4GDeviceConfigInfoSubscribe {[weak self] state, config in
+    guard let self = self, let config = config else { return }
+    print("host:\(config.deviceHost),port:\(config.devicePort),account:\(config.account),password:\(config.password)")
+    switch4g?.isOn = config.is4GSwitchEnable
+    switchSync?.isOn = config.isSyncDataSwitchEnable
+    intervalTimeLab?.text = "synchronization frequency:\(config.intervalTime)min"
+    hostTextFiled?.text = config.deviceHost
+    portTextField?.text = "\(config.devicePort)"
+    accountTextFiled?.text = config.account
+    passwordTextField?.text = config.password
+}
+```
+
+# 4G Function - Bind Device
+
+### Precondition
+
+The device supports 4G functionality
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VP4GViewController`in the demo
+
+### Interfaces
+
+Determine whether 4G functionality is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// Bind Device
+/// - Parameter account: App Account
+/// - Parameter password: Random password generated by the app
+/// - Parameter callback: 
+- (void)veepooSDK_bind4GDeviceAccount:(NSString *)account password:(NSString *)password callback:(void (^)(BOOL isSucc))result;
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                              |
+| --------- | -------------- | ------------------------------------ |
+| account   | NSString       | App Account                          |
+| password  | NSString       | Random password generated by the app |
+
+### Sample Code
+
+```swift
+guard let acc = accountTextFiled?.text, let pass = passwordTextField?.text else { return }
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_bind4GDeviceAccount(acc, password: pass) { success in
+    if success {
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_sendVerifyInfoSucc()
+    }
+}
+```
+
+
+
+# 4G Function - Modify Mobile Network Switch Enable Status
+
+### Precondition
+
+The device supports 4G functionality
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VP4GViewController`in the demo
+
+### Interfaces
+
+Determine whether 4G functionality is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// Modify Mobile Network Switch Enable Status
+/// - Parameter state: On state
+/// - Parameter callback: 
+- (void)veepooSDK_modify4GSwitchEnableState:(NSInteger)state callback:(void (^)(BOOL isSucc))result;
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                   |
+| --------- | -------------- | ------------------------- |
+| state     | NSInteger      | 0 is closed and 1 is open |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modify4GSwitchEnableState(switch4g!.isOn ? 1 : 0) { success in
+            
+        }
+```
+
+# 4G Function - Modify the Enable Status of the Mobile Data Synchronization Switch
+
+### Precondition
+
+The device supports 4G functionality
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VP4GViewController`in the demo
+
+### Interfaces
+
+Determine whether 4G functionality is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// Modify the Enable Status of the Mobile Data Synchronization Switch
+/// - Parameter state: On state
+/// - Parameter callback: 
+- (void)veepooSDK_modify4GSyncSwitchEnableState:(NSInteger)state callback:(void (^)(BOOL isSucc))result
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                   |
+| --------- | -------------- | ------------------------- |
+| state     | NSInteger      | 0 is closed and 1 is open |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modify4GSyncSwitchEnableState(switchSync!.isOn ? 1 : 0) { success in
+            
+        }
+```
+
+# 4G function - modify device data reporting interval time
+
+### Precondition
+
+The device supports 4G functionality
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VP4GViewController`in the demo
+
+### Interfaces
+
+Determine whether 4G functionality is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// modify device data reporting interval time
+/// - Parameter time: time interval
+/// - Parameter callback: 
+- (void)veepooSDK_modifySyncTimeInterval:(NSInteger)time callback:(void (^)(BOOL isSucc))result
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                                  |
+| --------- | -------------- | ---------------------------------------- |
+| time      | NSInteger      | Unit minute, such as 5 minutes, time = 5 |
+
+### Sample Code
+
+```swift
+let times = [5,10,15]
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modifySyncTimeInterval(times[seg.selectedSegmentIndex]) {[weak self] success in
+            
+            
+ }
+```
+
+# 4G Function - Modify Device MQTT Configuration
+
+### Precondition
+
+The device supports 4G functionality
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VP4GViewController`in the demo
+
+### Interfaces
+
+Determine whether 4G functionality is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// Modify Device MQTT Configuration
+/// - Parameter host: IP
+/// - Parameter port: prot
+/// - Parameter callback:
+- (void)veepooSDK_modifyMQTTConfig:(NSString *)host port:(NSInteger)port callback:(void (^)(BOOL isSucc))result
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks    |
+| --------- | -------------- | ---------- |
+| host      | NSString       | IP address |
+| port      | NSInteger      | Port       |
+
+### Sample Code
+
+```swift
+guard let host = hostTextFiled?.text, let port = portTextField?.text, let p = Int(port) else { return }
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modifyMQTTConfig(host, port: p) { success in
+    
+}
+```
+
+# Enable device movement on the app
+
+### Precondition
+
+Ring and screenless wristband device support
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPDeviceSportViewController`in the demo
+
+### Interfaces
+
+```objective-c
+/// Sports mode control interface
+/// - Parameters:
+///   - code: operator
+///   - type: Sports mode type
+- (void)veepooSDK_deviceSportControlWithCode:(VPDeviceSportControlOpCode)code type:(VPDeviceRuningMode)type;
+```
+
+### Parameter Explanation
+
+VPDeviceSportControlOpCode
+
+```
+// 
+typedef NS_ENUM(NSUInteger, VPDeviceSportControlOpCode) {
+    VPDeviceSportControlOpCodeStart = 0x01,
+    VPDeviceSportControlOpCodePause = 0x02,
+    VPDeviceSportControlOpCodeContinue = 0x03,
+    VPDeviceSportControlOpCodeStop = 0x04,
+};
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_deviceSportControl(with: opCode!, type: .outdoorRun)
+```
+
+# Query the information of device movement enabled in the current app
+
+### Precondition
+
+Ring and screenless wristband device support
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPDeviceSportViewController`in the demo
+
+### Interfaces
+
+```objective-c
+/// Subscribe to the interface for changing the current device's motion status
+/// - Parameter result: callback
+- (void)veepooSDK_deviceSportRunninStateSubscribe:(void (^)(VPSportControlRunState))result
+```
+
+```objective-c
+/// Subscribe to the change interface for the current device's motion information
+/// - Parameter result: callback
+- (void)veepooSDK_deviceSportInfoSubscribe:(void (^)(VPDeviceSportControlModel *))result
+```
+
+```objective-c
+/// Read the current device's motion status
+- (void)veepooSDK_readDeviceSportState
+```
+
+### Parameter Explanation
+
+VPSportControlRunState
+
+```
+typedef NS_ENUM(NSInteger, VPSportControlRunState) {
+    VPSportControlRunStateNotStarted = 0x00,
+    VPSportControlRunStateRunning = 0x01,
+    VPSportControlRunStatePaused = 0x02
+};
+```
+
+VPDeviceSportControlModel
+
+```
+@interface VPDeviceSportControlModel : NSObject
+
+// 
+@property (nonatomic, assign) VPSportControlProtocolSportMode sportMode;
+// 
+@property (nonatomic, assign) NSInteger operationCode;
+// 
+@property (nonatomic, assign) VPSportControlRunState runState;
+// 
+@property (nonatomic, assign) VPSportControlDeviceState deviceState;
+// 
+@property (nonatomic, assign) uint32_t duration;
+// 
+@property (nonatomic, assign) uint32_t distance;
+// 
+@property (nonatomic, assign) uint8_t heartRate;
+// 
+@property (nonatomic, assign) uint32_t calories;
+// 
+@property (nonatomic, assign) uint16_t pace;
+// 
+@property (nonatomic, assign) uint16_t speed;
+```
+
+### Sample Code
+
+```swift
+readTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { timer in
+    VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readDeviceSportState()
+})
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_deviceSportRunninStateSubscribe { state in
+    print("veepooSDK_deviceSportRunninStateSubscribe:\(state)")
+}
+
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_deviceSportInfoSubscribe {[weak self] model in
+    guard let self = self, let model = model else { return }
+    var runState =  "Not started"
+    if model.runState == .paused {
+        runState =  "pause"
+    } else if model.runState == .running {
+        runState =  "in motion"
+    }
+    let result = "Run state:\(runState),duration:\(model.duration),distance:\(model.distance),heartRate:\(model.heartRate),calories:\(model.calories),pace:\(model.pace),speed:\(model.speed)"
+    if textView!.text != "" {
+        textView!.text = textView!.text + "\n" + result
+    } else {
+        textView!.text = result
+    }
+
+    textView!.scrollToBottom()
+    print(result)
+}
+```
+
+# Read device motion records
+
+### Precondition
+
+Ring and screenless wristband device support
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPDeviceSportViewController`in the demo
+
+### Interfaces
+
+```objective-c
+/// Read the CRC list of motion mode data stored in the device
+/// - Parameter result: CRC array callback, NSNumber type is uint16
+- (void)readDeviceSportCRCArr:(void(^)(bool success, NSArray<NSNumber *> * _Nullable))result
+```
+
+```objective-c
+/// Read the detailed data of the motion mode from the given CRC list
+/// - Parameters:
+///   - crcArr: CRC list, obtained by the reading interface, and filtered at the application layer for CRC that has already been read
+///   - result: 
+- (void)readDeviceSportWithCRC:(NSArray<NSNumber *> *)crcArr result:(void(^)(NSArray<VPDeviceSportModel *> * _Nullable, NSArray<VPDeviceSportWithGPSModel *> * _Nullable))result
+```
+
+### Parameter Explanation
+
+VPDeviceSportModel
+
+```
+@interface VPDeviceSportModel : NSObject
+
+/// 
+@property (nonatomic, assign) uint8_t dsProtocol;
+/// 
+@property (nonatomic, assign) uint16_t type;
+/// 
+@property (nonatomic, assign) uint16_t crc;
+/// 
+@property (nonatomic, strong) NSString *date;
+/// 
+@property (nonatomic, strong) NSString *beginTime;
+/// 
+@property (nonatomic, strong) NSString *endTime;
+/// 
+@property (nonatomic, assign) uint32_t totalStep;
+/// 
+@property (nonatomic, assign) uint32_t totalSport;
+/// 
+@property (nonatomic, assign) uint32_t totalDis;
+/// 
+@property (nonatomic, assign) uint32_t totalCal;
+/// 
+@property (nonatomic, assign) uint16_t pauseTotalTime;
+/// 
+@property (nonatomic, assign) uint32_t averPace;
+/// 
+@property (nonatomic, assign) uint32_t aerobTime;
+/// 
+@property (nonatomic, assign) uint32_t totalTime;
+/// 
+@property (nonatomic, assign) uint8_t averHeart;
+/// 
+@property (nonatomic, assign) uint8_t pauseCount;
+/// 
+@property (nonatomic, assign) uint16_t recordCount;
+
+@property (nonatomic, strong) NSArray<VPDeviceSportMinuteModel *> *oneMinuteData;
+
+- (instancetype)initWithData:(NSData *)sourceData;
+
+```
+
+VPDeviceSportWithGPSModel
+
+```
+@interface VPDeviceSportWithGPSModel : NSObject
+
+/// 
+@property (nonatomic, assign) uint8_t dsProtocol;
+/// 
+@property (nonatomic, assign) uint32_t startTimestamp;
+/// 
+@property (nonatomic, assign) uint32_t stopTimestamp;
+/// 
+@property (nonatomic, assign) uint32_t duration;
+
+@property (nonatomic, assign) uint32_t step;
+@property (nonatomic, assign) uint32_t dis;
+@property (nonatomic, assign) uint32_t cal;
+@property (nonatomic, assign) uint32_t sport;
+
+/// 
+@property (nonatomic, assign) uint8_t maxHeart;
+@property (nonatomic, assign) uint8_t aveHeart;
+@property (nonatomic, assign) uint8_t minHeart;
+
+/// 
+@property (nonatomic, assign) uint16_t maxPace;
+@property (nonatomic, assign) uint16_t avePace;
+@property (nonatomic, assign) uint16_t minPace;
+
+/// 
+@property (nonatomic, assign) uint16_t maxSpeed;
+@property (nonatomic, assign) uint16_t aveSpeed;
+@property (nonatomic, assign) uint16_t minSpeed;
+
+///
+@property (nonatomic, assign) uint16_t maxCadence;
+@property (nonatomic, assign) uint16_t aveCadence;
+@property (nonatomic, assign) uint16_t minCadence;
+
+///
+@property (nonatomic, assign) uint16_t aerobicCount;
+/// 
+@property (nonatomic, assign) uint16_t recordCount;
+///
+@property (nonatomic, assign) uint8_t pauseCount;
+/// 
+@property (nonatomic, assign) uint16_t pauseDuration;
+@property (nonatomic, assign) uint16_t crc;
+@property (nonatomic, assign) uint16_t sportType;
+
+@property (nonatomic, assign) uint8_t showType;
+
+
+@property (nonatomic, strong) NSArray<VPDSOneMinuteModel *> *minutes;
+
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.readDeviceSportCRCArr {[weak self] success, crcs in
+    guard let self = self else { return }
+    if crcs?.count != 0 {
+        VPBleCentralManage.sharedBleManager().peripheralManage.readDeviceSport(withCRC: crcs) {[weak self] sportModels, sportGpsModels in
+            guard let sportModels = sportModels, let sportGpsModels = sportGpsModels, let self = self else { return }
+            print(sportModels)
+            print(sportGpsModels)
+        }
+    } else {
+        
+    }
+}
+```
+
+# AI Function - AI Q&A
+
+### Precondition
+
+The device supports AI function, and the process of AI Q&A is as follows: When the device activates AI Q&A and asks a question, the device will record it. After the recording is completed, the app will receive the recording file opusData. The app needs to convert Opus into a PCM voice file, and the obtained voice file will be sent to the device as text through a third-party AI. At the same time, the answer to the question will be obtained through the third-party AI and then sent to the device. SDK only provides interaction with devices and does not offer third-party AI. Please integrate third-party AI on your own.
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPAIViewController`in the demo
+
+### Interfaces
+
+Does it support AI functionality
+
+```
+(VPBleCentralManage.sharedBleManager().peripheralModel.aiChatType != 0 || VPBleCentralManage.sharedBleManager().peripheralModel.aiDialType != 0) ? true : false
+```
+
+```objective-c
+/// External network status changes, assignment, ensuring that AI processes can end correctly and respond appropriately in the absence of a network
+/// - Parameter status: network status
+- (void)veepooSDK_aiFuncAINetworkStatus:(VPAINetworkStatus)status
+```
+
+### Parameter Explanation
+
+VPAINetworkStatus
+
+```
+typedef NS_ENUM(uint8_t, VPAINetworkStatus){
+    VPAINetworkStatusNotReachable,              
+    VPAINetworkStatusReachableViaWiFi,
+    VPAINetworkStatusReachableViaWWAN
+};
+```
+
+### Sample Code
+
+```swift
+//Set the current network situation     
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncAINetworkStatus(.reachableViaWiFi)
+```
+
+
+
+```objective-c
+//Monitoring device AI function usage
+- (void)veepooSDK_aiFuncOpusDataSubscribe:(void (^)(VPCurrentAIFunctionType, NSData *opusData))result
+```
+
+### Parameter Explanation
+
+VPCurrentAIFunctionType
+
+```
+// Current AI event types
+typedef NS_ENUM(NSUInteger, VPCurrentAIFunctionType){
+    VPCurrentAIFunctionTypeEndInteraction,          // 
+    VPCurrentAIFunctionTypeDeviceAIChatUsing,       // 
+    VPCurrentAIFunctionTypeDeviceAIDialUsing,       // 
+    VPCurrentAIFunctionTypeAppAIChatUsing,          // 
+    VPCurrentAIFunctionTypeAppAIDialUsing,          // 
+};
+```
+
+| Parameter | Parameter Type | Remarks                                        |
+| --------- | -------------- | ---------------------------------------------- |
+| opusData  | NSData         | The recording opus data returned by the device |
+
+### Sample Code
+
+```swift
+// Monitor OPUS data channel language Q&A data stream
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncOpusDataSubscribe {[weak self] type, opusData in
+    if type == .deviceAIChatUsing {//
+        self?.handleAnswer(questionData: opusData!)
+    } else if type == .deviceAIDialUsing {/
+        self?.handleAnswerGenerateImage(questionData: opusData!)
+    }
+}
+```
+
+
+
+```objective-c
+// Monitoring device triggers AI to answer again
+/// - Parameters:
+///  - askBlock: text
+- (void)veepooSDK_aiFuncReceiveAnswerAgainSubscribe:(void (^)(NSString *ask))askBlock
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks |
+| --------- | -------------- | ------- |
+| ask       | NSString       | 问题    |
+
+### Sample Code
+
+```swift
+// Listening and receiving a response again
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncReceiveAnswerAgainSubscribe {[weak self] text in
+    print("Listening and receiving a response again\(text!)")
+    self?.handleReplyAnswerToDevice(result: "Resend the conclusion drawn by AI")
+}
+```
+
+
+
+```objective-c
+// Send the result of converting voice to text to the device
+/// - Parameters:
+///  - resultStr: Text
+- (void)veepooSDK_aiFuncSendSpeechConvertWithTextResult:(NSString *)resultStr
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendSpeechConvert(withTextResult: text)
+```
+
+
+
+```objective-c
+// Send the result of AI response to the device
+/// - Parameters:
+///  - resultStr: Text
+- (void)veepooSDK_aiFuncSendChatAnswerWithTextResult:(NSString *)resultSt
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendChatAnswer(withTextResult: result)
+```
+
+# AI function - AI dial
+
+### Precondition
+
+The device supports AI function, and the process of AI dial: When the device turns on the AI dial and says a sentence, the device will record. After the recording is completed, the app will receive the recording file opusData. The app needs to convert Opus into a PCM voice file, and the obtained voice file will be converted into text and sent to the device through a third-party AI. The device can choose to generate an image, and the app will receive a notification to generate an image. After the text is generated into an image through the third-party AI, the image will be sent to the device. The device can choose whether to set it as a dial. If you choose to set the dial, the app will receive a notification and set the image as the device's image dial. SDK only provides interaction with devices and does not offer third-party AI. Please integrate third-party AI on your own.
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VPAIViewController`in the demo
+
+### Interfaces
+
+Does it support AI functionality
+
+```
+(VPBleCentralManage.sharedBleManager().peripheralModel.aiChatType != 0 || VPBleCentralManage.sharedBleManager().peripheralModel.aiDialType != 0) ? true : false
+```
+
+```objective-c
+/// External network status changes, assignment, ensuring that AI processes can end correctly and respond appropriately in the absence of a network
+/// - Parameter status: network status
+- (void)veepooSDK_aiFuncAINetworkStatus:(VPAINetworkStatus)status
+```
+
+### Parameter Explanation
+
+VPAINetworkStatus
+
+```
+typedef NS_ENUM(uint8_t, VPAINetworkStatus){
+    VPAINetworkStatusNotReachable,              
+    VPAINetworkStatusReachableViaWiFi,
+    VPAINetworkStatusReachableViaWWAN
+};
+```
+
+### Sample Code
+
+```swift
+//Set the current network situation     
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncAINetworkStatus(.reachableViaWiFi)
+```
+
+
+
+```objective-c
+//Monitoring device AI function usage
+- (void)veepooSDK_aiFuncOpusDataSubscribe:(void (^)(VPCurrentAIFunctionType, NSData *opusData))result
+```
+
+### Parameter Explanation
+
+VPCurrentAIFunctionType
+
+```
+// Current AI event types
+typedef NS_ENUM(NSUInteger, VPCurrentAIFunctionType){
+    VPCurrentAIFunctionTypeEndInteraction,          // 
+    VPCurrentAIFunctionTypeDeviceAIChatUsing,       // 
+    VPCurrentAIFunctionTypeDeviceAIDialUsing,       //
+    VPCurrentAIFunctionTypeAppAIChatUsing,          // 
+    VPCurrentAIFunctionTypeAppAIDialUsing,          //
+};
+```
+
+| Parameter | Parameter Type | Remarks                                        |
+| --------- | -------------- | ---------------------------------------------- |
+| opusData  | NSData         | The recording opus data returned by the device |
+
+### Sample Code
+
+```swift
+// Monitor OPUS data channel language Q&A data stream
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncOpusDataSubscribe {[weak self] type, opusData in
+    if type == .deviceAIChatUsing {//
+        self?.handleAnswer(questionData: opusData!)
+    } else if type == .deviceAIDialUsing {//
+        self?.handleAnswerGenerateImage(questionData: opusData!)
+    }
+}
+```
+
+
+
+```objective-c
+/// AI dial monitoring received device acquisition image
+/// - Parameters:
+///  - result: lastAsk:Result text,style:image style
+- (void)veepooSDK_aiFuncCanGetImageActionSubscribe:(void (^)(NSString *lastAsk, NSInteger style))result
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks     |
+| --------- | -------------- | ----------- |
+| lastAsk   | NSString       | Result text |
+| style     | NSInteger      | image style |
+
+### Sample Code
+
+```swift
+// The AI dial has received another image from the device
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncCanGetImageActionSubscribe { string, style in
+    print("The AI dial has received another image from the device:\(string)\(style)")
+    let img = UIImage(named: "test_390_450") // This is a test image. Normally, if the image is generated by AI, it needs to be integrated with AI for implementation
+    if let pngData = UIImagePNGRepresentation(img!) {
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendImageData(pngData)
+    }
+}
+```
+
+
+
+```objective-c
+/// Monitoring device triggers sending AI dial
+///  - result: start:Whether to start,success:Whether it is successful image:Completed image transmission
+- (void)veepooSDK_aiFuncImageTransformResultSubscribe:(void (^)(BOOL start, BOOL success, UIImage *image))result
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                      |
+| --------- | -------------- | ---------------------------- |
+| start     | BOOL           | Whether to start             |
+| success   | BOOL           | Whether it is successful     |
+| image     | UIImage        | Completed image transmission |
+
+### Sample Code
+
+```swift
+// AI dial received device settings dial
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncImageTransformResultSubscribe { [weak self] start, success, image in
+    if start {
+        print("Start transmission")
+    } else {
+        if success {
+            print("Transmission complete")
+        }
+    }
+}
+
+```
+
+
+
+```objective-c
+/// Send AI dial preview image
+/// /// - Parameters:
+///  - imageData: Convert images to NSData
+- (void)veepooSDK_aiFuncSendImageData:(NSData *)imageData
+```
+
+### Sample Code
+
+```swift
+let img = UIImage(named: "test_390_450") // This is a test image. Normally, if the image is generated by AI, it needs to be integrated with AI for implementation
+if let pngData = UIImagePNGRepresentation(img!) {
+    VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendImageData(pngData)
+}
+```
+

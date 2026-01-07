@@ -45,6 +45,14 @@
 #import "VPMicroTestModel.h"
 #import "VPManualMeasurementMicroTestModel.h"
 #import "VPAccelerationModel.h"
+#import "VPHealthFunctionModel.h"
+#import "VPGSRResultModel.h"
+#import "VPHealthGlanceTestModel.h"
+#import "VP4GFunctionConfigurationInfoModel.h"
+#import "VPDeviceSportControlModel.h"
+#import "VPDeviceSportWithGPSModel.h"
+#import "VPDeviceSportModel.h"
+
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,
 VPManualTestDataModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
@@ -1116,7 +1124,7 @@ VPManualTestDataModel;
 ///   - sendResult:结果回调
 -(void)veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData:(void(^)(NSMutableArray <VPAccelerationModel*> *array))sendResult;
 
-#pragma mark 微体检
+#pragma mark 微体检(定制项目)
 
 //开启/关闭微体检
 /// - Parameters:
@@ -1156,6 +1164,153 @@ VPManualTestDataModel;
 ///   - result: 回调函数
 - (void)veepooSDK_stressTestStart:(BOOL)start
                            result:(void (^)(VPDeviceStressTestState state, NSInteger progress, NSInteger stress))result;
+
+#pragma mark - 健康辅助功能控制
+
+/// 读取健康辅助功能支持的列表类型
+/// - Parameter result: 健康辅助功能列表回调
+- (void)veepooSDK_readFuncAssessment:(void (^)(NSArray<VPHealthFunctionModel *> *))result;
+
+/// 设置健康辅助功能，开启或关闭
+/// - Parameters:
+///   - type: 对应类型，从peripheralModel获取VPFuncAssessmentType
+///   - open: 开启或关闭
+///   - result: 结果，成功或失败
+- (void)veepooSDK_setFuncAssessmentWithType:(VPFuncAssessmentType)type open:(BOOL)open result:(void(^)(BOOL))result;
+
+#pragma mark - 皮电功能
+
+/// - Parameters:
+///   - start:YES 开启 NO 关闭
+///   - progress :进度回调
+///   - testResult :结束成功回调
+- (void)veepooSDKTestGSRStart:(BOOL)start
+                     progress:(void(^)(NSProgress *progress))progress
+                   testResult:(void(^)(VPDeviceGSRState state, VPGSRResultModel *model))testResult;
+
+#pragma mark 微体检(公版)
+
+//开启/关闭微体检
+/// - Parameters:
+///   - open:YES 开启 NO 关闭
+///   - progressResult :进度回调
+///   - result :结束成功回调
+-(void)veepooSDK_healthGlanceTestStart:(BOOL)start andProgress:(void(^)(NSInteger progress))progressResult andResult:(void(^)(VPDeviceHealthGlanceState state,VPHealthGlanceTestModel *healthGlanceModel))result;
+
+#pragma mark - AI功能
+
+//监听设备AI功能使用情况
+- (void)veepooSDK_aiFuncOpusDataSubscribe:(void (^)(VPCurrentAIFunctionType, NSData *opusData))result;
+
+// 发送语音转成文字的结果给设备
+/// - Parameters:
+///  - resultStr: 结果文字
+- (void)veepooSDK_aiFuncSendSpeechConvertWithTextResult:(NSString *)resultStr;
+
+// 发送AI回答的结果给设备
+/// - Parameters:
+///  - resultStr: 结果文字
+- (void)veepooSDK_aiFuncSendChatAnswerWithTextResult:(NSString *)resultStr;
+
+// 监听设备触发AI再次回答
+/// - Parameters:
+///  - askBlock: 结果文字
+- (void)veepooSDK_aiFuncReceiveAnswerAgainSubscribe:(void (^)(NSString *))askBlock;
+
+/// AI表盘 监听收到了设备获取图片
+/// - Parameters:
+///  - result: lastAsk:结果文字,style:图片风格
+- (void)veepooSDK_aiFuncCanGetImageActionSubscribe:(void (^)(NSString *lastAsk, NSInteger style))result;
+
+/// 发送AI表盘预览图
+/// /// - Parameters:
+///  - imageData: 图片转成NSData
+- (void)veepooSDK_aiFuncSendImageData:(NSData *)imageData;
+
+/// 监听设备触发发送AI表盘
+///  - result: start:是否开始,success:是否成功 image:发送的图片
+- (void)veepooSDK_aiFuncImageTransformResultSubscribe:(void (^)(BOOL start, BOOL success, UIImage *image))result;
+
+/// APP端AI流程异常主动下发中断，如网络异常，敏感词等
+/// - Parameter type: 异常类型
+- (void)veepooSDK_aiFuncProcessAnomalyWithType:(VPAIFunctionTaskStatusType)type;
+
+/// 外部网络状态变更，赋值，保证AI流程在无网络情况下能正确结束和相应
+/// - Parameter status: 网络状态
+- (void)veepooSDK_aiFuncAINetworkStatus:(VPAINetworkStatus)status;
+
+/// 各种异常情况，App主动下发【终止交互】指令
+- (void)veepooSDK_aiFuncSendEndInteractionData;
+
+/// APP 外部是否正在同步数据中
+- (void)veepooSDK_aiFuncAppIsReadingHealthData:(BOOL)reading;
+
+#pragma mark - 4G功能
+/// 读取 4G 设备配置信息
+- (void)veepooSDK_read4GDeviceConfigInfoSubscribe:(void (^)(BOOL isReadAckInfo, VP4GFunctionConfigurationInfoModel *deviceConfigInfo))result;
+/// 发送 4G 设备信息核准成功
+- (void)veepooSDK_sendVerifyInfoSucc;
+/// 绑定设备
+/// - Parameter account: App 账号
+/// - Parameter password: App 随机生成的密码
+/// - Parameter callback: 绑定结果
+- (void)veepooSDK_bind4GDeviceAccount:(NSString *)account password:(NSString *)password callback:(void (^)(BOOL isSucc))result;
+
+/// 绑定设备，发送 App 账号是否在设备端生效
+/// - Parameter state: 生效状态 （0 无效、1 有效）
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modifyAccountValidState:(NSInteger)state callback:(void (^)(BOOL isSucc))result;
+
+/// 修改移动网络开关启用状态
+/// - Parameter state: 开启状态
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modify4GSwitchEnableState:(NSInteger)state callback:(void (^)(BOOL isSucc))result;
+
+/// 修改移动数据同步开关启用状态
+/// - Parameter state: 开启状态
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modify4GSyncSwitchEnableState:(NSInteger)state callback:(void (^)(BOOL isSucc))result;
+
+/// 修改设备数据上报间隔时间
+/// - Parameter time: 时间间隔
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modifySyncTimeInterval:(NSInteger)time callback:(void (^)(BOOL isSucc))result;
+
+/// 修改设备MQTT配置
+/// - Parameter host: IP
+/// - Parameter port: 端口
+/// - Parameter callback: 修改结果
+- (void)veepooSDK_modifyMQTTConfig:(NSString *)host port:(NSInteger)port callback:(void (^)(BOOL isSucc))result;
+
+#pragma mark - 运动控制
+
+/// 读取设备存储的运动模式数据CRC列表
+/// - Parameter result: CRC数组回调，NSNumber 的类型是 uint16
+- (void)readDeviceSportCRCArr:(void(^)(bool success, NSArray<NSNumber *> * _Nullable))result;
+
+/// 读取给定CRC列表的运动模式详情数据
+/// - Parameters:
+///   - crcArr: CRC列表，由读取接口获取，并在应用层过滤已经读取的CRC
+///   - result: 读取结果回调
+- (void)readDeviceSportWithCRC:(NSArray<NSNumber *> *)crcArr result:(void(^)(NSArray<VPDeviceSportModel *> * _Nullable, NSArray<VPDeviceSportWithGPSModel *> * _Nullable))result;
+
+/// 读取当前设备的运动状态
+- (void)veepooSDK_readDeviceSportState;
+
+/// 订阅当前设备运动状态的变更接口
+/// - Parameter result: callback
+- (void)veepooSDK_deviceSportRunninStateSubscribe:(void (^)(VPSportControlRunState))result;
+
+
+/// 订阅当前设备运动信息的变更接口
+/// - Parameter result: callback
+- (void)veepooSDK_deviceSportInfoSubscribe:(void (^)(VPDeviceSportControlModel *))result;
+
+/// 运动模式控制接口
+/// - Parameters:
+///   - code: 操作符
+///   - type: 运动模式类型
+- (void)veepooSDK_deviceSportControlWithCode:(VPDeviceSportControlOpCode)code type:(VPDeviceRuningMode)type;
 
 @end
 

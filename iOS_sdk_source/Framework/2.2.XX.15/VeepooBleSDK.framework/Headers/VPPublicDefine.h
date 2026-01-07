@@ -648,3 +648,78 @@ typedef NS_ENUM(NSUInteger, VPZT163AlwaysOffScreenState) {
     VPZT163AlwaysOffScreenStateOpen = 0x01,
     VPZT163AlwaysOffScreenStateClose = 0x02
 };
+
+// 皮电测量状态
+typedef NS_ENUM(NSUInteger, VPDeviceGSRState) {
+    VPDeviceGSRStateNoFunction,    // 设备没有此功能
+    VPDeviceGSRStateDeviceBusy,    // 设备正忙不能开始测试
+    VPDeviceGSRStateOver,          // 测试正常结束，人为结束
+    VPDeviceGSRStateLowPower,      // 设备低电
+    VPDeviceGSRStateFailure,       // 测试失败
+    VPDeviceGSRStateNotWear,       // 设备佩戴检测未通过
+    VPDeviceGSRStateComplete,      // 测试已经完成
+};
+
+// 微体检测量状态(公版)
+typedef NS_ENUM(NSUInteger, VPDeviceHealthGlanceState) {
+    VPDeviceHealthGlanceStateNoFunction,    // 设备没有此功能
+    VPDeviceHealthGlanceStateDeviceBusy,    // 设备正忙不能开始测试
+    VPDeviceHealthGlanceStateOver,          // 测试正常结束，人为结束
+    VPDeviceHealthGlanceStateLowPower,      // 设备低电
+    VPDeviceHealthGlanceStateFailure,       // 测试失败
+    VPDeviceHealthGlanceStateNotWear,       // 设备佩戴检测未通过
+    VPDeviceHealthGlanceStateComplete,      // 测试已经完成
+    VPDeviceHealthGlanceStateNotLead,      // 导联脱落
+};
+
+// 微体检支持的功能(公版)
+typedef NS_OPTIONS(NSUInteger, VPHealthGlanceType) {
+    VPHealthGlanceTypeNone             = 0,        // 不支持
+    VPHealthGlanceTypeHeartValue       = 1 << 0,   // 心率
+    VPHealthGlanceTypeBloodOxy         = 1 << 1,   // 血氧
+    VPHealthGlanceTypePpgBp            = 1 << 2,   // 光电血压
+    VPHealthGlanceTypeCuffBp           = 1 << 3,   // 气泵血压
+    VPHealthGlanceTypeBloodGlucose     = 1 << 4,   // 血糖
+    VPHealthGlanceTypeBodyTemp         = 1 << 5,   // 体温
+    VPHealthGlanceTypeStress           = 1 << 6,   // 压力
+    VPHealthGlanceTypeEmotion          = 1 << 7,   // 情绪
+    VPHealthGlanceTypeFatigue          = 1 << 8,   // 疲劳度
+    VPHealthGlanceTypeHRV              = 1 << 9,  // HRV
+    VPHealthGlanceTypeGSR              = 1 << 10,  // 皮电
+    VPHealthGlanceTypeBloodComp        = 1 << 11,  // 血液成分
+    VPHealthGlanceTypeBodyComp         = 1 << 12,  // 身体成分
+    VPHealthGlanceTypeECGNormal        = 1 << 13,  // ECG-单诊断
+    VPHealthGlanceTypeECGMulDia        = 1 << 14,  // ECG-多诊断
+};
+
+// 当前AI事件类型
+typedef NS_ENUM(NSUInteger, VPCurrentAIFunctionType){
+    VPCurrentAIFunctionTypeEndInteraction,          // 非AI功能进行中
+    VPCurrentAIFunctionTypeDeviceAIChatUsing,       // 设备端正在使用AI问答功能
+    VPCurrentAIFunctionTypeDeviceAIDialUsing,       // 设备端正在使用AI表盘功能
+    VPCurrentAIFunctionTypeAppAIChatUsing,          // App端正在使用AI问答功能
+    VPCurrentAIFunctionTypeAppAIDialUsing,          // App端正在使用AI表盘功能
+};
+
+// 事件状态，成功、失败、没有网络（如语音识别、问答、文生图）
+typedef NS_ENUM(uint8_t, VPAIFunctionTaskStatusType){
+    VPAIFunctionTaskStatusTypeSuccess,                        // 成功
+    VPAIFunctionTaskStatusTypeFailure,                        // 失败
+    VPAIFunctionTaskStatusTypeNetworkError,                   // 网络错误
+    VPAIFunctionTaskStatusTypeSensitiveWords,                 // 敏感词
+    VPAIFunctionTaskStatusTypeSpeechRecognitionFailure,       // 语言识别失败
+};
+
+typedef NS_ENUM(uint8_t, VPAINetworkStatus){
+    VPAINetworkStatusNotReachable,              // 不可用
+    VPAINetworkStatusReachableViaWiFi,
+    VPAINetworkStatusReachableViaWWAN
+};
+
+// 运动模式控制操作符
+typedef NS_ENUM(NSUInteger, VPDeviceSportControlOpCode) {
+    VPDeviceSportControlOpCodeStart = 0x01,
+    VPDeviceSportControlOpCodePause = 0x02,
+    VPDeviceSportControlOpCodeContinue = 0x03,
+    VPDeviceSportControlOpCodeStop = 0x04,
+};

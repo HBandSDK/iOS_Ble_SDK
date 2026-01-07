@@ -84,7 +84,7 @@
 
 #import "VPImageTransmissionModel.h"
 #import "VPFileHandleManager.h"
-
+#import "VPOpusHandle.h"
 //! Project version number for VeepooBleSDK.
 FOUNDATION_EXPORT double VeepooBleSDKVersionNumber;
 

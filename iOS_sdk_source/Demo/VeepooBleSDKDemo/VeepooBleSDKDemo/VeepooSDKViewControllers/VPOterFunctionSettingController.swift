@@ -60,9 +60,15 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("中医诊断定制","VPJM19AViewController"),
         .init("图文传输","VPTextImageTransmissionViewController"),
         .init("JH58PPG和加速度原始数据","VPPPGAccelerationViewController"),
-        .init("微体检","VPMicroTestViewController"),
+        .init("微体检(公版)", "VPHealthGlanceViewController"),
+        .init("微体检(定制)","VPMicroTestViewController"),
         .init("ZT163常灭屏", "VPAlwaysOffScreenViewController"),
-        .init("压力测量","VPStressTestViewController")
+        .init("压力测量","VPStressTestViewController"),
+        .init("健康辅助功能","VPHealthFuncAssessmentViewController"),
+        .init("皮电", "VPGSRViewController"),
+        .init("AI功能", "VPAIViewController"),
+        .init("4G功能", "VP4GViewController"),
+        .init("App开启设备运动(戒指,无屏手环)", "VPDeviceSportViewController")
     ]
     
     override func viewDidLoad() {
@@ -113,6 +119,8 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
             VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendPairedWithIphoneCommand()
             return
         }
+        
+        
         
         let controllerClass: AnyClass? = NSClassFromString(nameSpace + "." + controllerName)
         
