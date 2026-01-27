@@ -642,11 +642,11 @@ typedef NS_ENUM(NSUInteger, VPJH58MeasurementModeState) {
     VPJH58MeasurementModeStateModeTwo = 0x03,
 };
 
-// 测量模式类型
-typedef NS_ENUM(NSUInteger, VPZT163AlwaysOffScreenState) {
-    VPZT163AlwaysOffScreenStateNoSup = 0x00,
-    VPZT163AlwaysOffScreenStateOpen = 0x01,
-    VPZT163AlwaysOffScreenStateClose = 0x02
+// 常灭屏功能状态
+typedef NS_ENUM(NSUInteger, VPZT163AlwaysOffScreenFunc) {
+    VPZT163AlwaysOffScreenFuncNoSup = 0x00,
+    VPZT163AlwaysOffScreenFuncClose = 0x01,
+    VPZT163AlwaysOffScreenFuncOpen = 0x02
 };
 
 // 皮电测量状态

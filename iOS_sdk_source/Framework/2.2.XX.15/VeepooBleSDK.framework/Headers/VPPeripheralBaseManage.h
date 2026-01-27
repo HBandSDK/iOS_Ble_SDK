@@ -52,6 +52,7 @@
 #import "VPDeviceSportControlModel.h"
 #import "VPDeviceSportWithGPSModel.h"
 #import "VPDeviceSportModel.h"
+#import "VPQH15GNSSLocationModel.h"
 
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,
 VPManualTestDataModel;
@@ -1154,7 +1155,7 @@ VPManualTestDataModel;
 // 获取设备常灭屏功能状态
 /// - Parameters:
 ///   - sendResult :结果回调
-- (void)veepooSDK_ZT163GetDeviceAlwaysOffScreenState:(void(^)(VPZT163AlwaysOffScreenState state))sendResult;
+- (void)veepooSDK_ZT163GetDeviceAlwaysOffScreenState:(void(^)(VPZT163AlwaysOffScreenFunc state))sendResult;
 
 #pragma mark - 压力功能
 
@@ -1312,6 +1313,31 @@ VPManualTestDataModel;
 ///   - type: 运动模式类型
 - (void)veepooSDK_deviceSportControlWithCode:(VPDeviceSportControlOpCode)code type:(VPDeviceRuningMode)type;
 
+
+#pragma mark QH15 亲情守护功能
+
+/// 设置安全守护状态
+/// - Parameters:
+///     - isOpen: YES:开启 NO:关闭
+///     - time: UTC时间戳
+///     - result: callback
+- (void)veepooSDK_QH15SetProtectionOpen:(BOOL)isOpen time:(uint32_t)time callBack:(void(^)(VPQH15SetProtectionFuncAckState ackState))result;
+
+/// 设置GNSS实时位置数据
+/// - Parameters:
+///     - model: 位置数据
+///     - type: 请求/推送
+- (void)veepooSDK_QH15SetGNSSRealTimeData:(VPQH15GNSSLocationModel *)model type:(VPQH15SPType)type;
+
+/// 监听安全守护状态通知
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QH15ProtectionResultSubscribe:(void(^)(BOOL isOpen, uint32_t time))result;
+
+/// 监听GNSS实时位置数据通知
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QH15GNSSLocationResultSubscribe:(void(^)(VPQH15SPType funcType, VPQH15GNSSLocationModel *locationModel))result;
 @end
 
 

@@ -226,6 +226,9 @@
 //HRV是否支持全天 YES:支持00:00到23:59,NO:支持00:00到08:00
 @property (nonatomic, assign) BOOL hrvSupportAllDay;
 
+//安全守护
+@property (nonatomic, assign) BOOL securityProtection;
+
 //mtu size
 @property (nonatomic, assign, readonly) NSInteger mtu;
 

@@ -235,7 +235,8 @@
 + (NSArray *)veepooSDKGetDeviceOxygenDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID;
 
 /**
- 获取设备的某一天的hrv数据，没有此功能
+ 获取设备的某一天的hrv数据，注意洛伦兹散点图是去0～7点的VPHRVHeartsKey数据绘制的
+ 洛伦兹散点图绘制方法可以从VPRRIntervalDataHRVHandle类中的方法获取(需具备权限，先商务沟通)
  
  @param queryDate 要查询的日期格式为2015-02-05
  @param tableID 设备的mac地址，获取哪个设备的数据
