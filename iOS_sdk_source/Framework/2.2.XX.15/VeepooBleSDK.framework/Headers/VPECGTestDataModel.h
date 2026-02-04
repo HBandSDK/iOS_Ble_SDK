@@ -109,11 +109,18 @@ typedef enum : int {
 //保存到数据库要忽略的属性
 + (NSArray<NSString *> *)ignoreProperties;
 
+/// 获取增益值
+- (NSUInteger)getGainValue;
+
 /// ADC转换电压方法，用来计算纵向(即y轴)的值，返回的值是mv，每个最小单元格表示0.1mv
 /// 如果传入的ADC值不为0，但是返回的值全为0，则表示SDK未适配该ecgType类型。
 /// - Parameter value: ADC值，filterSignals 中的值
 /// - Parameter ectType: ECG的类型，传ecgType
 /// - Parameter testType: 测试类型，传type
-+ (CGFloat)convertToMvWithValue:(CGFloat)value ecgType:(NSString *)ecgType testType:(NSString *)testType;
+/// - Parameter gain: 增益值，frome VPECGTestDataModel 实例的 getGainValue 方法
++ (CGFloat)convertToMvWithValue:(CGFloat)value
+                        ecgType:(NSString *)ecgType
+                       testType:(NSString *)testType
+                           gain:(NSUInteger)gain;
 
 @end
