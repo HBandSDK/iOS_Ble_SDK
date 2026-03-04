@@ -1321,7 +1321,7 @@ VPManualTestDataModel;
 ///     - isOpen: YES:开启 NO:关闭
 ///     - time: UTC时间戳
 ///     - result: callback
-- (void)veepooSDK_QH15SetProtectionOpen:(BOOL)isOpen time:(uint32_t)time callBack:(void(^)(VPQH15SetProtectionFuncAckState ackState))result;
+- (void)veepooSDK_QH15SetProtectionOpen:(BOOL)isOpen callBack:(void(^)(VPQH15SetProtectionFuncAckState ackState))result;
 
 /// 设置GNSS实时位置数据
 /// - Parameters:

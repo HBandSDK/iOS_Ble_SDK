@@ -14,10 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)shareInstance;
 
-@property (nonatomic, assign) BOOL protectionOpenState;
-
-@property (nonatomic, assign) int32_t openTime;
-
 @end
 
 NS_ASSUME_NONNULL_END

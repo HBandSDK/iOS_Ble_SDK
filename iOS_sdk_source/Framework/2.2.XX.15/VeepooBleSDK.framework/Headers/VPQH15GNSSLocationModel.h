@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VPQH15GNSSLocationModel : NSObject
 
 //蓝牙RSSI
-@property (nonatomic, assign) uint8_t rssi;
+@property (nonatomic, assign) int rssi;
 
 //经纬度
 @property (nonatomic, assign) CLLocationCoordinate2D location;

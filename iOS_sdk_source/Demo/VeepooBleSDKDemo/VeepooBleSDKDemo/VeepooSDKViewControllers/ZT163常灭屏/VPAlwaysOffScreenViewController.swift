@@ -14,7 +14,7 @@ class VPAlwaysOffScreenViewController: UIViewController {
     
     private var titleLab: UILabel!
     
-    private var state: VPZT163AlwaysOffScreenState?
+    private var state: VPZT163AlwaysOffScreenFunc?
     
     override func viewDidLoad() {
         super.viewDidLoad()

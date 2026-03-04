@@ -227,7 +227,7 @@
 @property (nonatomic, assign) BOOL hrvSupportAllDay;
 
 //安全守护
-@property (nonatomic, assign) BOOL securityProtection;
+@property (nonatomic, assign) NSInteger securityProtection;
 
 //mtu size
 @property (nonatomic, assign, readonly) NSInteger mtu;
