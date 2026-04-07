@@ -54,8 +54,7 @@
 #import "VPDeviceSportModel.h"
 #import "VPQH15GNSSLocationModel.h"
 
-@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,
-VPManualTestDataModel;
+@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
 //Connected device model 连接的设备模型
@@ -88,6 +87,8 @@ VPManualTestDataModel;
 
 /// 多导心电蓝牙响应代理
 @property (nonatomic, weak) id<VPECGMultiLeadBLEDelegate> ecgMultiLeadBLEDelegate;
+
+@property (nonatomic, assign) VPManualTestDataType supportManualTestType;
 
 //Send firmware upgrade command, used internally by SDK
 //发送固件升级命令，SDK内部使用

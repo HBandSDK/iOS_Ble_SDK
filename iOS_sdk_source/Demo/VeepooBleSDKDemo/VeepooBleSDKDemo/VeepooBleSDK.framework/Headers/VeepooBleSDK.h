@@ -48,6 +48,11 @@
 #import "VPAutoMonitTestModel.h"
 #import "VPManualTestDataModel.h"
 #import "VPManualBloodPressureModel.h"
+#import "VPManualBodyTempModel.h"
+#import "VPManualBloodCompModel.h"
+#import "VPManualHeartRateModel.h"
+#import "VPManualBloodOxygenModel.h"
+#import "VPManualBloodSugarModel.h"
 
 #import "VPSyncPersonalInfo.h"
 

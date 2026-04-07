@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 测量时间戳
 @property (nonatomic, assign) uint32_t timestamp;
-/// 测量模式 0光电，1气囊
+/// 测量模式 0光电，1气囊(设备带气囊)
 @property (nonatomic, assign) uint8_t testModel;
+/// 测量模式 0普通血压，1气囊血压 (普通血压只有 收缩压和舒张压)
+@property (nonatomic, assign) uint8_t protocol;
 /// 心率
 @property (nonatomic, assign) uint8_t heart;
 /// 收缩压

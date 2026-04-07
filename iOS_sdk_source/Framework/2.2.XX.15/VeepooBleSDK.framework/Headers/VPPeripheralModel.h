@@ -208,6 +208,12 @@
 //血压类型
 @property (nonatomic, assign) NSUInteger bloodPressureType;
 
+//心率类型
+@property (nonatomic, assign) NSUInteger heartRateType;
+
+//血氧类型
+@property (nonatomic, assign) NSUInteger bloodOxygenType;
+
 //世界时钟类型，0表示不支持
 @property (nonatomic, assign) NSUInteger worldClockType;
 

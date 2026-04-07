@@ -278,6 +278,10 @@ typedef NS_OPTIONS(NSUInteger, VPManualTestDataType) {
     VPManualTestDataNone = 0,
     VPManualTestDataBloodPressure = 1 << 0,
     VPManualTestDataHeartRate = 1 << 1,
+    VPManualTestDataBloodSugar  = 1 << 2,
+    VPManualTestDataBloodOxygen  = 1 << 4,
+    VPManualTestDataTemperature = 1 << 5,
+    VPManualTestDataBloodComponents = 1 << 8,
     VPManualTestDataAll = 0xFFFFFFFF
 };
 
