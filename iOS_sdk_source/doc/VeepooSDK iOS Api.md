@@ -20,6 +20,7 @@
 | 1.1.5 | 添加健康辅助功能，皮电和微体检（公版）功能                   | 2025.12.30 |
 | 1.1.6 | 添加4G功能和APP开启戒指的运动功能                            | 2026.01.05 |
 | 1.1.7 | 添加AI功能                                                   | 2026.01.07 |
+| 1.1.8 | 添加心率 血压 体温 血氧 血液成分 血糖手动测量数据获取        | 2026.04.02 |
 
 # SDK初始化
 
@@ -5101,11 +5102,11 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKReadAutoMonitSwi
         }
 ```
 
-# 手动测量存储数据-气泵血压
+# 手动测量存储数据
 
 ### 前提
 
-支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.bloodPressureType判断，为3表示支持气泵血压的读取
+支持该功能，通过VPBleCentralManage.sharedBleManager().peripheralManage.supportManualTestType判断
 
 ### 类名
 
@@ -5124,7 +5125,23 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKReadAutoMonitSwi
                                  result:(void(^)(VPManualTestDataModel *))result;
 ```
 
+
+
 ### 参数解释
+
+VPManualTestDataType，通过supportManualTestType是否包含以下类型判断是否支持读取对应功能手动测量存储数据。同样通过以下类型查询对应的数据
+
+| 参数                            | 参数类型   | 备注     |      |
+| ------------------------------- | ---------- | -------- | ---- |
+| VPManualTestDataBloodPressure   | NSUInteger | 血压     |      |
+| VPManualTestDataHeartRate       | NSUInteger | 心率     |      |
+| VPManualTestDataBloodSugar      | NSUInteger | 血糖     |      |
+| VPManualTestDataBloodOxygen     | NSUInteger | 血氧     |      |
+| VPManualTestDataTemperature     | NSUInteger | 体温     |      |
+| VPManualTestDataBloodComponents | NSUInteger | 血液成分 |      |
+| VPManualTestDataAll             | NSUInteger | 所有     |      |
+
+
 
 VPManualTestDataModel
 
@@ -5132,6 +5149,11 @@ VPManualTestDataModel
 | ---------------- | --------------------------------------- | ------------ |
 | mac              | NSString                                | 设备MAC      |
 | bloodPressureArr | NSArray<VPManualBloodPressureModel *> * | 血压数据数组 |
+| bodyTempArr      | NSArray<VPManualBodyTempModel *> *      | 体温数组     |
+| bloodCompArr     | NSArray<VPManualBloodCompModel *> *     | 血液成分数组 |
+| heartRateArr     | NSArray<VPManualHeartRateModel *> *     | 心率数组     |
+| bloodOxygenArr   | NSArray<VPManualBloodOxygenModel *> *   | 血氧数组     |
+| bloodSugarArr    | NSArray<VPManualBloodSugarModel *> *    | 血糖数组     |
 
 VPManualBloodPressureModel
 
@@ -5148,26 +5170,95 @@ VPManualBloodPressureModel
 | weight      | uint8_t  | 体重                                                         |
 | age         | uint8_t  | 年龄                                                         |
 | sex         | uint8_t  | 性别 0:女 1:男                                               |
+| protocol    | uint8_t  | 0普通血压，1气囊血压 (普通血压参数只有 收缩压和舒张压)       |
+
+VPManualBodyTempModel
+
+| 参数      | 参数类型 | 备注              |
+| --------- | -------- | ----------------- |
+| timestamp | uint32_t | 测量时间戳，秒级  |
+| bodyTemp  | uint16_t | 体温              |
+| origTemp  | uint16_t | 原始温度-皮肤温度 |
+
+VPManualBloodCompModel
+
+| 参数                   | 参数类型 | 备注                   |
+| ---------------------- | -------- | ---------------------- |
+| timestamp              | uint32_t | 测量时间戳，秒级       |
+| totalCholesterol       | uint16_t | 总胆固醇（umol/L）     |
+| triglyceride           | uint16_t | 甘油三酯（mmol/L）     |
+| highDensityLipoprotein | uint16_t | 高密度脂蛋白（mmol/L） |
+| lowDensityLipoprotein  | uint16_t | 低密度脂蛋白（mmol/L） |
+| uricAcid               | uint16_t | 尿酸值（mmol/L）       |
+
+VPManualHeartRateModel
+
+| 参数       | 参数类型 | 备注             |
+| ---------- | -------- | ---------------- |
+| timestamp  | uint32_t | 测量时间戳，秒级 |
+| heartArray | NSArray  | 心率数组         |
+
+VPManualBloodOxygenModel
+
+| 参数             | 参数类型 | 备注             |
+| ---------------- | -------- | ---------------- |
+| timestamp        | uint32_t | 测量时间戳，秒级 |
+| bloodOxygenArray | NSArray  | 血氧数组         |
+
+VPManualBloodSugarModel
+
+| 参数            | 参数类型 | 备注                          |
+| --------------- | -------- | ----------------------------- |
+| timestamp       | uint32_t | 测量时间戳，秒级              |
+| bloodSugarValue | uint16_t | 血糖值                        |
+| haveLevel       | BOOL     | 是否有血糖风险等级            |
+| bloodSugarLevel | uint8_t  | 血糖风险等级 (1,2,3 低 中 高) |
 
 ### 示例代码
 
 ```swift
 // 可以从DB中获取当前设备最近的同步过的时间戳
-        let timestamp: UInt32 = 0
-        VPBleCentralManage.sharedBleManager().peripheralManage.readManualTestData(withTimestamp: timestamp,
-                                                                                  dataType: .bloodPressure) { [weak self] model in
-            guard let someModel = model else {
-                return
-            }
-            self?.readBtn.isEnabled = true
-            // 将日志内容输出到 UITextView 中
-            let logText = "someModel = \(someModel.bloodPressureArr)"
-            if let existingText = self?.logTextView.text {
-                self?.logTextView.text = existingText + "\n" + logText
-            } else {
-                self?.logTextView.text = logText
-            }
-        }
+let timestamp: UInt32 = UInt32(self.checkTimeInterval)
+VPBleCentralManage.sharedBleManager().peripheralManage.readManualTestData(withTimestamp: timestamp,
+                                                                          dataType: dataType) { [weak self] model in
+    self?.btnEnabled(true)
+    guard let someModel = model else {
+        self?.logTextView.text += "\n" + "无数据"
+        return
+    }
+
+    // 将日志内容输出到 UITextView 中
+    var logText = ""
+    if !someModel.bloodPressureArr.isEmpty {
+        logText += "\n" + "血压 = \(someModel.bloodPressureArr)"
+    }
+
+    if !someModel.bodyTempArr.isEmpty {
+        logText += "\n" + "体温 = \(someModel.bodyTempArr)"
+    }
+
+    if !someModel.bloodCompArr.isEmpty {
+        logText += "\n" + "血液成分 = \(someModel.bloodCompArr)"
+    }
+
+    if !someModel.heartRateArr.isEmpty {
+        logText += "\n" + "心率 = \(someModel.heartRateArr)"
+    }
+
+    if !someModel.bloodOxygenArr.isEmpty {
+        logText += "\n" + "血氧 = \(someModel.bloodOxygenArr)"
+    }
+
+    if !someModel.bloodSugarArr.isEmpty {
+        logText += "\n" + "血糖 = \(someModel.bloodSugarArr)"
+    }
+
+    if let existingText = self?.logTextView.text {
+        self?.logTextView.text = existingText + logText
+    } else {
+        self?.logTextView.text = logText
+    }
+}
 ```
 
 # 文本传输

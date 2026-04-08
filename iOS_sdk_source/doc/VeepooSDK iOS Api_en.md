@@ -20,6 +20,7 @@
 | 1.1.5   | Add Health Assistance，GSR and Health Glance functions       | 2025.12.30        |
 | 1.1.6   | Add 4G function and activate the ring's sports function through the app | 2026.01.05        |
 | 1.1.7   | Add AI function                                              | 2026.01.07        |
+| 1.1.8   | Add manual measurement data retrieval for heart rate, blood pressure, body temperature, blood oxygen, blood components, and blood glucose | 2026.04.02        |
 
 # SDK initialization
 
@@ -5085,11 +5086,11 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKReadAutoMonitSwi
         }
 ```
 
-# Manually Measured Stored Data - Air Pump Blood Pressure
+# Manually Measured Stored Data
 
 ### Precondition
 
-This function is supported. It can be determined by VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.bloodPressureType. A value of 3 indicates support for reading air pump blood pressure.
+This function is supported. It can be determined by VPBleCentralManage.sharedBleManager().peripheralManage.supportManualTestType
 
 ### Class Name
 
@@ -5110,6 +5111,20 @@ This function is supported. It can be determined by VPBleCentralManage.sharedBle
 
 ### Parameter Explanation
 
+VPManualTestDataType。Based on whether `supportManualTestType` contains the following types, determine whether reading the corresponding function's manual measurement storage data is supported. Similarly, query the corresponding data through the following types.
+
+| Parameter                       | Parameter Type | Remarks          |      |
+| ------------------------------- | -------------- | ---------------- | ---- |
+| VPManualTestDataBloodPressure   | NSUInteger     | blood pressure   |      |
+| VPManualTestDataHeartRate       | NSUInteger     | heart rate       |      |
+| VPManualTestDataBloodSugar      | NSUInteger     | blood sugar      |      |
+| VPManualTestDataBloodOxygen     | NSUInteger     | blood oxygen     |      |
+| VPManualTestDataTemperature     | NSUInteger     | body temperature |      |
+| VPManualTestDataBloodComponents | NSUInteger     | blood components |      |
+| VPManualTestDataAll             | NSUInteger     | All              |      |
+
+
+
 VPManualTestDataModel
 
 
@@ -5118,6 +5133,11 @@ VPManualTestDataModel
 | ---------------- | --------------------------------------- | ------------------------- |
 | mac              | NSString                                | Device MAC                |
 | bloodPressureArr | NSArray<VPManualBloodPressureModel *> * | Blood pressure data array |
+| bodyTempArr      | NSArray<VPManualBodyTempModel *> *      | Temperature array         |
+| bloodCompArr     | NSArray<VPManualBloodCompModel *> *     | Blood component array     |
+| heartRateArr     | NSArray<VPManualHeartRateModel *> *     | Heart rate array          |
+| bloodOxygenArr   | NSArray<VPManualBloodOxygenModel *> *   | Blood oxygen array        |
+| bloodSugarArr    | NSArray<VPManualBloodSugarModel *> *    | Blood glucose array       |
 
 
 
@@ -5138,26 +5158,96 @@ VPManualBloodPressureModel
 | weight      | uint8_t        | Weight                                                       |
 | age         | uint8_t        | Age                                                          |
 | sex         | uint8_t        | Gender: 0 for female, 1 for male                             |
+| protocol    | uint8_t        | 0: Regular blood pressure, 1: Air-cuff blood pressure (Regular blood pressure parameters only include systolic and diastolic pressure) |
+
+VPManualBodyTempModel
+
+| Parameter | Parameter Type | Remarks                            |
+| --------- | -------------- | ---------------------------------- |
+| timestamp | uint32_t       | Measurement timestamp, in seconds  |
+| bodyTemp  | uint16_t       | body temperature                   |
+| origTemp  | uint16_t       | Raw temperature - Skin temperature |
+
+VPManualBloodCompModel
+
+| Parameter              | Parameter Type | Remarks                           |
+| ---------------------- | -------------- | --------------------------------- |
+| timestamp              | uint32_t       | Measurement timestamp, in seconds |
+| totalCholesterol       | uint16_t       | TotalCholesterol（umol/L）        |
+| triglyceride           | uint16_t       | Triglyceride（mmol/L）            |
+| highDensityLipoprotein | uint16_t       | HighDensityLipoprotein（mmol/L）  |
+| lowDensityLipoprotein  | uint16_t       | LowDensityLipoprotein（mmol/L）   |
+| uricAcid               | uint16_t       | UricAcid（mmol/L）                |
+
+VPManualHeartRateModel
+
+| Parameter  | Parameter Type | Remarks                           |
+| ---------- | -------------- | --------------------------------- |
+| timestamp  | uint32_t       | Measurement timestamp, in seconds |
+| heartArray | NSArray        | Heart rate array                  |
+
+VPManualBloodOxygenModel
+
+| Parameter        | Parameter Type | Remarks                           |
+| ---------------- | -------------- | --------------------------------- |
+| timestamp        | uint32_t       | Measurement timestamp, in seconds |
+| bloodOxygenArray | NSArray        | Blood oxygen array                |
+
+VPManualBloodSugarModel
+
+| Parameter       | Parameter Type | Remarks                                            |
+| --------------- | -------------- | -------------------------------------------------- |
+| timestamp       | uint32_t       | Measurement timestamp, in seconds                  |
+| bloodSugarValue | uint16_t       | Blood glucose value                                |
+| haveLevel       | BOOL           | has blood glucose risk level                       |
+| bloodSugarLevel | uint8_t        | bloodGlucoseRiskLevel (1, 2, 3: low, medium, high) |
+
+### 
 
 ### Sample Code
 
 ```swift
 // You can get the latest synchronized timestamp of the current device from the DB
-        let timestamp: UInt32 = 0
-        VPBleCentralManage.sharedBleManager().peripheralManage.readManualTestData(withTimestamp: timestamp,
-                                                                                  dataType: .bloodPressure) { [weak self] model in
-            guard let someModel = model else {
-                return
-            }
-            self?.readBtn.isEnabled = true
-            // Output the log content to the UITextView
-            let logText = "someModel = \(someModel.bloodPressureArr)"
-            if let existingText = self?.logTextView.text {
-                self?.logTextView.text = existingText + "\n" + logText
-            } else {
-                self?.logTextView.text = logText
-            }
-        }
+let timestamp: UInt32 = UInt32(self.checkTimeInterval)
+VPBleCentralManage.sharedBleManager().peripheralManage.readManualTestData(withTimestamp: timestamp,
+                                                                          dataType: dataType) { [weak self] model in
+    self?.btnEnabled(true)
+    guard let someModel = model else {
+        self?.logTextView.text += "\n" + "no data"
+        return
+    }
+
+    var logText = ""
+    if !someModel.bloodPressureArr.isEmpty {
+        logText += "\n" + "Blood pressure = \(someModel.bloodPressureArr)"
+    }
+
+    if !someModel.bodyTempArr.isEmpty {
+        logText += "\n" + "body temperature = \(someModel.bodyTempArr)"
+    }
+
+    if !someModel.bloodCompArr.isEmpty {
+        logText += "\n" + "blood components = \(someModel.bloodCompArr)"
+    }
+
+    if !someModel.heartRateArr.isEmpty {
+        logText += "\n" + "Heart rate = \(someModel.heartRateArr)"
+    }
+
+    if !someModel.bloodOxygenArr.isEmpty {
+        logText += "\n" + "Blood oxygen = \(someModel.bloodOxygenArr)"
+    }
+
+    if !someModel.bloodSugarArr.isEmpty {
+        logText += "\n" + "Blood glucose = \(someModel.bloodSugarArr)"
+    }
+
+    if let existingText = self?.logTextView.text {
+        self?.logTextView.text = existingText + logText
+    } else {
+        self?.logTextView.text = logText
+    }
+}
 ```
 
 # Text Transmission

@@ -442,13 +442,7 @@ class VPRootViewController: UIViewController {
         }
         
         // 需根据不同功能类型去判断
-        let bpSupport: [UInt] = [0x03]
-        let bpType = veepooBleManager.peripheralManage.peripheralModel.bloodPressureType
         
-        guard bpSupport.contains(bpType) else {
-            AppDelegate.showHUD(message: "设备不支持该功能", hudModel: MBProgressHUDModeText, showView: view)
-            return
-        }
         
         let vc: VPManualTestDataVC = .init()
         navigationController?.pushViewController(vc, animated: true)
