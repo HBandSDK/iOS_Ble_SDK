@@ -21,6 +21,7 @@
 | 1.1.6 | 添加4G功能和APP开启戒指的运动功能                            | 2026.01.05 |
 | 1.1.7 | 添加AI功能                                                   | 2026.01.07 |
 | 1.1.8 | 添加心率 血压 体温 血氧 血液成分 血糖手动测量数据获取        | 2026.04.02 |
+| 1.1.9 | 添加Nordic OTA和控制设备是否弹框连接确认                     | 2026.04.16 |
 
 # SDK初始化
 
@@ -7156,5 +7157,97 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncImageTran
 let img = UIImage(named: "test_390_450") // 这是测试图片,正常要是AI生成的图片需自行集成AI实现
 if let pngData = UIImagePNGRepresentation(img!) {
     VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_aiFuncSendImageData(pngData)
+}
+```
+
+# Nordic OTA
+
+### 前提
+
+设备支持使用Nordic固件升级。
+
+### 类名
+
+`VPHNordic54LDFUManager`，可参考Demo中`VPHNordic54LDFUVC`的实现
+
+### 接口
+
+是否支持Nordic固件升级
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupportNordic
+```
+
+1.第一种方式导入iOSMcuManagerLibrary.framework, SwiftCBOR.framework, ZIPFoundation.framework
+
+2.第二种 pod 'iOSMcuManagerLibrary'
+
+### 示例代码
+
+```swift
+// fileURL 固件的URL，固件下载自行实现
+let nordic = VPHNordic54LDFUManager()
+nordic.delegate = self //实现VPHNordic54LDFUManagerDelegate
+nordic.setFileInfo(fileURL)
+nordic.startOTA()
+```
+
+
+
+```objective-c
+// 实现VPHNordic54LDFUManagerDelegate 通过delegate监听升级流程
+  func nordicOtaDidStart() {
+        print("nordicOtaDidStart")
+        stateLabel.text = "Start"
+    }
+    
+    func nordicOtaStateDidChange(from previousState: String, to newState: String) {
+        print("nordicOtaStateDidChange\(previousState)")
+        
+    }
+    
+    func nordicOtaDidComplete() {
+        print("nordicOtaDidComplete")
+        stateLabel.text = "Complete"
+    }
+    
+    func nordicOtaDidFail(inState state: String, error: NSError) {
+        print("nordicOtaDidFail")
+        stateLabel.text = "Fail"
+    }
+    
+    func nordicOtaUploadProgress(bytesSent: Int, imageSize: Int, progress: Float) {
+        print("nordicOtaUploadProgress\(progress)")
+        stateLabel.text = "Progress:\(Int(progress*100))"
+    }
+```
+
+# 控制设备是否弹框连接确认
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPBleCentralManage.sharedBleManager()
+
+### 接口
+
+默认是开启，如果不想使用可以在连接设备时设置成false
+
+```
+VPBleCentralManage.sharedBleManager().deviceShowConfirm = false
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().veepooSDKConnectDevice(p) { [weak self](connectState) in
+    if connectState == .BleConfirmTimeout {
+      //需要注意如果设备超时没有操作，请自行执行设备断连操作，否则设备还是蓝牙连接状态
+      //    VPBleCentralManage.sharedBleManager().peripheralManage.disconnectPhone()
+//          VPBleCentralManage.sharedBleManager().veepooSDKDisconnectDevice()
+    }
 }
 ```

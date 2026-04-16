@@ -82,6 +82,10 @@ class VPScanDeviceViewController: UIViewController , UITableViewDelegate , UITab
             print("验证密码失败")
         case .BleConnectTimeout://连接超时
             print("连接超时")
+        case .BleConfirmTimeout:
+            print("设备上确认超时")
+//            VPBleCentralManage.sharedBleManager().peripheralManage.disconnectPhone()
+//            VPBleCentralManage.sharedBleManager().veepooSDKDisconnectDevice()
         }
     }
     
@@ -115,6 +119,8 @@ class VPScanDeviceViewController: UIViewController , UITableViewDelegate , UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let p = deviceArray[indexPath.row]
         //连接设备
+        /// 取消设备连接确认弹框
+//        VPBleCentralManage.sharedBleManager().deviceShowConfirm = false
         VPBleCentralManage.sharedBleManager().veepooSDKConnectDevice(p) { [weak self](connectState) in
             self?.handleConnectEvent(connectState: connectState)
         }

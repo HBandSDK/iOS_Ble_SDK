@@ -1,0 +1,11 @@
+framework module SwiftCBOR {
+  umbrella header "SwiftCBOR-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module SwiftCBOR.Swift {
+  header "SwiftCBOR-Swift.h"
+  requires objc
+}

@@ -1339,6 +1339,9 @@
 /// - Parameters:
 ///     - result: callback
 - (void)veepooSDK_QH15GNSSLocationResultSubscribe:(void(^)(VPQH15SPType funcType, VPQH15GNSSLocationModel *locationModel))result;
+
+/// 如果调用系统方法断开蓝牙有时没生效,可以先调用这个方法
+- (void)disconnectPhone;
 @end
 
 

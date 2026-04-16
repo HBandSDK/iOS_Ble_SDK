@@ -119,6 +119,8 @@ class VPRootViewController: UIViewController {
                 _ = AppDelegate.showHUD(message: "发现新固件", hudModel: MBProgressHUDModeText, showView: self!.view)
             case .connectStateTimeout:// 连接超时
                 _ = AppDelegate.showHUD(message: "连接超时", hudModel: MBProgressHUDModeText, showView: self!.view)
+            case .confirmStateTimeout:
+                _ = AppDelegate.showHUD(message: "设备确认超时", hudModel: MBProgressHUDModeText, showView: self!.view)
             }
         }
         VPPeripheralManage.shareVPPeripheralManager()?.receiveDeviceSOSCommand = {() -> Void in

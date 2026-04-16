@@ -1,0 +1,11 @@
+framework module iOSMcuManagerLibrary {
+  umbrella header "iOSMcuManagerLibrary-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module iOSMcuManagerLibrary.Swift {
+  header "iOSMcuManagerLibrary-Swift.h"
+  requires objc
+}

@@ -38,6 +38,7 @@ typedef NS_ENUM (NSInteger, VPDeviceConnectState) {
     VPDeviceConnectStateVerifyPasswordFailure,  //验证密码失败
     VPDeviceDiscoverNewUpdateFirm,              //Discover new firmware that can be upgraded 发现可以升级的新固件
     VPDeviceConnectStateTimeout,                //连接超时，如果是自扫描连接，可能是SDK内部没有扫到相同的设备
+    VPDeviceConfirmStateTimeout,                //用户没有在设备上确认是否连接超时
 };
 
 typedef NS_ENUM(NSInteger, DeviceConnectState) {
@@ -48,6 +49,7 @@ typedef NS_ENUM(NSInteger, DeviceConnectState) {
     BleVerifyPasswordSuccess = 4,       //验证密码成功
     BleVerifyPasswordFailure = 5,       //验证密码失败
     BleConnectTimeout = 6,              //连接超时，如果是自扫描连接，可能是SDK内部没有扫到相同的设备
+    BleConfirmTimeout = 7,              //用户没有在设备上确认是否连接超时
 };
 
 typedef NS_ENUM(NSInteger, PasswordSynchronTpye) {

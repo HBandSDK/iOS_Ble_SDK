@@ -123,6 +123,14 @@
 		FE8E3A4726F5E31200065ADB /* VPTextAlarmCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE8E3A4526F5E31200065ADB /* VPTextAlarmCell.xib */; };
 		FE915C0D2D844BF1004417A3 /* VPJM19AViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */; };
 		FE915C0E2D844BF1004417A3 /* VPJM19AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE915C0A2D844BF1004417A3 /* VPJM19AViewController.swift */; };
+		FE9F41B82F91031000247B50 /* iOSMcuManagerLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */; };
+		FE9F41B92F91031000247B50 /* iOSMcuManagerLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FE9F41BA2F91031500247B50 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */; };
+		FE9F41BB2F91031500247B50 /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FE9F41BC2F91031800247B50 /* SwiftCBOR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */; };
+		FE9F41BD2F91031800247B50 /* SwiftCBOR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FE9F41C12F9103A400247B50 /* VPHNordic54LDFUVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9F41BF2F9103A400247B50 /* VPHNordic54LDFUVC.swift */; };
+		FE9F41C22F9103A400247B50 /* VPHNordic54LDFUManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9F41BE2F9103A400247B50 /* VPHNordic54LDFUManager.swift */; };
 		FEA658792D22872100FB7469 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658782D22872100FB7469 /* VeepooBleSDK.framework */; };
 		FEA6587A2D22879A00FB7469 /* ABParTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; };
 		FEA6587B2D22879A00FB7469 /* ABParTool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -154,10 +162,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FE9F41BD2F91031800247B50 /* SwiftCBOR.framework in Embed Frameworks */,
 				FEFDBB2229BF445100264276 /* ZipZap.framework in Embed Frameworks */,
 				FEFDBB2429BF445E00264276 /* JLDialUnit.framework in Embed Frameworks */,
 				FE70FA95263A613F00074260 /* GRDFUSDK.framework in Embed Frameworks */,
 				FEA6587B2D22879A00FB7469 /* ABParTool.framework in Embed Frameworks */,
+				FE9F41B92F91031000247B50 /* iOSMcuManagerLibrary.framework in Embed Frameworks */,
+				FE9F41BB2F91031500247B50 /* ZIPFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,6 +300,11 @@
 		FE8E3A4526F5E31200065ADB /* VPTextAlarmCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPTextAlarmCell.xib; sourceTree = "<group>"; };
 		FE915C0A2D844BF1004417A3 /* VPJM19AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPJM19AViewController.swift; sourceTree = "<group>"; };
 		FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPJM19AViewController.xib; sourceTree = "<group>"; };
+		FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftCBOR.framework; sourceTree = "<group>"; };
+		FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = "<group>"; };
+		FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSMcuManagerLibrary.framework; sourceTree = "<group>"; };
+		FE9F41BE2F9103A400247B50 /* VPHNordic54LDFUManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHNordic54LDFUManager.swift; sourceTree = "<group>"; };
+		FE9F41BF2F9103A400247B50 /* VPHNordic54LDFUVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHNordic54LDFUVC.swift; sourceTree = "<group>"; };
 		FEA658742D2286ED00FB7469 /* ABParTool.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ABParTool.framework; sourceTree = "<group>"; };
 		FEA658782D22872100FB7469 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPBloodGlucoseViewController.swift; sourceTree = "<group>"; };
@@ -319,7 +335,10 @@
 				FEFDBB1E29BF444A00264276 /* DFUnits.framework in Frameworks */,
 				FEFDBB2129BF445000264276 /* ZipZap.framework in Frameworks */,
 				FEA6587A2D22879A00FB7469 /* ABParTool.framework in Frameworks */,
+				FE9F41B82F91031000247B50 /* iOSMcuManagerLibrary.framework in Frameworks */,
+				FE9F41BC2F91031800247B50 /* SwiftCBOR.framework in Frameworks */,
 				FE70FA94263A613F00074260 /* GRDFUSDK.framework in Frameworks */,
+				FE9F41BA2F91031500247B50 /* ZIPFoundation.framework in Frameworks */,
 				FEA658792D22872100FB7469 /* VeepooBleSDK.framework in Frameworks */,
 				FEFDBB1F29BF444A00264276 /* JL_BLEKit.framework in Frameworks */,
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
@@ -358,6 +377,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE9F41C02F9103A400247B50 /* Nordic固件升级 */,
 				FE2E92882F5821A900B8B9D7 /* QH15安全守护 */,
 				FE03AEF22F0E8576008C1C73 /* 微体检(公版) */,
 				FE47C4BD2EB4BE8C0038B3BE /* 微体检(定制) */,
@@ -542,6 +562,9 @@
 				FEFDBB1C29BF444A00264276 /* ZipZap.framework */,
 				FE70FA85263A5F2400074260 /* GRDFUSDK.framework */,
 				FEA658742D2286ED00FB7469 /* ABParTool.framework */,
+				FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */,
+				FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */,
+				FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
 				67057F991E655D830084D6AB /* VeepooTools */,
@@ -711,6 +734,15 @@
 				FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */,
 			);
 			path = JM19A;
+			sourceTree = "<group>";
+		};
+		FE9F41C02F9103A400247B50 /* Nordic固件升级 */ = {
+			isa = PBXGroup;
+			children = (
+				FE9F41BE2F9103A400247B50 /* VPHNordic54LDFUManager.swift */,
+				FE9F41BF2F9103A400247B50 /* VPHNordic54LDFUVC.swift */,
+			);
+			path = "Nordic固件升级";
 			sourceTree = "<group>";
 		};
 		FECB0D97289CF3F000D434D2 /* 血糖 */ = {
@@ -930,6 +962,8 @@
 				6707B0A11E72504A00207523 /* VPSettingBrightController.swift in Sources */,
 				FEF1EEC52DF97AA3006ACCC8 /* VPManualTestDataVC.swift in Sources */,
 				FEF1EEC62DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift in Sources */,
+				FE9F41C12F9103A400247B50 /* VPHNordic54LDFUVC.swift in Sources */,
+				FE9F41C22F9103A400247B50 /* VPHNordic54LDFUManager.swift in Sources */,
 				FE776C222C2575F1003CEA82 /* VPDevicePulseViewController.swift in Sources */,
 				FE8E3A1626F49BD300065ADB /* VPEditTextAlarmViewController.swift in Sources */,
 				044ECB1A25E3A358002D090C /* VPPath.swift in Sources */,
@@ -1148,7 +1182,7 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.9.23;
 				OTHER_LDFLAGS = (
@@ -1180,7 +1214,7 @@
 				);
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = VeepooBleSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.9.23;
 				OTHER_LDFLAGS = (

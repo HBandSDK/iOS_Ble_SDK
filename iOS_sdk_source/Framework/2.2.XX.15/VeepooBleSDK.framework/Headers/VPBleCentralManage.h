@@ -77,6 +77,12 @@
 ///手表语言设置跟随手机系统，默认是YES
 @property (nonatomic, assign) BOOL systemLanguage;
 
+/// 设备端控制是否弹窗连接确认,目前这个属性只针对部分设备生效,如果是使用SDK内部扫描设备 automaticConnection为YES的情况下不需要关注此属性,SDK会初次连接时设置Yes,重连时为NO.如果你是自行实现扫描设备,就需要自行维护这个属性
+@property (nonatomic, assign) BOOL deviceShowConfirm;
+
+/// SDK发起配对,设备上没操作超时时间 默认12s
+@property (nonatomic, assign) NSUInteger deviceConfirmTimeout;
+
 ///Singleton object
 ///单例对象
 + (instancetype)sharedBleManager;
