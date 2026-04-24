@@ -70,7 +70,10 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("4G功能", "VP4GViewController"),
         .init("App开启设备运动(戒指,无屏手环)", "VPDeviceSportViewController"),
         .init("QH15安全守护", "VPQH15SecurityProtectionViewController"),
-        .init("Nordic54L固件升级", "VPHNordic54LDFUVC")
+        .init("Nordic54L固件升级", "VPHNordic54LDFUVC"),
+        .init("JE136P中医自定义数据下发", "VPJE136PTCMVC"),
+        .init("修改蓝牙名", "VPChangeDeviceNameViewController"),
+        .init("HRV测量", "VPHRVTestVC")
     ]
     
     override func viewDidLoad() {
