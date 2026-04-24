@@ -22,6 +22,7 @@
 | 1.1.7 | 添加AI功能                                                   | 2026.01.07 |
 | 1.1.8 | 添加心率 血压 体温 血氧 血液成分 血糖手动测量数据获取        | 2026.04.02 |
 | 1.1.9 | 添加Nordic OTA和控制设备是否弹框连接确认                     | 2026.04.16 |
+| 1.2.0 | JE136P定制功能中医数据下发, HRV测量，修改蓝牙名称            | 2026.04.23 |
 
 # SDK初始化
 
@@ -7251,3 +7252,136 @@ VPBleCentralManage.sharedBleManager().veepooSDKConnectDevice(p) { [weak self](co
     }
 }
 ```
+
+# HRV测量
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPHRVTestVC的实现
+
+### 接口
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupportHRVTest
+```
+
+```objective-c
+/// HRV测量
+/// Parameters:
+///   - state: YES:开始 NO:关闭
+///   - result: callBack
+- (void)veepooSDK_HRVTest:(BOOL)state callBack:(void(^)(int con, VPTestHRVState ack, int value))result
+```
+
+### 参数解释
+
+| 参数  | 参数类型       | 备注                                   |
+| ----- | -------------- | -------------------------------------- |
+| con   | int            | 0：不支持测量，1：开始测量 2：关闭测量 |
+| ack   | VPTestHRVState | 0：正常测量，其他值都代表错误          |
+| value | int            | HRV测量结果                            |
+
+### 示例代码
+
+```swift
+// *HRV测量是持续测量,设备端不会主动关闭测量,所以需要App主动关闭测量*
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_HRVTest(state) {[weak self] con, ack, hrvValue in
+    print(con,ack,hrvValue)
+}
+```
+
+# 修改蓝牙名
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPChangeDeviceNameViewController的实现
+
+### 接口
+
+```objective-c
+//设置设备的名称，注意⚠️修改成功之后，设备端已经改完了，但手机端的下一次扫描并不一定会马上变成修改完之后的名称，可能是手机系统蓝牙的缓存
+ @param textString 设备的名称，会进行UTF8编码，转换之后的字节数量有限制，杰理平台最多18个字节，其它平台则为8字节
+ @param resultBlock 结果回调，state 为0表示成功、1表示失败、2表示textString长度溢出、3表示textString长度不足
+ */
+- (void)veepooSDKSettingDeviceNameWithString:(NSString *)textString resultBlock:(void(^)(NSUInteger state))resultBlock;
+```
+
+### 参数解释
+
+| 参数  | 参数类型   | 备注                                                         |
+| ----- | ---------- | ------------------------------------------------------------ |
+| state | NSUInteger | state 为0表示成功、1表示失败、2表示textString长度溢出、3表示textString长度不足 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceName(with: textField.text) { state in
+  print(state)
+}
+```
+
+# JE136P定制功能中医数据下发
+
+### 前提
+
+设备定制功能
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPJE136PTCMVC的实现
+
+### 接口
+
+```objective-c
+/// JE136P定制中医数据下发
+/// Parameters:
+///     - model: 下发的数据模型
+///     - result: callback
+- (void)veepooSDK_JE136PSendTCMCustomData:(VPJE136PTCMModel *)model callBack:(void(^)(uint32_t time))result
+```
+
+### 参数解释
+
+VPJE136PTCMModel
+
+| 参数           | 参数类型 | 备注                                                     |
+| -------------- | -------- | -------------------------------------------------------- |
+| timestamp      | uint32_t | 时间戳                                                   |
+| bloodStasis    | uint16_t | 血瘀                                                     |
+| dampHeat       | uint16_t | 湿热                                                     |
+| specialAllergy | uint16_t | 特禀                                                     |
+| yangDeficiency | uint16_t | 阳虚                                                     |
+| yinDeficiency  | uint16_t | 阴虚                                                     |
+| phlegmDampness | uint16_t | 痰湿                                                     |
+| balanced       | uint16_t | 平和                                                     |
+| qiStagnation   | uint16_t | 气郁                                                     |
+| qiDeficiency   | uint16_t | 气虚                                                     |
+| largeIntestine | uint16_t | 大肠                                                     |
+| gallbladder    | uint16_t | 胆                                                       |
+| liver          | uint16_t | 肝                                                       |
+| spleen         | uint16_t | 脾                                                       |
+| lung           | uint16_t | 肺                                                       |
+| smallIntestine | uint16_t | 小肠                                                     |
+| sanjiaoBladder | uint16_t | 三焦膀胱                                                 |
+| kidney         | uint16_t | 肾                                                       |
+| stomach        | uint16_t | 胃                                                       |
+| heart          | uint16_t | 心脏                                                     |
+| option         | uint32_t | JE136PTCMOption，可以控制下发哪些数据到设备,具体参考demo |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JE136PSendTCMCustomData(model) {[weak self] time in
+            guard let self = self else { return }
+            AppDelegate.showHUD(message: sendTime == time ? "成功" : "失败", hudModel: MBProgressHUDModeText, showView: self.view)
+        }
+```
+

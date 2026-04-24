@@ -22,6 +22,7 @@
 | 1.1.7   | Add AI function                                              | 2026.01.07        |
 | 1.1.8   | Add manual measurement data retrieval for heart rate, blood pressure, body temperature, blood oxygen, blood components, and blood glucose | 2026.04.02        |
 | 1.1.9   | Add Nordic OTA and confirm if the control device has a pop-up connection | 2026.04.16        |
+| 1.2.0   | Add JE136P customized TCM data distribution，Add HRV Measurement， Change Bluetooth name | 2026.04.23        |
 
 # SDK initialization
 
@@ -7231,5 +7232,137 @@ VPBleCentralManage.sharedBleManager().veepooSDKConnectDevice(p) { [weak self](co
 //          VPBleCentralManage.sharedBleManager().veepooSDKDisconnectDevice()
     }
 }
+```
+
+# HRV Measurement
+
+### Precondition
+
+Equipment support is required.
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation of`VPHRVTestVC in the demo
+
+### Interfaces
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupportHRVTest
+```
+
+```objective-c
+/// HRV Measurement
+/// Parameters:
+///   - state: YES:start NO:close
+///   - result: callBack
+- (void)veepooSDK_HRVTest:(BOOL)state callBack:(void(^)(int con, VPTestHRVState ack, int value))result
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                                                      |
+| --------- | -------------- | ------------------------------------------------------------ |
+| con       | int            | 0: Measurement not supported, 1: Start measurement, 2: Close measurement |
+| ack       | VPTestHRVState | 0: Normal measurement, other values represent errors         |
+| value     | int            | HRV measurement results                                      |
+
+### Sample Code
+
+```swift
+// *HRV measurement is a continuous measurement, and the device will not actively turn off the measurement, so the app needs to actively turn off the measurement*
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_HRVTest(state) {[weak self] con, ack, hrvValue in
+    print(con,ack,hrvValue)
+}
+```
+
+# Change Bluetooth name
+
+### Precondition
+
+Equipment support is required.。
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation of`VPChangeDeviceNameViewController in the demo
+
+### Interfaces
+
+```objective-c
+//Set the name of the device, pay attention ⚠️ After successful modification, the device side has already completed the modification, but the next scan on the mobile side may not immediately change to the modified name, which may be the cache of the Bluetooth system on the mobile phone
+ @param textString The name of the device will be encoded in UTF8, and there is a limit on the number of bytes after conversion. The maximum number of bytes for the Jelly platform is 18 bytes, while for other platforms it is 8 bytes
+ @param resultBlock Result callback, state 0 indicates success, 1 indicates failure, 2 indicates textString length overflow, 3 indicates textString length insufficient
+   
+- (void)veepooSDKSettingDeviceNameWithString:(NSString *)textString resultBlock:(void(^)(NSUInteger state))resultBlock;
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks                                                      |
+| --------- | -------------- | ------------------------------------------------------------ |
+| state     | NSUInteger     | A state of 0 indicates success, 1 indicates failure, 2 indicates textString length overflow, and 3 indicates textString length insufficiency |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSettingDeviceName(with: textField.text) { state in
+  print(state)
+}
+```
+
+# JE136P customized TCM data distribution
+
+### Precondition
+
+Equipment customization function
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation of`VPJE136PTCMVCin the demo
+
+### Interfaces
+
+```objective-c
+/// JE136P customized TCM data distribution
+/// Parameters:
+///     - model: 
+///     - result: callback
+- (void)veepooSDK_JE136PSendTCMCustomData:(VPJE136PTCMModel *)model callBack:(void(^)(uint32_t time))result
+```
+
+### Parameter Explanation
+
+VPJE136PTCMModel
+
+| Parameter      | Parameter Type | Remarks                                                      |
+| -------------- | -------------- | ------------------------------------------------------------ |
+| timestamp      | uint32_t       | timestamp                                                    |
+| bloodStasis    | uint16_t       | bloodStasis                                                  |
+| dampHeat       | uint16_t       | dampHeat                                                     |
+| specialAllergy | uint16_t       | specialAllergy                                               |
+| yangDeficiency | uint16_t       | yangDeficiency                                               |
+| yinDeficiency  | uint16_t       | yinDeficiency                                                |
+| phlegmDampness | uint16_t       | phlegmDampness                                               |
+| balanced       | uint16_t       | balanced                                                     |
+| qiStagnation   | uint16_t       | qiStagnation                                                 |
+| qiDeficiency   | uint16_t       | qiDeficiency                                                 |
+| largeIntestine | uint16_t       | largeIntestine                                               |
+| gallbladder    | uint16_t       | gallbladder                                                  |
+| liver          | uint16_t       | liver                                                        |
+| spleen         | uint16_t       | spleen                                                       |
+| lung           | uint16_t       | lung                                                         |
+| smallIntestine | uint16_t       | smallIntestine                                               |
+| sanjiaoBladder | uint16_t       | sanjiaoBladder                                               |
+| kidney         | uint16_t       | kidney                                                       |
+| stomach        | uint16_t       | stomach                                                      |
+| heart          | uint16_t       | heart                                                        |
+| option         | uint32_t       | JE136PTCMOption，Can control which data to send to the device |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JE136PSendTCMCustomData(model) {[weak self] time in
+            guard let self = self else { return }
+            AppDelegate.showHUD(message: sendTime == time ? "success" : "fail", hudModel: MBProgressHUDModeText, showView: self.view)
+        }
 ```
 

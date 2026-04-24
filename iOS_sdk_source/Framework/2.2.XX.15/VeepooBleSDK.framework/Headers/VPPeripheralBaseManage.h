@@ -54,7 +54,7 @@
 #import "VPDeviceSportModel.h"
 #import "VPQH15GNSSLocationModel.h"
 
-@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
+@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel,VPJE136PTCMModel;
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
 //Connected device model 连接的设备模型
@@ -1340,6 +1340,17 @@
 ///     - result: callback
 - (void)veepooSDK_QH15GNSSLocationResultSubscribe:(void(^)(VPQH15SPType funcType, VPQH15GNSSLocationModel *locationModel))result;
 
+/// JE136P定制中医数据下发
+/// Parameters:
+///     - model: 下发的数据模型
+///     - result: callback
+- (void)veepooSDK_JE136PSendTCMCustomData:(VPJE136PTCMModel *)model callBack:(void(^)(uint32_t time))result;
+
+/// HRV测量
+/// Parameters:
+///     - state: YES:开始 NO:关闭
+///     - result: callBack
+- (void)veepooSDK_HRVTest:(BOOL)state callBack:(void(^)(int con, VPTestHRVState ack, int hrvValue))result;
 /// 如果调用系统方法断开蓝牙有时没生效,可以先调用这个方法
 - (void)disconnectPhone;
 @end

@@ -287,6 +287,14 @@ typedef NS_OPTIONS(NSUInteger, VPManualTestDataType) {
     VPManualTestDataAll = 0xFFFFFFFF
 };
 
+typedef NS_ENUM(NSInteger,VPTestHRVState) {//测试HRV过程中的状态变化
+    VPTestHRVStateTesting = 0,       //开始检测HRV中
+    VPTestHRVStateAlreadyStarted = 1, //设备已经在测试HRV,正忙
+    VPTestHRVStateLowPower = 2,         //低电
+    VPTestHRVStateDeviceBusy = 3,  //设备正忙正在测试其他功能
+    VPTestHRVStateNotWear = 4,     //佩戴检测没有通过
+};
+
 #pragma mark - SDK 1.7后新添加
 typedef NS_ENUM(NSInteger,VPDeviceFemaleState) {//女性项目属于哪个生理期
     VPDeviceFemaleStateNone = 0,        //没有设置生理期
@@ -730,4 +738,28 @@ typedef NS_ENUM(NSUInteger, VPDeviceSportControlOpCode) {
     VPDeviceSportControlOpCodePause = 0x02,
     VPDeviceSportControlOpCodeContinue = 0x03,
     VPDeviceSportControlOpCodeStop = 0x04,
+};
+
+// JE136P 定制
+typedef NS_OPTIONS(uint32_t, JE136PTCMOption) {
+    JE136PTCMOptionTimesstamp      = 1 << 0,  // 0x00: 时间戳
+    JE136PTCMOptionBloodStasis     = 1 << 1,  // 0x01：血瘀
+    JE136PTCMOptionDampHeat        = 1 << 2,  // 0x02：湿热
+    JE136PTCMOptionSpecialAllergy  = 1 << 3,  // 0x03：特禀
+    JE136PTCMOptionYangDeficiency  = 1 << 4,  // 0x04：阳虚
+    JE136PTCMOptionYinDeficiency   = 1 << 5,  // 0x05：阴虚
+    JE136PTCMOptionPhlegmDampness  = 1 << 6,  // 0x06：痰湿
+    JE136PTCMOptionBalanced        = 1 << 7,  // 0x07：平和
+    JE136PTCMOptionQiStagnation    = 1 << 8,  // 0x08：气郁
+    JE136PTCMOptionQiDeficiency    = 1 << 9,  // 0x09：气虚
+    JE136PTCMOptionLargeIntestine  = 1 << 10, // 0x0A：大肠
+    JE136PTCMOptionGallbladder     = 1 << 11, // 0x0B：胆
+    JE136PTCMOptionLiver           = 1 << 12, // 0x0C：肝
+    JE136PTCMOptionSpleen          = 1 << 13, // 0x0D：脾
+    JE136PTCMOptionLung            = 1 << 14, // 0x0E：肺
+    JE136PTCMOptionSmallIntestine  = 1 << 15, // 0x0F：小肠
+    JE136PTCMOptionSanjiaoBladder  = 1 << 16, // 0x10：三焦膀胱
+    JE136PTCMOptionKidney          = 1 << 17, // 0x11：肾
+    JE136PTCMOptionStomach         = 1 << 18, // 0x12：胃
+    JE136PTCMOptionHeart           = 1 << 19, // 0x13：心脏
 };

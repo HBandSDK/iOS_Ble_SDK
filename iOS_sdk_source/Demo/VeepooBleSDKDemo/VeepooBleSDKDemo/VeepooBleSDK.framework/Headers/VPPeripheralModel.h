@@ -256,6 +256,8 @@
 //4G功能 0:不支持、1:支持
 @property (nonatomic, assign) NSUInteger isSupport4GType;
 
+@property (nonatomic, assign) BOOL isSupportHRVTest;
+
 //支持Nordic固件OTA 0:不支持 1:支持
 @property (nonatomic, assign) BOOL isSupportNordic;
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
