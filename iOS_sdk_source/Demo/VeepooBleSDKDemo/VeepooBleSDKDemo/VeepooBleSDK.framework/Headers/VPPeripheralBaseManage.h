@@ -54,7 +54,18 @@
 #import "VPDeviceSportModel.h"
 #import "VPQH15GNSSLocationModel.h"
 
+
+#import "VPQX17PublicDefine.h"
+#import "VPQX17IMUModel.h"
+#import "VPQX17GPSModel.h"
+#import "VPQX17HeartRateModel.h"
+
+@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
+
+@class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
+
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel,VPJE136PTCMModel;
+
 @interface VPPeripheralBaseManage : NSObject<CBPeripheralDelegate>
 
 //Connected device model 连接的设备模型
@@ -1353,6 +1364,53 @@
 - (void)veepooSDK_HRVTest:(BOOL)state callBack:(void(^)(int con, VPTestHRVState ack, int hrvValue))result;
 /// 如果调用系统方法断开蓝牙有时没生效,可以先调用这个方法
 - (void)disconnectPhone;
+
+
+#pragma mark QX17 匹克球定制接口
+/// 开启数据采集流
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_QX17StartDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// 关闭数据采集流
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_QX17StopDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// 继续数据采集流
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_QX17ContinueDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// 监听设备实时数据采集开启状态
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17DataAcquitionStateSubscribe:(void(^_Nullable)(VPQX17DataAcqState dataAcqState))result;
+
+/// 监听 IMU 实时数据通知
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17IMUResultSubscribe:(void(^_Nullable)(NSArray<VPQX17IMUModel *> * _Nullable imuDatas))result;
+
+/// 监听 GPS 实时数据通知
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17GPSResultSubscribe:(void(^_Nullable)(NSArray<VPQX17GPSModel *> * _Nullable gpsDatas))result;
+
+/// 监听心率实时数据通知
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17HeartRateResultSubscribe:(void(^_Nullable)(NSArray<VPQX17HeartRateModel *> * _Nullable heartDatas))result;
+
+/// 振动马达控制
+/// - Parameters:
+///   - mode : 振动模式
+///   - duration : 自定义时长，单位为 10 毫秒，取值范围：0 到 255
+///   - callback : 结果回调
+- (void)veepooSDK_QX17SetVibrationMode:(VPQX17VibrationMode)mode
+                              duration:(NSInteger)duration
+                              callback:(void(^_Nullable)(VPQX17VibrationModeSetResultCode resultCode))result;
+
 @end
 
 

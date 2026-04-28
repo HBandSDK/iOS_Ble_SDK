@@ -144,6 +144,7 @@
 		FEE777A92F9B1DCE003C8733 /* VPJE136PTCMVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE777A72F9B1DCE003C8733 /* VPJE136PTCMVC.swift */; };
 		FEE777AC2F9B1DDA003C8733 /* VPChangeDeviceNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE777AA2F9B1DDA003C8733 /* VPChangeDeviceNameViewController.swift */; };
 		FEE777B22F9B1DFE003C8733 /* VPHRVTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE777B02F9B1DFE003C8733 /* VPHRVTestVC.swift */; };
+		FEE777BB2FA08746003C8733 /* VPQX17ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE777B92FA08746003C8733 /* VPQX17ViewController.swift */; };
 		FEF1EEC52DF97AA3006ACCC8 /* VPManualTestDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1EEC12DF97AA3006ACCC8 /* VPManualTestDataVC.swift */; };
 		FEF1EEC62DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1EEC32DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift */; };
 		FEFA5486266B48D50071E61B /* VPTemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */; };
@@ -320,6 +321,7 @@
 		FEE777A72F9B1DCE003C8733 /* VPJE136PTCMVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPJE136PTCMVC.swift; sourceTree = "<group>"; };
 		FEE777AA2F9B1DDA003C8733 /* VPChangeDeviceNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPChangeDeviceNameViewController.swift; sourceTree = "<group>"; };
 		FEE777B02F9B1DFE003C8733 /* VPHRVTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHRVTestVC.swift; sourceTree = "<group>"; };
+		FEE777B92FA08746003C8733 /* VPQX17ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPQX17ViewController.swift; sourceTree = "<group>"; };
 		FEF1EEC12DF97AA3006ACCC8 /* VPManualTestDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPManualTestDataVC.swift; sourceTree = "<group>"; };
 		FEF1EEC32DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAutoMonitSwitchVC.swift; sourceTree = "<group>"; };
 		FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTemperatureViewController.swift; sourceTree = "<group>"; };
@@ -383,6 +385,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEE777BA2FA08746003C8733 /* QX17 */,
 				FEE777B12F9B1DFE003C8733 /* HRV测量 */,
 				FEE777AB2F9B1DDA003C8733 /* 修改蓝牙名 */,
 				FEE777A82F9B1DCE003C8733 /* JE136P定制中医数据下发 */,
@@ -796,6 +799,14 @@
 			path = "HRV测量";
 			sourceTree = "<group>";
 		};
+		FEE777BA2FA08746003C8733 /* QX17 */ = {
+			isa = PBXGroup;
+			children = (
+				FEE777B92FA08746003C8733 /* VPQX17ViewController.swift */,
+			);
+			path = QX17;
+			sourceTree = "<group>";
+		};
 		FEF1EEC22DF97AA3006ACCC8 /* 手动测量数据 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1075,6 +1086,7 @@
 				672E085A1E5ED92F00F60750 /* VPDFUController.swift in Sources */,
 				67640D531E56D248008D9D71 /* VPSyncPersonalInformationController.swift in Sources */,
 				FE65720E25B930AD00672A8B /* VPPhotoDialViewController.swift in Sources */,
+				FEE777BB2FA08746003C8733 /* VPQX17ViewController.swift in Sources */,
 				67640D601E57E346008D9D71 /* VPAlarmClockSettingController.swift in Sources */,
 				67640D4F1E56CA04008D9D71 /* VPOterFunctionSettingController.swift in Sources */,
 				67CA3B5B1EF2649700203D20 /* VPCountDownSelectView.swift in Sources */,

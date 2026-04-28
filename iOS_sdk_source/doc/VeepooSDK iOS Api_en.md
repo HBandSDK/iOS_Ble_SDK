@@ -23,6 +23,7 @@
 | 1.1.8   | Add manual measurement data retrieval for heart rate, blood pressure, body temperature, blood oxygen, blood components, and blood glucose | 2026.04.02        |
 | 1.1.9   | Add Nordic OTA and confirm if the control device has a pop-up connection | 2026.04.16        |
 | 1.2.0   | Add JE136P customized TCM data distribution，Add HRV Measurement， Change Bluetooth name | 2026.04.23        |
+| 1.2.1   | QX17 customized function, real-time data acquisition (IMU, GPS, Heart rate), vibration mode modification | 2026.04.27        |
 
 # SDK initialization
 
@@ -7363,6 +7364,223 @@ VPJE136PTCMModel
 VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JE136PSendTCMCustomData(model) {[weak self] time in
             guard let self = self else { return }
             AppDelegate.showHUD(message: sendTime == time ? "success" : "fail", hudModel: MBProgressHUDModeText, showView: self.view)
+        }
+```
+
+# QX17 customized function
+
+### Precondition
+
+Equipment customization function
+
+### Class Name
+
+VPPeripheralBaseManage`，`refer to the implementation of VPQX17ViewController in the demo
+
+### Interfaces
+
+```objective-c
+/// Start data acquisition
+/// - Parameters:
+///   - result : callback
+- (void)veepooSDK_QX17StartDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// Stop data acquisition
+/// - Parameters:
+///   - result : callback
+- (void)veepooSDK_QX17StopDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// Continue data acquisition
+/// - Parameters:
+///   - result : callback
+- (void)veepooSDK_QX17ContinueDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// The real-time data acquition status of the monitoring device is on
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17DataAcquitionStateSubscribe:(void(^_Nullable)(VPQX17DataAcqState dataAcqState))result;
+
+/// Monitor real-time data notifications from the IMU
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17IMUResultSubscribe:(void(^_Nullable)(NSArray<VPQX17IMUModel *> * _Nullable imuDatas))result;
+
+/// Monitor real-time GPS data notifications
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17GPSResultSubscribe:(void(^_Nullable)(NSArray<VPQX17GPSModel *> * _Nullable gpsDatas))result;
+
+/// Monitor real-time heart rate data notifications
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17HeartRateResultSubscribe:(void(^_Nullable)(NSArray<VPQX17HeartRateModel *> * _Nullable heartDatas))result;
+
+/// Vibration mode control
+/// - Parameters:
+///   - mode : Vibration mode
+///   - duration : Custom duration, unit: 10 milliseconds, value range: 0 to 255
+///   - callback : callback
+- (void)veepooSDK_QX17SetVibrationMode:(VPQX17VibrationMode)mode
+                              duration:(NSInteger)duration
+                              callback:(void(^_Nullable)(VPQX17VibrationModeSetResultCode resultCode))result;
+
+```
+
+### Parameter Explanation
+
+VPQX17IMUModel
+
+| Parameter     | Parameter Type    | Remarks                                         |
+| ------------- | ----------------- | ----------------------------------------------- |
+| timestamp     | uint32_t          | The timestamp of this sampling, in milliseconds |
+| accelerometer | AccelerometerData | Accelerometer data                              |
+| ax            | int16_t           | Accelerometer X-axis                            |
+| ay            | int16_t           | Accelerometer Y-axis                            |
+| az            | int16_t           | Accelerometer Z-axis                            |
+| gyroscope     | GyroscopeData     | Gyroscope data                                  |
+| gx            | int16_t           | Gyroscope X-axis                                |
+| gy            | int16_t           | Gyroscope Y-axis                                |
+| gz            | int16_t           | Gyroscope Z-axis                                |
+| magnetometer  | MagnetometerData  | Magnetometer data                               |
+| mx            | int16_t           | Magnetometer X-axis                             |
+| my            | int16_t           | Magnetometer Y-axis                             |
+| mz            | int16_t           | Magnetometer Z-axis                             |
+
+VPQX17GPSModel
+
+| Parameter | Parameter Type | Remarks                                         |
+| --------- | -------------- | ----------------------------------------------- |
+| timestamp | uint32_t       | The timestamp of this sampling, in milliseconds |
+| longitude | float          | longitude                                       |
+| latitude  | float          | latitude                                        |
+| accuracy  | float          | Positioning accuracy, unit: meters              |
+
+VPQX17HeartRateModel
+
+| Parameter | Parameter Type | Remarks                                         |
+| --------- | -------------- | ----------------------------------------------- |
+| timestamp | uint32_t       | The timestamp of this sampling, in milliseconds |
+| heartRate | uint8_t        | Heart rate value                                |
+
+
+
+VPQX17DataAcqState
+
+```
+// QX17 Data Acquisition is in the enabled state
+typedef NS_ENUM(uint8_t, VPQX17DataAcqState) {
+    VPQX17DataAcqStateOpening = 0x36,
+    VPQX17DataAcqStateClosed = 0x37,
+};
+```
+
+VPQX17DataAcqSetResult
+
+```
+// QX17 Start data acquisition、Continue data acquisition、Stop data acquisition result
+typedef NS_ENUM(uint8_t, VPQX17DataAcqSetResult) {
+    VPQX17DataAcqSetResultBleConnectFail = 0x00, 
+    VPQX17DataAcqSetSetResultFail = 0x01,
+    VPQX17DataAcqSetSetResultSucc = 0x02,
+};
+```
+
+VPQX17VibrationMode
+
+```
+// QX17 Vibration mode
+typedef NS_ENUM(uint8_t, VPQX17VibrationMode) {
+    VPQX17VibrationModeStart = 0x00,
+    VPQX17VibrationModeEnd = 0x01,
+    VPQX17VibrationModeNotify = 0x02,
+    VPQX17VibrationModeReminder = 0x03,
+    VPQX17VibrationModeEnsure = 0x04,
+    VPQX17VibrationModeBeat = 0x05,
+    VPQX17VibrationModeConnected = 0x06,
+    VPQX17VibrationModeError = 0x07,
+};
+```
+
+VPQX17VibrationModeSetResultCode
+
+```
+// QX17 Vibration mode setting result
+typedef NS_ENUM(uint8_t, VPQX17VibrationModeSetResultCode) {
+    VPQX17VibrationModeSetResultCodeBleConnectFail = 0x00,   // Failed. Abnormal Bluetooth connection detected
+    VPQX17VibrationModeSetResultCodeDurationErr = 0x01,      // Failed. The password length is abnormal
+    VPQX17VibrationModeSetResultCodeSucc = 0x02,             // Success
+};
+```
+
+### 
+
+### Sample Code
+
+```swift
+// Notification of the activation status of data acquition for monitoring devices
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17DataAcquitionStateSubscribe { [weak self] dataAcquitionState in
+            // The current status of data acquition on the device end can be recorded in the callback
+            guard let self = self else { return }
+            self.dataAcqState = dataAcquitionState
+        }
+
+// Start data acquisition
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17StartDataAcquisition { [weak self] result in
+            // In the callback, you can verify whether the data acquition on the device end has been successfully enabled. If it is successful, you can add monitoring for real-time data transmission such as IMU, GPS, and heart rate respectively
+            guard let self = self else { return }
+            let isSucc = result == .setResultSucc
+            if isSucc {
+                self.registDataAcquisitionCallback()
+            }
+        }
+
+// Stop data acquisition
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17StopDataAcquisition { result in
+            let isSucc = result == .setResultSucc
+        }
+
+// Continue data acquition. When checking that the device is currently acquition data, call this interface to have the device return the offline data of the last 5 minutes
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17ContinueDataAcquisition { [weak self] result in
+            // In the callback, you can verify whether the device's continued return transmission is successful. If it is successful, you can respectively re-add the monitoring of real-time data return transmission such as IMU, GPS, and heart rate 
+            guard let self = self else { return }
+            let isSucc = result == .setResultSucc
+            if isSucc {
+                self.registDataAcquisitionCallback()
+            }
+        }
+
+// Monitor real-time data notifications from the IMU
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17IMUResultSubscribe { [weak self] imuDatas in
+            guard let self = self else { return }
+            guard let imuResults = imuDatas else {
+                return
+            }
+            // Some data collection tasks can be performed in the callback
+        }
+
+// Monitor real-time GPS data notifications
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17GPSResultSubscribe { [weak self] gpsDatas in
+            guard let self = self else { return }
+            guard let gpsResults = gpsDatas else {
+                return
+            }
+            // Some data collection tasks can be performed in the callback
+        }
+
+// Monitor real-time heart rate data notifications
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17HeartRateResultSubscribe { [weak self] heartRateDatas in
+            guard let self = self else { return }
+            guard let hRateResults = heartRateDatas else {
+                return
+            }
+            // Some data collection tasks can be performed in the callback
+        }
+
+
+// Modify the vibration mode
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17SetVibrationMode(mode, duration: duration) { [weak self] resultCode in
+            guard let self = self else { return }
+            // Based on the returned result code, complete the subsequent task execution
         }
 ```
 

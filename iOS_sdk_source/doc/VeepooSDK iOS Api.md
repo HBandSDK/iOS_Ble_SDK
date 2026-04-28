@@ -23,6 +23,7 @@
 | 1.1.8 | 添加心率 血压 体温 血氧 血液成分 血糖手动测量数据获取        | 2026.04.02 |
 | 1.1.9 | 添加Nordic OTA和控制设备是否弹框连接确认                     | 2026.04.16 |
 | 1.2.0 | JE136P定制功能中医数据下发, HRV测量，修改蓝牙名称            | 2026.04.23 |
+| 1.2.1 | QX17匹克球定制功能，实时数据采集（IMU、GPS、心率）、振动模式修改 | 2026.04.27 |
 
 # SDK初始化
 
@@ -7382,6 +7383,224 @@ VPJE136PTCMModel
 VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JE136PSendTCMCustomData(model) {[weak self] time in
             guard let self = self else { return }
             AppDelegate.showHUD(message: sendTime == time ? "成功" : "失败", hudModel: MBProgressHUDModeText, showView: self.view)
+        }
+```
+
+# QX17匹克球定制功能
+
+### 前提
+
+设备定制功能
+
+### 类名
+
+VPPeripheralBaseManage`，可参考 Demo 中`VPQX17ViewController 的实现
+
+### 接口
+
+```objective-c
+/// 开启数据采集流
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_QX17StartDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// 关闭数据采集流
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_QX17StopDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// 继续数据采集流
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_QX17ContinueDataAcquisition:(void(^_Nullable)(VPQX17DataAcqSetResult resultCode))result;
+
+/// 监听设备实时数据采集开启状态
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17DataAcquitionStateSubscribe:(void(^_Nullable)(VPQX17DataAcqState dataAcqState))result;
+
+/// 监听 IMU 实时数据通知
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17IMUResultSubscribe:(void(^_Nullable)(NSArray<VPQX17IMUModel *> * _Nullable imuDatas))result;
+
+/// 监听 GPS 实时数据通知
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17GPSResultSubscribe:(void(^_Nullable)(NSArray<VPQX17GPSModel *> * _Nullable gpsDatas))result;
+
+/// 监听心率实时数据通知
+/// - Parameters:
+///     - result: callback
+- (void)veepooSDK_QX17HeartRateResultSubscribe:(void(^_Nullable)(NSArray<VPQX17HeartRateModel *> * _Nullable heartDatas))result;
+
+/// 振动马达控制
+/// - Parameters:
+///   - mode : 振动模式
+///   - duration : 自定义时长，单位为 10 毫秒，取值范围：0 到 255
+///   - callback : 结果回调
+- (void)veepooSDK_QX17SetVibrationMode:(VPQX17VibrationMode)mode
+                              duration:(NSInteger)duration
+                              callback:(void(^_Nullable)(VPQX17VibrationModeSetResultCode resultCode))result;
+
+```
+
+### 参数解释
+
+VPQX17IMUModel
+
+| 参数          | 参数类型          | 备注                       |
+| ------------- | ----------------- | -------------------------- |
+| timestamp     | uint32_t          | 此次采样的时间戳，单位毫秒 |
+| accelerometer | AccelerometerData | 加速度计数据               |
+| ax            | int16_t           | 加速度计 x 轴              |
+| ay            | int16_t           | 加速度计 y 轴              |
+| az            | int16_t           | 加速度计 z 轴              |
+| gyroscope     | GyroscopeData     | 陀螺仪数据                 |
+| gx            | int16_t           | 陀螺仪 x 轴                |
+| gy            | int16_t           | 陀螺仪 y 轴                |
+| gz            | int16_t           | 陀螺仪 z 轴                |
+| magnetometer  | MagnetometerData  | 磁力计数据                 |
+| mx            | int16_t           | 磁力计 x 轴                |
+| my            | int16_t           | 磁力计 y 轴                |
+| mz            | int16_t           | 磁力计 z 轴                |
+
+VPQX17GPSModel
+
+| 参数      | 参数类型 | 备注                       |
+| --------- | -------- | -------------------------- |
+| timestamp | uint32_t | 此次采样的时间戳，单位毫秒 |
+| longitude | float    | 经度                       |
+| latitude  | float    | 纬度                       |
+| accuracy  | float    | 定位精度，单位：米         |
+
+VPQX17HeartRateModel
+
+| 参数      | 参数类型 | 备注                       |
+| --------- | -------- | -------------------------- |
+| timestamp | uint32_t | 此次采样的时间戳，单位毫秒 |
+| heartRate | uint8_t  | 心率值                     |
+
+
+
+VPQX17DataAcqState
+
+```
+// QX17 数据采集开启状态
+typedef NS_ENUM(uint8_t, VPQX17DataAcqState) {
+    VPQX17DataAcqStateOpening = 0x36,    // 开启
+    VPQX17DataAcqStateClosed = 0x37,     // 关闭
+};
+```
+
+VPQX17DataAcqSetResult
+
+```
+// QX17 数据采集开启、继续采集、关闭结果
+typedef NS_ENUM(uint8_t, VPQX17DataAcqSetResult) {
+    VPQX17DataAcqSetResultBleConnectFail = 0x00, // 失败，检测蓝牙连接异常
+    VPQX17DataAcqSetSetResultFail = 0x01,        // 失败
+    VPQX17DataAcqSetSetResultSucc = 0x02,        // 成功
+};
+```
+
+VPQX17VibrationMode
+
+```
+// QX17 振动模式
+typedef NS_ENUM(uint8_t, VPQX17VibrationMode) {
+    VPQX17VibrationModeStart = 0x00,         // 开始
+    VPQX17VibrationModeEnd = 0x01,           // 结束
+    VPQX17VibrationModeNotify = 0x02,        // 通知
+    VPQX17VibrationModeReminder = 0x03,      // 提醒
+    VPQX17VibrationModeEnsure = 0x04,        // 确认
+    VPQX17VibrationModeBeat = 0x05,          // 节拍
+    VPQX17VibrationModeConnected = 0x06,     // 已连接
+    VPQX17VibrationModeError = 0x07,         // 错误
+};
+```
+
+VPQX17VibrationModeSetResultCode
+
+```
+// QX17 振动模式设置结果
+typedef NS_ENUM(uint8_t, VPQX17VibrationModeSetResultCode) {
+    VPQX17VibrationModeSetResultCodeBleConnectFail = 0x00, // 失败，检测蓝牙连接异常
+    VPQX17VibrationModeSetResultCodeDurationErr = 0x01,    // 失败，密码长度异常
+    VPQX17VibrationModeSetResultCodeSucc = 0x02,           // 成功
+};
+```
+
+### 
+
+### 示例代码
+
+```swift
+// 监听设备数据采集开启状态通知
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17DataAcquitionStateSubscribe { [weak self] dataAcquitionState in
+            // 可在回调中记录，当前设备端数据采集开启状态
+            guard let self = self else { return }
+            self.dataAcqState = dataAcquitionState
+        }
+
+// 开启数据采集
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17StartDataAcquisition { [weak self] result in
+            // 可在回调中校验设备端采集是否开启成功，若成功可分别添加 IMU、GPS、心率等实时数据回传的监听
+            guard let self = self else { return }
+            let isSucc = result == .setResultSucc
+            if isSucc {
+                self.registDataAcquisitionCallback()
+            }
+        }
+
+// 关闭数据采集
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17StopDataAcquisition { result in
+            // 可在回调中，做一些后续任务
+            let isSucc = result == .setResultSucc
+        }
+
+// 继续数据采集，检查设备目前已在采集数据中时，调用该接口，让设备回传最近 5 分钟离线数据
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17ContinueDataAcquisition { [weak self] result in
+            // 可在回调中校验设备端继续回传是否成功，若成功可分别重新添加 IMU、GPS、心率等实时数据回传的监听              
+            guard let self = self else { return }
+            let isSucc = result == .setResultSucc
+            if isSucc {
+                self.registDataAcquisitionCallback()
+            }
+        }
+
+// 监听 IMU 实时数据通知
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17IMUResultSubscribe { [weak self] imuDatas in
+            guard let self = self else { return }
+            guard let imuResults = imuDatas else {
+                return
+            }
+            // 可在回调中，做一些数据收集任务
+        }
+
+// 监听 GPS 实时数据通知
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17GPSResultSubscribe { [weak self] gpsDatas in
+            guard let self = self else { return }
+            guard let gpsResults = gpsDatas else {
+                return
+            }
+            // 可在回调中，做一些数据收集任务
+        }
+
+// 监听心率实时数据通知
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17HeartRateResultSubscribe { [weak self] heartRateDatas in
+            guard let self = self else { return }
+            guard let hRateResults = heartRateDatas else {
+                return
+            }
+            // 可在回调中，做一些数据收集任务
+        }
+
+
+// 修改振动马达模式
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17SetVibrationMode(mode, duration: duration) { [weak self] resultCode in
+            guard let self = self else { return }
+            // 根据返回结果码，完成后续任务执行
         }
 ```
 
