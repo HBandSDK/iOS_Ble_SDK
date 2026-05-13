@@ -44,9 +44,8 @@ class VPTestBloodController: UIViewController,UITableViewDelegate, UITableViewDa
     
     @IBAction func startTestBloodAction(_ sender: UIButton) {
         
-        var tbyte:[UInt8] = Array(repeating: 0x00, count: 20)
-        VPBleCentralManage.sharedBleManager().peripheralModel.deviceFuctionData.copyBytes(to: &tbyte, count: tbyte.count)
-        if tbyte[1] != 1 {//先判断一下是否有这个功能
+        let support = VPBleCentralManage.sharedBleManager().peripheralModel.isSupportBPTest
+        if !support {//先判断一下是否有这个功能
             _ = AppDelegate.showHUD(message: "手环没有血压功能", hudModel: MBProgressHUDModeText, showView: view)
             return
         }

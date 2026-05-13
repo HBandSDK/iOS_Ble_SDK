@@ -256,7 +256,11 @@
 //4G功能 0:不支持、1:支持
 @property (nonatomic, assign) NSUInteger isSupport4GType;
 
+//是否支持HRV测量
 @property (nonatomic, assign) BOOL isSupportHRVTest;
+
+//是否支持血压测量
+@property (nonatomic, assign) BOOL isSupportBPTest;
 
 //支持Nordic固件OTA 0:不支持 1:支持
 @property (nonatomic, assign) BOOL isSupportNordic;
