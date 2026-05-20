@@ -1411,6 +1411,12 @@
                               duration:(NSInteger)duration
                               callback:(void(^_Nullable)(VPQX17VibrationModeSetResultCode resultCode))result;
 
+- (void)enterZKDfu;
+
+
+- (void)sendZKDFU:(NSData*)data;
+
+- (void)zkReceiveData:(void(^_Nullable)(NSData *data))receive zkCanSendNextAction:(void(^_Nullable)())canSend zkDidEnable:(void(^_Nullable)())enable;
 @end
 
 

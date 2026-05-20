@@ -4,3 +4,8 @@ framework module VeepooBleSDK {
 
   module * { export * }
 }
+
+module VeepooBleSDK.Swift {
+  header "VeepooBleSDK-Swift.h"
+  requires objc
+}

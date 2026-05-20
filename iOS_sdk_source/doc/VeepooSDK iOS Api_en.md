@@ -24,6 +24,7 @@
 | 1.1.9   | Add Nordic OTA and confirm if the control device has a pop-up connection | 2026.04.16        |
 | 1.2.0   | Add JE136P customized TCM data distribution，Add HRV Measurement， Change Bluetooth name | 2026.04.23        |
 | 1.2.1   | QX17 customized function, real-time data acquisition (IMU, GPS, Heart rate), vibration mode modification | 2026.04.27        |
+| 1.2.2   | Zhongke series firmware upgrade, subsequent versions will integrate firmware upgrades from different platforms | 2026.05.20        |
 
 # SDK initialization
 
@@ -7582,5 +7583,58 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17SetVibratio
             guard let self = self else { return }
             // Based on the returned result code, complete the subsequent task execution
         }
+```
+
+# Zhongke firmware OTA
+
+### Precondition
+
+The device supports the use of Zhongke firmware upgrade。
+
+### Class Name
+
+`VPHZKDFUManager`，refer to the implementation of`VPHZKDFUVC`in the demo
+
+### Interfaces
+
+Does it support firmware upgrade for Zhongke
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupportZKOTA
+```
+
+### Sample Code
+
+```swift
+// FileURL: The URL of the firmware, which can be downloaded by oneself
+let fileURL = URL(fileURLWithPath: filePath!)
+zkDfuManager.zkDeinitialize()
+zkDfuManager.setFileInfo(fileURL)
+zkDfuManager.enterDfu()
+```
+
+
+
+```objective-c
+// Implement VPHZKDFUManagerial Delegate to monitor upgrade process through delegate
+  func zkOtaStatusReady() {
+        print("zkOtaStatusReady")
+    }
+    
+    func zkOtaStatusStart() {
+        print("zkOtaStatusStart")
+    }
+    
+    func zkOtaStatusUpdating(progress: UInt) {
+        print("zkOtaStatusUpdating\(progress)")
+    }
+    
+    func zkOtaStatuSuccess() {
+        print("zkOtaStatuSuccess")
+    }
+    
+    func zkOtaStatusFail(errorCode: Int) {
+        print("zkOtaStatusFail\(errorCode)")
+    }
 ```
 

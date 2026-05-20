@@ -72,6 +72,7 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("QH15安全守护", "VPQH15SecurityProtectionViewController"),
         .init("QX17匹克球运动(定制)", "VPQX17ViewController"),
         .init("Nordic54L固件升级", "VPHNordic54LDFUVC"),
+        .init("中科固件升级", "VPHZKDFUVC"),
         .init("JE136P中医自定义数据下发", "VPJE136PTCMVC"),
         .init("修改蓝牙名", "VPChangeDeviceNameViewController"),
         .init("HRV测量", "VPHRVTestVC")

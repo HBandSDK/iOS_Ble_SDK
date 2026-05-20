@@ -92,6 +92,7 @@
 #import "VPOpusHandle.h"
 #import "VPQH15SecurityProtectionInfo.h"
 #import "VPJE136PTCMModel.h"
+
 //! Project version number for VeepooBleSDK.
 FOUNDATION_EXPORT double VeepooBleSDKVersionNumber;
 

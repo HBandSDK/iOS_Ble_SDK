@@ -24,6 +24,7 @@
 | 1.1.9 | 添加Nordic OTA和控制设备是否弹框连接确认                     | 2026.04.16 |
 | 1.2.0 | JE136P定制功能中医数据下发, HRV测量，修改蓝牙名称            | 2026.04.23 |
 | 1.2.1 | QX17匹克球定制功能，实时数据采集（IMU、GPS、心率）、振动模式修改 | 2026.04.27 |
+| 1.2.2 | 中科系列固件升级，后续版本会把不同平台固件升级整合           | 2026.05.20 |
 
 # SDK初始化
 
@@ -7604,3 +7605,57 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QX17SetVibratio
         }
 ```
 
+# 中科固件 OTA
+
+### 前提
+
+设备支持使用中科固件升级。
+
+### 类名
+
+`VPHZKDFUManager`，可参考Demo中`VPHZKDFUVC`的实现
+
+### 接口
+
+是否支持中科固件升级
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupportZKOTA
+```
+
+### 示例代码
+
+```swift
+// fileURL 固件的URL，固件下载自行实现
+let fileURL = URL(fileURLWithPath: filePath!)
+zkDfuManager.zkDeinitialize()
+zkDfuManager.setFileInfo(fileURL)
+zkDfuManager.enterDfu()
+```
+
+
+
+```objective-c
+// 实现VPHZKDFUManagerDelegate 通过delegate监听升级流程
+  func zkOtaStatusReady() {
+        print("zkOtaStatusReady")
+    }
+    
+    func zkOtaStatusStart() {
+        print("zkOtaStatusStart")
+    }
+    
+    func zkOtaStatusUpdating(progress: UInt) {
+        print("zkOtaStatusUpdating\(progress)")
+    }
+    
+    func zkOtaStatuSuccess() {
+        print("zkOtaStatuSuccess")
+    }
+    
+    func zkOtaStatusFail(errorCode: Int) {
+        print("zkOtaStatusFail\(errorCode)")
+    }
+```
+
+# 
