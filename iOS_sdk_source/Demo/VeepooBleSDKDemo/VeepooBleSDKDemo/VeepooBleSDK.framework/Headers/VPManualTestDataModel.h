@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class VPManualBloodPressureModel,VPManualBloodSugarModel,VPManualBloodOxygenModel,VPManualHeartRateModel,VPManualBodyTempModel,VPManualBloodCompModel;
+@class VPManualBloodPressureModel,VPManualBloodSugarModel,VPManualBloodOxygenModel,VPManualHeartRateModel,VPManualBodyTempModel,VPManualBloodCompModel, VPManualHealthGlanceModel;
 
 
 @interface VPManualTestDataModel : NSObject
@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray<VPManualBloodOxygenModel *> *bloodOxygenArr;
 
 @property (nonatomic, strong) NSArray<VPManualBloodSugarModel *> *bloodSugarArr;
+
+@property (nonatomic, strong) NSArray<VPManualHealthGlanceModel *> *healthGlanceArr;
 
 - (instancetype)initWithData:(NSData *)sourceData;
 

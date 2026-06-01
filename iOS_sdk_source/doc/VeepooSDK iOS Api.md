@@ -25,6 +25,7 @@
 | 1.2.0 | JE136P定制功能中医数据下发, HRV测量，修改蓝牙名称            | 2026.04.23 |
 | 1.2.1 | QX17匹克球定制功能，实时数据采集（IMU、GPS、心率）、振动模式修改 | 2026.04.27 |
 | 1.2.2 | 中科系列固件升级，后续版本会把不同平台固件升级整合           | 2026.05.20 |
+| 1.2.3 | QH15定制健康数据下发                                         | 2026.06.01 |
 
 # SDK初始化
 
@@ -5218,6 +5219,27 @@ VPManualBloodSugarModel
 | haveLevel       | BOOL     | 是否有血糖风险等级            |
 | bloodSugarLevel | uint8_t  | 血糖风险等级 (1,2,3 低 中 高) |
 
+VPManualHealthGlanceModel
+
+| 参数            | 参数类型  | 备注                            |
+| :-------------- | :-------- | :------------------------------ |
+| timestamp       | uint32_t  | 测量时间戳                      |
+| heartRate       | UInt8     | 心率                            |
+| bloodOxygen     | UInt8     | 血氧                            |
+| stress          | UInt8     | 压力                            |
+| fatigueLevel    | UInt8     | 疲劳度                          |
+| bloodSugar      | double    | 血糖                            |
+| haveLevel       | BOOL      | 是否有血糖风险等级              |
+| bloodSugarLevel | uint8_t   | 血糖风险等级 (1=低, 2=中, 3=高) |
+| bodyTemperature | double    | 体温                            |
+| orgTemperature  | double    | 原始体温                        |
+| h_bp            | uint16_t  | 收缩压                          |
+| l_bp            | uint16_t  | 舒张压                          |
+| hrv             | UInt8     | 心率变异性                      |
+| emotionLevel    | NSInteger | 情绪等级 (范围 [-10, 10])       |
+| healthGlanceId  | NSInteger | 微体检ID                        |
+| protocol        | NSInteger | 协议                            |
+
 ### 示例代码
 
 ```swift
@@ -7658,4 +7680,331 @@ zkDfuManager.enterDfu()
     }
 ```
 
-# 
+# QH15定制健康数据
+
+### 前提
+
+设备定制功能
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPQH15CustomVC的实现
+
+### 接口
+
+```objective-c
+/// QH15定制健康数据下发
+/// - Parameters:
+///   - model : 健康数据
+///   - callback : 结果回调
+- (void)veepooSDK_QH15SetHealthData:(VPQH15HealthDataModel *_Nullable)model callback:(void(^_Nullable)(BOOL success))result
+```
+
+### 参数解释
+
+VPQH15HealthDataModel
+
+## 年龄相关参数
+
+| 参数          | 参数类型 | 备注           |
+| :------------ | :------- | :------------- |
+| biosAge       | UInt8    | 生物年龄       |
+| heartAge      | UInt8    | 心脏年龄       |
+| fitnessAge    | UInt8    | 健康年龄       |
+| hasBiosAge    | BOOL     | 是否有生物年龄 |
+| hasHeartAge   | BOOL     | 是否有心脏年龄 |
+| hasFitnessAge | BOOL     | 是否有健康年龄 |
+
+## 年龄状态 
+
+| 参数                | 参数类型      | 备注               |
+| :------------------ | :------------ | :----------------- |
+| biosAgeStatus       | AgeStatusType | 生物年龄状态       |
+| heartAgeStatus      | AgeStatusType | 心脏年龄状态       |
+| fitnessAgeStatus    | AgeStatusType | 健康年龄状态       |
+| hasBiosAgeStatus    | BOOL          | 是否有生物年龄状态 |
+| hasHeartAgeStatus   | BOOL          | 是否有心脏年龄状态 |
+| hasFitnessAgeStatus | BOOL          | 是否有健康年龄状态 |
+
+## 年龄变化值
+
+| 参数                | 参数类型 | 备注                 |
+| :------------------ | :------- | :------------------- |
+| biosAgeChange       | UInt8    | 生物年龄变化值       |
+| heartAgeChange      | UInt8    | 心脏年龄变化值       |
+| fitnessAgeChange    | UInt8    | 健康年龄变化值       |
+| hasBiosAgeChange    | BOOL     | 是否有生物年龄变化值 |
+| hasHeartAgeChange   | BOOL     | 是否有心脏年龄变化值 |
+| hasFitnessAgeChange | BOOL     | 是否有健康年龄变化值 |
+
+## 90天趋势数据
+
+| 参数                | 参数类型            | 备注                   |
+| :------------------ | :------------------ | :--------------------- |
+| biosAge90Days       | NSArray<NSNumber *> | 生物年龄90天趋势       |
+| heartAge90Days      | NSArray<NSNumber *> | 心脏年龄90天趋势       |
+| fitnessAge90Days    | NSArray<NSNumber *> | 健康年龄90天趋势       |
+| hasBiosAge90Days    | BOOL                | 是否有生物年龄90天趋势 |
+| hasHeartAge90Days   | BOOL                | 是否有心脏年龄90天趋势 |
+| hasFitnessAge90Days | BOOL                | 是否有健康年龄90天趋势 |
+
+## 上月/去年单点数据
+
+| 参数                   | 参数类型 | 备注               |
+| :--------------------- | :------- | :----------------- |
+| biosAgeLastMonth       | UInt8    | 上月生物年龄       |
+| heartAgeLastMonth      | UInt8    | 上月心脏年龄       |
+| fitnessAgeLastMonth    | UInt8    | 上月健康年龄       |
+| biosAgeLastYear        | UInt8    | 去年生物年龄       |
+| heartAgeLastYear       | UInt8    | 去年心脏年龄       |
+| fitnessAgeLastYear     | UInt8    | 去年健康年龄       |
+| hasBiosAgeLastMonth    | BOOL     | 是否有上月生物年龄 |
+| hasHeartAgeLastMonth   | BOOL     | 是否有上月心脏年龄 |
+| hasFitnessAgeLastMonth | BOOL     | 是否有上月健康年龄 |
+| hasBiosAgeLastYear     | BOOL     | 是否有去年生物年龄 |
+| hasHeartAgeLastYear    | BOOL     | 是否有去年心脏年龄 |
+| hasFitnessAgeLastYear  | BOOL     | 是否有去年健康年龄 |
+
+## 上月/去年状态 
+
+| 参数                         | 参数类型      | 备注                   |
+| :--------------------------- | :------------ | :--------------------- |
+| biosAgeLastMonthStatus       | AgeStatusType | 上月生物年龄状态       |
+| heartAgeLastMonthStatus      | AgeStatusType | 上月心脏年龄状态       |
+| fitnessAgeLastMonthStatus    | AgeStatusType | 上月健康年龄状态       |
+| biosAgeLastYearStatus        | AgeStatusType | 去年生物年龄状态       |
+| heartAgeLastYearStatus       | AgeStatusType | 去年心脏年龄状态       |
+| fitnessAgeLastYearStatus     | AgeStatusType | 去年健康年龄状态       |
+| hasBiosAgeLastMonthStatus    | BOOL          | 是否有上月生物年龄状态 |
+| hasHeartAgeLastMonthStatus   | BOOL          | 是否有上月心脏年龄状态 |
+| hasFitnessAgeLastMonthStatus | BOOL          | 是否有上月健康年龄状态 |
+| hasBiosAgeLastYearStatus     | BOOL          | 是否有去年生物年龄状态 |
+| hasHeartAgeLastYearStatus    | BOOL          | 是否有去年心脏年龄状态 |
+| hasFitnessAgeLastYearStatus  | BOOL          | 是否有去年健康年龄状态 |
+
+## 上月/去年变化值 
+
+| 参数                         | 参数类型 | 备注                   |
+| :--------------------------- | :------- | :--------------------- |
+| biosAgeLastMonthChange       | UInt8    | 上月生物年龄变化值     |
+| heartAgeLastMonthChange      | UInt8    | 上月心脏年龄变化值     |
+| fitnessAgeLastMonthChange    | UInt8    | 上月健康年龄变化值     |
+| biosAgeLastYearChange        | UInt8    | 去年生物年龄变化值     |
+| heartAgeLastYearChange       | UInt8    | 去年心脏年龄变化值     |
+| fitnessAgeLastYearChange     | UInt8    | 去年健康年龄变化值     |
+| hasBiosAgeLastMonthChange    | BOOL     | 是否有上月生物年龄变化 |
+| hasHeartAgeLastMonthChange   | BOOL     | 是否有上月心脏年龄变化 |
+| hasFitnessAgeLastMonthChange | BOOL     | 是否有上月健康年龄变化 |
+| hasBiosAgeLastYearChange     | BOOL     | 是否有去年生物年龄变化 |
+| hasHeartAgeLastYearChange    | BOOL     | 是否有去年心脏年龄变化 |
+| hasFitnessAgeLastYearChange  | BOOL     | 是否有去年健康年龄变化 |
+
+## 三大慢病风险 
+
+| 参数                  | 参数类型 | 备注                 |
+| :-------------------- | :------- | :------------------- |
+| cardiovascularRisk    | UInt8    | 心血管疾病风险       |
+| dementiaRisk          | UInt8    | 痴呆症风险           |
+| diabetesRisk          | UInt8    | 糖尿病风险           |
+| hasCardiovascularRisk | BOOL     | 是否有心血管疾病风险 |
+| hasDementiaRisk       | BOOL     | 是否有痴呆症风险     |
+| hasDiabetesRisk       | BOOL     | 是否有糖尿病风险     |
+
+## 三大慢病风险状态 
+
+| 参数                        | 参数类型      | 备注                 |
+| :-------------------------- | :------------ | :------------------- |
+| cardiovascularRiskStatus    | AgeStatusType | 心血管疾病风险状态   |
+| dementiaRiskStatus          | AgeStatusType | 痴呆症风险状态       |
+| diabetesRiskStatus          | AgeStatusType | 糖尿病风险状态       |
+| hasCardiovascularRiskStatus | BOOL          | 是否有心血管风险状态 |
+| hasDementiaRiskStatus       | BOOL          | 是否有痴呆症风险状态 |
+| hasDiabetesRiskStatus       | BOOL          | 是否有糖尿病风险状态 |
+
+## 三大慢病风险变化值 
+
+| 参数                        | 参数类型 | 备注                 |
+| :-------------------------- | :------- | :------------------- |
+| cardiovascularRiskChange    | UInt8    | 心血管疾病风险变化值 |
+| dementiaRiskChange          | UInt8    | 痴呆症风险变化值     |
+| diabetesRiskChange          | UInt8    | 糖尿病风险变化值     |
+| hasCardiovascularRiskChange | BOOL     | 是否有心血管风险变化 |
+| hasDementiaRiskChange       | BOOL     | 是否有痴呆症风险变化 |
+| hasDiabetesRiskChange       | BOOL     | 是否有糖尿病风险变化 |
+
+## 心血管细化风险 
+
+| 参数                | 参数类型 | 备注                 |
+| :------------------ | :------- | :------------------- |
+| heartAttackRisk     | UInt8    | 心脏病发作风险       |
+| strokeRisk          | UInt8    | 中风风险             |
+| heartFailureRisk    | UInt8    | 心力衰竭风险         |
+| hasHeartAttackRisk  | BOOL     | 是否有心脏病发作风险 |
+| hasStrokeRisk       | BOOL     | 是否有中风风险       |
+| hasHeartFailureRisk | BOOL     | 是否有心力衰竭风险   |
+
+## 心血管细化风险状态 
+
+| 参数                      | 参数类型      | 备注                   |
+| :------------------------ | :------------ | :--------------------- |
+| heartAttackRiskStatus     | AgeStatusType | 心脏病发作风险状态     |
+| strokeRiskStatus          | AgeStatusType | 中风风险状态           |
+| heartFailureRiskStatus    | AgeStatusType | 心力衰竭风险状态       |
+| hasHeartAttackRiskStatus  | BOOL          | 是否有心脏病风险状态   |
+| hasStrokeRiskStatus       | BOOL          | 是否有中风风险状态     |
+| hasHeartFailureRiskStatus | BOOL          | 是否有心力衰竭风险状态 |
+
+## 心血管细化风险变化值 
+
+| 参数                      | 参数类型 | 备注                   |
+| :------------------------ | :------- | :--------------------- |
+| heartAttackRiskChange     | UInt8    | 心脏病发作风险变化值   |
+| strokeRiskChange          | UInt8    | 中风风险变化值         |
+| heartFailureRiskChange    | UInt8    | 心力衰竭风险变化值     |
+| hasHeartAttackRiskChange  | BOOL     | 是否有心脏病风险变化   |
+| hasStrokeRiskChange       | BOOL     | 是否有中风风险变化     |
+| hasHeartFailureRiskChange | BOOL     | 是否有心力衰竭风险变化 |
+
+## 生活质量风险 
+
+| 参数                     | 参数类型 | 备注                 |
+| :----------------------- | :------- | :------------------- |
+| memoryDeclineRisk        | UInt8    | 记忆力衰退风险       |
+| fallInjuryRisk           | UInt8    | 跌倒受伤风险         |
+| independentLivingRisk    | UInt8    | 独立生活能力风险     |
+| hasMemoryDeclineRisk     | BOOL     | 是否有记忆力衰退风险 |
+| hasFallInjuryRisk        | BOOL     | 是否有跌倒受伤风险   |
+| hasIndependentLivingRisk | BOOL     | 是否有独立生活风险   |
+
+## 生活质量风险状态 
+
+| 参数                           | 参数类型      | 备注                   |
+| :----------------------------- | :------------ | :--------------------- |
+| memoryDeclineRiskStatus        | AgeStatusType | 记忆力衰退风险状态     |
+| fallInjuryRiskStatus           | AgeStatusType | 跌倒受伤风险状态       |
+| independentLivingRiskStatus    | AgeStatusType | 独立生活能力风险状态   |
+| hasMemoryDeclineRiskStatus     | BOOL          | 是否有记忆力风险状态   |
+| hasFallInjuryRiskStatus        | BOOL          | 是否有跌倒风险状态     |
+| hasIndependentLivingRiskStatus | BOOL          | 是否有独立生活风险状态 |
+
+## 生活质量风险变化值 (TAG 0x48-0x4A)
+
+| 参数                           | 参数类型 | 备注                   |
+| :----------------------------- | :------- | :--------------------- |
+| memoryDeclineRiskChange        | UInt8    | 记忆力衰退风险变化值   |
+| fallInjuryRiskChange           | UInt8    | 跌倒受伤风险变化值     |
+| independentLivingRiskChange    | UInt8    | 独立生活能力风险变化值 |
+| hasMemoryDeclineRiskChange     | BOOL     | 是否有记忆力风险变化   |
+| hasFallInjuryRiskChange        | BOOL     | 是否有跌倒风险变化     |
+| hasIndependentLivingRiskChange | BOOL     | 是否有独立生活风险变化 |
+
+## 糖尿病并发症风险 
+
+| 参数                 | 参数类型 | 备注               |
+| :------------------- | :------- | :----------------- |
+| kidneyDiseaseRisk    | UInt8    | 肾脏疾病风险       |
+| nerveDamageRisk      | UInt8    | 神经损伤风险       |
+| visionLossRisk       | UInt8    | 视力丧失风险       |
+| hasKidneyDiseaseRisk | BOOL     | 是否有肾脏疾病风险 |
+| hasNerveDamageRisk   | BOOL     | 是否有神经损伤风险 |
+| hasVisionLossRisk    | BOOL     | 是否有视力丧失风险 |
+
+## 糖尿病并发症风险状态 
+
+| 参数                       | 参数类型      | 备注                   |
+| :------------------------- | :------------ | :--------------------- |
+| kidneyDiseaseRiskStatus    | AgeStatusType | 肾脏疾病风险状态       |
+| nerveDamageRiskStatus      | AgeStatusType | 神经损伤风险状态       |
+| visionLossRiskStatus       | AgeStatusType | 视力丧失风险状态       |
+| hasKidneyDiseaseRiskStatus | BOOL          | 是否有肾脏风险状态     |
+| hasNerveDamageRiskStatus   | BOOL          | 是否有神经损伤风险状态 |
+| hasVisionLossRiskStatus    | BOOL          | 是否有视力丧失风险状态 |
+
+## 糖尿病并发症风险变化值
+
+| 参数                       | 参数类型 | 备注                   |
+| :------------------------- | :------- | :--------------------- |
+| kidneyDiseaseRiskChange    | UInt8    | 肾脏疾病风险变化值     |
+| nerveDamageRiskChange      | UInt8    | 神经损伤风险变化值     |
+| visionLossRiskChange       | UInt8    | 视力丧失风险变化值     |
+| hasKidneyDiseaseRiskChange | BOOL     | 是否有肾脏风险变化     |
+| hasNerveDamageRiskChange   | BOOL     | 是否有神经损伤风险变化 |
+| hasVisionLossRiskChange    | BOOL     | 是否有视力丧失风险变化 |
+
+## 健康指数 
+
+| 参数               | 参数类型 | 备注           |
+| :----------------- | :------- | :------------- |
+| nutritionStatus    | UInt8    | 营养状况       |
+| goalStatus         | UInt8    | 目标完成状况   |
+| hasNutritionStatus | BOOL     | 是否有营养状况 |
+| hasGoalStatus      | BOOL     | 是否有目标状况 |
+
+## 时间戳 
+
+| 参数         | 参数类型 | 备注         |
+| :----------- | :------- | :----------- |
+| timestamp    | UInt32   | 时间戳       |
+| hasTimestamp | BOOL     | 是否有时间戳 |
+
+### 示例代码
+
+```swift
+healthData.timestamp = UInt32(Date().timeIntervalSince1970)
+healthData.hasTimestamp = true
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SetHealthData(healthData) { success in
+   print(success ? "发送成功" : "发送失败")
+}
+```
+
+### 接口
+
+```objective-c
+/// QH15定制读取上次设置健康数据时间戳
+/// - Parameters:
+///   - callback : 结果回调
+- (void)veepooSDK_QH15GetHealthDataTimestamp:(void(^_Nullable)(uint32_t timestamp))result;
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15GetHealthDataTimestamp { time in
+            print("时间戳\(time)")
+        }
+```
+
+### 接口
+
+```objective-c
+/// QH15定制读取当前的计步数据
+/// - Parameters:
+///   - callback : 结果回调
+- (void)veepooSDK_QH15ReadStepData:(void(^_Nullable)(VPQH15StepDataModel * _Nullable model))result
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15ReadStepData { step in
+            guard let stepM = step else { return }
+            print(stepM.readId, stepM.step, stepM.timestamp)
+        }
+```
+
+### 接口
+
+```objective-c
+/// QH15定制设置当前健康目标达标事件到设备
+/// - Parameters:
+///   - callback : 结果回调
+- (void)veepooSDK_QH15SetComplianceEvent:(AchievementType)type callback:(void(^_Nullable)(BOOL success))result
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SetComplianceEvent(achievementType) { success in
+                print(success ? "发送成功" : "发送失败")
+            }
+```

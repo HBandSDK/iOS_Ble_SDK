@@ -75,7 +75,8 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("中科固件升级", "VPHZKDFUVC"),
         .init("JE136P中医自定义数据下发", "VPJE136PTCMVC"),
         .init("修改蓝牙名", "VPChangeDeviceNameViewController"),
-        .init("HRV测量", "VPHRVTestVC")
+        .init("HRV测量", "VPHRVTestVC"),
+        .init("QH15健康数据", "VPQH15CustomVC")
     ]
     
     override func viewDidLoad() {

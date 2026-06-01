@@ -73,10 +73,12 @@ extension VPHZKDFUVC: VPHZKDFUManagerDelegate {
     
     func zkOtaStatusUpdating(progress: UInt) {
         print("zkOtaStatusUpdating\(progress)")
+        stateLabel.text = "\(progress)%"
     }
     
     func zkOtaStatuSuccess() {
         print("zkOtaStatuSuccess")
+        stateLabel.text = "成功"
     }
     
     func zkOtaStatusFail(errorCode: Int) {
@@ -84,7 +86,7 @@ extension VPHZKDFUVC: VPHZKDFUManagerDelegate {
     }
     
     @objc func zkOtaAction() {
-        let fileName = "xx.bin"
+        let fileName = "VX12_2526_CF120201_OTA_260511_09.bin"
         let filePath = Bundle.main.path(forResource: fileName, ofType: nil)
         if (filePath == nil) {
             stateLabel.text = "没找到升级固件"

@@ -18,7 +18,7 @@ class VPManualTestDataVC: UIViewController {
     
     var checkTimeInterval:TimeInterval = 0
     
-    let mmTypes: [VPManualTestDataType] = [.heartRate , .bloodPressure, .bloodOxygen, .bloodSugar, .bloodComponents, .temperature, .all]
+    let mmTypes: [VPManualTestDataType] = [.heartRate , .bloodPressure, .bloodOxygen, .bloodSugar, .bloodComponents, .temperature, .healthGlance,.all]
     
     var allViews: [UIButton] = []
     
@@ -98,6 +98,10 @@ class VPManualTestDataVC: UIViewController {
                 logText += "\n" + "血糖 = \(someModel.bloodSugarArr)"
             }
             
+            if !someModel.healthGlanceArr.isEmpty {
+                logText += "\n" + "微体检 = \(someModel.healthGlanceArr)"
+            }
+            
             if let existingText = self?.logTextView.text {
                 self?.logTextView.text = existingText + logText
             } else {
@@ -112,7 +116,7 @@ extension VPManualTestDataVC {
         title = "手动测量数据"
         view.backgroundColor = UIColor.white
         
-        let texts = ["读取心率","读取血压","读取血氧","读取血糖","读取血液成分","读取体温","读取所有"]
+        let texts = ["读取心率","读取血压","读取血氧","读取血糖","读取血液成分","读取体温","读取微体检","读取所有"]
         
         let height = 40
         let rowNum = 4

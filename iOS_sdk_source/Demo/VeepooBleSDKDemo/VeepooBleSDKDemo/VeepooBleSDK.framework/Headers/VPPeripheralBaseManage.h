@@ -60,6 +60,8 @@
 #import "VPQX17GPSModel.h"
 #import "VPQX17HeartRateModel.h"
 
+#import "VPQH15HealthDataModel.h"
+#import "VPQH15StepDataModel.h"
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
 
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
@@ -1417,6 +1419,30 @@
 - (void)sendZKDFU:(NSData*)data;
 
 - (void)zkReceiveData:(void(^_Nullable)(NSData *data))receive zkCanSendNextAction:(void(^_Nullable)())canSend zkDidEnable:(void(^_Nullable)())enable;
+
+
+/// QH15定制健康数据下发
+/// - Parameters:
+///   - model : 健康数据
+///   - callback : 结果回调
+- (void)veepooSDK_QH15SetHealthData:(VPQH15HealthDataModel *_Nullable)model callback:(void(^_Nullable)(BOOL success))result;
+
+/// QH15定制读取上次设置健康数据时间戳
+/// - Parameters:
+///   - callback : 结果回调
+- (void)veepooSDK_QH15GetHealthDataTimestamp:(void(^_Nullable)(uint32_t timestamp))result;
+
+/// QH15定制读取当前的计步数据
+/// - Parameters:
+///   - callback : 结果回调
+- (void)veepooSDK_QH15ReadStepData:(void(^_Nullable)(VPQH15StepDataModel * _Nullable model))result;
+
+/// QH15定制设置当前健康目标达标事件到设备
+/// - Parameters:
+///   - callback : 结果回调
+- (void)veepooSDK_QH15SetComplianceEvent:(AchievementType)type callback:(void(^_Nullable)(BOOL success))result;
+
+
 @end
 
 

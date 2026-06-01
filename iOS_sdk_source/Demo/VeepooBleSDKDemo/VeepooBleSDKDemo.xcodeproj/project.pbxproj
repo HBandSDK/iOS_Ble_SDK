@@ -124,6 +124,7 @@
 		FE915C0D2D844BF1004417A3 /* VPJM19AViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */; };
 		FE915C0E2D844BF1004417A3 /* VPJM19AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE915C0A2D844BF1004417A3 /* VPJM19AViewController.swift */; };
 		FE91774E2FBD60F5002F088E /* VPHZKDFUVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE91774D2FBD60F5002F088E /* VPHZKDFUVC.swift */; };
+		FE91779C2FCDB3B2002F088E /* VPQH15CustomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE91779A2FCDB3B2002F088E /* VPQH15CustomVC.swift */; };
 		FE9F41B82F91031000247B50 /* iOSMcuManagerLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */; };
 		FE9F41B92F91031000247B50 /* iOSMcuManagerLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE9F41BA2F91031500247B50 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */; };
@@ -306,6 +307,7 @@
 		FE915C0A2D844BF1004417A3 /* VPJM19AViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPJM19AViewController.swift; sourceTree = "<group>"; };
 		FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPJM19AViewController.xib; sourceTree = "<group>"; };
 		FE91774D2FBD60F5002F088E /* VPHZKDFUVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHZKDFUVC.swift; sourceTree = "<group>"; };
+		FE91779A2FCDB3B2002F088E /* VPQH15CustomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPQH15CustomVC.swift; sourceTree = "<group>"; };
 		FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftCBOR.framework; sourceTree = "<group>"; };
 		FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = "<group>"; };
 		FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSMcuManagerLibrary.framework; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE91779B2FCDB3B2002F088E /* QH15健康数据 */,
 				FE91774C2FBD5F10002F088E /* 中科戒指升级 */,
 				FEE777BA2FA08746003C8733 /* QX17 */,
 				FEE777B12F9B1DFE003C8733 /* HRV测量 */,
@@ -759,6 +762,14 @@
 			path = "中科戒指升级";
 			sourceTree = "<group>";
 		};
+		FE91779B2FCDB3B2002F088E /* QH15健康数据 */ = {
+			isa = PBXGroup;
+			children = (
+				FE91779A2FCDB3B2002F088E /* VPQH15CustomVC.swift */,
+			);
+			path = "QH15健康数据";
+			sourceTree = "<group>";
+		};
 		FE9F41C02F9103A400247B50 /* Nordic固件升级 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1070,6 +1081,7 @@
 				6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */,
 				67BA7254235813C8004E6E1E /* VPPTTTestController.swift in Sources */,
 				FEE777AC2F9B1DDA003C8733 /* VPChangeDeviceNameViewController.swift in Sources */,
+				FE91779C2FCDB3B2002F088E /* VPQH15CustomVC.swift in Sources */,
 				67FC22B11E67FC660029DED3 /* VPRaiseHandSettingController.swift in Sources */,
 				FE915C0E2D844BF1004417A3 /* VPJM19AViewController.swift in Sources */,
 				FE42D5652EFE78D100558A41 /* VPAlwaysOffScreenViewController.swift in Sources */,

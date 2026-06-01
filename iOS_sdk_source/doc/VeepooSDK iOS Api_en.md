@@ -25,6 +25,7 @@
 | 1.2.0   | Add JE136P customized TCM data distribution，Add HRV Measurement， Change Bluetooth name | 2026.04.23        |
 | 1.2.1   | QX17 customized function, real-time data acquisition (IMU, GPS, Heart rate), vibration mode modification | 2026.04.27        |
 | 1.2.2   | Zhongke series firmware upgrade, subsequent versions will integrate firmware upgrades from different platforms | 2026.05.20        |
+| 1.2.3   | QH15 Customized Health Data                                  | 2026.06.01        |
 
 # SDK initialization
 
@@ -5206,7 +5207,26 @@ VPManualBloodSugarModel
 | haveLevel       | BOOL           | has blood glucose risk level                       |
 | bloodSugarLevel | uint8_t        | bloodGlucoseRiskLevel (1, 2, 3: low, medium, high) |
 
-### 
+VPManualHealthGlanceModel
+
+| Parameter       | Type      | Remark                                           |
+| :-------------- | :-------- | :----------------------------------------------- |
+| timestamp       | uint32_t  | Measurement Timestamp                            |
+| heartRate       | UInt8     | Heart Rate                                       |
+| bloodOxygen     | UInt8     | Blood Oxygen                                     |
+| stress          | UInt8     | Stress                                           |
+| fatigueLevel    | UInt8     | Fatigue Level                                    |
+| bloodSugar      | double    | Blood Sugar                                      |
+| haveLevel       | BOOL      | Has Blood Sugar Risk Level                       |
+| bloodSugarLevel | uint8_t   | Blood Sugar Risk Level (1=Low, 2=Medium, 3=High) |
+| bodyTemperature | double    | Body Temperature                                 |
+| orgTemperature  | double    | Original Body Temperature                        |
+| h_bp            | uint16_t  | Systolic Blood Pressure                          |
+| l_bp            | uint16_t  | Diastolic Blood Pressure                         |
+| hrv             | UInt8     | HRV (Heart Rate Variability)                     |
+| emotionLevel    | NSInteger | Emotion Level Range [-10, 10]                    |
+| healthGlanceId  | NSInteger | Health Glance ID                                 |
+| protocol        | NSInteger | Protocol                                         |
 
 ### Sample Code
 
@@ -7638,3 +7658,333 @@ zkDfuManager.enterDfu()
     }
 ```
 
+# QH15 Customized Health Data
+
+### Precondition
+
+Equipment customization function
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation VPQH15CustomVC the demo
+
+### Interfaces
+
+```objective-c
+/// QH15 Customized Health Data
+/// - Parameters:
+///   - model : Health Data
+///   - callback : result callBack
+- (void)veepooSDK_QH15SetHealthData:(VPQH15HealthDataModel *_Nullable)model callback:(void(^_Nullable)(BOOL success))result
+```
+
+### Parameter Explanation
+
+VPQH15HealthDataModel
+
+## 1. Age-Related Parameters (TAG 0x10-0x12)
+
+| Parameter     | Type  | Remark             |
+| :------------ | :---- | :----------------- |
+| biosAge       | UInt8 | Biological Age     |
+| heartAge      | UInt8 | Heart Age          |
+| fitnessAge    | UInt8 | Fitness Age        |
+| hasBiosAge    | BOOL  | Has Biological Age |
+| hasHeartAge   | BOOL  | Has Heart Age      |
+| hasFitnessAge | BOOL  | Has Fitness Age    |
+
+## 2. Age Status (TAG 0x13-0x15)
+
+| Parameter           | Type          | Remark                    |
+| :------------------ | :------------ | :------------------------ |
+| biosAgeStatus       | AgeStatusType | Biological Age Status     |
+| heartAgeStatus      | AgeStatusType | Heart Age Status          |
+| fitnessAgeStatus    | AgeStatusType | Fitness Age Status        |
+| hasBiosAgeStatus    | BOOL          | Has Biological Age Status |
+| hasHeartAgeStatus   | BOOL          | Has Heart Age Status      |
+| hasFitnessAgeStatus | BOOL          | Has Fitness Age Status    |
+
+## 3. Age Change Values (TAG 0x16-0x18)
+
+| Parameter           | Type  | Remark                    |
+| :------------------ | :---- | :------------------------ |
+| biosAgeChange       | UInt8 | Biological Age Change     |
+| heartAgeChange      | UInt8 | Heart Age Change          |
+| fitnessAgeChange    | UInt8 | Fitness Age Change        |
+| hasBiosAgeChange    | BOOL  | Has Biological Age Change |
+| hasHeartAgeChange   | BOOL  | Has Heart Age Change      |
+| hasFitnessAgeChange | BOOL  | Has Fitness Age Change    |
+
+## 4. 90-Day Trend Data (TAG 0x19-0x1B)
+
+| Parameter           | Type                | Remark                          |
+| :------------------ | :------------------ | :------------------------------ |
+| biosAge90Days       | NSArray<NSNumber *> | Biological Age 90-Day Trend     |
+| heartAge90Days      | NSArray<NSNumber *> | Heart Age 90-Day Trend          |
+| fitnessAge90Days    | NSArray<NSNumber *> | Fitness Age 90-Day Trend        |
+| hasBiosAge90Days    | BOOL                | Has Biological Age 90-Day Trend |
+| hasHeartAge90Days   | BOOL                | Has Heart Age 90-Day Trend      |
+| hasFitnessAge90Days | BOOL                | Has Fitness Age 90-Day Trend    |
+
+## 5. Last Month/Last Year Single Point Data (TAG 0x1C-0x21)
+
+| Parameter              | Type  | Remark                        |
+| :--------------------- | :---- | :---------------------------- |
+| biosAgeLastMonth       | UInt8 | Last Month Biological Age     |
+| heartAgeLastMonth      | UInt8 | Last Month Heart Age          |
+| fitnessAgeLastMonth    | UInt8 | Last Month Fitness Age        |
+| biosAgeLastYear        | UInt8 | Last Year Biological Age      |
+| heartAgeLastYear       | UInt8 | Last Year Heart Age           |
+| fitnessAgeLastYear     | UInt8 | Last Year Fitness Age         |
+| hasBiosAgeLastMonth    | BOOL  | Has Last Month Biological Age |
+| hasHeartAgeLastMonth   | BOOL  | Has Last Month Heart Age      |
+| hasFitnessAgeLastMonth | BOOL  | Has Last Month Fitness Age    |
+| hasBiosAgeLastYear     | BOOL  | Has Last Year Biological Age  |
+| hasHeartAgeLastYear    | BOOL  | Has Last Year Heart Age       |
+| hasFitnessAgeLastYear  | BOOL  | Has Last Year Fitness Age     |
+
+## 6. Last Month/Last Year Status (TAG 0x22-0x27)
+
+| Parameter                    | Type          | Remark                               |
+| :--------------------------- | :------------ | :----------------------------------- |
+| biosAgeLastMonthStatus       | AgeStatusType | Last Month Biological Age Status     |
+| heartAgeLastMonthStatus      | AgeStatusType | Last Month Heart Age Status          |
+| fitnessAgeLastMonthStatus    | AgeStatusType | Last Month Fitness Age Status        |
+| biosAgeLastYearStatus        | AgeStatusType | Last Year Biological Age Status      |
+| heartAgeLastYearStatus       | AgeStatusType | Last Year Heart Age Status           |
+| fitnessAgeLastYearStatus     | AgeStatusType | Last Year Fitness Age Status         |
+| hasBiosAgeLastMonthStatus    | BOOL          | Has Last Month Biological Age Status |
+| hasHeartAgeLastMonthStatus   | BOOL          | Has Last Month Heart Age Status      |
+| hasFitnessAgeLastMonthStatus | BOOL          | Has Last Month Fitness Age Status    |
+| hasBiosAgeLastYearStatus     | BOOL          | Has Last Year Biological Age Status  |
+| hasHeartAgeLastYearStatus    | BOOL          | Has Last Year Heart Age Status       |
+| hasFitnessAgeLastYearStatus  | BOOL          | Has Last Year Fitness Age Status     |
+
+## 7. Last Month/Last Year Change Values (TAG 0x28-0x2D)
+
+| Parameter                    | Type  | Remark                               |
+| :--------------------------- | :---- | :----------------------------------- |
+| biosAgeLastMonthChange       | UInt8 | Last Month Biological Age Change     |
+| heartAgeLastMonthChange      | UInt8 | Last Month Heart Age Change          |
+| fitnessAgeLastMonthChange    | UInt8 | Last Month Fitness Age Change        |
+| biosAgeLastYearChange        | UInt8 | Last Year Biological Age Change      |
+| heartAgeLastYearChange       | UInt8 | Last Year Heart Age Change           |
+| fitnessAgeLastYearChange     | UInt8 | Last Year Fitness Age Change         |
+| hasBiosAgeLastMonthChange    | BOOL  | Has Last Month Biological Age Change |
+| hasHeartAgeLastMonthChange   | BOOL  | Has Last Month Heart Age Change      |
+| hasFitnessAgeLastMonthChange | BOOL  | Has Last Month Fitness Age Change    |
+| hasBiosAgeLastYearChange     | BOOL  | Has Last Year Biological Age Change  |
+| hasHeartAgeLastYearChange    | BOOL  | Has Last Year Heart Age Change       |
+| hasFitnessAgeLastYearChange  | BOOL  | Has Last Year Fitness Age Change     |
+
+## 8. Three Major Chronic Disease Risks (TAG 0x30-0x32)
+
+| Parameter             | Type  | Remark                          |
+| :-------------------- | :---- | :------------------------------ |
+| cardiovascularRisk    | UInt8 | Cardiovascular Disease Risk     |
+| dementiaRisk          | UInt8 | Dementia Risk                   |
+| diabetesRisk          | UInt8 | Diabetes Risk                   |
+| hasCardiovascularRisk | BOOL  | Has Cardiovascular Disease Risk |
+| hasDementiaRisk       | BOOL  | Has Dementia Risk               |
+| hasDiabetesRisk       | BOOL  | Has Diabetes Risk               |
+
+## 9. Three Major Chronic Disease Risk Status (TAG 0x33-0x35)
+
+| Parameter                   | Type          | Remark                             |
+| :-------------------------- | :------------ | :--------------------------------- |
+| cardiovascularRiskStatus    | AgeStatusType | Cardiovascular Disease Risk Status |
+| dementiaRiskStatus          | AgeStatusType | Dementia Risk Status               |
+| diabetesRiskStatus          | AgeStatusType | Diabetes Risk Status               |
+| hasCardiovascularRiskStatus | BOOL          | Has Cardiovascular Risk Status     |
+| hasDementiaRiskStatus       | BOOL          | Has Dementia Risk Status           |
+| hasDiabetesRiskStatus       | BOOL          | Has Diabetes Risk Status           |
+
+## 10. Three Major Chronic Disease Risk Change Values (TAG 0x36-0x38)
+
+| Parameter                   | Type  | Remark                             |
+| :-------------------------- | :---- | :--------------------------------- |
+| cardiovascularRiskChange    | UInt8 | Cardiovascular Disease Risk Change |
+| dementiaRiskChange          | UInt8 | Dementia Risk Change               |
+| diabetesRiskChange          | UInt8 | Diabetes Risk Change               |
+| hasCardiovascularRiskChange | BOOL  | Has Cardiovascular Risk Change     |
+| hasDementiaRiskChange       | BOOL  | Has Dementia Risk Change           |
+| hasDiabetesRiskChange       | BOOL  | Has Diabetes Risk Change           |
+
+## 11. Cardiovascular Detailed Risks (TAG 0x39-0x3B)
+
+| Parameter           | Type  | Remark                 |
+| :------------------ | :---- | :--------------------- |
+| heartAttackRisk     | UInt8 | Heart Attack Risk      |
+| strokeRisk          | UInt8 | Stroke Risk            |
+| heartFailureRisk    | UInt8 | Heart Failure Risk     |
+| hasHeartAttackRisk  | BOOL  | Has Heart Attack Risk  |
+| hasStrokeRisk       | BOOL  | Has Stroke Risk        |
+| hasHeartFailureRisk | BOOL  | Has Heart Failure Risk |
+
+## 12. Cardiovascular Detailed Risk Status (TAG 0x3C-0x3E)
+
+| Parameter                 | Type          | Remark                        |
+| :------------------------ | :------------ | :---------------------------- |
+| heartAttackRiskStatus     | AgeStatusType | Heart Attack Risk Status      |
+| strokeRiskStatus          | AgeStatusType | Stroke Risk Status            |
+| heartFailureRiskStatus    | AgeStatusType | Heart Failure Risk Status     |
+| hasHeartAttackRiskStatus  | BOOL          | Has Heart Attack Risk Status  |
+| hasStrokeRiskStatus       | BOOL          | Has Stroke Risk Status        |
+| hasHeartFailureRiskStatus | BOOL          | Has Heart Failure Risk Status |
+
+## 13. Cardiovascular Detailed Risk Change Values (TAG 0x3F-0x41)
+
+| Parameter                 | Type  | Remark                        |
+| :------------------------ | :---- | :---------------------------- |
+| heartAttackRiskChange     | UInt8 | Heart Attack Risk Change      |
+| strokeRiskChange          | UInt8 | Stroke Risk Change            |
+| heartFailureRiskChange    | UInt8 | Heart Failure Risk Change     |
+| hasHeartAttackRiskChange  | BOOL  | Has Heart Attack Risk Change  |
+| hasStrokeRiskChange       | BOOL  | Has Stroke Risk Change        |
+| hasHeartFailureRiskChange | BOOL  | Has Heart Failure Risk Change |
+
+## 14. Quality of Life Risks (TAG 0x42-0x44)
+
+| Parameter                | Type  | Remark                      |
+| :----------------------- | :---- | :-------------------------- |
+| memoryDeclineRisk        | UInt8 | Memory Decline Risk         |
+| fallInjuryRisk           | UInt8 | Fall Injury Risk            |
+| independentLivingRisk    | UInt8 | Independent Living Risk     |
+| hasMemoryDeclineRisk     | BOOL  | Has Memory Decline Risk     |
+| hasFallInjuryRisk        | BOOL  | Has Fall Injury Risk        |
+| hasIndependentLivingRisk | BOOL  | Has Independent Living Risk |
+
+## 15. Quality of Life Risk Status (TAG 0x45-0x47)
+
+| Parameter                      | Type          | Remark                             |
+| :----------------------------- | :------------ | :--------------------------------- |
+| memoryDeclineRiskStatus        | AgeStatusType | Memory Decline Risk Status         |
+| fallInjuryRiskStatus           | AgeStatusType | Fall Injury Risk Status            |
+| independentLivingRiskStatus    | AgeStatusType | Independent Living Risk Status     |
+| hasMemoryDeclineRiskStatus     | BOOL          | Has Memory Decline Risk Status     |
+| hasFallInjuryRiskStatus        | BOOL          | Has Fall Injury Risk Status        |
+| hasIndependentLivingRiskStatus | BOOL          | Has Independent Living Risk Status |
+
+## 16. Quality of Life Risk Change Values (TAG 0x48-0x4A)
+
+| Parameter                      | Type  | Remark                             |
+| :----------------------------- | :---- | :--------------------------------- |
+| memoryDeclineRiskChange        | UInt8 | Memory Decline Risk Change         |
+| fallInjuryRiskChange           | UInt8 | Fall Injury Risk Change            |
+| independentLivingRiskChange    | UInt8 | Independent Living Risk Change     |
+| hasMemoryDeclineRiskChange     | BOOL  | Has Memory Decline Risk Change     |
+| hasFallInjuryRiskChange        | BOOL  | Has Fall Injury Risk Change        |
+| hasIndependentLivingRiskChange | BOOL  | Has Independent Living Risk Change |
+
+## 17. Diabetes Complication Risks (TAG 0x4B-0x4D)
+
+| Parameter            | Type  | Remark                  |
+| :------------------- | :---- | :---------------------- |
+| kidneyDiseaseRisk    | UInt8 | Kidney Disease Risk     |
+| nerveDamageRisk      | UInt8 | Nerve Damage Risk       |
+| visionLossRisk       | UInt8 | Vision Loss Risk        |
+| hasKidneyDiseaseRisk | BOOL  | Has Kidney Disease Risk |
+| hasNerveDamageRisk   | BOOL  | Has Nerve Damage Risk   |
+| hasVisionLossRisk    | BOOL  | Has Vision Loss Risk    |
+
+## 18. Diabetes Complication Risk Status (TAG 0x4E-0x50)
+
+| Parameter                  | Type          | Remark                         |
+| :------------------------- | :------------ | :----------------------------- |
+| kidneyDiseaseRiskStatus    | AgeStatusType | Kidney Disease Risk Status     |
+| nerveDamageRiskStatus      | AgeStatusType | Nerve Damage Risk Status       |
+| visionLossRiskStatus       | AgeStatusType | Vision Loss Risk Status        |
+| hasKidneyDiseaseRiskStatus | BOOL          | Has Kidney Disease Risk Status |
+| hasNerveDamageRiskStatus   | BOOL          | Has Nerve Damage Risk Status   |
+| hasVisionLossRiskStatus    | BOOL          | Has Vision Loss Risk Status    |
+
+## 19. Diabetes Complication Risk Change Values (TAG 0x51-0x53)
+
+| Parameter                  | Type  | Remark                         |
+| :------------------------- | :---- | :----------------------------- |
+| kidneyDiseaseRiskChange    | UInt8 | Kidney Disease Risk Change     |
+| nerveDamageRiskChange      | UInt8 | Nerve Damage Risk Change       |
+| visionLossRiskChange       | UInt8 | Vision Loss Risk Change        |
+| hasKidneyDiseaseRiskChange | BOOL  | Has Kidney Disease Risk Change |
+| hasNerveDamageRiskChange   | BOOL  | Has Nerve Damage Risk Change   |
+| hasVisionLossRiskChange    | BOOL  | Has Vision Loss Risk Change    |
+
+## 20. Health Index (TAG 0x54-0x55)
+
+| Parameter          | Type  | Remark                  |
+| :----------------- | :---- | :---------------------- |
+| nutritionStatus    | UInt8 | Nutrition Status        |
+| goalStatus         | UInt8 | Goal Achievement Status |
+| hasNutritionStatus | BOOL  | Has Nutrition Status    |
+| hasGoalStatus      | BOOL  | Has Goal Status         |
+
+## 21. Timestamp (TAG 0xA1)
+
+| Parameter    | Type   | Remark        |
+| :----------- | :----- | :------------ |
+| timestamp    | UInt32 | Timestamp     |
+| hasTimestamp | BOOL   | Has Timestamp |
+
+
+
+### Sample Code
+
+```swift
+healthData.timestamp = UInt32(Date().timeIntervalSince1970)
+healthData.hasTimestamp = true
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SetHealthData(healthData) { success in
+   print(success ? "success" : "fail")
+}
+```
+
+### Interfaces
+
+```objective-c
+/// QH15 custom reads the timestamp of the last set health data
+/// - Parameters:
+///   - callback : result callBack
+- (void)veepooSDK_QH15GetHealthDataTimestamp:(void(^_Nullable)(uint32_t timestamp))result;
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15GetHealthDataTimestamp { time in
+            print("\(time)")
+        }
+```
+
+### Interfaces
+
+```objective-c
+/// QH15 customized reading of current step counting data
+/// - Parameters:
+///   - callback : result callBack
+- (void)veepooSDK_QH15ReadStepData:(void(^_Nullable)(VPQH15StepDataModel * _Nullable model))result
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15ReadStepData { step in
+            guard let stepM = step else { return }
+            print(stepM.readId, stepM.step, stepM.timestamp)
+        }
+```
+
+### Interfaces
+
+```objective-c
+/// QH15 customized setting of current health target achievement events to devices
+/// - Parameters:
+///   - callback : result callBack
+- (void)veepooSDK_QH15SetComplianceEvent:(AchievementType)type callback:(void(^_Nullable)(BOOL success))result
+```
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SetComplianceEvent(achievementType) { success in
+                print(success ? "success" : "fail")
+            }
+```
