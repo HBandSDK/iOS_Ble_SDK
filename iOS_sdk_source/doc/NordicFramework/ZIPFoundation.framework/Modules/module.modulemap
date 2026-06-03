@@ -7,5 +7,4 @@ framework module ZIPFoundation {
 
 module ZIPFoundation.Swift {
   header "ZIPFoundation-Swift.h"
-  requires objc
 }
