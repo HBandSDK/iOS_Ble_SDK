@@ -1,5 +1,7 @@
 import Foundation
 import CoreBluetooth
+
+#if canImport(iOSMcuManagerLibrary)
 import iOSMcuManagerLibrary
 
 @objc public protocol VPHNordic54LDFUManagerDelegate {
@@ -94,3 +96,6 @@ public class VPHNordic54LDFUManager: NSObject, FirmwareUpgradeDelegate {
         delegate?.nordicOtaUploadProgress(bytesSent: bytesSent, imageSize: imageSize, progress: progress)
     }
 }
+
+#else
+#endif

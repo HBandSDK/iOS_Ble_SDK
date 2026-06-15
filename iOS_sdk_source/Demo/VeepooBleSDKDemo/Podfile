@@ -10,6 +10,8 @@ pod 'FMDB'
 
 pod 'MJExtension'
 
+#pod 'iOSMcuManagerLibrary' NRF 必须
+
 end
 
 post_install do |installer|

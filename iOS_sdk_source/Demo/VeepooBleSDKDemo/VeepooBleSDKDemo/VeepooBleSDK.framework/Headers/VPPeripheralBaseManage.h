@@ -62,6 +62,7 @@
 
 #import "VPQH15HealthDataModel.h"
 #import "VPQH15StepDataModel.h"
+#import "VPReminderEventModel.h"
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
 
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
@@ -741,6 +742,8 @@
 //Reset the device, device will reload, data will not clear. this operation will disconnect.
 //复位，设备会重新冷启动一遍，数据不会丢失。会与App断开连接
 - (void)veepooSDKResetDeviceData;
+// 关机
+- (void)veepooSDKPowerOffDevice;
 
 /// 读取已连接设备的RSSI值  ⚠️设备未连接时无效
 /// @param block 回调函数
@@ -1442,6 +1445,21 @@
 ///   - callback : 结果回调
 - (void)veepooSDK_QH15SetComplianceEvent:(AchievementType)type callback:(void(^_Nullable)(BOOL success))result;
 
+
+#pragma mark 提醒事件
+
+/// 监听提醒事件主动上报
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_ListenReminderEventReport:(void (^_Nullable)(NSArray<VPReminderEventModel *> * _Nullable array))result;
+
+
+/// 读取历史提醒事件
+/// - Parameters:
+///   - type: 事件类型
+///   - time: 时间戳 (设备上报大于等于该时间戳的事件)
+///   - callBack : 结果回调
+- (void)veepooSDK_ReadHistoricalDataReminderEvents:(VPReminderEventType)type andTime:(uint32_t)time callBack:(void (^_Nullable)(NSArray<VPReminderEventModel *> * _Nullable array))result;
 
 @end
 

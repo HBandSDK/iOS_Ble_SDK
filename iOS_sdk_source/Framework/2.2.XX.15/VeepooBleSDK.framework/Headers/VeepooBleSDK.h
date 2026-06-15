@@ -93,6 +93,7 @@
 #import "VPQH15SecurityProtectionInfo.h"
 #import "VPJE136PTCMModel.h"
 #import "VPQH15HealthDataModel.h"
+#import "VPLogManager.h"
 //! Project version number for VeepooBleSDK.
 FOUNDATION_EXPORT double VeepooBleSDKVersionNumber;
 

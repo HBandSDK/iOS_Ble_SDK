@@ -125,12 +125,6 @@
 		FE915C0E2D844BF1004417A3 /* VPJM19AViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE915C0A2D844BF1004417A3 /* VPJM19AViewController.swift */; };
 		FE91774E2FBD60F5002F088E /* VPHZKDFUVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE91774D2FBD60F5002F088E /* VPHZKDFUVC.swift */; };
 		FE91779C2FCDB3B2002F088E /* VPQH15CustomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE91779A2FCDB3B2002F088E /* VPQH15CustomVC.swift */; };
-		FE9F41B82F91031000247B50 /* iOSMcuManagerLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */; };
-		FE9F41B92F91031000247B50 /* iOSMcuManagerLibrary.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FE9F41BA2F91031500247B50 /* ZIPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */; };
-		FE9F41BB2F91031500247B50 /* ZIPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FE9F41BC2F91031800247B50 /* SwiftCBOR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */; };
-		FE9F41BD2F91031800247B50 /* SwiftCBOR.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FE9F41C12F9103A400247B50 /* VPHNordic54LDFUVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9F41BF2F9103A400247B50 /* VPHNordic54LDFUVC.swift */; };
 		FE9F41C22F9103A400247B50 /* VPHNordic54LDFUManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9F41BE2F9103A400247B50 /* VPHNordic54LDFUManager.swift */; };
 		FEA658792D22872100FB7469 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658782D22872100FB7469 /* VeepooBleSDK.framework */; };
@@ -168,13 +162,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				FE9F41BD2F91031800247B50 /* SwiftCBOR.framework in Embed Frameworks */,
 				FEFDBB2229BF445100264276 /* ZipZap.framework in Embed Frameworks */,
 				FEFDBB2429BF445E00264276 /* JLDialUnit.framework in Embed Frameworks */,
 				FE70FA95263A613F00074260 /* GRDFUSDK.framework in Embed Frameworks */,
 				FEA6587B2D22879A00FB7469 /* ABParTool.framework in Embed Frameworks */,
-				FE9F41B92F91031000247B50 /* iOSMcuManagerLibrary.framework in Embed Frameworks */,
-				FE9F41BB2F91031500247B50 /* ZIPFoundation.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,9 +299,6 @@
 		FE915C0B2D844BF1004417A3 /* VPJM19AViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPJM19AViewController.xib; sourceTree = "<group>"; };
 		FE91774D2FBD60F5002F088E /* VPHZKDFUVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHZKDFUVC.swift; sourceTree = "<group>"; };
 		FE91779A2FCDB3B2002F088E /* VPQH15CustomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPQH15CustomVC.swift; sourceTree = "<group>"; };
-		FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftCBOR.framework; sourceTree = "<group>"; };
-		FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZIPFoundation.framework; sourceTree = "<group>"; };
-		FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iOSMcuManagerLibrary.framework; sourceTree = "<group>"; };
 		FE9F41BE2F9103A400247B50 /* VPHNordic54LDFUManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHNordic54LDFUManager.swift; sourceTree = "<group>"; };
 		FE9F41BF2F9103A400247B50 /* VPHNordic54LDFUVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHNordic54LDFUVC.swift; sourceTree = "<group>"; };
 		FEA658742D2286ED00FB7469 /* ABParTool.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ABParTool.framework; sourceTree = "<group>"; };
@@ -347,10 +335,7 @@
 				FEFDBB1E29BF444A00264276 /* DFUnits.framework in Frameworks */,
 				FEFDBB2129BF445000264276 /* ZipZap.framework in Frameworks */,
 				FEA6587A2D22879A00FB7469 /* ABParTool.framework in Frameworks */,
-				FE9F41B82F91031000247B50 /* iOSMcuManagerLibrary.framework in Frameworks */,
-				FE9F41BC2F91031800247B50 /* SwiftCBOR.framework in Frameworks */,
 				FE70FA94263A613F00074260 /* GRDFUSDK.framework in Frameworks */,
-				FE9F41BA2F91031500247B50 /* ZIPFoundation.framework in Frameworks */,
 				FEA658792D22872100FB7469 /* VeepooBleSDK.framework in Frameworks */,
 				FEFDBB1F29BF444A00264276 /* JL_BLEKit.framework in Frameworks */,
 				AED6550F5A15F5F576BC2162 /* Pods_VeepooBleSDKDemo.framework in Frameworks */,
@@ -580,9 +565,6 @@
 				FEFDBB1C29BF444A00264276 /* ZipZap.framework */,
 				FE70FA85263A5F2400074260 /* GRDFUSDK.framework */,
 				FEA658742D2286ED00FB7469 /* ABParTool.framework */,
-				FE9F41B22F9102ED00247B50 /* SwiftCBOR.framework */,
-				FE9F41B42F9102FA00247B50 /* ZIPFoundation.framework */,
-				FE9F41B62F91030000247B50 /* iOSMcuManagerLibrary.framework */,
 				675052201E553C9C008D45BC /* VeepooBleSDKBaseViewController */,
 				675052231E553F12008D45BC /* VeepooSDKViewControllers */,
 				67057F991E655D830084D6AB /* VeepooTools */,

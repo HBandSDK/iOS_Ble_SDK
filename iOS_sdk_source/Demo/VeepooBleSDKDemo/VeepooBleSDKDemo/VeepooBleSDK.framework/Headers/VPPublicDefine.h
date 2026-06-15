@@ -764,3 +764,10 @@ typedef NS_OPTIONS(uint32_t, JE136PTCMOption) {
     JE136PTCMOptionStomach         = 1 << 18, // 0x12：胃
     JE136PTCMOptionHeart           = 1 << 19, // 0x13：心脏
 };
+
+
+typedef NS_OPTIONS(uint8_t, VPReminderEventType) {
+    VPReminderEventTypeAll = 1,
+    VPReminderEventTypeFall,
+    VPReminderEventTypeSedentary,
+};
