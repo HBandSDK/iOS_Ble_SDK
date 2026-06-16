@@ -1,0 +1,50 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.2 effective-4.1.50 (swiftlang-6.3.2.1.108 clang-2100.1.1.101)
+// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 4 -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name VeepooBleSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.2
+import CommonCrypto
+import CoreBluetooth
+import Foundation
+import Swift
+import UIKit
+@_exported import VeepooBleSDK
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import os.log
+import os
+@objc public protocol VPHZKDFUManagerDelegate {
+  @objc func zkOtaStatusReady()
+  @objc func zkOtaStatusStart()
+  @objc func zkOtaStatusUpdating(progress: Swift.UInt)
+  @objc func zkOtaStatuSuccess()
+  @objc func zkOtaStatusFail(errorCode: Swift.Int)
+}
+@objc public class VPHZKDFUManager : ObjectiveC.NSObject {
+  @objc weak public var delegate: (any VeepooBleSDK.VPHZKDFUManagerDelegate)?
+  @objc required public init(peripheral: CoreBluetooth.CBPeripheral)
+  @objc public func setFileInfo(_ filePath: Foundation.URL)
+  @objc public func enterDfu()
+  @objc public func zkDeinitialize()
+  @objc deinit
+}
+extension VeepooBleSDK.VPHZKDFUManager {
+  public func onStatusChanged(_ status: VeepooBleSDK.OtaStatus)
+  public func onError(errorCode: Swift.Int)
+  public func onReceiveVersion(_ version: Swift.UInt16)
+  public func onReceiveTWSInfo(isTWS: Swift.Bool, isTWSConnected: Swift.Bool)
+  public func onReceiveChannel(_ isLeftChannel: Swift.Bool)
+}
+extension VeepooBleSDK.VPHZKDFUManager {
+  public func sendData(_ data: Foundation.Data)
+}
+public enum OtaStatus {
+  case OtaStatusReady
+  case OtaStatusStart
+  case OtaStatusUpdating(Swift.Int)
+  case OtaStatusPause
+  case OtaStatusContinue
+  case OtaStatuSuccess
+  case OtaStatusWaitFinish
+  case OtaStatusFail(Swift.Int)
+}

@@ -1,9 +1,1526 @@
 {
   "ABIRoot": {
     "kind": "Root",
-    "name": "NO_MODULE",
-    "printedName": "NO_MODULE",
+    "name": "VeepooBleSDK",
+    "printedName": "VeepooBleSDK",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "VPHZKDFUManagerDelegate",
+        "printedName": "VPHZKDFUManagerDelegate",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "zkOtaStatusReady",
+            "printedName": "zkOtaStatusReady()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@VeepooBleSDK@objc(pl)VPHZKDFUManagerDelegate(im)zkOtaStatusReady",
+            "mangledName": "$s12VeepooBleSDK23VPHZKDFUManagerDelegateP16zkOtaStatusReadyyyF",
+            "moduleName": "VeepooBleSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "sugared_genericSig": "<Self where Self : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "zkOtaStatusStart",
+            "printedName": "zkOtaStatusStart()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@VeepooBleSDK@objc(pl)VPHZKDFUManagerDelegate(im)zkOtaStatusStart",
+            "mangledName": "$s12VeepooBleSDK23VPHZKDFUManagerDelegateP16zkOtaStatusStartyyF",
+            "moduleName": "VeepooBleSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "sugared_genericSig": "<Self where Self : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "zkOtaStatusUpdating",
+            "printedName": "zkOtaStatusUpdating(progress:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt",
+                "printedName": "Swift.UInt",
+                "usr": "s:Su"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@VeepooBleSDK@objc(pl)VPHZKDFUManagerDelegate(im)zkOtaStatusUpdatingWithProgress:",
+            "mangledName": "$s12VeepooBleSDK23VPHZKDFUManagerDelegateP19zkOtaStatusUpdating8progressySu_tF",
+            "moduleName": "VeepooBleSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "sugared_genericSig": "<Self where Self : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "zkOtaStatuSuccess",
+            "printedName": "zkOtaStatuSuccess()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@VeepooBleSDK@objc(pl)VPHZKDFUManagerDelegate(im)zkOtaStatuSuccess",
+            "mangledName": "$s12VeepooBleSDK23VPHZKDFUManagerDelegateP17zkOtaStatuSuccessyyF",
+            "moduleName": "VeepooBleSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "sugared_genericSig": "<Self where Self : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "zkOtaStatusFail",
+            "printedName": "zkOtaStatusFail(errorCode:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@VeepooBleSDK@objc(pl)VPHZKDFUManagerDelegate(im)zkOtaStatusFailWithErrorCode:",
+            "mangledName": "$s12VeepooBleSDK23VPHZKDFUManagerDelegateP15zkOtaStatusFail9errorCodeySi_tF",
+            "moduleName": "VeepooBleSDK",
+            "genericSig": "<τ_0_0 where τ_0_0 : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "sugared_genericSig": "<Self where Self : VeepooBleSDK.VPHZKDFUManagerDelegate>",
+            "protocolReq": true,
+            "declAttributes": [
+              "ObjC"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "c:@M@VeepooBleSDK@objc(pl)VPHZKDFUManagerDelegate",
+        "mangledName": "$s12VeepooBleSDK23VPHZKDFUManagerDelegateP",
+        "moduleName": "VeepooBleSDK",
+        "genericSig": "<τ_0_0 : AnyObject>",
+        "sugared_genericSig": "<Self : AnyObject>",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "VPHZKDFUManager",
+        "printedName": "VPHZKDFUManager",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "delegate",
+            "printedName": "delegate",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "WeakStorage",
+                "printedName": "(any VeepooBleSDK.VPHZKDFUManagerDelegate)?"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager(py)delegate",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC8delegateAA0D8Delegate_pSgvp",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "ReferenceOwnership",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "ownership": 1,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any VeepooBleSDK.VPHZKDFUManagerDelegate)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "VPHZKDFUManagerDelegate",
+                        "printedName": "any VeepooBleSDK.VPHZKDFUManagerDelegate",
+                        "usr": "c:@M@VeepooBleSDK@objc(pl)VPHZKDFUManagerDelegate"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager(im)delegate",
+                "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC8delegateAA0D8Delegate_pSgvg",
+                "moduleName": "VeepooBleSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "(any VeepooBleSDK.VPHZKDFUManagerDelegate)?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "VPHZKDFUManagerDelegate",
+                        "printedName": "any VeepooBleSDK.VPHZKDFUManagerDelegate",
+                        "usr": "c:@M@VeepooBleSDK@objc(pl)VPHZKDFUManagerDelegate"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager(im)setDelegate:",
+                "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC8delegateAA0D8Delegate_pSgvs",
+                "moduleName": "VeepooBleSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:12VeepooBleSDK15VPHZKDFUManagerC8delegateAA0D8Delegate_pSgvM",
+                "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC8delegateAA0D8Delegate_pSgvM",
+                "moduleName": "VeepooBleSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(peripheral:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "VPHZKDFUManager",
+                "printedName": "VeepooBleSDK.VPHZKDFUManager",
+                "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "CBPeripheral",
+                "printedName": "CoreBluetooth.CBPeripheral",
+                "usr": "c:objc(cs)CBPeripheral"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager(im)initWithPeripheral:",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC10peripheralACSo12CBPeripheralC_tcfc",
+            "moduleName": "VeepooBleSDK",
+            "objc_name": "initWithPeripheral:",
+            "declAttributes": [
+              "Required",
+              "AccessControl",
+              "ObjC"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "setFileInfo",
+            "printedName": "setFileInfo(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "URL",
+                "printedName": "Foundation.URL",
+                "usr": "s:10Foundation3URLV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager(im)setFileInfo:",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC11setFileInfoyy10Foundation3URLVF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "enterDfu",
+            "printedName": "enterDfu()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager(im)enterDfu",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC8enterDfuyyF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "zkDeinitialize",
+            "printedName": "zkDeinitialize()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager(im)zkDeinitialize",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC14zkDeinitializeyyF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "VPHZKDFUManager",
+                "printedName": "VeepooBleSDK.VPHZKDFUManager",
+                "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager(im)init",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerCACycfc",
+            "moduleName": "VeepooBleSDK",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "onStatusChanged",
+            "printedName": "onStatusChanged(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "OtaStatus",
+                "printedName": "VeepooBleSDK.OtaStatus",
+                "usr": "s:12VeepooBleSDK9OtaStatusO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12VeepooBleSDK15VPHZKDFUManagerC15onStatusChangedyyAA03OtaF0OF",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC15onStatusChangedyyAA03OtaF0OF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onError",
+            "printedName": "onError(errorCode:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12VeepooBleSDK15VPHZKDFUManagerC7onError9errorCodeySi_tF",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC7onError9errorCodeySi_tF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onReceiveVersion",
+            "printedName": "onReceiveVersion(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UInt16",
+                "printedName": "Swift.UInt16",
+                "usr": "s:s6UInt16V"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12VeepooBleSDK15VPHZKDFUManagerC16onReceiveVersionyys6UInt16VF",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC16onReceiveVersionyys6UInt16VF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onReceiveTWSInfo",
+            "printedName": "onReceiveTWSInfo(isTWS:isTWSConnected:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12VeepooBleSDK15VPHZKDFUManagerC16onReceiveTWSInfo5isTWS0H12TWSConnectedySb_SbtF",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC16onReceiveTWSInfo5isTWS0H12TWSConnectedySb_SbtF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "onReceiveChannel",
+            "printedName": "onReceiveChannel(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12VeepooBleSDK15VPHZKDFUManagerC16onReceiveChannelyySbF",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC16onReceiveChannelyySbF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "sendData",
+            "printedName": "sendData(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Data",
+                "printedName": "Foundation.Data",
+                "usr": "s:10Foundation4DataV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:12VeepooBleSDK15VPHZKDFUManagerC8sendDatayy10Foundation0F0VF",
+            "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC8sendDatayy10Foundation0F0VF",
+            "moduleName": "VeepooBleSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@VeepooBleSDK@objc(cs)VPHZKDFUManager",
+        "mangledName": "$s12VeepooBleSDK15VPHZKDFUManagerC",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC",
+          "RawDocComment"
+        ],
+        "superclassUsr": "c:objc(cs)NSObject",
+        "superclassNames": [
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "os.log",
+        "printedName": "os.log",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "os.log",
+        "printedName": "os.log",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CoreBluetooth",
+        "printedName": "CoreBluetooth",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "CommonCrypto",
+        "printedName": "CommonCrypto",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "OtaStatus",
+        "printedName": "OtaStatus",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "OtaStatusReady",
+            "printedName": "OtaStatusReady",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(VeepooBleSDK.OtaStatus.Type) -> VeepooBleSDK.OtaStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OtaStatus",
+                    "printedName": "VeepooBleSDK.OtaStatus",
+                    "usr": "s:12VeepooBleSDK9OtaStatusO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "VeepooBleSDK.OtaStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12VeepooBleSDK9OtaStatusO0dE5ReadyyA2CmF",
+            "mangledName": "$s12VeepooBleSDK9OtaStatusO0dE5ReadyyA2CmF",
+            "moduleName": "VeepooBleSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "OtaStatusStart",
+            "printedName": "OtaStatusStart",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(VeepooBleSDK.OtaStatus.Type) -> VeepooBleSDK.OtaStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OtaStatus",
+                    "printedName": "VeepooBleSDK.OtaStatus",
+                    "usr": "s:12VeepooBleSDK9OtaStatusO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "VeepooBleSDK.OtaStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12VeepooBleSDK9OtaStatusO0dE5StartyA2CmF",
+            "mangledName": "$s12VeepooBleSDK9OtaStatusO0dE5StartyA2CmF",
+            "moduleName": "VeepooBleSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "OtaStatusUpdating",
+            "printedName": "OtaStatusUpdating",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(VeepooBleSDK.OtaStatus.Type) -> (Swift.Int) -> VeepooBleSDK.OtaStatus",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Int) -> VeepooBleSDK.OtaStatus",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "VeepooBleSDK.OtaStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12VeepooBleSDK9OtaStatusO0dE8UpdatingyACSicACmF",
+            "mangledName": "$s12VeepooBleSDK9OtaStatusO0dE8UpdatingyACSicACmF",
+            "moduleName": "VeepooBleSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "OtaStatusPause",
+            "printedName": "OtaStatusPause",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(VeepooBleSDK.OtaStatus.Type) -> VeepooBleSDK.OtaStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OtaStatus",
+                    "printedName": "VeepooBleSDK.OtaStatus",
+                    "usr": "s:12VeepooBleSDK9OtaStatusO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "VeepooBleSDK.OtaStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12VeepooBleSDK9OtaStatusO0dE5PauseyA2CmF",
+            "mangledName": "$s12VeepooBleSDK9OtaStatusO0dE5PauseyA2CmF",
+            "moduleName": "VeepooBleSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "OtaStatusContinue",
+            "printedName": "OtaStatusContinue",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(VeepooBleSDK.OtaStatus.Type) -> VeepooBleSDK.OtaStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OtaStatus",
+                    "printedName": "VeepooBleSDK.OtaStatus",
+                    "usr": "s:12VeepooBleSDK9OtaStatusO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "VeepooBleSDK.OtaStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12VeepooBleSDK9OtaStatusO0dE8ContinueyA2CmF",
+            "mangledName": "$s12VeepooBleSDK9OtaStatusO0dE8ContinueyA2CmF",
+            "moduleName": "VeepooBleSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "OtaStatuSuccess",
+            "printedName": "OtaStatuSuccess",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(VeepooBleSDK.OtaStatus.Type) -> VeepooBleSDK.OtaStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OtaStatus",
+                    "printedName": "VeepooBleSDK.OtaStatus",
+                    "usr": "s:12VeepooBleSDK9OtaStatusO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "VeepooBleSDK.OtaStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12VeepooBleSDK9OtaStatusO0D12StatuSuccessyA2CmF",
+            "mangledName": "$s12VeepooBleSDK9OtaStatusO0D12StatuSuccessyA2CmF",
+            "moduleName": "VeepooBleSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "OtaStatusWaitFinish",
+            "printedName": "OtaStatusWaitFinish",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(VeepooBleSDK.OtaStatus.Type) -> VeepooBleSDK.OtaStatus",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "OtaStatus",
+                    "printedName": "VeepooBleSDK.OtaStatus",
+                    "usr": "s:12VeepooBleSDK9OtaStatusO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "VeepooBleSDK.OtaStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12VeepooBleSDK9OtaStatusO0dE10WaitFinishyA2CmF",
+            "mangledName": "$s12VeepooBleSDK9OtaStatusO0dE10WaitFinishyA2CmF",
+            "moduleName": "VeepooBleSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "OtaStatusFail",
+            "printedName": "OtaStatusFail",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(VeepooBleSDK.OtaStatus.Type) -> (Swift.Int) -> VeepooBleSDK.OtaStatus",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.Int) -> VeepooBleSDK.OtaStatus",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "VeepooBleSDK.OtaStatus.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "OtaStatus",
+                        "printedName": "VeepooBleSDK.OtaStatus",
+                        "usr": "s:12VeepooBleSDK9OtaStatusO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:12VeepooBleSDK9OtaStatusO0dE4FailyACSicACmF",
+            "mangledName": "$s12VeepooBleSDK9OtaStatusO0dE4FailyACSicACmF",
+            "moduleName": "VeepooBleSDK"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:12VeepooBleSDK9OtaStatusO",
+        "mangledName": "$s12VeepooBleSDK9OtaStatusO",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "VeepooBleSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      }
+    ],
     "json_format_version": 8
   },
-  "ConstValues": []
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 167,
+      "length": 4,
+      "value": "0xA0"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 202,
+      "length": 4,
+      "value": "0x20"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 237,
+      "length": 4,
+      "value": "0x91"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 272,
+      "length": 4,
+      "value": "0x90"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 307,
+      "length": 4,
+      "value": "0x92"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 372,
+      "length": 4,
+      "value": "0x00"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 411,
+      "length": 4,
+      "value": "0x80"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 450,
+      "length": 4,
+      "value": "0xFF"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 489,
+      "length": 4,
+      "value": "0xFD"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 528,
+      "length": 4,
+      "value": "0xFE"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 607,
+      "length": 4,
+      "value": "0x01"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 654,
+      "length": 4,
+      "value": "0x02"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 701,
+      "length": 4,
+      "value": "0x03"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 748,
+      "length": 4,
+      "value": "0x04"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 795,
+      "length": 4,
+      "value": "0x06"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 836,
+      "length": 4,
+      "value": "0x01"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 928,
+      "length": 6,
+      "value": "0x0001"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1151,
+      "length": 6,
+      "value": "0x0001"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1364,
+      "length": 4,
+      "value": "0x01"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataDefinition.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1387,
+      "length": 4,
+      "value": "0x00"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaConstants.swift",
+      "kind": "IntegerLiteral",
+      "offset": 199,
+      "length": 2,
+      "value": "23"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaConstants.swift",
+      "kind": "IntegerLiteral",
+      "offset": 280,
+      "length": 1,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaConstants.swift",
+      "kind": "IntegerLiteral",
+      "offset": 341,
+      "length": 1,
+      "value": "4"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaConstants.swift",
+      "kind": "IntegerLiteral",
+      "offset": 345,
+      "length": 4,
+      "value": "1024"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Utils\/ByteBuffer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5191,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 2910,
+      "length": 2,
+      "value": "10"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 3012,
+      "length": 6,
+      "value": "0xFFFF"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3472,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3746,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3843,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3877,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 3992,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 4308,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 4348,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Manager\/OtaManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4401,
+      "length": 3,
+      "value": "200"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaCommandGenerator.swift",
+      "kind": "Array",
+      "offset": 197,
+      "length": 42,
+      "value": "[0xCC, 0xAA, 0x55, 0xEE, 0x12, 0x19, 0xE4]"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaCommandGenerator.swift",
+      "kind": "IntegerLiteral",
+      "offset": 324,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/ABOta\/ABOta.swift",
+      "kind": "IntegerLiteral",
+      "offset": 895,
+      "length": 6,
+      "value": "0x1000"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/ABOta\/ABOta.swift",
+      "kind": "IntegerLiteral",
+      "offset": 960,
+      "length": 6,
+      "value": "0x1001"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/ABOta\/ABOta.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1025,
+      "length": 6,
+      "value": "0x1002"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/ABOta\/ABOta.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1090,
+      "length": 6,
+      "value": "0x1003"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/ABOta\/ABOta.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1155,
+      "length": 6,
+      "value": "0x1004"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/ABOta\/ABOta.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1361,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/ABOta\/ABOta.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1421,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/ABOta\/ABOta.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1481,
+      "length": 2,
+      "value": "11"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataProvider.swift",
+      "kind": "IntegerLiteral",
+      "offset": 368,
+      "length": 1,
+      "value": "3"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataProvider.swift",
+      "kind": "IntegerLiteral",
+      "offset": 413,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataProvider.swift",
+      "kind": "IntegerLiteral",
+      "offset": 461,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/veepoo\/Documents\/SVN\/VeepooBleSDK\/VeepooBleSDK\/VPZKDFU\/AB_FOTA\/Data\/OtaDataProvider.swift",
+      "kind": "IntegerLiteral",
+      "offset": 743,
+      "length": 3,
+      "value": "100"
+    }
+  ]
 }
