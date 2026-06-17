@@ -43,7 +43,8 @@
  ppgs = [数组]; //使用的时, 如果有heartValue用heartValue,如果没有则优先使用ppgs,如果heartValue和ppgs都没有就用ecgs, ppgs和ecgs是这个时间段的心率数组
  ecgs = [数组];
  met = 0.9;// 梅脱
- stress = 1;// 压力 
+ stress = 1;// 压力
+ motionState = [] //运动状态需要设备支持
  };
  }
  */

@@ -130,6 +130,8 @@
 		FEA658792D22872100FB7469 /* VeepooBleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658782D22872100FB7469 /* VeepooBleSDK.framework */; };
 		FEA6587A2D22879A00FB7469 /* ABParTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; };
 		FEA6587B2D22879A00FB7469 /* ABParTool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FEB398AA2FE23219002DAC2D /* VPMotionStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB398A92FE23219002DAC2D /* VPMotionStateVC.swift */; };
+		FEB398AC2FE23222002DAC2D /* VPReminderEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB398AB2FE23222002DAC2D /* VPReminderEventVC.swift */; };
 		FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */; };
 		FECB0D9D289CF58A00D434D2 /* VPBloodGlucoseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */; };
 		FECF31FA2AFC846B00012184 /* VPDeviceContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF31F92AFC846B00012184 /* VPDeviceContactsViewController.swift */; };
@@ -303,6 +305,8 @@
 		FE9F41BF2F9103A400247B50 /* VPHNordic54LDFUVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHNordic54LDFUVC.swift; sourceTree = "<group>"; };
 		FEA658742D2286ED00FB7469 /* ABParTool.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ABParTool.framework; sourceTree = "<group>"; };
 		FEA658782D22872100FB7469 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
+		FEB398A92FE23219002DAC2D /* VPMotionStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMotionStateVC.swift; sourceTree = "<group>"; };
+		FEB398AB2FE23222002DAC2D /* VPReminderEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPReminderEventVC.swift; sourceTree = "<group>"; };
 		FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPBloodGlucoseViewController.swift; sourceTree = "<group>"; };
 		FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPBloodGlucoseViewController.xib; sourceTree = "<group>"; };
 		FECF31F92AFC846B00012184 /* VPDeviceContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceContactsViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +378,8 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEB398A82FE231F6002DAC2D /* 运动状态 */,
+				FEB398A72FE231F0002DAC2D /* 提醒事件 */,
 				FE91779B2FCDB3B2002F088E /* QH15健康数据 */,
 				FE91774C2FBD5F10002F088E /* 中科戒指升级 */,
 				FEE777BA2FA08746003C8733 /* QX17 */,
@@ -761,6 +767,22 @@
 			path = "Nordic固件升级";
 			sourceTree = "<group>";
 		};
+		FEB398A72FE231F0002DAC2D /* 提醒事件 */ = {
+			isa = PBXGroup;
+			children = (
+				FEB398AB2FE23222002DAC2D /* VPReminderEventVC.swift */,
+			);
+			path = "提醒事件";
+			sourceTree = "<group>";
+		};
+		FEB398A82FE231F6002DAC2D /* 运动状态 */ = {
+			isa = PBXGroup;
+			children = (
+				FEB398A92FE23219002DAC2D /* VPMotionStateVC.swift */,
+			);
+			path = "运动状态";
+			sourceTree = "<group>";
+		};
 		FECB0D97289CF3F000D434D2 /* 血糖 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1024,6 +1046,7 @@
 				FE6C1C132A834691007276E6 /* VPCustomScanManage.swift in Sources */,
 				672E08321E5D36ED00F60750 /* VPTestBloodController.swift in Sources */,
 				67640D571E56E1BE008D9D71 /* VPBloodPrivateSettingController.swift in Sources */,
+				FEB398AA2FE23219002DAC2D /* VPMotionStateVC.swift in Sources */,
 				67FC22BA1E68FBEE0029DED3 /* VPTestOxygenController.swift in Sources */,
 				67B64E441EDFB5E8000549D6 /* VPTest.m in Sources */,
 				67CA7E351EF3BAD5000D8745 /* VPEditNewAlarmController.swift in Sources */,
@@ -1059,6 +1082,7 @@
 				FEFA5486266B48D50071E61B /* VPTemperatureViewController.swift in Sources */,
 				FECF31FD2AFC8DB900012184 /* VPContactCell.swift in Sources */,
 				675052261E553F3F008D45BC /* VPRootViewController.swift in Sources */,
+				FEB398AC2FE23222002DAC2D /* VPReminderEventVC.swift in Sources */,
 				67FC22951E6560860029DED3 /* MBProgressHUD.m in Sources */,
 				6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */,
 				67BA7254235813C8004E6E1E /* VPPTTTestController.swift in Sources */,

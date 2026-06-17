@@ -449,6 +449,38 @@ class VPRootViewController: UIViewController {
         let vc: VPManualTestDataVC = .init()
         navigationController?.pushViewController(vc, animated: true)
     }
+    @IBAction func exportLogsAction(_ sender: Any) {
+        let path = VPLogManager.sharedInstance().currentLogFilePath()
+        let url = URL(fileURLWithPath: path)
+
+            
+        // 创建分享控制器
+        let activityVC = UIActivityViewController(
+            activityItems: [url],
+            applicationActivities: nil
+        )
+
+        // iPad 适配
+        if let popover = activityVC.popoverPresentationController {
+            popover.sourceView = self.view
+            popover.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popover.permittedArrowDirections = []
+        }
+
+        // 分享完成后的回调
+        activityVC.completionWithItemsHandler = { _, completed, _, error in
+            if completed {
+                print("✅ 崩溃报告 ZIP 分享完成")
+                
+            } else if let error = error {
+                print("❌ 分享失败: \(error)")
+
+            }
+        }
+
+        self.present(activityVC, animated: true)
+        
+    }
     
     /// 销毁定时器操作
     func DestroyStepTimer() {

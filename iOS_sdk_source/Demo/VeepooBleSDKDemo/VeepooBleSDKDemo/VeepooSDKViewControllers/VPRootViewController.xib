@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -272,6 +272,15 @@
                         <action selector="enterManualTestVC:" destination="-1" eventType="touchUpInside" id="kaD-oR-hI5"/>
                     </connections>
                 </button>
+                <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQ5-rq-vDc">
+                    <rect key="frame" x="242" y="446" width="67.5" height="44"/>
+                    <color key="backgroundColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="导出日志"/>
+                    <connections>
+                        <action selector="exportLogsAction:" destination="-1" eventType="touchUpInside" id="IOh-Va-cOh"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -334,6 +343,7 @@
                 <constraint firstItem="Kvw-tf-5ON" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="e4O-p8-Tax"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="top" secondItem="Mtq-r8-dFL" secondAttribute="top" id="eSH-V3-nZc"/>
                 <constraint firstItem="gbR-H9-B20" firstAttribute="width" secondItem="Kvw-tf-5ON" secondAttribute="width" id="eWA-md-gSN"/>
+                <constraint firstItem="jQ5-rq-vDc" firstAttribute="leading" secondItem="ojV-NZ-Cmb" secondAttribute="leading" id="eaQ-e1-ZsK"/>
                 <constraint firstItem="Mtq-r8-dFL" firstAttribute="top" secondItem="t7F-lM-jVu" secondAttribute="bottom" constant="10" id="ebb-Po-Cbi"/>
                 <constraint firstItem="ed1-02-LkC" firstAttribute="bottom" secondItem="XXT-dD-1JB" secondAttribute="bottom" id="elH-mc-5C3"/>
                 <constraint firstItem="gbR-H9-B20" firstAttribute="top" secondItem="Kvw-tf-5ON" secondAttribute="bottom" constant="10" id="ez1-th-ERh"/>
@@ -351,7 +361,9 @@
                 <constraint firstItem="dnm-SM-M1c" firstAttribute="leading" secondItem="zDb-ah-7Iz" secondAttribute="trailing" constant="10" id="k8n-pK-vfo"/>
                 <constraint firstItem="Zrv-da-GvZ" firstAttribute="trailing" secondItem="HgM-7X-9K9" secondAttribute="trailing" id="msq-Ub-Ubd"/>
                 <constraint firstItem="gbR-H9-B20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="nCB-FI-bAI"/>
+                <constraint firstItem="jQ5-rq-vDc" firstAttribute="bottom" secondItem="gtx-gp-SAJ" secondAttribute="bottom" id="oI9-YX-AHZ"/>
                 <constraint firstItem="2NU-5a-ABH" firstAttribute="leading" secondItem="gK4-ru-5IS" secondAttribute="leading" id="ogo-T2-n0j"/>
+                <constraint firstItem="jQ5-rq-vDc" firstAttribute="centerY" secondItem="gtx-gp-SAJ" secondAttribute="centerY" id="ooz-A4-Uu0"/>
                 <constraint firstItem="J0R-Hf-fbP" firstAttribute="top" secondItem="2NU-5a-ABH" secondAttribute="bottom" constant="8" symbolic="YES" id="pPv-kJ-hGp"/>
                 <constraint firstItem="uBS-4b-x4K" firstAttribute="top" secondItem="mfb-Na-KAM" secondAttribute="bottom" constant="8" symbolic="YES" id="plx-BA-xIH"/>
                 <constraint firstItem="iwL-BD-aOS" firstAttribute="leading" secondItem="gK4-ru-5IS" secondAttribute="trailing" constant="10" id="pmI-Ov-5KB"/>
@@ -359,6 +371,8 @@
                 <constraint firstItem="J0R-Hf-fbP" firstAttribute="height" secondItem="jFu-zD-CUV" secondAttribute="height" id="qh6-6E-oJM"/>
                 <constraint firstItem="2NU-5a-ABH" firstAttribute="top" secondItem="gbR-H9-B20" secondAttribute="top" id="qrj-QW-udD"/>
                 <constraint firstItem="HgM-7X-9K9" firstAttribute="width" secondItem="Kvw-tf-5ON" secondAttribute="width" id="rcC-Ua-EOA"/>
+                <constraint firstItem="jQ5-rq-vDc" firstAttribute="trailing" secondItem="ojV-NZ-Cmb" secondAttribute="trailing" id="sxH-49-y3L"/>
+                <constraint firstItem="jQ5-rq-vDc" firstAttribute="top" secondItem="gtx-gp-SAJ" secondAttribute="top" id="vbK-zu-vzd"/>
                 <constraint firstItem="gtx-gp-SAJ" firstAttribute="top" secondItem="ed1-02-LkC" secondAttribute="top" id="wE1-wW-ELK"/>
                 <constraint firstItem="uf9-Tr-HJQ" firstAttribute="leading" secondItem="dnm-SM-M1c" secondAttribute="trailing" constant="10" id="woA-c4-JyS"/>
                 <constraint firstItem="dZc-pV-fc0" firstAttribute="height" secondItem="vFm-3K-qal" secondAttribute="height" id="xbe-5I-DAm"/>
