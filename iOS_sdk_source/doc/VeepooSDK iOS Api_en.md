@@ -26,6 +26,7 @@
 | 1.2.1   | QX17 customized function, real-time data acquisition (IMU, GPS, Heart rate), vibration mode modification | 2026.04.27        |
 | 1.2.2   | Zhongke series firmware upgrade, subsequent versions will integrate firmware upgrades from different platforms | 2026.05.20        |
 | 1.2.3   | QH15 Customized Health Data                                  | 2026.06.01        |
+| 1.2.4   | Event Reminder，Obtain motion status data                    | 2026.06.17        |
 
 # SDK initialization
 
@@ -7988,3 +7989,116 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SetComplian
                 print(success ? "success" : "fail")
             }
 ```
+
+# Event Reminder
+
+### Precondition
+
+Equipment support is required。
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation`VPReminderEventVC in the demo
+
+### Interfaces
+
+```
+VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.isSupportReminderEvent
+```
+
+```objective-c
+/// Read historical reminder events
+/// - Parameters:
+///   - type: Event Type
+///   - time: Timestamp (events reported by devices that are greater than or equal to this timestamp)
+///   - callBack : result callback
+- (void)veepooSDK_readHistoricalDataReminderEvents:(VPReminderEventType)type andTime:(uint32_t)time callBack:(void (^_Nullable)(NSArray<VPReminderEventModel *> * _Nullable array))result
+```
+
+```objective-c
+/// Proactively report monitoring reminder events
+/// - Parameters:
+///   - result : result callback
+- (void)veepooSDK_listenReminderEventReport:(void (^_Nullable)(NSArray<VPReminderEventModel *> * _Nullable array))result
+```
+
+### Parameter Explanation
+
+VPReminderEventModel
+
+| Parameter | Type                | Remark                                                       |
+| --------- | ------------------- | ------------------------------------------------------------ |
+| type      | VPReminderEventType | VPReminderEventTypeFall：Fall VPReminderEventTypeSedentary：Sedentary |
+| timestamp | int64_t             | Timestamp                                                    |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readHistoricalDataReminderEvents(.all, andTime: UInt32(self.checkTimeInterval)) {[weak self] array in
+    guard let self = self, let array = array else { return }
+    self.textView.text += "active reading:\n"
+    for model in array {
+        self.textView.text += "Timestamp\(model.timestamp),Event Type:\(model.type == .fall ? "Fall" : "Sedentary")\n"
+    }
+}
+```
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_listenReminderEventReport {[weak self] array in
+    guard let self = self, let array = array else { return }
+    self.textView.text += "voluntary reporting:\n"
+    for model in array {
+        self.textView.text += "Timestamp\(model.timestamp),Event Type:\(model.type == .fall ? "Fall" : "Sedentary")\n"
+    }
+}
+```
+
+# Obtain motion status data
+
+### Precondition
+
+Equipment support is required。
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation`VPMotionStateVC in the demo
+
+### Interfaces
+
+```
+VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.isSupportMotionState
+```
+
+```objective-c
++ (NSDictionary *)veepooSDKGetOriginalDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID
+```
+
+### Parameter Explanation
+
+| Parameter | Type     | Remark     |
+| --------- | -------- | ---------- |
+| queryDate | NSString | query date |
+| tableID   | NSString | Device MAC |
+
+### Return data
+
+```objc
+{
+ "10:40" = {
+ ....
+   motionState:[] //1: Walking, 2: Running, 3: Resting, Other: Unknown 5-minute data, each data represents 1-minute exercise status
+ };
+ }
+```
+
+### Sample Code
+
+```swift
+let onedayData = VPDataBaseOperation.veepooSDKGetOriginalData(withDate: self.dateL.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
+        if onedayData == nil {
+            dataDict = [String : [String: String]]()
+        }else {
+            dataDict = onedayData as! [String : [String : Any]]
+        }
+```
+

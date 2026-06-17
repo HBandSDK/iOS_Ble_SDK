@@ -26,6 +26,7 @@
 | 1.2.1 | QX17匹克球定制功能，实时数据采集（IMU、GPS、心率）、振动模式修改 | 2026.04.27 |
 | 1.2.2 | 中科系列固件升级，后续版本会把不同平台固件升级整合           | 2026.05.20 |
 | 1.2.3 | QH15定制健康数据下发                                         | 2026.06.01 |
+| 1.2.4 | 事件响应，获取运动状态数据                                   | 2026.06.17 |
 
 # SDK初始化
 
@@ -8008,3 +8009,118 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SetComplian
                 print(success ? "发送成功" : "发送失败")
             }
 ```
+
+# 事件提醒
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPReminderEventVC的实现
+
+### 接口
+
+```
+VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.isSupportReminderEvent
+```
+
+```objective-c
+/// 读取历史提醒事件
+/// - Parameters:
+///   - type: 事件类型
+///   - time: 时间戳 (设备上报大于等于该时间戳的事件)
+///   - callBack : 结果回调
+- (void)veepooSDK_readHistoricalDataReminderEvents:(VPReminderEventType)type andTime:(uint32_t)time callBack:(void (^_Nullable)(NSArray<VPReminderEventModel *> * _Nullable array))result
+```
+
+```objective-c
+/// 监听提醒事件主动上报
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_listenReminderEventReport:(void (^_Nullable)(NSArray<VPReminderEventModel *> * _Nullable array))result
+```
+
+### 参数解释
+
+VPReminderEventModel
+
+| 参数      | 参数类型            | 备注                                                         |
+| --------- | ------------------- | ------------------------------------------------------------ |
+| type      | VPReminderEventType | VPReminderEventTypeFall：跌倒 VPReminderEventTypeSedentary：久坐 |
+| timestamp | int64_t             | 时间戳                                                       |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readHistoricalDataReminderEvents(.all, andTime: UInt32(self.checkTimeInterval)) {[weak self] array in
+    guard let self = self, let array = array else { return }
+    self.textView.text += "主动读取:\n"
+    for model in array {
+        self.textView.text += "时间戳\(model.timestamp),事件类型:\(model.type == .fall ? "跌倒" : "久坐")\n"
+    }
+}
+```
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_listenReminderEventReport {[weak self] array in
+    guard let self = self, let array = array else { return }
+    self.textView.text += "主动上报:\n"
+    for model in array {
+        self.textView.text += "时间戳\(model.timestamp),事件类型:\(model.type == .fall ? "跌倒" : "久坐")\n"
+    }
+}
+```
+
+# 获取运动状态数据
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPMotionStateVC的实现
+
+### 接口
+
+```
+VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.isSupportMotionState
+```
+
+```objective-c
++ (NSDictionary *)veepooSDKGetOriginalDataWithDate:(NSString *)queryDate andTableID:(NSString *)tableID
+```
+
+### 参数解释
+
+| 参数      | 参数类型 | 备注     |
+| --------- | -------- | -------- |
+| queryDate | NSString | 查询日期 |
+| tableID   | NSString | 设备MAC  |
+
+### 返回数据
+
+```objc
+{
+ "10:40" = {
+ ....
+   motionState:[] //1：走路，2：跑步，3：静息，其他：未知 5分钟数据，每个数据代表1分钟运动状态
+ };
+ }
+```
+
+
+
+### 示例代码
+
+```swift
+let onedayData = VPDataBaseOperation.veepooSDKGetOriginalData(withDate: self.dateL.text, andTableID: VPBleCentralManage.sharedBleManager().peripheralModel.deviceAddress)
+        if onedayData == nil {
+            dataDict = [String : [String: String]]()
+        }else {
+            dataDict = onedayData as! [String : [String : Any]]
+        }
+```
+
