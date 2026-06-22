@@ -6581,6 +6581,48 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modifyMQTTConfi
 }
 ```
 
+# 4G Function - Read device IMEI information
+
+### Precondition
+
+The device supports 4G functionality
+
+### Class Name
+
+`VPPeripheralBaseManage`，refer to the implementation of`VP4GViewController`in the demo
+
+### Interfaces
+
+Determine whether 4G functionality is supported
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// Read device IMEI information
+/// - Parameters:
+///   - result : CallBack
+- (void)veepooSDK_readIMEIInfo:(void (^_Nullable)(NSString *_Nullable))result
+```
+
+### Parameter Explanation
+
+| Parameter | Parameter Type | Remarks    |
+| --------- | -------------- | ---------- |
+| host      | NSString       | IP address |
+| port      | NSInteger      | Port       |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readIMEIInfo {[weak self] text in
+            
+        }
+```
+
+
+
 # Enable device movement on the app
 
 ### Precondition

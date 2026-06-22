@@ -6592,6 +6592,41 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modifyMQTTConfi
 }
 ```
 
+# 4G功能- 获取设备IMEI信息
+
+### 前提
+
+设备支持4G功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VP4GViewController`的实现
+
+### 接口
+
+判断是否支持4G功能
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.isSupport4GType != 0
+```
+
+```objective-c
+/// 读取设备IMEI信息
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_readIMEIInfo:(void (^_Nullable)(NSString *_Nullable))result
+```
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readIMEIInfo {[weak self] text in
+    
+}
+```
+
+
+
 # App开启设备运动
 
 ### 前提

@@ -1458,11 +1458,16 @@
 /// - Parameters:
 ///   - type: 事件类型
 ///   - time: 时间戳 (设备上报大于等于该时间戳的事件)
-///   - callBack : 结果回调
+///   - result : 结果回调
 - (void)veepooSDK_readHistoricalDataReminderEvents:(VPReminderEventType)type andTime:(uint32_t)time callBack:(void (^_Nullable)(NSArray<VPReminderEventModel *> * _Nullable array))result;
 
 /// 主动触发消息提醒事件(仅用于测试)
 - (void)veepooSDK_triggerReminderEvent;
+
+/// 读取设备IMEI信息
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_readIMEIInfo:(void (^_Nullable)(NSString *_Nullable))result;
 @end
 
 

@@ -27,6 +27,8 @@ class VP4GViewController: UIViewController {
     
     private var intervalTimeLab: UILabel?
     
+    private var imeiInfoLab: UILabel?
+    
     private var hostTextFiled: UITextField?
     
     private var portTextField: UITextField?
@@ -115,6 +117,17 @@ class VP4GViewController: UIViewController {
             clearAccBtn.setTitle("清除账号", for: .normal)
             clearAccBtn.addTarget(self, action: #selector(clearAction), for: .touchUpInside)
             view.addSubview(clearAccBtn)
+            
+            let imeiBtn = UIButton(frame: CGRect(x: clearAccBtn.frame.minX, y: clearAccBtn.frame.maxY + 10, width: 100, height: 40))
+            imeiBtn.backgroundColor = .blue
+            imeiBtn.setTitle("读取IMEI", for: .normal)
+            view.addSubview(imeiBtn)
+            imeiBtn.addTarget(self, action: #selector(getAction), for: .touchUpInside)
+            
+            
+            imeiInfoLab = .init(frame: CGRect(x: imeiBtn.frame.maxX + 10, y: imeiBtn.frame.minY, width: 200, height: 40))
+            view.addSubview(imeiInfoLab!)
+            
         }
         
     }
@@ -182,6 +195,12 @@ class VP4GViewController: UIViewController {
     @objc func switchSyncAction() {
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_modify4GSyncSwitchEnableState(switchSync!.isOn ? 1 : 0) { success in
             
+        }
+    }
+    
+    @objc func getAction() {
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readIMEIInfo {[weak self] text in
+            self?.imeiInfoLab?.text = text
         }
     }
     
