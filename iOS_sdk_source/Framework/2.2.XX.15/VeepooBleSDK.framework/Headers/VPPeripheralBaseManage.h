@@ -108,6 +108,12 @@
 //发送固件升级命令，SDK内部使用
 - (void)veepooSDKSendUpdateFirmCommand;
 
+//发送固件升级命令,部分设备支持响应
+- (void)veepooSDKSendUpdateFirmCommand:(void(^)(void))block;
+
+//发送退出升级模式命令
+- (void)veepooSDKSendExitUpdateFirmCommand;
+
 /**
  GSensor, specific development use
    Note: When debugging GSensor, you should turn off the normal step test, otherwise GSensor will not have a return value.
@@ -267,9 +273,9 @@
  
  @param deviceBatteryInfoBlock The callback return battery Info
  读取电量的回调函数
-  - isPercent 表示电量是否为百分比；mean device battery info is  [0, 100]] or [0, 4]
-  - percenTypeIsLowBat 表示isPercent为真的情况下，设备是否为低电状态；mean if isPercent is true，device whether is low attery
-  - battery 电池电量，如果为百分比电量，则范围为[0, 100] 否则表示电池的格数，[0, 4]
+ - isPercent 表示电量是否为百分比；mean device battery info is  [0, 100]] or [0, 4]
+ - percenTypeIsLowBat 表示isPercent为真的情况下，设备是否为低电状态；mean if isPercent is true，device whether is low attery
+ - battery 电池电量，如果为百分比电量，则范围为[0, 100] 否则表示电池的格数，[0, 4]
  */
 - (void)veepooSDKReadDeviceBatteryInfo:(void(^)(BOOL isPercent, BOOL percenTypeIsLowBat, NSUInteger battery))deviceBatteryInfoBlock;
 
@@ -279,10 +285,10 @@
  
  @param deviceBatteryInfoBlock The callback return battery Info
  读取电量的回调函数
-  - isPercent 表示电量是否为百分比；mean device battery info is  [0, 100]] or [0, 4]
-  - chargeState 充电状态
-  - percenTypeIsLowBat 表示isPercent为真的情况下，设备是否为低电状态；mean if isPercent is true，device whether is low attery
-  - battery 电池电量，如果为百分比电量，则范围为[0, 100] 否则表示电池的格数，[0, 4]
+ - isPercent 表示电量是否为百分比；mean device battery info is  [0, 100]] or [0, 4]
+ - chargeState 充电状态
+ - percenTypeIsLowBat 表示isPercent为真的情况下，设备是否为低电状态；mean if isPercent is true，device whether is low attery
+ - battery 电池电量，如果为百分比电量，则范围为[0, 100] 否则表示电池的格数，[0, 4]
  */
 - (void)veepooSDKReadDeviceBatteryAndChargeInfo:(void(^)(BOOL isPercent, VPDeviceChargeState chargeState, BOOL percenTypeIsLowBat, NSUInteger battery))deviceBatteryInfoBlock;
 
@@ -552,7 +558,7 @@
  血糖类型(bloodGlucoseType)为5情况下，level风险等级才有效
  
  @param start Start and End
- @param isPersonalModel 是否为私人模式 
+ @param isPersonalModel 是否为私人模式
  @param testResult Callback of test results
  */
 - (void)veepooSDKTestBloodGlucoseStart:(BOOL)start
@@ -650,7 +656,7 @@
 /**
  Screen style setting, first get the range of screen style settings according to screenTypes in VPPeripheralModel. If it is 3, you can set 1-3. If it is 0, it does not have this function.
  屏幕风格设置，先根据VPPeripheralModel中的screenTypes获取屏幕风格设置的区间，如果为3代表可以设置1-3，如果为0代表没有此功能
-
+ 
  @param screenStyle Set the style, the interval is [1 screenTypes], when the reading is 0 设置的样式，区间为【1 screenTypes】，读取的时候传0
  @param settingMode 1 stands for setting, 2 stands for reading 1代表设置，2代表读取
  @param settingScreenStyleResultBlock
@@ -664,7 +670,7 @@
 /**
  Screen style setting, first get the range of screen style settings according to screenTypes in VPPeripheralModel. If it is 3, you can set 1-3. If it is 0, it does not have this function.
  屏幕风格设置，先根据VPPeripheralModel中的screenTypes获取屏幕风格设置的区间，如果为3代表可以设置1-3，如果为0代表没有此功能
-
+ 
  @param screenStyle Set the style, the interval is [1 screenTypes], when the reading is 0 设置的样式，区间为【1 screenTypes】，读取的时候传0
  @param settingMode 1 stands for setting, 2 stands for reading 1代表设置，2代表读取
  @param dialType 表盘类型
@@ -708,7 +714,7 @@
    The normal use of this interface is to ensure that the current state is being operated each time the setting is turned on or off.
  设置和读取运动模式
  此接口正常的使用方式是，每次设置开启或者关闭的时候要确保当前的状态在做操作
-
+ 
  @param settingType
  0 is to turn off the sport mode, 1 is to turn on the sport mode, 2 is to read the current device sport mode
  0是关闭运动模式，1是开启运动模式，2是读取当前设备运动模式
@@ -719,7 +725,7 @@
  Set and read the results, The runningType is 0 for not in the sport mode, 1 for the sport mode, 2 for the other busy state, and 3 for the active mode to notify the App when the sport mode ends the connection state. This parameter is only used for reference when reading or setting fails, or in motion. When ending the active report
       settingSuccess Set or read successfully. If it fails, you can refer to the runningType type to see the reason. If the sport mode is already on, turn it back on, it will fail, or the device is doing other operations.
   设置和读取结果， runningType为0代表不在运动模式下，1代表运动模式中，2代表其他忙碌状态,3代表运动模式结束连接状态下主动告知App,此参数只有在读取或者设置失败的时候做参考，或者在运动结束主动上报的时候用
-    settingSuccess 设置或读取是否成功，如果失败，可以参考runningType类型来看一下原因，如运动模式已经开启，再次开启，就会失败，或者设备在做其他操作
+ settingSuccess 设置或读取是否成功，如果失败，可以参考runningType类型来看一下原因，如运动模式已经开启，再次开启，就会失败，或者设备在做其他操作
  */
 - (void)veepooSDKSettingDeviceRunning:(int)settingType runMode:(VPDeviceRuningMode)runningMode result:(void(^)(int runningType, BOOL settingSuccess))runningResultBlock;
 
@@ -727,7 +733,7 @@
 /**
  Set or read low power
  设置或读取低功耗
-
+ 
  @param settingMode
  Set the type, first read first, if you do not read the direct setting on or off may fail
  设置类型, 第一次要先读取, 如果不读直接设置开或关可能会失败
@@ -791,7 +797,7 @@
 /**
  Read the count data for a certain day
  读取某一天的计步数据
-
+ 
  @param dayNumber 代表哪一天0代表今天，1代表昨天，2代表前天，不能大于VPPeripheralModel中属性saveDays的值
  @param readStepBlock 读取计步的回调，是一个字典，包含计步、距离和卡路里
  */
@@ -799,7 +805,7 @@
 
 /**
  读取某一天的睡眠数据,因数据量比较少，所以没有进度
-
+ 
  @param dayNumber 同上 但是睡眠今天应该显示昨天的数据，所以读取睡眠的dayNumber区间应该是【1 saveDays】
  @param readSleepBlock 返回一天的睡眠数据，一天可能有多段睡眠所以是数组，目前结构和数据库中类VPDataBaseOperation的结构一致，可以去参考下
  */
@@ -807,7 +813,7 @@
 
 /**
  读取基本数据，一天的详细的计步、心率、血压数据，如每5分钟一次数据
-
+ 
  @param dayNumber 代表哪一天0代表今天，1代表昨天，2代表前天，不能大于
  @param maxPackage 一天的数据比较多，每次读取可以从选择的包数读取，如从上一次读取结束的最大包数 + 1 读取，如逻辑简单也可以每次从1开始读取，处理起来简单，增加了手环传输数据量
  @param readBasicDataBlock 返回一天的基本数据，一天多个5分钟或者10分钟所以是数组，目前结构和数据库中类VPDataBaseOperation的结构一致，可以去参考下,因数据比较多所以返回一个一共有多少包，当前读取到多少包了,当前包大于等于总包数，数据读取完成
@@ -816,7 +822,7 @@
 
 /**
  读取一天的血氧数据 此接口无效
-
+ 
  @param dayNumber 代表哪一天0代表今天，1代表昨天，2代表前天，不能大于saveDays
  @param maxPackage 一天的数据比较多，每次读取可以从选择的包数读取，如从上一次读取结束的最大包数 + 1 读取，如逻辑简单也可以每次从1开始读取，处理起来简单，增加了手环传输数据量
  @param readOxygenDataBlock 返回一天的血氧数据，目前结构和数据库中类VPDataBaseOperation的结构一致，可以去参考下,因数据比较多所以返回一个一共有多少包，当前读取到多少包了,当前包大于等于总包数，数据读取完成
@@ -829,7 +835,7 @@
 /**
  获取手环运动数据的CRC
  读取运动模式数据的时候为了重复读取数据，先获取手环运动数据的CRC，获取的array长度是多少就代表手环最多能够存储几组运动数据，如数据内为@[@(128),@(0),@(153698)],数组内的数据为NSNumber类型，数组长度为3，手环上最多存储3组数据，读取第几组就用数组的下标读取，如0 1 2 ，数据为0的位置如@(0)，这块里没有数据，要直接跳过，每次获取完crc数据后要和本地的运动模式数据对比，如果返回的crc在本地存在就不用读取直接跳过，第一组和第二组不用读取，那直接用数据的最后下标2去读取就可以了,比如第一组和第三组都要读取，那就调用两次获取运动数据的接口，要读取完一组后在去读取，（切记不要一组没有读取完毕，就直接读取下一组）
-
+ 
  @param readDeviceRunningCrcBlock 获取CRC数据后的回调
  */
 - (void)veepooSDK_readDeviceRunningCrcResult:(void(^)(NSArray *crcValues))readDeviceRunningCrcBlock;
@@ -1019,7 +1025,7 @@
  */
 - (void)veepooSDK_setPulseAction:(BOOL)open type:(int)type minute:(int)minute level:(int)level;
 
-/** 
+/**
  磁疗功能的响应回调
  - Parameter result: 响应回调
  - state: 操作类型
@@ -1468,6 +1474,26 @@
 /// - Parameters:
 ///   - result : 结果回调
 - (void)veepooSDK_readIMEIInfo:(void (^_Nullable)(NSString *_Nullable))result;
+
+
+/// 梅脱测量
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_metTest:(BOOL)state callBack:(void(^_Nullable)(int con, VPTestMetState ack, int progress,int hrvValue))result;
+
+
+
+/// 情绪测量
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_emotionTest:(BOOL)state callBack:(void(^_Nullable)(int con, VPTestEmotionState ack, int progress,NSInteger value))result;
+
+
+/// 疲劳度测量
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_fatigueLevelTest:(BOOL)state callBack:(void(^_Nullable)(int con, VPTestFatigueLevelState ack, int progress,int value))result;
+
 @end
 
 

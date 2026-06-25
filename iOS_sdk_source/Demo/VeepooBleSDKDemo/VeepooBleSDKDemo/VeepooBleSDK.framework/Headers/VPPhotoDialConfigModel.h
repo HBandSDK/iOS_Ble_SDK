@@ -40,6 +40,16 @@ NS_ASSUME_NONNULL_BEGIN
                           isCircle:(BOOL)isCircle
             previewBorderImageName:(NSString *)previewBorderImageName;
 
+- (instancetype)initWithScreenSize:(CGSize)screenSize
+                 previewBorderSize:(CGSize)previewBorderSize
+                       previewSize:(CGSize)previewSize
+                          isCircle:(BOOL)isCircle
+                          isZK569X:(BOOL)isZK569X
+                            radius:(CGFloat)radius
+                     preViewRadius:(CGFloat)preViewRadius
+            previewBorderImageName:(NSString *)previewBorderImageName;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

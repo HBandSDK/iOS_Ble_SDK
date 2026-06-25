@@ -227,6 +227,9 @@
 //梅脱，0/1为不支持
 @property (nonatomic, assign) NSUInteger metType;
 
+//是否支持梅脱测量
+@property (nonatomic, assign) BOOL isSupportMetTest;
+
 //压力，0/1为不支持
 @property (nonatomic, assign) NSUInteger stressType;
 
@@ -247,6 +250,9 @@
 
 //微体检，0为不支持 1:为定制功能 2:公版功能
 @property (nonatomic, assign) NSUInteger healthGlanceType;
+
+//是否测试主动微体检测量
+@property (nonatomic, assign) BOOL supportHealthGlanceTest;
 
 // AI问答 0:不支持
 @property (nonatomic, assign) NSUInteger aiChatType;
@@ -280,6 +286,18 @@
 
 //是否支持运动状态上报
 @property (nonatomic, assign) BOOL isSupportMotionState;
+
+//情绪类型
+@property (nonatomic, assign) NSInteger emotionType;
+
+//是否支持情绪测量
+@property (nonatomic, assign) BOOL isSupportEmotionTest;
+
+//疲劳度类型
+@property (nonatomic, assign) NSInteger fatigueLevelType;
+
+//是否支持疲劳度测量
+@property (nonatomic, assign) BOOL isSupportFatigueLevelTest;
 
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is

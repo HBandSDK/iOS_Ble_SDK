@@ -83,6 +83,9 @@
 /// SDK发起配对,设备上没操作超时时间 默认12s
 @property (nonatomic, assign) NSUInteger deviceConfirmTimeout;
 
+/// 扫描外设，rris信号量限制，值越大，需要的距离越短，默认-85
+@property (nonatomic, assign) NSInteger rrisLimit;
+
 ///Singleton object
 ///单例对象
 + (instancetype)sharedBleManager;

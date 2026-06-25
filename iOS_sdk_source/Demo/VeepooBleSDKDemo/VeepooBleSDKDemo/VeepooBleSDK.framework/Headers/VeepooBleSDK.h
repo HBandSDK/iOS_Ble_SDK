@@ -54,7 +54,13 @@
 #import "VPManualBloodOxygenModel.h"
 #import "VPManualBloodSugarModel.h"
 #import "VPManualHealthGlanceModel.h"
-#import "VPSyncPersonalInfo.h" 
+#import "VPManualGSRModel.h"
+#import "VPManualHRVModel.h"
+#import "VPManualMetModel.h"
+#import "VPManualStressModel.h"
+#import "VPManualFatigueLevelModel.h"
+#import "VPManualEmotionModel.h"
+#import "VPSyncPersonalInfo.h"
 
 //Delegate
 #import "VPECGMultiLeadBLEDelegate.h"

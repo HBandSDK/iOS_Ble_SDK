@@ -281,10 +281,16 @@ typedef NS_OPTIONS(NSUInteger, VPManualTestDataType) {
     VPManualTestDataBloodPressure = 1 << 0,
     VPManualTestDataHeartRate = 1 << 1,
     VPManualTestDataBloodSugar  = 1 << 2,
+    VPManualTestDataStress  = 1 << 3,
     VPManualTestDataBloodOxygen  = 1 << 4,
     VPManualTestDataTemperature = 1 << 5,
+    VPManualTestDataMet = 1 << 6,
+    VPManualTestDataHRV = 1 << 7,
     VPManualTestDataBloodComponents = 1 << 8,
     VPManualTestDataHealthGlance = 1 << 9,
+    VPManualTestDataEmotion = 1 << 10,
+    VPManualTestDataFatigueLevel = 1 << 11,
+    VPManualTestDataGSR = 1 << 12,
     VPManualTestDataAll = 0xFFFFFFFF
 };
 
@@ -294,6 +300,30 @@ typedef NS_ENUM(NSInteger,VPTestHRVState) {//测试HRV过程中的状态变化
     VPTestHRVStateLowPower = 2,         //低电
     VPTestHRVStateDeviceBusy = 3,  //设备正忙正在测试其他功能
     VPTestHRVStateNotWear = 4,     //佩戴检测没有通过
+};
+
+typedef NS_ENUM(NSInteger,VPTestMetState) {//测试梅脱过程中的状态变化
+    VPTestMetStateTesting = 0,       //开始检测梅脱中
+    VPTestMetStateAlreadyStarted = 1, //设备已经在测试梅脱,正忙
+    VPTestMetStateLowPower = 2,         //低电
+    VPTestMetStateDeviceBusy = 3,  //设备正忙正在测试其他功能
+    VPTestMetStateNotWear = 4,     //佩戴检测没有通过
+};
+
+typedef NS_ENUM(NSInteger,VPTestEmotionState) {//测试情绪过程中的状态变化
+    VPTestEmotionStateTesting = 0,       //开始检测情绪中
+    VPTestEmotionStateAlreadyStarted = 1, //设备已经在测试情绪,正忙
+    VPTestEmotionStateLowPower = 2,         //低电
+    VPTestEmotionStateDeviceBusy = 3,  //设备正忙正在测试其他功能
+    VPTestEmotionStateNotWear = 4,     //佩戴检测没有通过
+};
+
+typedef NS_ENUM(NSInteger,VPTestFatigueLevelState) {//测试疲劳度过程中的状态变化
+    VPTestFatigueLevelStateTesting = 0,       //开始检测疲劳度中
+    VPTestFatigueLevelStateAlreadyStarted = 1, //设备已经在测试疲劳度,正忙
+    VPTestFatigueLevelStateLowPower = 2,         //低电
+    VPTestFatigueLevelStateDeviceBusy = 3,  //设备正忙正在测试其他功能
+    VPTestFatigueLevelStateNotWear = 4,     //佩戴检测没有通过
 };
 
 #pragma mark - SDK 1.7后新添加
