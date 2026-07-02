@@ -27,6 +27,7 @@
 | 1.2.2 | 中科系列固件升级，后续版本会把不同平台固件升级整合           | 2026.05.20 |
 | 1.2.3 | QH15定制健康数据下发                                         | 2026.06.01 |
 | 1.2.4 | 事件响应，获取运动状态数据                                   | 2026.06.17 |
+| 1.2.5 | 新增梅脱测量，情绪测量，健康灯                               | 2026.07.01 |
 
 # SDK初始化
 
@@ -8156,6 +8157,190 @@ let onedayData = VPDataBaseOperation.veepooSDKGetOriginalData(withDate: self.dat
             dataDict = [String : [String: String]]()
         }else {
             dataDict = onedayData as! [String : [String : Any]]
+        }
+```
+
+# 梅脱测量
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPMetVC的实现
+
+### 接口
+
+```
+VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.isSupportMetTest
+```
+
+```objective-c
+/// 梅脱测量
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_metTest:(BOOL)state callBack:(void(^_Nullable)(int con, VPTestMetState ack, int progress,int hrvValue))result;
+```
+
+### 参数解释
+
+| 参数     | 参数类型       | 备注            |
+| -------- | -------------- | --------------- |
+| con      | int            | 1：开启 2：关闭 |
+| ack      | VPTestMetState | 测量状态        |
+| progress | int            | 进度            |
+| hrvValue | int            | HRV结果值       |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_metTest(state) {[weak self] con, ack, progress, value in
+    print(con,ack, progress,value)
+    guard let self = self else { return }
+    if ack == .testing {
+        if con == 1 {
+            self.progressLab.text = "进度:\(progress)%"
+            if progress == 100 {
+                self.valueLab.text = "结果:\(Double(value)/10.0)"
+                self.testBtn.isSelected = !self.testBtn.isSelected
+            }
+        }
+    } else {
+
+    }
+}
+```
+
+# 情绪测量
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPEmotionVC的实现
+
+### 接口
+
+```
+VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.isSupportEmotionTest
+```
+
+```objective-c
+/// 情绪测量
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_emotionTest:(BOOL)state callBack:(void(^_Nullable)(int con, VPTestEmotionState ack, int progress,NSInteger value))result;
+```
+
+### 参数解释
+
+| 参数     | 参数类型           | 备注            |
+| -------- | ------------------ | --------------- |
+| con      | int                | 1：开启 2：关闭 |
+| ack      | VPTestEmotionState | 测量状态        |
+| progress | int                | 进度            |
+| value    | int                | 结果值          |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_emotionTest(state) {[weak self] con, ack, progress, value in
+    print(con,ack, progress,value)
+    guard let self = self else { return }
+    if ack == .testing {
+        if con == 1 {
+            self.progressLab.text = "进度:\(progress)%"
+            if progress == 100 {
+                self.valueLab.text = "结果:\(value)"
+                self.testBtn.isSelected = !self.testBtn.isSelected
+            }
+        }
+    } else {
+
+    }
+}
+```
+
+# 健康灯
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPHealthLightVC的实现
+
+### 接口
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.healthLightType != 0
+```
+
+```objective-c
+/// 读取健康灯状态
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDKReadHealthLightStatus:(void(^_Nullable)(VPHealthLightStatusType type))result
+```
+
+```objective-c
+/// 设置健康灯状态
+/// - Parameters:
+///   - type : 状态
+///   - result : 结果回调
+- (void)veepooSDKSetHealthLightStatus:(VPHealthLightStatusType)type callBack:(void(^_Nullable)(BOOL result, VPHealthLightStatusType type))result
+```
+
+```objective-c
+/// 监听健康灯状态变化
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDKListenHealthLightStatus:(void(^_Nullable)(VPHealthLightStatusType type))result
+```
+
+### 参数解释
+
+VPHealthLightStatusType
+
+| 参数                                      | 参数类型                | 备注   |
+| ----------------------------------------- | ----------------------- | ------ |
+| VPHealthLightStatusTypeOff                | VPHealthLightStatusType | 关闭   |
+| VPHealthLightStatusTypeSlowFlash          | VPHealthLightStatusType | 慢闪   |
+| VPHealthLightStatusTypeContinuousFlashing | VPHealthLightStatusType | 连续闪 |
+| VPHealthLightStatusTypeStayOn             | VPHealthLightStatusType | 常亮   |
+
+### 示例代码
+
+```swift
+/// 设置
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetHealthLightStatus(self.statusType) {[weak self] state, type in
+            guard let self = self else { return }
+            if state {
+                self.statusType = type
+                self.stateLab.text = self.getHealthLightState()
+            }
+        }
+```
+
+```swift
+/// 读取
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKReadHealthLightStatus {[weak self] type in
+            guard let self = self else { return }
+            self.statusType = type
+            self.stateLab.text = self.getHealthLightState()
+        }
+```
+
+```swift
+/// 监听
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKListenHealthLightStatus {[weak self] type in
+            guard let self = self else { return }
+            self.statusType = type
+            self.stateLab.text = self.getHealthLightState()
         }
 ```
 

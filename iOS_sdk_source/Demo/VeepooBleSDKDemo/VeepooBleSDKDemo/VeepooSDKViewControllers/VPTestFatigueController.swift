@@ -16,6 +16,7 @@ class VPTestFatigueController: UIViewController {
     
     @IBOutlet weak var testFatigueBtn: UIButton!
     
+    private var fatigueLevelType = VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.fatigueLevelType
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,7 @@ class VPTestFatigueController: UIViewController {
     }
 
     @IBAction func startTestFatigueAction(_ sender: UIButton) {
-        var tbyte:[UInt8] = Array(repeating: 0x00, count: 20)
-        VPBleCentralManage.sharedBleManager().peripheralModel.deviceFuctionData.copyBytes(to: &tbyte, count: tbyte.count)
-        if tbyte[7] != 1 {//先判断一下是否有这个功能
+        if VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.fatigueLevelType == 0 {//先判断一下是否有这个功能
             _ = AppDelegate.showHUD(message: "手环没有疲劳度功能", hudModel: MBProgressHUDModeText, showView: view)
             return
         }
@@ -37,32 +36,54 @@ class VPTestFatigueController: UIViewController {
             testFatigueProgressLabel.text = "测试进度:0%"
         }
         
-        unowned let weakSelf = self
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestFatigueStart(sender.isSelected) { (testFatigueState, progress, fatigueValue) in
-            if sender.isSelected {
-                weakSelf.testFatigueProgressLabel.text = "测试进度:" + String(progress) + "%"
-                weakSelf.fatigueStateLabel.text = "疲劳度状态: " + String(fatigueValue)
-                switch testFatigueState {
-                case .testing://正在测试中
-                    print("正在测试中")
-                case .deviceBusy:
-                    _ = AppDelegate.showHUD(message: "设备正忙，结束测试", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
-                    sender.isSelected = false
-                case .testFail:
-                    _ = AppDelegate.showHUD(message: "测试失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
-                    sender.isSelected = false
-                case .testInterrupt:
-                    _ = AppDelegate.showHUD(message: "人为结束测试", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
-                    sender.isSelected = false
-                case .complete:
-                    _ = AppDelegate.showHUD(message: "测试已经完成", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
-                    sender.isSelected = false
-                case .noFunction:
-                    _ = AppDelegate.showHUD(message: "设备暂时没有此功能", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
-                    sender.isSelected = false
+        if fatigueLevelType == 1 {
+            /// 旧的疲劳度测量返回的测量结果是疲劳度的结论 0x00: 测试无效（佩戴不通过，算法结果无效）0x01：不疲劳 0x02：轻度疲劳 0x03：一般疲劳 0x04：重度疲劳
+            VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKTestFatigueStart(sender.isSelected) {[weak self]
+                (testFatigueState, progress, fatigueValue) in
+                guard let weakSelf = self else { return }
+                if sender.isSelected {
+                    weakSelf.testFatigueProgressLabel.text = "测试进度:" + String(progress) + "%"
+                    weakSelf.fatigueStateLabel.text = "疲劳度状态: " + String(fatigueValue)
+                    switch testFatigueState {
+                    case .testing://正在测试中
+                        print("正在测试中")
+                    case .deviceBusy:
+                        _ = AppDelegate.showHUD(message: "设备正忙，结束测试", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                        sender.isSelected = false
+                    case .testFail:
+                        _ = AppDelegate.showHUD(message: "测试失败", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                        sender.isSelected = false
+                    case .testInterrupt:
+                        _ = AppDelegate.showHUD(message: "人为结束测试", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                        sender.isSelected = false
+                    case .complete:
+                        _ = AppDelegate.showHUD(message: "测试已经完成", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                        sender.isSelected = false
+                    case .noFunction:
+                        _ = AppDelegate.showHUD(message: "设备暂时没有此功能", hudModel: MBProgressHUDModeText, showView: weakSelf.view)
+                        sender.isSelected = false
+                    }
+                }
+            }
+        } else if fatigueLevelType == 2 {
+            /// 新的疲劳度测量返回的测量结果是疲劳度的数值 con 1:开启 2关闭
+            VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_fatigueLevelTest(sender.isSelected) {[weak self] con, ack, progress, value in
+                guard let weakSelf = self else { return }
+                print(con,ack, progress,value)
+                if ack == .testing {
+                    if con == 1 {
+                        weakSelf.testFatigueProgressLabel.text = "测试进度:" + String(progress) + "%"
+                        if progress == 100 {
+                            weakSelf.fatigueStateLabel.text = "疲劳度值: " + String(value)
+                        }
+                    }
+                } else {
+                    
                 }
             }
         }
+        
+        
     }
     
     deinit {//销毁的时候关闭疲劳度测试

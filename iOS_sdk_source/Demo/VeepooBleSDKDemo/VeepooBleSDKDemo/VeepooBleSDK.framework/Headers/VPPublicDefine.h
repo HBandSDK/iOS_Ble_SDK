@@ -801,3 +801,10 @@ typedef NS_OPTIONS(uint8_t, VPReminderEventType) {
     VPReminderEventTypeFall,
     VPReminderEventTypeSedentary,
 };
+
+typedef NS_ENUM(NSUInteger, VPHealthLightStatusType) {
+    VPHealthLightStatusTypeOff = 0,
+    VPHealthLightStatusTypeSlowFlash,
+    VPHealthLightStatusTypeContinuousFlashing,
+    VPHealthLightStatusTypeStayOn
+};

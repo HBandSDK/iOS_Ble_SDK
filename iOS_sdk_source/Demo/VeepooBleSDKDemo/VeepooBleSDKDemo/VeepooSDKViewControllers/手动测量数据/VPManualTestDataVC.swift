@@ -18,7 +18,7 @@ class VPManualTestDataVC: UIViewController {
     
     var checkTimeInterval:TimeInterval = 0
     
-    let mmTypes: [VPManualTestDataType] = [.heartRate , .bloodPressure, .bloodOxygen, .bloodSugar, .bloodComponents, .temperature, .healthGlance,.all]
+    let mmTypes: [VPManualTestDataType] = [.heartRate , .bloodPressure, .bloodOxygen, .bloodSugar, .bloodComponents, .temperature, .healthGlance,.HRV,.met,.GSR,.emotion,.fatigueLevel,.stress,.all]
     
     var allViews: [UIButton] = []
     
@@ -102,6 +102,30 @@ class VPManualTestDataVC: UIViewController {
                 logText += "\n" + "微体检 = \(someModel.healthGlanceArr)"
             }
             
+            if !someModel.stressArr.isEmpty {
+                logText += "\n" + "压力 = \(someModel.stressArr)"
+            }
+            
+            if !someModel.gsrArr.isEmpty {
+                logText += "\n" + "皮电 = \(someModel.gsrArr)"
+            }
+            
+            if !someModel.hrvArr.isEmpty {
+                logText += "\n" + "HRV = \(someModel.hrvArr)"
+            }
+            
+            if !someModel.emotionArr.isEmpty {
+                logText += "\n" + "情绪 = \(someModel.emotionArr)"
+            }
+            
+            if !someModel.fatigueLevelArr.isEmpty {
+                logText += "\n" + "疲劳度 = \(someModel.fatigueLevelArr)"
+            }
+            
+            if !someModel.metArr.isEmpty {
+                logText += "\n" + "梅脱 = \(someModel.metArr)"
+            }
+            
             if let existingText = self?.logTextView.text {
                 self?.logTextView.text = existingText + logText
             } else {
@@ -116,7 +140,7 @@ extension VPManualTestDataVC {
         title = "手动测量数据"
         view.backgroundColor = UIColor.white
         
-        let texts = ["读取心率","读取血压","读取血氧","读取血糖","读取血液成分","读取体温","读取微体检","读取所有"]
+        let texts = ["心率","血压","血氧","血糖","血液成分","体温","微体检","HRV","梅脱","皮电","情绪","疲劳度","压力","读取所有"]
         
         let height = 40
         let rowNum = 4
@@ -124,14 +148,15 @@ extension VPManualTestDataVC {
         let totalWidth = view.bounds.width
         let width = totalWidth / CGFloat(rowNum)
 
+        var index = 0
         for (ind, type) in mmTypes.enumerated() {
             var sup = supportType.contains(type)
             if ind == mmTypes.count - 1 {
                 sup = supportType.rawValue != 0
             }
             if sup {
-                let row = ind / rowNum
-                let line = ind % rowNum
+                let row = index / rowNum
+                let line = index % rowNum
                 
                 let x = CGFloat(line) * CGFloat(width)
                 let y = CGFloat(row) * CGFloat(height)
@@ -144,13 +169,14 @@ extension VPManualTestDataVC {
                 btn.tag = ind  // 可以设置tag来区分按钮
                 view.addSubview(btn)
                 allViews.append(btn)
+                index += 1
             }
         }
         
         // 初始化 UITextView
         logTextView = UITextView()
         let screenWidth = UIScreen.main.bounds.width
-        logTextView.frame = CGRect(x: 0, y: 100, width: screenWidth, height: 400)
+        logTextView.frame = CGRect(x: 0, y: (allViews.last?.frame.maxY ?? 90) + 10, width: screenWidth, height: 300)
         logTextView.isEditable = false
         logTextView.backgroundColor = .lightGray
         view.addSubview(logTextView)

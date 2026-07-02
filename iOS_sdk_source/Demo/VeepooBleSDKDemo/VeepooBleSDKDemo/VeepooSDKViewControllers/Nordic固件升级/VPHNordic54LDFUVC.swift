@@ -34,6 +34,16 @@ class VPHNordic54LDFUVC: UIViewController {
     private let otaButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("固件升级", for: .normal)
+        button.backgroundColor = .systemGray2
+        button.isEnabled = false
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 6
+        return button
+    }()
+    
+    private let prepareButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("进入升级模式", for: .normal)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 6
@@ -56,10 +66,42 @@ class VPHNordic54LDFUVC: UIViewController {
         return label
     }()
     
+    private let testC11Button: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("C1110403", for: .normal)
+        button.backgroundColor = .systemGray2
+        button.isEnabled = false
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 6
+        return button
+    }()
+    
+    private let testC21Button: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("C2110403", for: .normal)
+        button.backgroundColor = .systemGray2
+        button.isEnabled = false
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 6
+        return button
+    }()
+    
+    private let testC31Button: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("C3110403", for: .normal)
+        button.backgroundColor = .systemGray2
+        button.isEnabled = false
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 6
+        return button
+    }()
+    
     // MARK: - Properties
     private var isSupport: Bool {
         return VPBleCentralManage.sharedBleManager().peripheralModel.isSupportNordic
     }
+    
+    private var timer: Timer!
     
     private lazy var nordicDfuManager: DFUManagerType = {
         let manager = VPHNordic54LDFUManager()
@@ -82,10 +124,14 @@ class VPHNordic54LDFUVC: UIViewController {
         view.backgroundColor = .white
         
         view.addSubview(titleLabel)
+        view.addSubview(prepareButton)
         view.addSubview(otaButton)
         view.addSubview(stateLabel)
         view.addSubview(tipLabel)
         
+        view.addSubview(testC11Button)
+        view.addSubview(testC21Button)
+        view.addSubview(testC31Button)
         setupConstraints()
     }
     
@@ -95,9 +141,14 @@ class VPHNordic54LDFUVC: UIViewController {
         let buttonHeight: CGFloat = 36
         
         titleLabel.frame = CGRect(x: padding, y: padding + 44, width: view.bounds.width - 2 * padding, height: 40)
-        otaButton.frame = CGRect(x: padding, y: titleLabel.frame.maxY + 20, width: buttonWidth, height: buttonHeight)
+        prepareButton.frame = CGRect(x: padding, y: titleLabel.frame.maxY + 20, width: buttonWidth, height: buttonHeight)
+        otaButton.frame = CGRect(x: prepareButton.frame.maxX + 10, y: titleLabel.frame.maxY + 20, width: buttonWidth, height: buttonHeight)
         stateLabel.frame = CGRect(x: otaButton.frame.maxX + 15, y: otaButton.frame.minY, width: 180, height: buttonHeight)
         tipLabel.frame = CGRect(x: padding, y: otaButton.frame.maxY + 20, width: view.bounds.width - 2 * padding, height: 100)
+        
+        testC11Button.frame = CGRect(x: padding, y: tipLabel.frame.maxY + 20, width: buttonWidth, height: buttonHeight)
+        testC21Button.frame = CGRect(x: testC11Button.frame.maxX + 10, y: tipLabel.frame.maxY + 20, width: buttonWidth, height: buttonHeight)
+        testC31Button.frame = CGRect(x: testC21Button.frame.maxX + 10, y: tipLabel.frame.maxY + 20, width: buttonWidth, height: buttonHeight)
     }
     
     // MARK: - Configuration
@@ -106,7 +157,17 @@ class VPHNordic54LDFUVC: UIViewController {
             // 库存在时的配置
             titleLabel.text = "是否支持Nordic升级: \(isSupport ? "支持" : "不支持")"
             otaButton.isHidden = !isSupport
+            testC11Button.isHidden = !isSupport
+            testC21Button.isHidden = !isSupport
+            testC31Button.isHidden = !isSupport
             otaButton.addTarget(self, action: #selector(otaAction), for: .touchUpInside)
+            testC11Button.addTarget(self, action: #selector(testC11Action), for: .touchUpInside)
+            testC21Button.addTarget(self, action: #selector(testC21Action), for: .touchUpInside)
+            testC31Button.addTarget(self, action: #selector(testC31Action), for: .touchUpInside)
+        
+            prepareButton.isHidden = !isSupport
+            prepareButton.addTarget(self, action: #selector(prepareAction), for: .touchUpInside)
+            
             stateLabel.isHidden = false
         #else
             // 库不存在时的配置
@@ -120,13 +181,61 @@ class VPHNordic54LDFUVC: UIViewController {
     
     // MARK: - Actions
     @objc private func otaAction() {
-        startNordicOTA()
+        startNordicOTA(fileName: "xxxx.bin")
+    }
+    
+    @objc private func testC11Action() {
+        startNordicOTA(fileName: "NM11_8600_C1110403_OTA_260618_09.bin")
+    }
+    
+    @objc private func testC21Action() {
+        startNordicOTA(fileName: "NM11_8600_C2110403_OTA_260618_09.bin")
+    }
+    
+    @objc private func testC31Action() {
+        startNordicOTA(fileName: "NM11_8600_C3110403_OTA_260618_09.bin")
+    }
+    
+    @objc private func prepareAction() {
+        /// 开启3秒定时,有的设备不支持进入升级模式响应
+        self.timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: {[weak self] timer in
+            timer.invalidate()
+            guard let self = self else { return }
+            self.otaButton.isEnabled = true
+            self.otaButton.backgroundColor = .systemBlue
+            
+            self.testC11Button.isEnabled = true
+            self.testC11Button.backgroundColor = .systemBlue
+            
+            self.testC21Button.isEnabled = true
+            self.testC21Button.backgroundColor = .systemBlue
+            
+            self.testC31Button.isEnabled = true
+            self.testC31Button.backgroundColor = .systemBlue
+        })
+        /// 让设备进入升级模式
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSendUpdateFirmCommand {[weak self] in
+            guard let self = self else { return }
+            self.otaButton.isEnabled = true
+            self.otaButton.backgroundColor = .systemBlue
+            
+            self.testC11Button.isEnabled = true
+            self.testC11Button.backgroundColor = .systemBlue
+            
+            self.testC21Button.isEnabled = true
+            self.testC21Button.backgroundColor = .systemBlue
+            
+            self.testC31Button.isEnabled = true
+            self.testC31Button.backgroundColor = .systemBlue
+            
+            self.timer.invalidate()
+            self.timer = nil
+        }
     }
     
     // MARK: - OTA Methods
-    private func startNordicOTA() {
+    private func startNordicOTA(fileName: String) {
         #if canImport(iOSMcuManagerLibrary)
-            let fileName = "xxxx.bin"
             guard let filePath = Bundle.main.path(forResource: fileName, ofType: nil) else {
                 stateLabel.text = "没找到升级固件"
                 return

@@ -27,6 +27,7 @@
 | 1.2.2   | Zhongke series firmware upgrade, subsequent versions will integrate firmware upgrades from different platforms | 2026.05.20        |
 | 1.2.3   | QH15 Customized Health Data                                  | 2026.06.01        |
 | 1.2.4   | Event Reminder，Obtain motion status data                    | 2026.06.17        |
+| 1.2.5   | Met measurement， Emotion measurement， Health Light         | 2026.07.01        |
 
 # SDK initialization
 
@@ -8141,6 +8142,190 @@ let onedayData = VPDataBaseOperation.veepooSDKGetOriginalData(withDate: self.dat
             dataDict = [String : [String: String]]()
         }else {
             dataDict = onedayData as! [String : [String : Any]]
+        }
+```
+
+# Met measurement
+
+### Precondition
+
+Equipment support is required。
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation`VPMetVC in the demo
+
+### Interfaces
+
+```
+VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.isSupportMetTest
+```
+
+```objective-c
+/// Met measurement
+/// - Parameters:
+///   - result : result callback
+- (void)veepooSDK_metTest:(BOOL)state callBack:(void(^_Nullable)(int con, VPTestMetState ack, int progress,int hrvValue))result;
+```
+
+### Parameter Explanation
+
+| Parameter | Type           | Remark             |
+| --------- | -------------- | ------------------ |
+| con       | int            | 1: Open 2: Close   |
+| ack       | VPTestMetState | measurement status |
+| progress  | int            | Progress           |
+| hrvValue  | int            | result value       |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_metTest(state) {[weak self] con, ack, progress, value in
+    print(con,ack, progress,value)
+    guard let self = self else { return }
+    if ack == .testing {
+        if con == 1 {
+            self.progressLab.text = "Progress:\(progress)%"
+            if progress == 100 {
+                self.valueLab.text = "Result:\(Double(value)/10.0)"
+                self.testBtn.isSelected = !self.testBtn.isSelected
+            }
+        }
+    } else {
+
+    }
+}
+```
+
+# Emotion measurement
+
+### Precondition
+
+Equipment support is required。
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation`VPEmotionVC in the demo
+
+### Interfaces
+
+```
+VPBleCentralManage.sharedBleManager().peripheralManage.peripheralModel.isSupportEmotionTest
+```
+
+```objective-c
+/// Emotion measurement
+/// - Parameters:
+///   - result : result callback
+- (void)veepooSDK_emotionTest:(BOOL)state callBack:(void(^_Nullable)(int con, VPTestEmotionState ack, int progress,NSInteger value))result;
+```
+
+### Parameter Explanation
+
+| Parameter | Type               | Remark             |
+| --------- | ------------------ | ------------------ |
+| con       | int                | 1: Open 2: Close   |
+| ack       | VPTestEmotionState | measurement status |
+| progress  | int                | Progress           |
+| value     | int                | result value       |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_emotionTest(state) {[weak self] con, ack, progress, value in
+    print(con,ack, progress,value)
+    guard let self = self else { return }
+    if ack == .testing {
+        if con == 1 {
+            self.progressLab.text = "Progress:\(progress)%"
+            if progress == 100 {
+                self.valueLab.text = "result:\(value)"
+                self.testBtn.isSelected = !self.testBtn.isSelected
+            }
+        }
+    } else {
+
+    }
+}
+```
+
+# Health Light
+
+### Precondition
+
+Equipment support is required。
+
+### Class Name
+
+VPPeripheralBaseManage`，refer to the implementation`VPHealthLightVC in the demo
+
+### Interfaces
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralModel.healthLightType != 0
+```
+
+```objective-c
+/// Read the status of the health light
+/// - Parameters:
+///   - result : result callback
+- (void)veepooSDKReadHealthLightStatus:(void(^_Nullable)(VPHealthLightStatusType type))result
+```
+
+```objective-c
+/// Set the health light status
+/// - Parameters:
+///   - type : status
+///   - result : result callback
+- (void)veepooSDKSetHealthLightStatus:(VPHealthLightStatusType)type callBack:(void(^_Nullable)(BOOL result, VPHealthLightStatusType type))result
+```
+
+```objective-c
+/// Monitor changes in the status of health lights
+/// - Parameters:
+///   - result : result callback
+- (void)veepooSDKListenHealthLightStatus:(void(^_Nullable)(VPHealthLightStatusType type))result
+```
+
+### Parameter Explanation
+
+VPHealthLightStatusType
+
+| Parameter                                 | Type                    | Remark              |
+| ----------------------------------------- | ----------------------- | ------------------- |
+| VPHealthLightStatusTypeOff                | VPHealthLightStatusType | OFF                 |
+| VPHealthLightStatusTypeSlowFlash          | VPHealthLightStatusType | Slow Flash          |
+| VPHealthLightStatusTypeContinuousFlashing | VPHealthLightStatusType | Continuous Flashing |
+| VPHealthLightStatusTypeStayOn             | VPHealthLightStatusType | Stay On             |
+
+### Sample Code
+
+```swift
+/// Set
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetHealthLightStatus(self.statusType) {[weak self] state, type in
+            guard let self = self else { return }
+            if state {
+                self.statusType = type
+                self.stateLab.text = self.getHealthLightState()
+            }
+        }
+```
+
+```swift
+/// Read
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKReadHealthLightStatus {[weak self] type in
+            guard let self = self else { return }
+            self.statusType = type
+            self.stateLab.text = self.getHealthLightState()
+        }
+```
+
+```swift
+/// Listen
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKListenHealthLightStatus {[weak self] type in
+            guard let self = self else { return }
+            self.statusType = type
+            self.stateLab.text = self.getHealthLightState()
         }
 ```
 

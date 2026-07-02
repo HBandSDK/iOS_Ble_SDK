@@ -18,7 +18,7 @@ class VPHealthGlanceViewController: UIViewController {
     
     
     var isSupHG: Bool {
-        return VPBleCentralManage.sharedBleManager().peripheralModel.healthGlanceType > 1 ? true : false
+        return VPBleCentralManage.sharedBleManager().peripheralModel.supportHealthGlanceTest
     }
     
     private var progressLabel: UILabel!

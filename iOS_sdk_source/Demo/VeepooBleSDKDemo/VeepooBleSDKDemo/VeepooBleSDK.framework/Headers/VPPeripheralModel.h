@@ -296,8 +296,8 @@
 //疲劳度类型
 @property (nonatomic, assign) NSInteger fatigueLevelType;
 
-//是否支持疲劳度测量
-@property (nonatomic, assign) BOOL isSupportFatigueLevelTest;
+//健康灯类型 非0支持,0不支持
+@property (nonatomic, assign) NSInteger healthLightType;
 
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is
