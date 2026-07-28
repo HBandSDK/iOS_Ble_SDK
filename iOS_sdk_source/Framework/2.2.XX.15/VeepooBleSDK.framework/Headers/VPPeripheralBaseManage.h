@@ -1148,6 +1148,16 @@
 ///   - sendResult:结果回调
 -(void)veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData:(void(^_Nullable)(NSMutableArray <VPAccelerationModel*> * _Nullable array))sendResult;
 
+// 主动开启测量
+/// - Parameters:
+///   - sendResult:结果回调
+- (void)veepooSDK_JH58ActiveTestPPGAndAcceleration:(VPJH58ActiveMeasurementState)state andResult:(void(^_Nullable)(VPJH58ActiveMeasurementResultState state))sendResult;
+
+// 开启测量后数据上报
+/// - Parameters:
+///   - sendResult:结果回调
+- (void)veepooSDK_JH58ActiveTestPPGAndAccelerationReport:(void(^_Nullable)( NSMutableArray<VPJH58PPGAccelerationModel*> * _Nullable array))sendResult;
+
 #pragma mark 微体检(定制项目)
 
 //开启/关闭微体检

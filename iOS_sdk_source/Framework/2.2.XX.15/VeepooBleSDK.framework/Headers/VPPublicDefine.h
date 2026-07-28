@@ -687,6 +687,19 @@ typedef NS_ENUM(NSUInteger, VPJH58MeasurementModeState) {
     VPJH58MeasurementModeStateOff = 0x01,
     VPJH58MeasurementModeStateModeOne = 0x02,
     VPJH58MeasurementModeStateModeTwo = 0x03,
+    VPJH58MeasurementModeStateActiveTest = 0x04,
+};
+
+typedef NS_ENUM(NSUInteger, VPJH58ActiveMeasurementState) {
+    VPJH58ActiveMeasurementStateRealTime = 0x01,      // 开启测量，实时传输
+    VPJH58ActiveMeasurementStateResume = 0x02,        // 开启测量，断点传输（重连后补传断联前5分钟数据，再切实时）
+    VPJH58ActiveMeasurementStateOff = 0x03,           // 关闭测量
+};
+
+typedef NS_ENUM(NSUInteger, VPJH58ActiveMeasurementResultState) {
+    VPJH58ActiveMeasurementResultStateSuccess = 0x01,      // 成功
+    VPJH58ActiveMeasurementResultStateBusy = 0x02,        // 设备正在手动测量，App显示设备正忙
+    VPJH58ActiveMeasurementResultStateLowBattery = 0x03,           // 设备处于低电状态
 };
 
 // 常灭屏功能状态

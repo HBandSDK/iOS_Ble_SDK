@@ -146,6 +146,7 @@
 		FEE777AC2F9B1DDA003C8733 /* VPChangeDeviceNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE777AA2F9B1DDA003C8733 /* VPChangeDeviceNameViewController.swift */; };
 		FEE777B22F9B1DFE003C8733 /* VPHRVTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE777B02F9B1DFE003C8733 /* VPHRVTestVC.swift */; };
 		FEE777BB2FA08746003C8733 /* VPQX17ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE777B92FA08746003C8733 /* VPQX17ViewController.swift */; };
+		FEE8F12230189BE400268B4B /* VPECGTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE8F12030189BE400268B4B /* VPECGTestVC.swift */; };
 		FEF1EEC52DF97AA3006ACCC8 /* VPManualTestDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1EEC12DF97AA3006ACCC8 /* VPManualTestDataVC.swift */; };
 		FEF1EEC62DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF1EEC32DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift */; };
 		FEFA5486266B48D50071E61B /* VPTemperatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */; };
@@ -324,6 +325,7 @@
 		FEE777AA2F9B1DDA003C8733 /* VPChangeDeviceNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPChangeDeviceNameViewController.swift; sourceTree = "<group>"; };
 		FEE777B02F9B1DFE003C8733 /* VPHRVTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHRVTestVC.swift; sourceTree = "<group>"; };
 		FEE777B92FA08746003C8733 /* VPQX17ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPQX17ViewController.swift; sourceTree = "<group>"; };
+		FEE8F12030189BE400268B4B /* VPECGTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPECGTestVC.swift; sourceTree = "<group>"; };
 		FEF1EEC12DF97AA3006ACCC8 /* VPManualTestDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPManualTestDataVC.swift; sourceTree = "<group>"; };
 		FEF1EEC32DF97AA3006ACCC8 /* VPAutoMonitSwitchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAutoMonitSwitchVC.swift; sourceTree = "<group>"; };
 		FEFA5484266B48D50071E61B /* VPTemperatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPTemperatureViewController.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEE8F12130189BE400268B4B /* ECG */,
 				FE0518FF2FF669F700839042 /* 健康灯 */,
 				FE0518F92FF669ED00839042 /* 梅脱 */,
 				FE0518FB2FF669ED00839042 /* 情绪 */,
@@ -866,6 +869,14 @@
 			path = QX17;
 			sourceTree = "<group>";
 		};
+		FEE8F12130189BE400268B4B /* ECG */ = {
+			isa = PBXGroup;
+			children = (
+				FEE8F12030189BE400268B4B /* VPECGTestVC.swift */,
+			);
+			path = ECG;
+			sourceTree = "<group>";
+		};
 		FEF1EEC22DF97AA3006ACCC8 /* 手动测量数据 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,6 +1131,7 @@
 				FECF31FD2AFC8DB900012184 /* VPContactCell.swift in Sources */,
 				675052261E553F3F008D45BC /* VPRootViewController.swift in Sources */,
 				FEB398AC2FE23222002DAC2D /* VPReminderEventVC.swift in Sources */,
+				FEE8F12230189BE400268B4B /* VPECGTestVC.swift in Sources */,
 				67FC22951E6560860029DED3 /* MBProgressHUD.m in Sources */,
 				6750522B1E557517008D45BC /* VPScanDeviceViewController.swift in Sources */,
 				67BA7254235813C8004E6E1E /* VPPTTTestController.swift in Sources */,

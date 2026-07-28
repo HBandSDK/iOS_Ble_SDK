@@ -28,6 +28,7 @@
 | 1.2.3 | QH15定制健康数据下发                                         | 2026.06.01 |
 | 1.2.4 | 事件响应，获取运动状态数据                                   | 2026.06.17 |
 | 1.2.5 | 新增梅脱测量，情绪测量，健康灯                               | 2026.07.01 |
+| 1.2.6 | 新增JH58定制主动测量                                         | 2026.07.23 |
 
 # SDK初始化
 
@@ -5143,9 +5144,16 @@ VPManualTestDataType，通过supportManualTestType是否包含以下类型判断
 | VPManualTestDataBloodPressure   | NSUInteger | 血压     |      |
 | VPManualTestDataHeartRate       | NSUInteger | 心率     |      |
 | VPManualTestDataBloodSugar      | NSUInteger | 血糖     |      |
+| VPManualTestDataStress          | NSUInteger | 压力     |      |
 | VPManualTestDataBloodOxygen     | NSUInteger | 血氧     |      |
 | VPManualTestDataTemperature     | NSUInteger | 体温     |      |
+| VPManualTestDataMet             | NSUInteger | 梅脱     |      |
+| VPManualTestDataHRV             | NSUInteger | HRV      |      |
 | VPManualTestDataBloodComponents | NSUInteger | 血液成分 |      |
+| VPManualTestDataHealthGlance    | NSUInteger | 微体检   |      |
+| VPManualTestDataEmotion         | NSUInteger | 情绪     |      |
+| VPManualTestDataFatigueLevel    | NSUInteger | 疲劳度   |      |
+| VPManualTestDataGSR             | NSUInteger | 皮电     |      |
 | VPManualTestDataAll             | NSUInteger | 所有     |      |
 
 
@@ -5161,6 +5169,13 @@ VPManualTestDataModel
 | heartRateArr     | NSArray<VPManualHeartRateModel *> *     | 心率数组     |
 | bloodOxygenArr   | NSArray<VPManualBloodOxygenModel *> *   | 血氧数组     |
 | bloodSugarArr    | NSArray<VPManualBloodSugarModel *> *    | 血糖数组     |
+| healthGlanceArr  | NSArray<VPManualHealthGlanceModel *>    | 微体检数组   |
+| hrvArr           | NSArray<VPManualHRVModel *>             | HRV数组      |
+| gsrArr           | NSArray<VPManualGSRModel *>             | 皮电数组     |
+| emotionArr       | NSArray<VPManualEmotionModel *>         | 情绪数组     |
+| fatigueLevelArr  | NSArray<VPManualFatigueLevelModel *>    | 疲劳度数组   |
+| stressArr        | NSArray<VPManualStressModel *>          | 压力数组     |
+| metArr           | NSArray<VPManualMetModel *>             | 梅脱数组     |
 
 VPManualBloodPressureModel
 
@@ -5223,24 +5238,89 @@ VPManualBloodSugarModel
 
 VPManualHealthGlanceModel
 
-| 参数            | 参数类型  | 备注                            |
-| :-------------- | :-------- | :------------------------------ |
-| timestamp       | uint32_t  | 测量时间戳                      |
-| heartRate       | UInt8     | 心率                            |
-| bloodOxygen     | UInt8     | 血氧                            |
-| stress          | UInt8     | 压力                            |
-| fatigueLevel    | UInt8     | 疲劳度                          |
-| bloodSugar      | double    | 血糖                            |
-| haveLevel       | BOOL      | 是否有血糖风险等级              |
-| bloodSugarLevel | uint8_t   | 血糖风险等级 (1=低, 2=中, 3=高) |
-| bodyTemperature | double    | 体温                            |
-| orgTemperature  | double    | 原始体温                        |
-| h_bp            | uint16_t  | 收缩压                          |
-| l_bp            | uint16_t  | 舒张压                          |
-| hrv             | UInt8     | 心率变异性                      |
-| emotionLevel    | NSInteger | 情绪等级 (范围 [-10, 10])       |
-| healthGlanceId  | NSInteger | 微体检ID                        |
-| protocol        | NSInteger | 协议                            |
+| 参数                   | 参数类型               | 备注                                               |
+| :--------------------- | :--------------------- | :------------------------------------------------- |
+| timestamp              | uint32_t               | 测量时间戳                                         |
+| heartRate              | UInt8                  | 心率                                               |
+| bloodOxygen            | UInt8                  | 血氧                                               |
+| stress                 | UInt8                  | 压力                                               |
+| fatigueLevel           | UInt8                  | 疲劳度                                             |
+| bloodSugar             | double                 | 血糖                                               |
+| haveLevel              | BOOL                   | 是否有血糖风险等级                                 |
+| bloodSugarLevel        | uint8_t                | 血糖风险等级 (1=低, 2=中, 3=高)                    |
+| bodyTemperature        | double                 | 体温                                               |
+| orgTemperature         | double                 | 原始体温                                           |
+| h_bp                   | uint16_t               | 收缩压                                             |
+| l_bp                   | uint16_t               | 舒张压                                             |
+| hrv                    | UInt8                  | 心率变异性                                         |
+| emotionLevel           | NSInteger              | 情绪等级 (范围 [-10, 10])                          |
+| healthGlanceId         | NSInteger              | 微体检ID                                           |
+| protocol               | NSInteger              | 协议目前有 0 ，1 ，2，protocol == 2 才会有以下数据 |
+| functionSupport        | NSUInteger             | 支持哪些功能 根据VPHealthGlanceType 判断           |
+| totalCholesterol       | uint16_t               | 总胆固醇（umol/L）                                 |
+| triglyceride           | uint16_t               | 甘油三酯（mmol/L）                                 |
+| highDensityLipoprotein | uint16_t               | 高密度脂蛋白（mmol/L）                             |
+| lowDensityLipoprotein  | uint16_t               | 低密度脂蛋白（mmol/L）                             |
+| uricAcid               | uint16_t               | 尿酸值（mmol/L）                                   |
+| cuffBloodPressureHigh  | UInt8                  | 气泵血压 高                                        |
+| cuffBloodPressureLow   | UInt8                  | 气泵血压 低                                        |
+| weight                 | UInt8                  | 体重 kg                                            |
+| height                 | UInt8                  | 身高 cm                                            |
+| age                    | UInt8                  | 年龄                                               |
+| gender                 | UInt8                  | 性别，0女，1男                                     |
+| bodyComModel           | VPManualHGBodyComModel | 身体成分                                           |
+| skinMoisture           | UInt8                  | 皮肤含水量 [1,99]                                  |
+| depressionRisk         | UInt8                  | 抑郁症风险 [0,2] 0:低风险 1:中风险 2:高风险        |
+| snsActivation          | UInt8                  | 交感神经活跃度 [1,99]                              |
+| cortisolValue          | UInt16                 | 皮质醇浓度，有效范围 [0,500]ug/L                   |
+
+VPManualGSRModel
+
+| 参数           | 参数类型  | 备注                                        |
+| -------------- | --------- | ------------------------------------------- |
+| timestamp      | uint32_t  | 测量时间戳，秒级                            |
+| emotionLevel   | NSInteger | 情绪 [-10,10]                               |
+| skinMoisture   | UInt8     | 皮肤含水量 [1,99]                           |
+| depressionRisk | UInt8     | 抑郁症风险 [0,2] 0:低风险 1:中风险 2:高风险 |
+| snsActivation  | UInt8     | 交感神经活跃度 [1,99]                       |
+| cortisolValue  | UInt16    | 皮质醇浓度，有效范围 [0,500]ug/L            |
+
+VPManualHRVModel
+
+| 参数      | 参数类型  | 备注             |
+| --------- | --------- | ---------------- |
+| timestamp | uint32_t  | 测量时间戳，秒级 |
+| hrvArray  | NSInteger | hrv值            |
+
+VPManualMetModel
+
+| 参数      | 参数类型  | 备注             |
+| --------- | --------- | ---------------- |
+| timestamp | uint32_t  | 测量时间戳，秒级 |
+| value     | NSInteger | 梅脱值           |
+
+VPManualStressModel
+
+| 参数      | 参数类型  | 备注             |
+| --------- | --------- | ---------------- |
+| timestamp | uint32_t  | 测量时间戳，秒级 |
+| value     | NSInteger | 压力值           |
+
+VPManualFatigueLevelModel
+
+| 参数      | 参数类型  | 备注             |
+| --------- | --------- | ---------------- |
+| timestamp | uint32_t  | 测量时间戳，秒级 |
+| value     | NSInteger | 疲劳度[0,99]     |
+
+VPManualEmotionModel
+
+| 参数      | 参数类型  | 备注             |
+| --------- | --------- | ---------------- |
+| timestamp | uint32_t  | 测量时间戳，秒级 |
+| value     | NSInteger | 情绪值[-10,10]   |
+
+
 
 ### 示例代码
 
@@ -5280,6 +5360,33 @@ VPBleCentralManage.sharedBleManager().peripheralManage.readManualTestData(withTi
     if !someModel.bloodSugarArr.isEmpty {
         logText += "\n" + "血糖 = \(someModel.bloodSugarArr)"
     }
+    if !someModel.healthGlanceArr.isEmpty {
+        logText += "\n" + "微体检 = \(someModel.healthGlanceArr)" 
+    }
+
+    if !someModel.stressArr.isEmpty {
+        logText += "\n" + "压力 = \(someModel.stressArr)"
+    }
+
+    if !someModel.gsrArr.isEmpty {
+        logText += "\n" + "皮电 = \(someModel.gsrArr)"
+    }
+
+    if !someModel.hrvArr.isEmpty {
+        logText += "\n" + "HRV = \(someModel.hrvArr)"
+    }
+
+    if !someModel.emotionArr.isEmpty {
+        logText += "\n" + "情绪 = \(someModel.emotionArr)"
+    }
+
+    if !someModel.fatigueLevelArr.isEmpty {
+        logText += "\n" + "疲劳度 = \(someModel.fatigueLevelArr)"
+    }
+
+    if !someModel.metArr.isEmpty {
+        logText += "\n" + "梅脱 = \(someModel.metArr)"
+    }                                                                                          
 
     if let existingText = self?.logTextView.text {
         self?.logTextView.text = existingText + logText
@@ -5727,6 +5834,71 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorReal
     
         }
 ```
+
+# 主动测量
+
+### 前提
+
+JH58定制功能
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPPPGAccelerationViewController`的实现
+
+### 接口
+
+```objective-c
+// 主动开启测量
+/// - Parameters:
+///   - sendResult:结果回调
+- (void)veepooSDK_JH58ActiveTestPPGAndAcceleration:(VPJH58ActiveMeasurementState)state andResult:(void(^_Nullable)(VPJH58ActiveMeasurementResultState state))sendResult;
+```
+
+```objective-c
+// 开启测量后数据上报
+/// - Parameters:
+///   - sendResult:结果回调
+- (void)veepooSDK_JH58ActiveTestPPGAndAccelerationReport:(void(^_Nullable)( NSMutableArray<VPJH58PPGAccelerationModel*> * _Nullable array))sendResult
+```
+
+### 参数解释
+
+VPJH58ActiveMeasurementState
+
+| 参数                                 | 参数类型   | 备注                                                      |
+| ------------------------------------ | ---------- | --------------------------------------------------------- |
+| VPJH58ActiveMeasurementStateRealTime | NSUInteger | 开启测量，实时传输                                        |
+| VPJH58ActiveMeasurementStateResume   | NSUInteger | 开启测量，断点传输（重连后补传断联前5分钟数据，再切实时） |
+| VPJH58ActiveMeasurementStateOff      | NSUInteger | 关闭测量                                                  |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ActiveTestPPGAndAcceleration(state) { [weak self] resultState in
+            guard let weakSelf = self else {return}
+            weakSelf.hud?.show(true)
+            switch resultState {
+            case .success:
+                weakSelf.hud?.labelText = "操作成功"
+            case .busy:
+                weakSelf.hud?.labelText = "设备正忙"
+            case .lowBattery:
+                weakSelf.hud?.labelText = "设备低电"
+            @unknown default:
+                weakSelf.hud?.labelText = "未知状态"
+            }
+            weakSelf.hud?.hide(true, afterDelay: 1.0)
+        }
+```
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ActiveTestPPGAndAccelerationReport { [weak self] array in
+            guard let array = array, let weakSelf = self else {return}
+            
+        }
+```
+
+
 
 # 微体检的开启/关闭（定制）
 

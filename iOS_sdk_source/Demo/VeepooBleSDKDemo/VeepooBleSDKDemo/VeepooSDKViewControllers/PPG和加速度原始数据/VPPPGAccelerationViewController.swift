@@ -17,6 +17,7 @@ class VPPPGAccelerationViewController: UIViewController {
         self.title = "JH58定制PPG和加速度原始数据"
         creatMainView()
         getMeasurementModeState(type: 1)
+        listenActiveTestReport()
         // Do any additional setup after loading the view.
     }
     
@@ -38,6 +39,7 @@ class VPPPGAccelerationViewController: UIViewController {
     let ppgAccfileHandle = VPFileHandleManager()
     let realTimePPGfileHandle = VPFileHandleManager()
     let realTimeAccfileHandle = VPFileHandleManager()
+    let ppgAccTestFileHandle = VPFileHandleManager()
 
     var currentGroup :Int = 0
     var currentText :String = ""
@@ -80,53 +82,65 @@ class VPPPGAccelerationViewController: UIViewController {
             let str = String(textArray.joined(separator: " "))
             weakSelf.realTimeAccfileHandle.writeText(str)
         }
-        
+
         ppgAccfileHandle.configureFilePath("PPGAccData")
         realTimePPGfileHandle.configureFilePath("RealTimePPGData")
         realTimeAccfileHandle.configureFilePath("RealTimeAccData")
+        ppgAccTestFileHandle.configureFilePath("activeTestAccData")
         
+        let scrollView = UIScrollView(frame: view.bounds)
+        scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(scrollView)
+
         let label1 = UILabel(frame: CGRect(x: 20, y: 5, width: UIScreen.main.bounds.width-40, height: 50))
         label1.text = "/* 获取原始数据和实时传输数据上报的数据,都会存在文件里,直接导出可以查看 */"
         label1.font = .systemFont(ofSize: 14)
         label1.numberOfLines = 0
         label1.textColor = .red
-        view.addSubview(label1)
-        
-        
-        let label = UILabel(frame: CGRect(x: 20, y: 40, width: 80, height: 50))
+        scrollView.addSubview(label1)
+
+
+        let label = UILabel(frame: CGRect(x: 20, y: 70, width: 80, height: 50))
         label.text = "测量模式:"
-        view.addSubview(label)
-        
-        view.addSubview(self.segControl)
+        scrollView.addSubview(label)
+
+        scrollView.addSubview(self.segControl)
         self.segControl.frame = CGRect(x: CGRectGetMaxX(label.frame) + 10, y: 0, width: 150, height: 40)
         self.segControl.center.y = label.center.y
         self.segControl.addTarget(self, action: #selector(valueChange), for: .valueChanged)
-        
+
         let btn = UIButton(frame: CGRect(x: CGRectGetMaxX(self.segControl.frame) + 20, y: 0, width: 100, height: 40))
         btn.setTitle("重新获取", for: .normal)
         btn.backgroundColor = .orange
         btn.layer.cornerRadius = 4;
         btn.center.y = label.center.y
         btn.addTarget(self, action: #selector(getMeasurementModeAction), for: .touchUpInside)
-        view.addSubview(btn)
-        
-        
-        let getModeBtn1 = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(self.segControl.frame)+30, width: 160, height: 50));
+        scrollView.addSubview(btn)
+
+
+        let getModeBtn1 = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(self.segControl.frame)+12, width: 160, height: 50));
         getModeBtn1.setTitle("获取模式1数据", for: .normal)
         getModeBtn1.backgroundColor = .blue
         getModeBtn1.layer.cornerRadius = 4
-        view.addSubview(getModeBtn1)
+        scrollView.addSubview(getModeBtn1)
         getModeBtn1.addTarget(self, action: #selector(getModeBtn1Action), for: .touchUpInside)
-        
-        let getModeBtn2 = UIButton(frame: CGRect(x: UIScreen.main.bounds.width-CGRectGetWidth(getModeBtn1.frame)-20, y: CGRectGetMaxY(self.segControl.frame)+30, width: CGRectGetWidth(getModeBtn1.frame), height: CGRectGetHeight(getModeBtn1.frame)));
+
+        let getModeBtn2 = UIButton(frame: CGRect(x: UIScreen.main.bounds.width-CGRectGetWidth(getModeBtn1.frame)-20, y: CGRectGetMaxY(self.segControl.frame)+12, width: CGRectGetWidth(getModeBtn1.frame), height: CGRectGetHeight(getModeBtn1.frame)));
         getModeBtn2.setTitle("获取模式2数据", for: .normal)
         getModeBtn2.backgroundColor = .green
         getModeBtn2.layer.cornerRadius = 4
-        view.addSubview(getModeBtn2)
+        scrollView.addSubview(getModeBtn2)
         getModeBtn2.addTarget(self, action: #selector(getModeBtn2Action), for: .touchUpInside)
         
-        
-        let timePicker = UIDatePicker(frame: CGRect(x: CGRectGetMinX(getModeBtn1.frame), y: CGRectGetMaxY(getModeBtn1.frame)+20, width: CGRectGetWidth(getModeBtn1.frame), height: CGRectGetWidth(getModeBtn1.frame)))
+        let getModeBtn3 = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(getModeBtn1.frame)+12, width: CGRectGetWidth(getModeBtn1.frame), height: CGRectGetHeight(getModeBtn1.frame)));
+        getModeBtn3.setTitle("获取主动测量数据", for: .normal)
+        getModeBtn3.backgroundColor = .green
+        getModeBtn3.layer.cornerRadius = 4
+        scrollView.addSubview(getModeBtn3)
+        getModeBtn3.addTarget(self, action: #selector(getModeBtn3Action), for: .touchUpInside)
+
+
+        let timePicker = UIDatePicker(frame: CGRect(x: CGRectGetMinX(getModeBtn1.frame), y: CGRectGetMaxY(getModeBtn3.frame)+8, width: CGRectGetWidth(getModeBtn1.frame), height: CGRectGetWidth(getModeBtn1.frame)))
         timePicker.datePickerMode = .dateAndTime // 设置为时间模式[citation:5]
         timePicker.timeZone = TimeZone.current
         let calendar = Calendar.current
@@ -136,47 +150,70 @@ class VPPPGAccelerationViewController: UIViewController {
             self.checkTimeInterval = startOfDay.timeIntervalSince1970;
         }
         timePicker.addTarget(self, action: #selector(timeChanged(picker:)), for: .valueChanged)
-        view.addSubview(timePicker)
-        
-        
-        let shareBtn = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(timePicker.frame)+30, width: 160, height: 50));
+        scrollView.addSubview(timePicker)
+
+
+        let shareBtn = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(timePicker.frame)+12, width: 160, height: 50));
         shareBtn.setTitle("导出数据", for: .normal)
         shareBtn.backgroundColor = .blue
         shareBtn.layer.cornerRadius = 4
-        view.addSubview(shareBtn)
+        scrollView.addSubview(shareBtn)
         shareBtn.addTarget(self, action: #selector(shareAction), for: .touchUpInside)
-        
+
         let clearBtn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width-CGRectGetWidth(getModeBtn1.frame)-20, y: CGRectGetMinY(shareBtn.frame), width: CGRectGetWidth(getModeBtn1.frame), height: CGRectGetHeight(getModeBtn1.frame)));
         clearBtn.setTitle("清除数据", for: .normal)
         clearBtn.backgroundColor = .green
         clearBtn.layer.cornerRadius = 4
-        view.addSubview(clearBtn)
+        scrollView.addSubview(clearBtn)
         clearBtn.addTarget(self, action: #selector(clearAction), for: .touchUpInside)
-        
-        
-        let openRealTimeBtn = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(shareBtn.frame)+30, width: 160, height: 50));
+
+
+        let openRealTimeBtn = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(shareBtn.frame)+12, width: 160, height: 50));
         openRealTimeBtn.tag = 1000
         openRealTimeBtn.setTitle("开启实时数据传输", for: .normal)
         openRealTimeBtn.backgroundColor = .blue
         openRealTimeBtn.layer.cornerRadius = 4
-        view.addSubview(openRealTimeBtn)
+        scrollView.addSubview(openRealTimeBtn)
         openRealTimeBtn.addTarget(self, action: #selector(realTimeAction(btn:)), for: .touchUpInside)
-        
-        
+
+
         let closeRealTimeBtn = UIButton(frame: CGRect(x: UIScreen.main.bounds.width-CGRectGetWidth(openRealTimeBtn.frame)-20, y: CGRectGetMinY(openRealTimeBtn.frame), width: CGRectGetWidth(openRealTimeBtn.frame), height: CGRectGetHeight(openRealTimeBtn.frame)));
         closeRealTimeBtn.tag = 1001
         closeRealTimeBtn.setTitle("关闭实时数据传输", for: .normal)
         closeRealTimeBtn.backgroundColor = .green
         closeRealTimeBtn.layer.cornerRadius = 4
-        view.addSubview(closeRealTimeBtn)
+        scrollView.addSubview(closeRealTimeBtn)
         closeRealTimeBtn.addTarget(self, action: #selector(realTimeAction(btn:)), for: .touchUpInside)
-        
+
+        let activeRealTimeBtn = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(closeRealTimeBtn.frame)+12, width: UIScreen.main.bounds.width-40, height: 50))
+        activeRealTimeBtn.setTitle("主动测量-实时传输", for: .normal)
+        activeRealTimeBtn.backgroundColor = .systemBlue
+        activeRealTimeBtn.layer.cornerRadius = 4
+        scrollView.addSubview(activeRealTimeBtn)
+        activeRealTimeBtn.addTarget(self, action: #selector(activeRealTimeAction), for: .touchUpInside)
+
+        let activeResumeBtn = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(activeRealTimeBtn.frame)+8, width: UIScreen.main.bounds.width-40, height: 50))
+        activeResumeBtn.setTitle("主动测量-断点传输", for: .normal)
+        activeResumeBtn.backgroundColor = .systemOrange
+        activeResumeBtn.layer.cornerRadius = 4
+        scrollView.addSubview(activeResumeBtn)
+        activeResumeBtn.addTarget(self, action: #selector(activeResumeAction), for: .touchUpInside)
+
+        let activeOffBtn = UIButton(frame: CGRect(x: 20, y: CGRectGetMaxY(activeResumeBtn.frame)+8, width: UIScreen.main.bounds.width-40, height: 50))
+        activeOffBtn.setTitle("关闭主动测量", for: .normal)
+        activeOffBtn.backgroundColor = .systemRed
+        activeOffBtn.layer.cornerRadius = 4
+        scrollView.addSubview(activeOffBtn)
+        activeOffBtn.addTarget(self, action: #selector(activeOffAction), for: .touchUpInside)
+
         self.hud=AppDelegate.showHUDNoHide(message: "", hudModel: MBProgressHUDModeText, showView: self.view)
-        
-        textView.frame = CGRect(x: 20, y: CGRectGetMaxY(closeRealTimeBtn.frame)+10, width: UIScreen.main.bounds.width-40, height: CGRectGetHeight(self.view.frame) - CGRectGetMaxY(closeRealTimeBtn.frame)-80)
+
+        textView.frame = CGRect(x: 20, y: CGRectGetMaxY(activeOffBtn.frame)+8, width: UIScreen.main.bounds.width-40, height: 300)
         textView.isEditable = false
         textView.layoutManager.allowsNonContiguousLayout = false
-        view.addSubview(textView)
+        scrollView.addSubview(textView)
+
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: textView.frame.maxY + 20)
     }
     
     func showDeviceReqRealTimeAlertView(open :Bool){
@@ -210,6 +247,87 @@ class VPPPGAccelerationViewController: UIViewController {
         getPPGAccelerationData(mode: .modeTwo)
     }
     
+    @objc func getModeBtn3Action() {
+        getPPGAccelerationData(mode: .activeTest)
+    }
+
+    @objc func activeRealTimeAction(){
+        activeMeasurement(state: .realTime)
+    }
+
+    @objc func activeResumeAction(){
+        activeMeasurement(state: .resume)
+    }
+
+    @objc func activeOffAction(){
+        activeMeasurement(state: .off)
+    }
+
+    func activeMeasurement(state: VPJH58ActiveMeasurementState){
+        let stateText: String
+        switch state {
+        case .realTime:
+            stateText = "主动测量-实时传输"
+        case .resume:
+            stateText = "主动测量-断点传输"
+        case .off:
+            stateText = "关闭主动测量"
+        @unknown default:
+            stateText = "主动测量"
+        }
+
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ActiveTestPPGAndAcceleration(state) { [weak self] resultState in
+            guard let weakSelf = self else {return}
+            weakSelf.hud?.show(true)
+            switch resultState {
+            case .success:
+                weakSelf.hud?.labelText = "操作成功"
+            case .busy:
+                weakSelf.hud?.labelText = "设备正忙"
+            case .lowBattery:
+                weakSelf.hud?.labelText = "设备低电"
+            @unknown default:
+                weakSelf.hud?.labelText = "未知状态"
+            }
+            weakSelf.hud?.hide(true, afterDelay: 1.0)
+        }
+    }
+    
+    func listenActiveTestReport() {
+        self.currentText = self.textView.text
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ActiveTestPPGAndAccelerationReport { [weak self] array in
+            guard let array = array, let weakSelf = self else {return}
+            if array.count != 0 {
+                for model in array {
+                    if let model1 = model as? VPJH58PPGAccelerationModel {
+                        let time = weakSelf.timestampToDateString(TimeInterval(model1.timestamp))
+                        weakSelf.ppgAccTestFileHandle.writeText("数据时间:\(time)")
+                        weakSelf.currentText += "数据时间:\(time)\n"
+                        weakSelf.ppgAccTestFileHandle.writeText("PPG数据:"+model1.ppgValueArray.componentsJoined(by: " "))
+                        var xTextArray = [String]()
+                        var yTextArray = [String]()
+                        var zTextArray = [String]()
+                        if let accArray = model1.accelerationArray as? Array<Any> {
+                            for model in accArray {
+                                if let accModel = model as? VPAccelerationModel {
+                                    xTextArray.append(String(accModel.x))
+                                    yTextArray.append(String(accModel.y))
+                                    zTextArray.append(String(accModel.z))
+                                }
+                            }
+                        }
+                        weakSelf.ppgAccTestFileHandle.writeText("加速度X:" + xTextArray.joined(separator: " "))
+                        weakSelf.ppgAccTestFileHandle.writeText("加速度Y:" + yTextArray.joined(separator: " "))
+                        weakSelf.ppgAccTestFileHandle.writeText("加速度Z:" + zTextArray.joined(separator: " "))
+                    }
+                }
+                
+                weakSelf.textView.text = weakSelf.currentText
+                weakSelf.textView.scrollToBottom()
+            }
+        }
+    }
+    
     
     
     @objc func timeChanged(picker :UIDatePicker){
@@ -225,7 +343,13 @@ class VPPPGAccelerationViewController: UIViewController {
     }
     
     func getPPGAccelerationData(mode :VPJH58MeasurementModeState){
-        self.currentText = mode == .modeOne ? "获取模式1数据" : "获取模式2数据"
+        switch mode {
+        case .modeOne: self.currentText = "获取模式1数据"
+        case .modeTwo: self.currentText = "获取模式2数据"
+        case .activeTest: self.currentText = "获取主动测量数据"
+        default:
+            break
+        }
         self.textView.text = ""
         VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58GetPPGAndAccelerationRawData(withMeasurementMode: mode, andTimestamp: self.checkTimeInterval){[weak self] group, DT, DTS in
             guard let weakSelf = self else {return}
@@ -325,6 +449,7 @@ class VPPPGAccelerationViewController: UIViewController {
         self.ppgAccfileHandle.clearFile()
         self.realTimePPGfileHandle.clearFile()
         self.realTimeAccfileHandle.clearFile()
+        self.ppgAccTestFileHandle.clearFile()
         self.hud?.show(true)
         self.hud?.labelText = "清除成功"
         self.hud?.hide(true, afterDelay: 1.0)
@@ -358,6 +483,10 @@ class VPPPGAccelerationViewController: UIViewController {
                 weakSelf.hud?.hide(true, afterDelay: 1.0)
             }
         }
+    }
+    
+    deinit {
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ActiveTestPPGAndAccelerationReport(nil)
     }
     
     /*

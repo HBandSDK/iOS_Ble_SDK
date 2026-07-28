@@ -68,6 +68,11 @@ class VPHealthGlanceViewController: UIViewController {
                     let str = "血氧:\(res.bloodOxygen)"
                     result += str
                 }
+                
+                if res.functionSupport & VPHealthGlanceType.bodyTemp.rawValue != 0 {
+                    let str = "体温:" + String(format: "%.1f", res.bodyTemperature) + "表皮温度:" + String(format: "%.1f", res.orgTemperature)
+                    result += str
+                }
                 //其他结果参考上述实现
                 self.resultLabel.text = result + " *其他结果参考心率,血氧实现*"
             }else if state == .over {

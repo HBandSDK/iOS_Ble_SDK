@@ -28,6 +28,7 @@
 | 1.2.3   | QH15 Customized Health Data                                  | 2026.06.01        |
 | 1.2.4   | Event Reminder，Obtain motion status data                    | 2026.06.17        |
 | 1.2.5   | Met measurement， Emotion measurement， Health Light         | 2026.07.01        |
+| 1.2.6   | Add JH58 custom active measurement                           | 2026.07.23        |
 
 # SDK initialization
 
@@ -5125,9 +5126,16 @@ VPManualTestDataType。Based on whether `supportManualTestType` contains the fol
 | VPManualTestDataBloodPressure   | NSUInteger     | blood pressure   |      |
 | VPManualTestDataHeartRate       | NSUInteger     | heart rate       |      |
 | VPManualTestDataBloodSugar      | NSUInteger     | blood sugar      |      |
+| VPManualTestDataStress          | NSUInteger     | Stress           |      |
 | VPManualTestDataBloodOxygen     | NSUInteger     | blood oxygen     |      |
 | VPManualTestDataTemperature     | NSUInteger     | body temperature |      |
+| VPManualTestDataMet             | NSUInteger     | MET              |      |
+| VPManualTestDataHRV             | NSUInteger     | HRV              |      |
 | VPManualTestDataBloodComponents | NSUInteger     | blood components |      |
+| VPManualTestDataHealthGlance    | NSUInteger     | Health Glance    |      |
+| VPManualTestDataEmotion         | NSUInteger     | Emotion          |      |
+| VPManualTestDataFatigueLevel    | NSUInteger     | FatigueLevel     |      |
+| VPManualTestDataGSR             | NSUInteger     | GSR              |      |
 | VPManualTestDataAll             | NSUInteger     | All              |      |
 
 
@@ -5145,6 +5153,13 @@ VPManualTestDataModel
 | heartRateArr     | NSArray<VPManualHeartRateModel *> *     | Heart rate array          |
 | bloodOxygenArr   | NSArray<VPManualBloodOxygenModel *> *   | Blood oxygen array        |
 | bloodSugarArr    | NSArray<VPManualBloodSugarModel *> *    | Blood glucose array       |
+| healthGlanceArr  | NSArray<VPManualHealthGlanceModel *>    | Health Glance array       |
+| hrvArr           | NSArray<VPManualHRVModel *>             | HRV array                 |
+| gsrArr           | NSArray<VPManualGSRModel *>             | GSR array                 |
+| emotionArr       | NSArray<VPManualEmotionModel *>         | Emotion array             |
+| fatigueLevelArr  | NSArray<VPManualFatigueLevelModel *>    | FatigueLevel array        |
+| stressArr        | NSArray<VPManualStressModel *>          | Stress array              |
+| metArr           | NSArray<VPManualMetModel *>             | MET array                 |
 
 
 
@@ -5211,24 +5226,89 @@ VPManualBloodSugarModel
 
 VPManualHealthGlanceModel
 
-| Parameter       | Type      | Remark                                           |
-| :-------------- | :-------- | :----------------------------------------------- |
-| timestamp       | uint32_t  | Measurement Timestamp                            |
-| heartRate       | UInt8     | Heart Rate                                       |
-| bloodOxygen     | UInt8     | Blood Oxygen                                     |
-| stress          | UInt8     | Stress                                           |
-| fatigueLevel    | UInt8     | Fatigue Level                                    |
-| bloodSugar      | double    | Blood Sugar                                      |
-| haveLevel       | BOOL      | Has Blood Sugar Risk Level                       |
-| bloodSugarLevel | uint8_t   | Blood Sugar Risk Level (1=Low, 2=Medium, 3=High) |
-| bodyTemperature | double    | Body Temperature                                 |
-| orgTemperature  | double    | Original Body Temperature                        |
-| h_bp            | uint16_t  | Systolic Blood Pressure                          |
-| l_bp            | uint16_t  | Diastolic Blood Pressure                         |
-| hrv             | UInt8     | HRV (Heart Rate Variability)                     |
-| emotionLevel    | NSInteger | Emotion Level Range [-10, 10]                    |
-| healthGlanceId  | NSInteger | Health Glance ID                                 |
-| protocol        | NSInteger | Protocol                                         |
+| Parameter              | Type                   | Remark                                                       |
+| :--------------------- | :--------------------- | :----------------------------------------------------------- |
+| timestamp              | uint32_t               | Measurement Timestamp                                        |
+| heartRate              | UInt8                  | Heart Rate                                                   |
+| bloodOxygen            | UInt8                  | Blood Oxygen                                                 |
+| stress                 | UInt8                  | Stress                                                       |
+| fatigueLevel           | UInt8                  | Fatigue Level                                                |
+| bloodSugar             | double                 | Blood Sugar                                                  |
+| haveLevel              | BOOL                   | Has Blood Sugar Risk Level                                   |
+| bloodSugarLevel        | uint8_t                | Blood Sugar Risk Level (1=Low, 2=Medium, 3=High)             |
+| bodyTemperature        | double                 | Body Temperature                                             |
+| orgTemperature         | double                 | Original Body Temperature                                    |
+| h_bp                   | uint16_t               | Systolic Blood Pressure                                      |
+| l_bp                   | uint16_t               | Diastolic Blood Pressure                                     |
+| hrv                    | UInt8                  | HRV (Heart Rate Variability)                                 |
+| emotionLevel           | NSInteger              | Emotion Level Range [-10, 10]                                |
+| healthGlanceId         | NSInteger              | Health Glance ID                                             |
+| protocol               | NSInteger              | The protocol currently has 0, 1, 2, and only when protocol==2 will the following data be available |
+| functionSupport        | NSUInteger             | What functions are supported based on VPHealthGlanceType     |
+| totalCholesterol       | uint16_t               | Total Cholesterol（umol/L）                                  |
+| triglyceride           | uint16_t               | Triglyceride（mmol/L）                                       |
+| highDensityLipoprotein | uint16_t               | High density lipoprotein（mmol/L）                           |
+| lowDensityLipoprotein  | uint16_t               | Low density lipoprotein（mmol/L）                            |
+| uricAcid               | uint16_t               | uric acid（mmol/L）                                          |
+| cuffBloodPressureHigh  | UInt8                  | High blood pressure of the air pump                          |
+| cuffBloodPressureLow   | UInt8                  | Low blood pressure of the air pump                           |
+| weight                 | UInt8                  | Weight kg                                                    |
+| height                 | UInt8                  | Height cm                                                    |
+| age                    | UInt8                  | Age                                                          |
+| gender                 | UInt8                  | Gender，0：woman，1：man                                     |
+| bodyComModel           | VPManualHGBodyComModel | body composition                                             |
+| skinMoisture           | UInt8                  | SkinMoisture [1,99]                                          |
+| depressionRisk         | UInt8                  | DepressionRisk [0,2] 0:low 1:Middle 2:High                   |
+| snsActivation          | UInt8                  | SnsActivation [1,99]                                         |
+| cortisolValue          | UInt16                 | CortisolValue，Range [0,500]ug/L                             |
+
+VPManualGSRModel
+
+| Parameter      | Type      | Remark                                     |
+| -------------- | --------- | ------------------------------------------ |
+| timestamp      | uint32_t  | Measurement Timestamp                      |
+| emotionLevel   | NSInteger | Emotion [-10,10]                           |
+| skinMoisture   | UInt8     | SkinMoisture [1,99]                        |
+| depressionRisk | UInt8     | DepressionRisk [0,2] 0:low 1:Middle 2:High |
+| snsActivation  | UInt8     | SnsActivation [1,99]                       |
+| cortisolValue  | UInt16    | CortisolValue，Range [0,500]ug/L           |
+
+VPManualHRVModel
+
+| Parameter | Type      | Remark                |
+| --------- | --------- | --------------------- |
+| timestamp | uint32_t  | Measurement Timestamp |
+| hrvArray  | NSInteger | HRV Value             |
+
+VPManualMetModel
+
+| Parameter | Type      | Remark                |
+| --------- | --------- | --------------------- |
+| timestamp | uint32_t  | Measurement Timestamp |
+| value     | NSInteger | MET Value             |
+
+VPManualStressModel
+
+| Parameter | Type      | Remark                |
+| --------- | --------- | --------------------- |
+| timestamp | uint32_t  | Measurement Timestamp |
+| value     | NSInteger | Stress Value          |
+
+VPManualFatigueLevelModel
+
+| Parameter | Type      | Remark                |
+| --------- | --------- | --------------------- |
+| timestamp | uint32_t  | Measurement Timestamp |
+| value     | NSInteger | Fatigue Level[0,99]   |
+
+VPManualEmotionModel
+
+| Parameter | Type      | Remark                |
+| --------- | --------- | --------------------- |
+| timestamp | uint32_t  | Measurement Timestamp |
+| value     | NSInteger | Emotion[-10,10]       |
+
+
 
 ### Sample Code
 
@@ -5267,8 +5347,34 @@ VPBleCentralManage.sharedBleManager().peripheralManage.readManualTestData(withTi
     if !someModel.bloodSugarArr.isEmpty {
         logText += "\n" + "Blood glucose = \(someModel.bloodSugarArr)"
     }
+     if !someModel.healthGlanceArr.isEmpty {
+        logText += "\n" + "Health Glance = \(someModel.healthGlanceArr)" 
+    }
 
-    if let existingText = self?.logTextView.text {
+    if !someModel.stressArr.isEmpty {
+        logText += "\n" + "Stress = \(someModel.stressArr)"
+    }
+
+    if !someModel.gsrArr.isEmpty {
+        logText += "\n" + "GSR = \(someModel.gsrArr)"
+    }
+
+    if !someModel.hrvArr.isEmpty {
+        logText += "\n" + "HRV = \(someModel.hrvArr)"
+    }
+
+    if !someModel.emotionArr.isEmpty {
+        logText += "\n" + "Emotion = \(someModel.emotionArr)"
+    }
+
+    if !someModel.fatigueLevelArr.isEmpty {
+        logText += "\n" + "Fatigue Level = \(someModel.fatigueLevelArr)"
+    }
+
+    if !someModel.metArr.isEmpty {
+        logText += "\n" + "Met = \(someModel.metArr)"
+    } 
+    if let existingText = self?.logTextView.texM {
         self?.logTextView.text = existingText + logText
     } else {
         self?.logTextView.text = logText
@@ -5714,6 +5820,69 @@ VPAccelerationModel
 VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58MonitorRealTimeTransmissionAccelerationData { [weak self] array in
             guard let weakSelf = self else {return}
     
+        }
+```
+
+# Active Measurement
+
+### Precondition
+
+JH58 customization function
+
+### Class Name
+
+`VPPeripheralBaseManage`, refer to the implementation of `VPPPGAccelerationViewController` in the Demo
+
+### Interfaces
+
+```objective-c
+// Actively start measurement
+/// - Parameters:
+///   - sendResult: Result callback
+- (void)veepooSDK_JH58ActiveTestPPGAndAcceleration:(VPJH58ActiveMeasurementState)state andResult:(void(^_Nullable)(VPJH58ActiveMeasurementResultState state))sendResult;
+```
+
+```objective-c
+// Data reporting after starting measurement
+/// - Parameters:
+///   - sendResult: Result callback
+- (void)veepooSDK_JH58ActiveTestPPGAndAccelerationReport:(void(^_Nullable)( NSMutableArray<VPJH58PPGAccelerationModel*> * _Nullable array))sendResult
+```
+
+### Parameter Explanation
+
+VPJH58ActiveMeasurementState
+
+| Parameter                            | Parameter Type | Remarks                                               |
+| ------------------------------------ | ---------- | --------------------------------------------------------- |
+| VPJH58ActiveMeasurementStateRealTime | NSUInteger | Start measurement, real-time transmission                                        |
+| VPJH58ActiveMeasurementStateResume   | NSUInteger | Start measurement, breakpoint transmission (after reconnection, replenish the 5-minute data before disconnection, then switch to real-time) |
+| VPJH58ActiveMeasurementStateOff      | NSUInteger | Stop measurement                                                  |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ActiveTestPPGAndAcceleration(state) { [weak self] resultState in
+            guard let weakSelf = self else {return}
+            weakSelf.hud?.show(true)
+            switch resultState {
+            case .success:
+                weakSelf.hud?.labelText = "success"
+            case .busy:
+                weakSelf.hud?.labelText = "Busy"
+            case .lowBattery:
+                weakSelf.hud?.labelText = "low battery"
+            @unknown default:
+                weakSelf.hud?.labelText = ""
+            }
+            weakSelf.hud?.hide(true, afterDelay: 1.0)
+        }
+```
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH58ActiveTestPPGAndAccelerationReport { [weak self] array in
+            guard let array = array, let weakSelf = self else {return}
+            
         }
 ```
 

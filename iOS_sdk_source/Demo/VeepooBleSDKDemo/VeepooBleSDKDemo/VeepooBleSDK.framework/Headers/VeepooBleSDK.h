@@ -60,6 +60,7 @@
 #import "VPManualStressModel.h"
 #import "VPManualFatigueLevelModel.h"
 #import "VPManualEmotionModel.h"
+#import "VPManualHGBodyComModel.h"
 #import "VPSyncPersonalInfo.h"
 
 //Delegate
