@@ -47,6 +47,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) uint16_t aveCadence;
 @property (nonatomic, assign) uint16_t minCadence;
 
+/// 海拔(单位厘米)
+@property (nonatomic, assign) int32_t maxAltitude;
+@property (nonatomic, assign) int32_t aveAltitude;
+@property (nonatomic, assign) int32_t minAltitude;
+/// 累计爬升
+@property (nonatomic, assign) int32_t cumulativeClimb;
+/// 累计下降
+@property (nonatomic, assign) int32_t cumulativeDecline;
+
 /// 运动总的有氧时间
 @property (nonatomic, assign) uint16_t aerobicCount;
 /// 总记录条数，与分钟数量应相等
@@ -84,6 +93,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) uint16_t dis;
 @property (nonatomic, assign) uint16_t cal;
 @property (nonatomic, assign) uint16_t sport;
+//海拔相关 (海拔值,单位厘米)
+@property (nonatomic, assign) int32_t altitude;
 /// 暂停标志
 @property (nonatomic, assign) uint8_t pause;
 
