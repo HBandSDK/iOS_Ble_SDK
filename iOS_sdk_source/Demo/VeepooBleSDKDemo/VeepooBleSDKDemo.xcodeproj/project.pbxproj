@@ -86,6 +86,7 @@
 		FE0518FD2FF669ED00839042 /* VPMetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0518F82FF669ED00839042 /* VPMetVC.swift */; };
 		FE0519002FF669F700839042 /* VPHealthLightVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0518FE2FF669F700839042 /* VPHealthLightVC.swift */; };
 		FE0FA3022B046AA9001F9277 /* VPDeviceHealthRemindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0FA3012B046AA9001F9277 /* VPDeviceHealthRemindViewController.swift */; };
+		FE1707B730413A1800E3185E /* VPAGPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1707B530413A1800E3185E /* VPAGPSViewController.swift */; };
 		FE27F0ED264A1DD50080CDA1 /* VPMapGPSTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE27F0EB264A1DD50080CDA1 /* VPMapGPSTagViewController.swift */; };
 		FE27F0EE264A1DD50080CDA1 /* VPMapGPSTagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */; };
 		FE2E92892F5821A900B8B9D7 /* VPQH15SecurityProtectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2E92872F5821A900B8B9D7 /* VPQH15SecurityProtectionViewController.swift */; };
@@ -267,6 +268,7 @@
 		FE0518FA2FF669ED00839042 /* VPEmotionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPEmotionVC.swift; sourceTree = "<group>"; };
 		FE0518FE2FF669F700839042 /* VPHealthLightVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPHealthLightVC.swift; sourceTree = "<group>"; };
 		FE0FA3012B046AA9001F9277 /* VPDeviceHealthRemindViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceHealthRemindViewController.swift; sourceTree = "<group>"; };
+		FE1707B530413A1800E3185E /* VPAGPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAGPSViewController.swift; sourceTree = "<group>"; };
 		FE27F0EB264A1DD50080CDA1 /* VPMapGPSTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMapGPSTagViewController.swift; sourceTree = "<group>"; };
 		FE27F0EC264A1DD50080CDA1 /* VPMapGPSTagViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPMapGPSTagViewController.xib; sourceTree = "<group>"; };
 		FE2E92872F5821A900B8B9D7 /* VPQH15SecurityProtectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPQH15SecurityProtectionViewController.swift; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE1707B630413A1800E3185E /* 星历 */,
 				FEE8F12130189BE400268B4B /* ECG */,
 				FE0518FF2FF669F700839042 /* 健康灯 */,
 				FE0518F92FF669ED00839042 /* 梅脱 */,
@@ -687,6 +690,14 @@
 				FE0518FE2FF669F700839042 /* VPHealthLightVC.swift */,
 			);
 			path = "健康灯";
+			sourceTree = "<group>";
+		};
+		FE1707B630413A1800E3185E /* 星历 */ = {
+			isa = PBXGroup;
+			children = (
+				FE1707B530413A1800E3185E /* VPAGPSViewController.swift */,
+			);
+			path = "星历";
 			sourceTree = "<group>";
 		};
 		FE2E92882F5821A900B8B9D7 /* QH15安全守护 */ = {
@@ -1118,6 +1129,7 @@
 				FE3F5ED82BFF611A00A43838 /* VPG08WViewController.swift in Sources */,
 				678368A11E5814A600C3BCB8 /* VPHeartAlarmController.swift in Sources */,
 				6786EDBF214B620C00E03882 /* VPSettingScreenDurationController.swift in Sources */,
+				FE1707B730413A1800E3185E /* VPAGPSViewController.swift in Sources */,
 				FE27F0ED264A1DD50080CDA1 /* VPMapGPSTagViewController.swift in Sources */,
 				679EA6B31EEFDEA1003B7F44 /* VPSettingFemaleRelatedController.swift in Sources */,
 				FE645F042A90D181009CCD50 /* VPFindPhoneViewController.swift in Sources */,

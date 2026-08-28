@@ -29,6 +29,7 @@
 | 1.2.4 | 事件响应，获取运动状态数据                                   | 2026.06.17 |
 | 1.2.5 | 新增梅脱测量，情绪测量，健康灯                               | 2026.07.01 |
 | 1.2.6 | 新增JH58定制主动测量                                         | 2026.07.23 |
+| 1.2.7 | 新增星历数据读取，下载和传输                                 | 2026.08.28 |
 
 # SDK初始化
 
@@ -8515,4 +8516,114 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKListenHealthLigh
             self.stateLab.text = self.getHealthLightState()
         }
 ```
+
+# 星历读取
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPAGPSViewController的实现
+
+### 接口
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.agpsFunction != 0
+```
+
+```objective-c
+/// 读取设备星历信息
+/// @param result 回调
+-(void)veepooSDK_readDeviceAGPSDataResult:(void (^)(VPAGPSDataModel *model))result
+```
+
+### 参数解释
+
+VPAGPSDataModel
+
+| 参数     | 参数类型  | 备注                             |
+| -------- | --------- | -------------------------------- |
+| address  | NSInteger | 数据接收地址                     |
+| length   | NSInteger | 可写入数据长度                   |
+| crc      | uint16_t  | crc                              |
+| validDay | int       | 星历文件有效总时长，单位天       |
+| validMin | int       | 星历剩余有效时长，小端，单位分钟 |
+
+### 示例代码
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readDeviceAGPSDataResult {[weak self] model in
+            guard let weakSelf = self, let m = model else { return }
+            let validDay = String(format: "%.1f", Double(m.validMin) / 1440.0)
+            weakSelf.stateLab.text = "星历有效总时长\(m.validDay)天,星历剩余时长\(validDay)天"
+        }
+```
+
+# 星历下载和传输
+
+### 前提
+
+需要设备支持。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPAGPSViewController的实现
+
+### 接口
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.agpsFunction != 0
+```
+
+```objective-c
+/// 获取星历传输的星历文件 -- 网络请求 需要网络权限
+- (void)veepooSDK_getAGPSFileUrl:(void(^_Nullable)(NSURL *fileUrl, NSURLResponse * _Nullable response ,NSError * _Nullable error))result 
+```
+
+```objective-c
+/// 星历数据传输V1 先通过 peripheralModel.agpsFunction 判定是否支持AGPS功能 -- 建议使用 - 带传输完成回调,传输完成后读取星历数据
+/// @param fileUrl 星历文件（rtcm 格式）
+/// @param timestamp 星历文件生成时间戳（网站获取）
+/// @param result 结果，使用UI传输的方式所以 error有用
+/// @param transformProgress 数据传输进度
+/// @param transformCompleted 数据传输完成
+- (void)veepooSDK_AGPSTransformV1WithFileUrl:(NSURL *_Nullable)fileUrl
+                                 timestamp:(long)timestamp
+                                      result:(void (^_Nullable)(NSError * _Nullable error))result
+                           transformProgress:(void (^_Nullable)(double progress))transformProgress transformCompleted:(void (^_Nullable)(void))transformCompleted
+```
+
+### 参数解释
+
+| 参数               | 参数类型 | 备注                   |
+| ------------------ | -------- | ---------------------- |
+| fileUrl            | NSURL    | 星历文件，通过下载获取 |
+| timestamp          | long     | 星历文件生成时间戳     |
+| transformProgress  | Block    | 数据传输进度           |
+| transformCompleted | Block    | 数据传输完成           |
+
+### 示例代码
+
+```swift
+let timestamp = Int(Date().timeIntervalSince1970) /// veepooSDK_getAGPSFileUrl 是网络请求 需要网络权限
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_getAGPSFileUrl { url, respone, error  in
+            if error == nil && url != nil {
+                VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_AGPSTransformV1(withFileUrl: url, timestamp: timestamp) { error in
+                    
+                } transformProgress: { [weak self] progress in
+                    guard let weakSelf = self else { return }
+                    weakSelf.progressLab.text = "传输进度:\(Int(progress * 100))%"
+                } transformCompleted: { [weak self] in
+                    guard let weakSelf = self else { return }
+                    weakSelf.readAGPSAction()// 传输完成后重新读取星历信息
+                }
+            }
+        }
+```
+
+
+
+# 
 

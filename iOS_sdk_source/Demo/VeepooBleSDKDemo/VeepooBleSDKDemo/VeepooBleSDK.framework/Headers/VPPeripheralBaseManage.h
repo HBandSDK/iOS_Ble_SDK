@@ -63,6 +63,7 @@
 #import "VPQH15HealthDataModel.h"
 #import "VPQH15StepDataModel.h"
 #import "VPReminderEventModel.h"
+#import "VPAGPSDataModel.h"
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
 
 @class JL_Assist,VPMultiBloodGlucoseModel,VPBodyCompositionValueModel,VPBloodAnalysisResultModel,VPManualTestDataModel;
@@ -742,7 +743,7 @@
 - (void)veepooSDKSettingLowPowerSettingMode:(VPSettingFunctionState)settingMode result:(void(^)(VPSettingFunctionCompleteState settingState))lowPowerResultBlock;
 
 //Clear the data, the bracelet will automatically shut down after clearing the data, can not monitor whether the clear is successful, the shutdown will disconnect from the App
-//清除数据，清除数据后手环会自动关机，不能监听是否清除成功，关机后会与App断开连接
+//恢复出厂 清除数据，清除数据后手环会自动关机，不能监听是否清除成功，关机后会与App断开连接
 - (void)veepooSDKClearDeviceData;
 
 //Reset the device, device will reload, data will not clear. this operation will disconnect.
@@ -901,15 +902,35 @@
 - (void)veepooSDK_readDeviceRTGPSDataWithState:(BOOL)open result:(void (^)(BOOL start, VPDeviceKAABAGPSModel *model))result;
 
 
+/// 读取设备星历信息
+/// @param result 回调
+-(void)veepooSDK_readDeviceAGPSDataResult:(void (^)(VPAGPSDataModel *model))result;
+
+/// 获取星历传输的星历文件 -- 网络请求
+- (void)veepooSDK_getAGPSFileUrl:(void(^_Nullable)(NSURL *fileUrl, NSURLResponse * _Nullable response ,NSError * _Nullable error))result ;
+
+
+/// 星历数据传输V1 先通过 peripheralModel.agpsFunction 判定是否支持AGPS功能 -- 建议使用 - 带传输完成回调,传输完成后读取星历数据
+/// @param fileUrl 星历文件（rtcm 格式）
+/// @param timestamp 星历文件生成时间戳（网站获取）
+/// @param result 结果，使用UI传输的方式所以 error有用
+/// @param transformProgress 数据传输进度
+/// @param transformCompleted 数据传输完成
+- (void)veepooSDK_AGPSTransformV1WithFileUrl:(NSURL *_Nullable)fileUrl
+                                 timestamp:(long)timestamp
+                                      result:(void (^_Nullable)(NSError * _Nullable error))result
+                           transformProgress:(void (^_Nullable)(double progress))transformProgress transformCompleted:(void (^_Nullable)(void))transformCompleted;
+
 /// AGPS数据传输 先通过 peripheralModel.agpsFunction 判定是否支持AGPS功能
 /// @param fileUrl 星历文件（rtcm 格式）
 /// @param timestamp 星历文件生成时间戳（网站获取）
 /// @param result 结果，使用UI传输的方式所以 photoDialModel和deviceMarketDialModel无效，仅error有用
 /// @param transformProgress 数据传输进度
-- (void)veepooSDK_AGPSTransformWithFileUrl:(NSURL *)fileUrl
+- (void)veepooSDK_AGPSTransformWithFileUrl:(NSURL *_Nullable)fileUrl
                                  timestamp:(long)timestamp
-                                    result:(void(^)(VPPhotoDialModel *photoDialModel, VPDeviceMarketDialModel *deviceMarketDialModel, NSError *error))result
-                         transformProgress:(void (^)(double progress))transformProgress;
+                                    result:(void(^_Nullable)(VPPhotoDialModel * _Nullable photoDialModel, VPDeviceMarketDialModel * _Nullable deviceMarketDialModel, NSError * _Nullable error))result
+                         transformProgress:(void (^_Nullable)(double progress))transformProgress;
+
 
 /// 设备主动要求APP(SDK)下发GPS数据  调用示例可参考SDK配套的Demo
 /// @param block  回调函数，自身包含一个block参数，下发时使用这个参数进行下发
@@ -922,7 +943,7 @@
 ///         0x02 表示App GPS信号弱， model的数据有效
 ///         0x03 表示App GPS权限未开启， model的数据无效，SDK不会触发下发数据操作
 /// model 海拔高度(altitude) 属性无效，其它属性有效
-- (void)veepooSDK_sendGPSDataToDeviceWithBlock:(void(^)(NSInteger state, void(^sendTask)(NSInteger ackState, NSInteger GPSState, VPDeviceGPSModel *model)))block;
+- (void)veepooSDK_sendGPSDataToDeviceWithBlock:(void(^)(NSInteger state, void(^ _Nullable sendTask)(NSInteger ackState, NSInteger GPSState, VPDeviceGPSModel * _Nullable model)))block;
 
 #pragma mark - 体温功能
 
@@ -935,7 +956,7 @@
 ///   tempValue表示体温值的10倍(单位摄氏度)
 ///   originalTempValue 表示原始温度值的10倍(单位摄氏度)，对应H Band中的体表温度
 - (void)veepooSDK_temperatureTestStart:(BOOL)start
-                                result:(void (^)(VPTemperatureTestState state, BOOL enable, NSInteger progress, NSInteger tempValue, NSInteger originalTempValue))result;
+                                result:(void (^_Nullable)(VPTemperatureTestState state, BOOL enable, NSInteger progress, NSInteger tempValue, NSInteger originalTempValue))result;
 
 
 #pragma mark - G15功能
@@ -946,23 +967,23 @@
 /// @param type 更换类型
 /// @param result   结果回调
 /// @param transformProgress 传输进度回调
-- (void)veepooSDK_G15TransformWithImage:(UIImage *)image
+- (void)veepooSDK_G15TransformWithImage:(UIImage *_Nullable)image
                                    type:(VPG15DialViewTransformType)type
-                                 result:(void (^)(id responseObject, NSError *error))result
-                      transformProgress:(void (^)(double progress))transformProgress;
+                                 result:(void (^_Nullable)(id _Nullable responseObject, NSError * _Nullable error))result
+                      transformProgress:(void (^_Nullable)(double progress))transformProgress;
 
 /// 二维码文本信息传输
 /// @param model 二维码信息
 /// @param result 结果回调
-- (void)veepooSDK_G15QRCodeInfoWithModel:(VPG15QRCodeInfoModel *)model
-                                  result:(void (^)(BOOL success, NSError *error))result;
+- (void)veepooSDK_G15QRCodeInfoWithModel:(VPG15QRCodeInfoModel *_Nullable)model
+                                  result:(void (^_Nullable)(BOOL success, NSError * _Nullable error))result;
 
 /// ECG 常开模式下 ECG值 与 波形 更新监听
 /// 设备有值返回则会触发result回调
 /// 如果不想建立监听，请传nil
 /// @param result 结果回调
 /// @param ecgDataResult 波形数据结果回调
-- (void)veepooSDK_G15ECGValueMonitor:(void (^)(NSInteger ecgValue, NSString *dateStr))result ecgDataResult:(void (^)(NSArray<NSNumber *> *ecgDatas))ecgDataResult;
+- (void)veepooSDK_G15ECGValueMonitor:(void (^_Nullable)(NSInteger ecgValue, NSString * _Nullable dateStr))result ecgDataResult:(void (^_Nullable)(NSArray<NSNumber *> * _Nullable ecgDatas))ecgDataResult;
 
 #pragma mark - RR逐跳原始数据读取
 
@@ -971,7 +992,7 @@
 /// @param dayNumber  代表哪一天 0代表今天，1代表昨天，2代表前天 设备只支持3天数据读取
 /// @param blockNumber  表示从哪一块数据开始读  从1开始，如传1，则表示读取从1及之后产生的数据      备注：1分钟产生一块数据，一天60*24块
 /// @param result 结果回调，responseObject为VPRRIntervalDataModel对象，如果error不为空，表示失败。responseObject与progress 仅在error为空时有效
-- (void)veepooSDK_readRRIntervalDataWithDayNumber:(NSInteger)dayNumber blockNumber:(NSInteger)blockNumber result:(void (^)(id responseObject, NSProgress *progress, NSError *error))result;
+- (void)veepooSDK_readRRIntervalDataWithDayNumber:(NSInteger)dayNumber blockNumber:(NSInteger)blockNumber result:(void (^_Nullable)(id _Nullable responseObject, NSProgress *progress, NSError * _Nullable error))result;
 
 #pragma mark - 打开设备BT开关
 

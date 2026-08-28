@@ -29,6 +29,7 @@
 | 1.2.4   | Event Reminder，Obtain motion status data                    | 2026.06.17        |
 | 1.2.5   | Met measurement， Emotion measurement， Health Light         | 2026.07.01        |
 | 1.2.6   | Add JH58 custom active measurement                           | 2026.07.23        |
+| 1.2.7   | AGPS (Ephemeris) Reading，AGPS (Ephemeris) Download and Transfer | 2026.08.28        |
 
 # SDK initialization
 
@@ -8498,3 +8499,108 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKListenHealthLigh
         }
 ```
 
+# AGPS (Ephemeris) Reading
+
+### Prerequisites
+
+The device must support this function.
+
+### Class name
+
+`VPPeripheralBaseManage`. For details, refer to the `VPAGPSViewController` implementation in the Demo
+
+### Interface
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.agpsFunction != 0
+```
+
+```objective-c
+/// Read the device ephemeris (AGPS) information
+/// @param result Callback
+-(void)veepooSDK_readDeviceAGPSDataResult:(void (^)(VPAGPSDataModel *model))result
+```
+
+### Parameter Explanation
+
+VPAGPSDataModel
+
+| Parameter | Parameter type | Remarks                                                        |
+| --------- | -------------- | -------------------------------------------------------------- |
+| address   | NSInteger      | Data receiving address                                         |
+| length    | NSInteger      | Writable data length                                           |
+| crc       | uint16_t       | crc                                                            |
+| validDay  | int            | Total valid duration of the ephemeris file, in days            |
+| validMin  | int            | Remaining valid duration of the ephemeris, little-endian, in minutes |
+
+### Sample Code
+
+```swift
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_readDeviceAGPSDataResult {[weak self] model in
+            guard let weakSelf = self, let m = model else { return }
+            let validDay = String(format: "%.1f", Double(m.validMin) / 1440.0)
+            weakSelf.stateLab.text = "Total valid duration of ephemeris: \(m.validDay) days, remaining duration: \(validDay) days"
+        }
+```
+
+# AGPS (Ephemeris) Download and Transfer
+
+### Prerequisites
+
+The device must support this function.
+
+### Class name
+
+`VPPeripheralBaseManage`. For details, refer to the `VPAGPSViewController` implementation in the Demo
+
+### Interface
+
+```
+VPBleCentralManage.sharedBleManager().peripheralModel.agpsFunction != 0
+```
+
+```objective-c
+/// Get the ephemeris file for transfer -- a network request, requires network permission
+- (void)veepooSDK_getAGPSFileUrl:(void(^_Nullable)(NSURL *fileUrl, NSURLResponse * _Nullable response ,NSError * _Nullable error))result 
+```
+
+```objective-c
+/// Ephemeris (AGPS) data transfer V1. First determine whether the AGPS function is supported via peripheralModel.agpsFunction -- recommended - with a transfer completion callback; after the transfer is completed, read the ephemeris data
+/// @param fileUrl Ephemeris file (rtcm format)
+/// @param timestamp Timestamp of the ephemeris file generation time (obtained from the website)
+/// @param result Result; since the UI transfer method is used, error is meaningful
+/// @param transformProgress Data transfer progress
+/// @param transformCompleted Data transfer completed
+- (void)veepooSDK_AGPSTransformV1WithFileUrl:(NSURL *_Nullable)fileUrl
+                                 timestamp:(long)timestamp
+                                      result:(void (^_Nullable)(NSError * _Nullable error))result
+                           transformProgress:(void (^_Nullable)(double progress))transformProgress transformCompleted:(void (^_Nullable)(void))transformCompleted
+```
+
+### Parameter Explanation
+
+| Parameter          | Parameter type | Remarks                                        |
+| ------------------ | -------------- | ---------------------------------------------- |
+| fileUrl            | NSURL          | Ephemeris file, obtained by downloading        |
+| timestamp          | long           | Timestamp of the ephemeris file generation time |
+| transformProgress  | Block          | Data transfer progress                         |
+| transformCompleted | Block          | Data transfer completed                        |
+
+### Sample Code
+
+```swift
+let timestamp = Int(Date().timeIntervalSince1970) /// veepooSDK_getAGPSFileUrl is a network request, requires network permission
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_getAGPSFileUrl { url, respone, error  in
+            if error == nil && url != nil {
+                VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_AGPSTransformV1(withFileUrl: url, timestamp: timestamp) { error in
+                    
+                } transformProgress: { [weak self] progress in
+                    guard let weakSelf = self else { return }
+                    weakSelf.progressLab.text = "Transfer progress:\(Int(progress * 100))%"
+                } transformCompleted: { [weak self] in
+                    guard let weakSelf = self else { return }
+                    weakSelf.readAGPSAction()// Re-read the ephemeris information after the transfer is completed
+                }
+            }
+        }
+```
