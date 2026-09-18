@@ -97,6 +97,9 @@
 //Callback of device BT connection status change 设备BT连接状态改变的回调
 @property (nonatomic, copy) void(^VPBTConnectStateChangeBlock)(VPDeviceBTState btState, BOOL btSwitchOpen, BOOL mediaSwitchOpen);
 
+/// 设备端表盘信息变更监听
+@property (nonatomic, copy) void(^deviceDialDidChangeBlock)(VPDeviceDialType, int);
+
 //Create an instance
 + (instancetype)shareVPPeripheralManager;
 
@@ -1367,6 +1370,9 @@
 ///   - type: 运动模式类型
 - (void)veepooSDK_deviceSportControlWithCode:(VPDeviceSportControlOpCode)code type:(VPDeviceRuningMode)type;
 
+/// 订阅当前设备App运动信息的变更接口 (注意 VPDeviceSportControlModel返回的数据只有心率有效,其他都是无数据)
+/// - Parameter result: callback
+- (void)veepooSDK_appSportInfoSubscribe:(void (^_Nullable)(VPDeviceSportControlModel *_Nullable))result;
 
 #pragma mark QH15 亲情守护功能
 

@@ -31,6 +31,10 @@ class VPPhotoDialViewController: UIViewController {
         }
         self.readDeviceScreenButton.sendActions(for: .touchUpInside)
         self.readPhotoDialDetailButton.sendActions(for: .touchUpInside)
+        //读取和设置返回成功都触发
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.deviceDialDidChangeBlock = { [weak self](dialType, screenStyle) in
+            self?.dialTypeLabel.text = "\(dialType.rawValue) - \(screenStyle)"
+        }
     }
     // MARK: - 设备屏幕读取与切换
     

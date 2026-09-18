@@ -2084,6 +2084,13 @@ How to get it：**VPBleCentralManage.sharedBleManager().peripheralManage**
 
 ### Interface
 
+```objective-c
+/// Monitoring of changes in device dial information
+@property (nonatomic, copy) void(^deviceDialDidChangeBlock)(VPDeviceDialType, int);
+```
+
+
+
 ```
 - (void)veepooSDKSettingDeviceScreenStyle:(int)screenStyle
                               settingMode:(NSUInteger)settingMode

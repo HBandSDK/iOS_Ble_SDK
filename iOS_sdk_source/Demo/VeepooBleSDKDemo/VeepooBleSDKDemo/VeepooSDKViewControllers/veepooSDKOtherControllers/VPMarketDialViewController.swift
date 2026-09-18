@@ -50,6 +50,11 @@ class VPMarketDialViewController: UIViewController {
 //        print(dialModel as VPDialModel)
         
         marketDialManager = VPMarketDialManager.share()
+        
+        //读取和设置返回成功都触发
+        VPBleCentralManage.sharedBleManager()?.peripheralManage.deviceDialDidChangeBlock = { [weak self](dialType, screenStyle) in
+            self?.dialTypeLabel.text = "\(dialType.rawValue) - \(screenStyle)"
+        }
     }
     // MARK: - 设备屏幕读取与切换
     
@@ -104,7 +109,9 @@ class VPMarketDialViewController: UIViewController {
                 for item in marketDialArray {
                     str = str.appending("\(item.fileUrl) \n")
                 }
-                self?.textView.text = str
+                DispatchQueue.main.async {
+                    self?.textView.text = str
+                }
             }
         } failure: { (error, code) in
             
@@ -169,6 +176,10 @@ class VPMarketDialViewController: UIViewController {
         // 2.市场表盘为空则表示这个设备此前没有传输过市场表盘
         marketDialManager.getJLCurrentPhotoAndMarketWatchName(with: watchNames) { photoWatchName, marketWatchName in
             print("照片：\(photoWatchName ?? "无") 市场：\(marketWatchName ?? "无")")
+        }
+        
+        marketDialManager.getJLWatchNames { arr in
+            print(arr)
         }
     }
     

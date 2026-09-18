@@ -70,14 +70,19 @@ class VPDeviceSportViewController: UIViewController {
         } else if btn.tag == 1005 {
             readAllSportCrc()
         }else {
-            let opCode = VPDeviceSportControlOpCode(rawValue: UInt(btn.tag - 1000))
+            var modeType: VPDeviceRuningMode = .outdoorWalk
+            var opCode = VPDeviceSportControlOpCode(rawValue: UInt(btn.tag - 1000))
+            if btn.tag == 1006 {
+                opCode = .start
+                modeType = .common
+            }
             if opCode == .start {
                 textView!.text = ""
                 startReadTimer()
             } else if opCode == .stop {
                 stopReadTimer()
             }
-            VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_deviceSportControl(with: opCode!, type: .outdoorRun)
+            VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_deviceSportControl(with: opCode!, type: modeType)
         }
     }
     
@@ -134,5 +139,18 @@ class VPDeviceSportViewController: UIViewController {
             textView!.scrollToBottom()
             print(result)
         }
+        //仅用于内部测试,暂时不对外开放
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_appSportInfoSubscribe {[weak self] model in
+            guard let self = self, let model = model else { return }
+            let result = "收到心率上报\(model.heartRate)"
+            if textView!.text != "" {
+                textView!.text = textView!.text + "\n" + result
+            } else {
+                textView!.text = result
+            }
+            
+            textView!.scrollToBottom()
+        }
+        
     }
 }

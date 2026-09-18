@@ -174,7 +174,10 @@ typedef NS_ENUM(NSInteger, VPSettingBaseFunctionSwitchType) {//关于来电提�
     VPSettingUricAcidUnit = 32,                 //尿酸单位设置 1表示μmol/L 2表示mg/dl
     VPSettingLipidUnit = 33,                    //血脂单位设置 1表示mmol/L 2表示mg/dl
     VPSettingFallDetection = 34,                //跌倒检测
-    
+    VPSettingPowerAbnormalHeartRateTrend = 35,  //异常心率趋势
+    VPSettingPowerGSRUnit = 36,          //皮电单位设置 1表示μg/dL 2表示nmol/l
+    VPSettingPowerVoiceBroadcast = 37,          //开关机语音设置
+    VPSettingPowerManualMeasurementDetectionPromptSound = 38,  //手动测量检测提示音
     //其他指令
     VPSettingAutomaticOxygenTest = 1000,//血氧夜间自动检测
 };
@@ -778,6 +781,7 @@ typedef NS_ENUM(uint8_t, VPAINetworkStatus){
 
 // 运动模式控制操作符
 typedef NS_ENUM(NSUInteger, VPDeviceSportControlOpCode) {
+    VPDeviceSportControlOpCodeApp = 0,
     VPDeviceSportControlOpCodeStart = 0x01,
     VPDeviceSportControlOpCodePause = 0x02,
     VPDeviceSportControlOpCodeContinue = 0x03,

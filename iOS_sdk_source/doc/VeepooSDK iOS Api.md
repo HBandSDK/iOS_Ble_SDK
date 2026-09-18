@@ -2102,6 +2102,11 @@ VPMarketDialManager.share().marketDialManager.getVeepooServerAllMarketDials(with
 
 ### 接口
 
+```objective-c
+/// 设备端表盘信息变更监听
+@property (nonatomic, copy) void(^deviceDialDidChangeBlock)(VPDeviceDialType, int);
+```
+
 ```
 - (void)veepooSDKSettingDeviceScreenStyle:(int)screenStyle
                               settingMode:(NSUInteger)settingMode
