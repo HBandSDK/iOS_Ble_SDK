@@ -7,4 +7,5 @@ framework module VeepooBleSDK {
 
 module VeepooBleSDK.Swift {
   header "VeepooBleSDK-Swift.h"
+  requires objc
 }

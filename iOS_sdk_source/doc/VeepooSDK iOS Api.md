@@ -30,6 +30,7 @@
 | 1.2.5 | 新增梅脱测量，情绪测量，健康灯                               | 2026.07.01 |
 | 1.2.6 | 新增JH58定制主动测量                                         | 2026.07.23 |
 | 1.2.7 | 新增星历数据读取，下载和传输                                 | 2026.08.28 |
+| 1.2.8 | 新增定制JH76SN码设置                                         | 2026.09.23 |
 
 # SDK初始化
 
@@ -8628,7 +8629,97 @@ let timestamp = Int(Date().timeIntervalSince1970) /// veepooSDK_getAGPSFileUrl �
         }
 ```
 
+# SN码设置
 
+### 前提
 
-# 
+需要设备支持（JH76定制功能）。
 
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPSNCodeVC的实现
+
+### 接口
+
+```objective-c
+/// 读取SN码
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_JH76ReadSNCode:(void(^_Nullable)(BOOL isSet, NSString * _Nullable string))result;
+```
+
+```objective-c
+/// 设置SN码（只能为数字，固定 10 位）
+/// - Parameters:
+///   - code: SN码（只能为数字，固定 10 位）
+///   - result : 结果回调，返回 VPJH76SNCodeErrorCode（0 成功，非 0 失败）
+- (void)veepooSDK_JH76SetSNCode:(NSString *_Nullable)code callBack:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
+```
+
+```objective-c
+/// 修改SN码（只能为数字，固定 10 位）
+/// - Parameters:
+///   - code: SN码（只能为数字，固定 10 位）
+///   - result : 结果回调，返回 VPJH76SNCodeErrorCode（0 成功，非 0 失败）
+- (void)veepooSDK_JH76ModifySNCode:(NSString *_Nullable)code callBack:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
+```
+
+```objective-c
+/// 删除SN码
+/// - Parameters:
+///   - result : 结果回调，返回 VPJH76SNCodeErrorCode（0 成功，非 0 失败）
+- (void)veepooSDK_JH76DeleteSNCode:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
+```
+
+### 参数解释
+
+VPJH76SNCodeErrorCode（设置/修改/删除的结果错误码）
+
+| 参数                           | 参数类型                | 备注                                                 |
+| ------------------------------ | ----------------------- | ---------------------------------------------------- |
+| VPJH76SNCodeErrorCodeSuccess       | VPJH76SNCodeErrorCode | 成功（0）                                       |
+| VPJH76SNCodeErrorCodeDeviceFailed  | VPJH76SNCodeErrorCode | 设备返回失败（1000）                            |
+| VPJH76SNCodeErrorCodeInvalidFormat | VPJH76SNCodeErrorCode | 格式错误：SN码只能为数字（1001）                |
+| VPJH76SNCodeErrorCodeInvalidLength | VPJH76SNCodeErrorCode | 长度错误：SN码固定 10 位（1002）                |
+| VPJH76SNCodeErrorCodeAllZero       | VPJH76SNCodeErrorCode | SN码不能全为 0（1003） |
+
+读取回调 `veepooSDK_JH76ReadSNCode` 参数：
+
+| 参数    | 参数类型 | 备注                             |
+| ------- | -------- | -------------------------------- |
+| isSet   | BOOL     | 是否已设置SN码                   |
+| string  | NSString | 已设置的SN码内容（未设置时为空） |
+
+### 示例代码
+
+```swift
+/// 读取
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76ReadSNCode {[weak self] isSet, string in
+    guard let weakSelf = self else { return }
+    weakSelf.resultLabel.text = isSet ? "查询结果：\(string ?? "")" : "未设置SN码"
+}
+```
+
+```swift
+/// 设置
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76SetSNCode(self.snTextField.text) {[weak self] errorCode in
+    guard let weakSelf = self else { return }
+    weakSelf.resultLabel.text = (errorCode == .success) ? "设置成功" : "设置失败：\(VPJH76SNCodeErrorDescription(errorCode))"
+}
+```
+
+```swift
+/// 修改
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76ModifySNCode(self.snTextField.text) {[weak self] errorCode in
+    guard let weakSelf = self else { return }
+    weakSelf.resultLabel.text = (errorCode == .success) ? "修改成功" : "修改失败：\(VPJH76SNCodeErrorDescription(errorCode))"
+}
+```
+
+```swift
+/// 删除
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76DeleteSNCode {[weak self] errorCode in
+    guard let weakSelf = self else { return }
+    weakSelf.resultLabel.text = (errorCode == .success) ? "删除成功" : "删除失败：\(VPJH76SNCodeErrorDescription(errorCode))"
+}
+```

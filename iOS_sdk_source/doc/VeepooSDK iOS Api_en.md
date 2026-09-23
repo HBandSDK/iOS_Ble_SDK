@@ -30,6 +30,7 @@
 | 1.2.5   | Met measurement， Emotion measurement， Health Light         | 2026.07.01        |
 | 1.2.6   | Add JH58 custom active measurement                           | 2026.07.23        |
 | 1.2.7   | AGPS (Ephemeris) Reading，AGPS (Ephemeris) Download and Transfer | 2026.08.28        |
+| 1.2.8   | Add SN Code Setting （JH76）                                 | 2026.09.23        |
 
 # SDK initialization
 
@@ -8610,4 +8611,99 @@ let timestamp = Int(Date().timeIntervalSince1970) /// veepooSDK_getAGPSFileUrl i
                 }
             }
         }
+```
+
+# SN Code Setting
+
+### Prerequisites
+
+The device must support this function (JH76 customized feature).
+
+### Class name
+
+`VPPeripheralBaseManage`. For details, refer to the `VPSNCodeVC` implementation in the Demo
+
+### Interfaces
+
+```objective-c
+/// Read the SN code
+/// - Parameters:
+///   - result : result callback
+- (void)veepooSDK_JH76ReadSNCode:(void(^_Nullable)(BOOL isSet, NSString * _Nullable string))result;
+```
+
+```objective-c
+/// Set the SN code (digits only, fixed 10 characters)
+/// - Parameters:
+///   - code: SN code (digits only, fixed 10 characters)
+///   - result : result callback, returns VPJH76SNCodeErrorCode (0 success, non-zero failure)
+- (void)veepooSDK_JH76SetSNCode:(NSString *_Nullable)code callBack:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
+```
+
+```objective-c
+/// Modify the SN code (digits only, fixed 10 characters)
+/// - Parameters:
+///   - code: SN code (digits only, fixed 10 characters)
+///   - result : result callback, returns VPJH76SNCodeErrorCode (0 success, non-zero failure)
+- (void)veepooSDK_JH76ModifySNCode:(NSString *_Nullable)code callBack:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
+```
+
+```objective-c
+/// Delete the SN code
+/// - Parameters:
+///   - result : result callback, returns VPJH76SNCodeErrorCode (0 success, non-zero failure)
+- (void)veepooSDK_JH76DeleteSNCode:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
+```
+
+### Parameter Explanation
+
+VPJH76SNCodeErrorCode (result error code for set/modify/delete)
+
+| Parameter | Parameter type | Remarks |
+| --------- | -------------- | ------- |
+| VPJH76SNCodeErrorCodeSuccess | VPJH76SNCodeErrorCode | Success (0) |
+| VPJH76SNCodeErrorCodeDeviceFailed | VPJH76SNCodeErrorCode | Device returned failure (1000) |
+| VPJH76SNCodeErrorCodeInvalidFormat | VPJH76SNCodeErrorCode | Format error: SN code must contain digits only (1001) |
+| VPJH76SNCodeErrorCodeInvalidLength | VPJH76SNCodeErrorCode | Length error: SN code must be exactly 10 characters (1002) |
+| VPJH76SNCodeErrorCodeAllZero | VPJH76SNCodeErrorCode | SN code cannot be all zeros (1003) |
+
+Read callback `veepooSDK_JH76ReadSNCode` parameters:
+
+| Parameter | Parameter type | Remarks |
+| --------- | -------------- | ------- |
+| isSet | BOOL | Whether the SN code has been set |
+| string | NSString | The set SN code content (empty if not set) |
+
+### Sample Code
+
+```swift
+/// Read
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76ReadSNCode {[weak self] isSet, string in
+    guard let weakSelf = self else { return }
+    weakSelf.resultLabel.text = isSet ? "Query result: \(string ?? "")" : "SN code not set"
+}
+```
+
+```swift
+/// Set
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76SetSNCode(self.snTextField.text) {[weak self] errorCode in
+    guard let weakSelf = self else { return }
+    weakSelf.resultLabel.text = (errorCode == .success) ? "Set successfully" : "Set failed: \(VPJH76SNCodeErrorDescription(errorCode))"
+}
+```
+
+```swift
+/// Modify
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76ModifySNCode(self.snTextField.text) {[weak self] errorCode in
+    guard let weakSelf = self else { return }
+    weakSelf.resultLabel.text = (errorCode == .success) ? "Modified successfully" : "Modification failed: \(VPJH76SNCodeErrorDescription(errorCode))"
+}
+```
+
+```swift
+/// Delete
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76DeleteSNCode {[weak self] errorCode in
+    guard let weakSelf = self else { return }
+    weakSelf.resultLabel.text = (errorCode == .success) ? "Deleted successfully" : "Deletion failed: \(VPJH76SNCodeErrorDescription(errorCode))"
+}
 ```

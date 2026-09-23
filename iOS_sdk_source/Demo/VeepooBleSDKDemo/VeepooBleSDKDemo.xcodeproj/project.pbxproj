@@ -104,6 +104,7 @@
 		FE645F052A90D181009CCD50 /* VPFindPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE645F032A90D180009CCD50 /* VPFindPhoneViewController.xib */; };
 		FE65720E25B930AD00672A8B /* VPPhotoDialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */; };
 		FE65720F25B930AD00672A8B /* VPPhotoDialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */; };
+		FE6AB7C93063D57300F54BEC /* VPSNCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6AB7C73063D57300F54BEC /* VPSNCodeVC.swift */; };
 		FE6C1C132A834691007276E6 /* VPCustomScanManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6C1C122A834691007276E6 /* VPCustomScanManage.swift */; };
 		FE6C1C152A83469C007276E6 /* VPScanDeviceV2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6C1C142A83469C007276E6 /* VPScanDeviceV2ViewController.swift */; };
 		FE6EE04625C1464800B67C70 /* VPMarketDialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6EE04425C1464800B67C70 /* VPMarketDialViewController.swift */; };
@@ -286,6 +287,7 @@
 		FE645F032A90D180009CCD50 /* VPFindPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPFindPhoneViewController.xib; sourceTree = "<group>"; };
 		FE65720C25B930AD00672A8B /* VPPhotoDialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPPhotoDialViewController.swift; sourceTree = "<group>"; };
 		FE65720D25B930AD00672A8B /* VPPhotoDialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPPhotoDialViewController.xib; sourceTree = "<group>"; };
+		FE6AB7C73063D57300F54BEC /* VPSNCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSNCodeVC.swift; sourceTree = "<group>"; };
 		FE6C1C122A834691007276E6 /* VPCustomScanManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPCustomScanManage.swift; sourceTree = "<group>"; };
 		FE6C1C142A83469C007276E6 /* VPScanDeviceV2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPScanDeviceV2ViewController.swift; sourceTree = "<group>"; };
 		FE6EE04425C1464800B67C70 /* VPMarketDialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMarketDialViewController.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE6AB7C83063D57300F54BEC /* SN码 */,
 				FE1707B630413A1800E3185E /* 星历 */,
 				FEE8F12130189BE400268B4B /* ECG */,
 				FE0518FF2FF669F700839042 /* 健康灯 */,
@@ -757,6 +760,14 @@
 			path = "PPG和加速度原始数据";
 			sourceTree = "<group>";
 		};
+		FE6AB7C83063D57300F54BEC /* SN码 */ = {
+			isa = PBXGroup;
+			children = (
+				FE6AB7C73063D57300F54BEC /* VPSNCodeVC.swift */,
+			);
+			path = "SN码";
+			sourceTree = "<group>";
+		};
 		FE8E39F926F2E1BD00065ADB /* G15 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,6 +1119,7 @@
 				67B64E441EDFB5E8000549D6 /* VPTest.m in Sources */,
 				67CA7E351EF3BAD5000D8745 /* VPEditNewAlarmController.swift in Sources */,
 				FE8E3A0026F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift in Sources */,
+				FE6AB7C93063D57300F54BEC /* VPSNCodeVC.swift in Sources */,
 				67CA3B581EF25AB500203D20 /* VPDeviceCountDownController.swift in Sources */,
 				6757E2842196D1BD0019E8B4 /* VPTapTestViewController.swift in Sources */,
 				FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */,

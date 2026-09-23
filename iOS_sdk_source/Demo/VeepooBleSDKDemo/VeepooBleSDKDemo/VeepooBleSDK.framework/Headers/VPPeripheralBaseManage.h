@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VPSNCodeError.h"
 #import "VPPeripheralModel.h"
 #import "VPPublicDefine.h"
 #import "VPDeviceAlarmModel.h"
@@ -1547,6 +1548,31 @@
 /// - Parameters:
 ///   - result : 结果回调
 - (void)veepooSDKListenHealthLightStatus:(void(^_Nullable)(VPHealthLightStatusType type))result;
+
+
+#pragma mark SN码
+
+/// 读取SN码
+/// - Parameters:
+///   - result : 结果回调
+- (void)veepooSDK_JH76ReadSNCode:(void(^_Nullable)(BOOL isSet, NSString * _Nullable string))result;
+
+/// 设置SN码
+/// - Parameters:
+///   - code: SN码（只能为数字，固定 10 位）
+///   - result : 结果回调，返回 VPJH76SNCodeErrorCode（0 成功，非 0 失败）
+- (void)veepooSDK_JH76SetSNCode:(NSString *_Nullable)code callBack:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
+
+/// 修改SN码
+/// - Parameters:
+///   - code: SN码（只能为数字，固定 10 位）
+///   - result : 结果回调，返回 VPJH76SNCodeErrorCode（0 成功，非 0 失败）
+- (void)veepooSDK_JH76ModifySNCode:(NSString *_Nullable)code callBack:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
+
+/// 删除SN码
+/// - Parameters:
+///   - result : 结果回调，返回 VPJH76SNCodeErrorCode（0 成功，非 0 失败）
+- (void)veepooSDK_JH76DeleteSNCode:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
 
 @end
 

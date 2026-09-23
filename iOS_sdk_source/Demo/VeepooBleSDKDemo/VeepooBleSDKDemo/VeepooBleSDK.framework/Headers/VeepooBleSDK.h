@@ -19,6 +19,7 @@
 #import "VPPublicDefine.h"
 #import "VPDFUOperation.h"
 #import "VPPeripheralModel.h"
+#import "VPSNCodeError.h"
 #import "VPDeviceAlarmModel.h"
 #import "VPDeviceLongSeatModel.h"
 #import "VPDeviceHeartAlarmModel.h"
