@@ -84,7 +84,8 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("健康灯", "VPHealthLightVC"),
         .init("ECG", "VPECGTestVC"),
         .init("星历", "VPAGPSViewController"),
-        .init("SN码(JH76定制)", "VPSNCodeVC")
+        .init("SN码(JH76定制)", "VPSNCodeVC"),
+        .init("YM23PRO 佩戴/测试状态", "VPYM23ProVC")
     ]
     
     override func viewDidLoad() {

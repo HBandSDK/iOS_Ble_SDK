@@ -825,3 +825,14 @@ typedef NS_ENUM(NSUInteger, VPHealthLightStatusType) {
     VPHealthLightStatusTypeContinuousFlashing,
     VPHealthLightStatusTypeStayOn
 };
+
+// YM23PRO 测试状态
+typedef NS_ENUM(NSInteger, VPM23ProTestStatus) {
+    VPM23ProTestStatusIdle = 0,            // 空闲/退出
+    VPM23ProTestStatusDetecting = 1,       // 检测中
+    VPM23ProTestStatusRepairing = 2,       // 修复中
+    VPM23ProTestStatusDetectComplete = 3,  // 检测完成
+    VPM23ProTestStatusRepairComplete = 4,  // 修复完成
+    VPM23ProTestStatusDetectPaused = 5,    // 检测暂停
+    VPM23ProTestStatusRepairPaused = 6,    // 修复暂停
+};

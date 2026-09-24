@@ -117,6 +117,7 @@
 		FE722C2B25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */; };
 		FE776C222C2575F1003CEA82 /* VPDevicePulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE776C202C2575F1003CEA82 /* VPDevicePulseViewController.swift */; };
 		FE776C232C2575F1003CEA82 /* VPDevicePulseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE776C212C2575F1003CEA82 /* VPDevicePulseViewController.xib */; };
+		FE7AF3D430653AB800134B31 /* VPYM23ProVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AF3D230653AB800134B31 /* VPYM23ProVC.swift */; };
 		FE89AA1D2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89AA1B2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift */; };
 		FE89AA1E2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE89AA1C2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift */; };
 		FE8E3A0026F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8E39FE26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift */; };
@@ -299,6 +300,7 @@
 		FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingDeviceGPSViewController.xib; sourceTree = "<group>"; };
 		FE776C202C2575F1003CEA82 /* VPDevicePulseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDevicePulseViewController.swift; sourceTree = "<group>"; };
 		FE776C212C2575F1003CEA82 /* VPDevicePulseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPDevicePulseViewController.xib; sourceTree = "<group>"; };
+		FE7AF3D230653AB800134B31 /* VPYM23ProVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPYM23ProVC.swift; sourceTree = "<group>"; };
 		FE89AA1B2AEBBB7C00DF290A /* VPBloodAnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBloodAnalysisViewController.swift; sourceTree = "<group>"; };
 		FE89AA1C2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPBodyCompositionViewController.swift; sourceTree = "<group>"; };
 		FE8E39FE26F2E3BC00065ADB /* VPG15AdvertisementDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPG15AdvertisementDataViewController.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE7AF3D330653AB800134B31 /* YM23PRO */,
 				FE6AB7C83063D57300F54BEC /* SN码 */,
 				FE1707B630413A1800E3185E /* 星历 */,
 				FEE8F12130189BE400268B4B /* ECG */,
@@ -766,6 +769,14 @@
 				FE6AB7C73063D57300F54BEC /* VPSNCodeVC.swift */,
 			);
 			path = "SN码";
+			sourceTree = "<group>";
+		};
+		FE7AF3D330653AB800134B31 /* YM23PRO */ = {
+			isa = PBXGroup;
+			children = (
+				FE7AF3D230653AB800134B31 /* VPYM23ProVC.swift */,
+			);
+			path = YM23PRO;
 			sourceTree = "<group>";
 		};
 		FE8E39F926F2E1BD00065ADB /* G15 */ = {
@@ -1193,6 +1204,7 @@
 				67640D4F1E56CA04008D9D71 /* VPOterFunctionSettingController.swift in Sources */,
 				67CA3B5B1EF2649700203D20 /* VPCountDownSelectView.swift in Sources */,
 				67640D491E55C22E008D9D71 /* VPMessageRemindViewController.swift in Sources */,
+				FE7AF3D430653AB800134B31 /* VPYM23ProVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

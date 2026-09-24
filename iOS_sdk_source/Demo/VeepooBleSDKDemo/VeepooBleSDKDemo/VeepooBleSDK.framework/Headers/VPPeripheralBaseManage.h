@@ -1574,6 +1574,26 @@
 ///   - result : 结果回调，返回 VPJH76SNCodeErrorCode（0 成功，非 0 失败）
 - (void)veepooSDK_JH76DeleteSNCode:(void(^_Nullable)(VPJH76SNCodeErrorCode errorCode))result;
 
+#pragma mark YM23PRO 佩戴状态与测试状态定制协议
+
+/// 佩戴状态主动上报（开启佩戴上报后持续回调：佩戴变更 / 每秒定时上报）。
+/// - reportType: 1=佩戴状态变更上报 2=每秒定时上报
+/// - isWear: 是否佩戴（YES=佩戴通过）
+/// - heartRate: 心率 bpm（无效为 0）
+@property (nonatomic, copy, nullable) void(^ym23ProWearReportResult)(NSInteger reportType, BOOL isWear, NSInteger heartRate);
+
+/// 设置佩戴状态上报开关
+/// - Parameters:
+///   - open: YES 开启 / NO 关闭
+///   - result: 开关应答回调（仅返回 ack：0不支持 1成功 2失败）
+- (void)veepooSDK_YM23ProSetWearStatus:(BOOL)open callBack:(void(^_Nullable)(NSInteger ack))result;
+
+/// 下发测试状态
+/// - Parameters:
+///   - status: YM23PRO 测试状态（见 VPM23ProTestStatus 枚举：0空闲/退出 1检测中 2修复中 3检测完成 4修复完成 5检测暂停 6修复暂停）
+///   - result: 应答回调 (ack: 0不支持 1成功 2失败; currentStatus: 设备实际状态)
+- (void)veepooSDK_YM23ProSendTest:(VPM23ProTestStatus)status callBack:(void(^_Nullable)(NSInteger ack, NSInteger currentStatus))result;
+
 @end
 
 

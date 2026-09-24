@@ -31,6 +31,7 @@
 | 1.2.6   | Add JH58 custom active measurement                           | 2026.07.23        |
 | 1.2.7   | AGPS (Ephemeris) Reading，AGPS (Ephemeris) Download and Transfer | 2026.08.28        |
 | 1.2.8   | Add SN Code Setting （JH76）                                 | 2026.09.23        |
+| 1.2.9   | Add YM23PRO customized wearing status reporting and testing status function | 2026.09.24        |
 
 # SDK initialization
 
@@ -8705,5 +8706,100 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76ModifySNCod
 VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76DeleteSNCode {[weak self] errorCode in
     guard let weakSelf = self else { return }
     weakSelf.resultLabel.text = (errorCode == .success) ? "Deleted successfully" : "Deletion failed: \(VPJH76SNCodeErrorDescription(errorCode))"
+}
+```
+
+# YM23PRO wearing status reporting and testing status function
+
+### Prerequisites
+
+The device must support this function (YM23PRO custom).
+
+### Class name
+
+`VPPeripheralBaseManage`. For details, refer to the `VPYM23ProVC` implementation in the Demo
+
+### Interfaces
+
+```objective-c
+/// Wear status active report (after enabling the wear report, it callbacks continuously: wear change / per-second timed report).
+/// - reportType: 1=wear status change report 2=per-second timed report
+/// - isWear: whether worn (YES=worn)
+/// - heartRate: heart rate bpm (0 if invalid)
+@property (nonatomic, copy, nullable) void(^ym23ProWearReportResult)(NSInteger reportType, BOOL isWear, NSInteger heartRate);
+```
+
+```objective-c
+/// Set the wear status report switch
+/// - Parameters:
+///   - open: YES to enable / NO to disable
+///   - result: switch ack callback (only returns ack: 0 unsupported 1 success 2 failure)
+- (void)veepooSDK_YM23ProSetWearStatus:(BOOL)open callBack:(void(^_Nullable)(NSInteger ack))result;
+```
+
+```objective-c
+/// Send the test status
+/// - Parameters:
+///   - status: YM23PRO test status (see the VPM23ProTestStatus enum)
+///   - result: ack callback (ack: 0 unsupported 1 success 2 failure; currentStatus: the device's actual status)
+- (void)veepooSDK_YM23ProSendTest:(VPM23ProTestStatus)status callBack:(void(^_Nullable)(NSInteger ack, NSInteger currentStatus))result;
+```
+
+### Parameter Explanation
+
+VPM23ProTestStatus (test status)
+
+| Parameter                         | Parameter type       | Remarks              |
+| --------------------------------- | -------------------- | -------------------- |
+| VPM23ProTestStatusIdle            | VPM23ProTestStatus   | Idle/Exit (0)        |
+| VPM23ProTestStatusDetecting       | VPM23ProTestStatus   | Detecting (1)        |
+| VPM23ProTestStatusRepairing       | VPM23ProTestStatus   | Repairing (2)        |
+| VPM23ProTestStatusDetectComplete  | VPM23ProTestStatus   | Detection complete (3) |
+| VPM23ProTestStatusRepairComplete  | VPM23ProTestStatus   | Repair complete (4)  |
+| VPM23ProTestStatusDetectPaused    | VPM23ProTestStatus   | Detection paused (5) |
+| VPM23ProTestStatusRepairPaused    | VPM23ProTestStatus   | Repair paused (6)    |
+
+ack response code (shared by the switch setting and the test status sending)
+
+| Parameter | Parameter type | Remarks                 |
+| --------- | -------------- | ----------------------- |
+| 0         | NSInteger      | Protocol not supported  |
+| 1         | NSInteger      | Success                 |
+| 2         | NSInteger      | Failure                 |
+
+Wear status active report callback parameters
+
+| Parameter  | Parameter type | Remarks                                          |
+| ---------- | -------------- | ------------------------------------------------ |
+| reportType | NSInteger      | 1=wear status change report 2=per-second timed report |
+| isWear     | BOOL           | Whether worn (YES=worn / NO=not worn)            |
+| heartRate  | NSInteger      | Heart rate bpm (0 if invalid)                    |
+
+### Sample Code
+
+```swift
+/// Set the wear status active report listener (continuous callback; set to nil to cancel on exit)
+VPBleCentralManage.sharedBleManager().peripheralManage?.ym23ProWearReportResult = { [weak self] reportType, isWear, heartRate in
+    guard let weakSelf = self else { return }
+    let typeDesc = (reportType == 1) ? "wear change" : "per-second report"
+    weakSelf.wearReportLabel.text = "Realtime report[\(typeDesc)]: worn=\(isWear ? "yes" : "no"), HR=\(heartRate)bpm"
+}
+```
+
+```swift
+/// Enable/disable the wear status report switch
+VPBleCentralManage.sharedBleManager().peripheralManage?.veepooSDK_YM23ProSetWearStatus(true) { [weak self] ack in
+    // ack: 0 unsupported 1 success 2 failure
+    guard let weakSelf = self else { return }
+    weakSelf.wearResultLabel.text = "Switch result: " + (ack == 1 ? "success" : (ack == 0 ? "protocol not supported" : "failure"))
+}
+```
+
+```swift
+/// Send the test status
+VPBleCentralManage.sharedBleManager().peripheralManage?.veepooSDK_YM23ProSendTest(.detecting) { [weak self] ack, currentStatus in
+    // ack: 0 unsupported 1 success 2 failure; currentStatus is the device's actual status (see VPM23ProTestStatus)
+    guard let weakSelf = self else { return }
+    weakSelf.testResultLabel.text = "Ack result: ack=\(ack), device status=\(currentStatus)"
 }
 ```

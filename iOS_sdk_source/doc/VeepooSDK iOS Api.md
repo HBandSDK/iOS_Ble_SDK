@@ -31,6 +31,7 @@
 | 1.2.6 | 新增JH58定制主动测量                                         | 2026.07.23 |
 | 1.2.7 | 新增星历数据读取，下载和传输                                 | 2026.08.28 |
 | 1.2.8 | 新增定制JH76SN码设置                                         | 2026.09.23 |
+| 1.2.9 | 新增YM23PRO定制佩戴状态上报与测试状态功能                    | 2026.09.24 |
 
 # SDK初始化
 
@@ -8721,5 +8722,100 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76ModifySNCod
 VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH76DeleteSNCode {[weak self] errorCode in
     guard let weakSelf = self else { return }
     weakSelf.resultLabel.text = (errorCode == .success) ? "删除成功" : "删除失败：\(VPJH76SNCodeErrorDescription(errorCode))"
+}
+```
+
+# YM23PRO定制佩戴状态上报与测试状态功能
+
+### 前提
+
+需要设备支持（YM23PRO 定制功能）。
+
+### 类名
+
+VPPeripheralBaseManage`，可参考Demo中`VPYM23ProVC的实现
+
+### 接口
+
+```objective-c
+/// 佩戴状态主动上报（开启佩戴上报后持续回调：佩戴变更 / 每秒定时上报）。
+/// - reportType: 1=佩戴状态变更上报 2=每秒定时上报
+/// - isWear: 是否佩戴（YES=佩戴通过）
+/// - heartRate: 心率 bpm（无效为 0）
+@property (nonatomic, copy, nullable) void(^ym23ProWearReportResult)(NSInteger reportType, BOOL isWear, NSInteger heartRate);
+```
+
+```objective-c
+/// 设置佩戴状态上报开关
+/// - Parameters:
+///   - open: YES 开启 / NO 关闭
+///   - result: 开关应答回调（仅返回 ack：0不支持 1成功 2失败）
+- (void)veepooSDK_YM23ProSetWearStatus:(BOOL)open callBack:(void(^_Nullable)(NSInteger ack))result;
+```
+
+```objective-c
+/// 下发测试状态
+/// - Parameters:
+///   - status: YM23PRO 测试状态（见 VPM23ProTestStatus 枚举）
+///   - result: 应答回调 (ack: 0不支持 1成功 2失败; currentStatus: 设备实际状态)
+- (void)veepooSDK_YM23ProSendTest:(VPM23ProTestStatus)status callBack:(void(^_Nullable)(NSInteger ack, NSInteger currentStatus))result;
+```
+
+### 参数解释
+
+VPM23ProTestStatus（测试状态）
+
+| 参数                              | 参数类型             | 备注         |
+| --------------------------------- | -------------------- | ------------ |
+| VPM23ProTestStatusIdle            | VPM23ProTestStatus   | 空闲/退出（0） |
+| VPM23ProTestStatusDetecting       | VPM23ProTestStatus   | 检测中（1）  |
+| VPM23ProTestStatusRepairing       | VPM23ProTestStatus   | 修复中（2）  |
+| VPM23ProTestStatusDetectComplete  | VPM23ProTestStatus   | 检测完成（3） |
+| VPM23ProTestStatusRepairComplete  | VPM23ProTestStatus   | 修复完成（4） |
+| VPM23ProTestStatusDetectPaused    | VPM23ProTestStatus   | 检测暂停（5） |
+| VPM23ProTestStatusRepairPaused    | VPM23ProTestStatus   | 修复暂停（6） |
+
+ack 应答码（设置开关 / 下发测试状态共用）
+
+| 参数 | 参数类型  | 备注           |
+| ---- | --------- | -------------- |
+| 0    | NSInteger | 不支持该协议   |
+| 1    | NSInteger | 成功           |
+| 2    | NSInteger | 失败           |
+
+佩戴状态主动上报回调参数
+
+| 参数       | 参数类型  | 备注                                     |
+| ---------- | --------- | ---------------------------------------- |
+| reportType | NSInteger | 1=佩戴状态变更上报 2=每秒定时上报        |
+| isWear     | BOOL      | 是否佩戴（YES=佩戴 / NO=未佩戴）         |
+| heartRate  | NSInteger | 心率 bpm（无效为 0）                     |
+
+### 示例代码
+
+```swift
+/// 设置佩戴状态主动上报监听（持续回调，退出时置 nil 取消）
+VPBleCentralManage.sharedBleManager().peripheralManage?.ym23ProWearReportResult = { [weak self] reportType, isWear, heartRate in
+    guard let weakSelf = self else { return }
+    let typeDesc = (reportType == 1) ? "佩戴变更" : "每秒上报"
+    weakSelf.wearReportLabel.text = "实时上报[\(typeDesc)]：佩戴=\(isWear ? "已佩戴" : "未佩戴")，心率=\(heartRate)bpm"
+}
+```
+
+```swift
+/// 开启/关闭佩戴状态上报开关
+VPBleCentralManage.sharedBleManager().peripheralManage?.veepooSDK_YM23ProSetWearStatus(true) { [weak self] ack in
+    // ack: 0不支持 1成功 2失败
+    guard let weakSelf = self else { return }
+    weakSelf.wearResultLabel.text = "开关结果：" + (ack == 1 ? "成功" : (ack == 0 ? "不支持该协议" : "失败"))
+}
+```
+
+```swift
+/// 下发测试状态
+VPBleCentralManage.sharedBleManager().peripheralManage?.veepooSDK_YM23ProSendTest(.detecting) { [weak self] ack, currentStatus in
+    // ack: 0不支持 1成功 2失败；currentStatus 为设备实际状态（见 VPM23ProTestStatus）
+    guard let weakSelf = self else { return }
+    weakSelf.testResultLabel.text = "应答结果：ack=\(ack)，设备状态=\(currentStatus)"
 }
 ```
