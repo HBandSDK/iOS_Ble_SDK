@@ -98,7 +98,7 @@
 #import "VPImageTransmissionModel.h"
 #import "VPFileHandleManager.h"
 #import "VPOpusHandle.h"
-#import "VPQH15SecurityProtectionInfo.h"
+
 #import "VPJE136PTCMModel.h"
 #import "VPQH15HealthDataModel.h"
 #import "VPLogManager.h"

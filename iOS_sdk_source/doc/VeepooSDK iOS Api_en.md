@@ -32,6 +32,7 @@
 | 1.2.7   | AGPS (Ephemeris) Reading，AGPS (Ephemeris) Download and Transfer | 2026.08.28        |
 | 1.2.8   | Add SN Code Setting （JH76）                                 | 2026.09.23        |
 | 1.2.9   | Add YM23PRO customized wearing status reporting and testing status function | 2026.09.24        |
+| 1.3.0   | Add QH15 customized family care (security protection) interfaces | 2026.09.29        |
 
 # SDK initialization
 
@@ -8801,5 +8802,143 @@ VPBleCentralManage.sharedBleManager().peripheralManage?.veepooSDK_YM23ProSendTes
     // ack: 0 unsupported 1 success 2 failure; currentStatus is the device's actual status (see VPM23ProTestStatus)
     guard let weakSelf = self else { return }
     weakSelf.testResultLabel.text = "Ack result: ack=\(ack), device status=\(currentStatus)"
+}
+```
+
+# QH15 Family Care (Security Protection)
+
+### Prerequisites
+
+The device must support this function: peripheralModel.securityProtection != 0.
+
+### Class name
+
+`VPPeripheralBaseManage`. For details, refer to the `VPQH15SecurityProtectionViewController` implementation in the Demo
+
+### Interfaces
+
+```objective-c
+/// Set the security protection state
+/// - Parameters:
+///   - isOpen: YES: open NO: close
+///   - result: callback
+- (void)veepooSDK_QH15SetProtectionOpen:(BOOL)isOpen callBack:(void(^_Nullable)(VPQH15SetProtectionFuncAckState ackState))result;
+```
+
+```objective-c
+/// Monitor the security protection state notification
+/// - Parameters:
+///   - result: callback
+- (void)veepooSDK_QH15ProtectionResultSubscribe:(void(^_Nullable)(BOOL isOpen, uint32_t time))result;
+```
+
+```objective-c
+/// Monitor the GNSS real-time location data notification (includes device requesting real-time location and device pushing real-time location, distinguished by type)
+/// - Parameters:
+///   - result: callback
+- (void)veepooSDK_QH15SecurityProtectionLocationResultSubscribe:(void(^_Nullable)(VPQH15SPType type, VPQH15SecurityProtectionModel * _Nullable locationModel))result;
+```
+
+```objective-c
+/// Auxiliary information configuration, aimed at enhancing the speed and accuracy of device positioning
+/// - Parameter model: location model
+- (void)veepooSDK_QH15SendSecurityProtectionLocation:(VPQH15SecurityProtectionModel * _Nullable)model;
+```
+
+### Parameter Explanation
+
+VPQH15SetProtectionFuncAckState (protection setting ack state)
+
+| Parameter | Parameter type | Remarks |
+| --- | --- | --- |
+| VPQH15SetProtectionFuncAckStateSuccess | VPQH15SetProtectionFuncAckState | Success (0x01) |
+| VPQH15SetProtectionFuncAckStateLowBattery | VPQH15SetProtectionFuncAckState | Watch battery too low to enable (0x02) |
+| VPQH15SetProtectionFuncAckStateLocationMalfunction | VPQH15SetProtectionFuncAckState | Location module malfunction (0x03) |
+
+VPQH15SPType (location interaction type)
+
+| Parameter | Parameter type | Remarks |
+| --- | --- | --- |
+| VPQH15SPTypeReq | VPQH15SPType | Request real-time location (device requests current location from App) |
+| VPQH15SPTypePush | VPQH15SPType | Push real-time location data (device reports location to App) |
+
+VPQH15SecurityProtectionModel (location data model)
+
+| Parameter | Parameter type | Remarks |
+| --- | --- | --- |
+| rssi | int | Bluetooth RSSI |
+| location | CLLocationCoordinate2D | Latitude and longitude (5 decimal places) |
+| gnssState | VPQH15SecurityProtectionState | GNSS state |
+| alt | int | Altitude |
+
+VPQH15SecurityProtectionState (GNSS state)
+
+| Parameter | Parameter type | Remarks |
+| --- | --- | --- |
+| VPQH15SecurityProtectionStateNone | VPQH15SecurityProtectionState | No command |
+| VPQH15SecurityProtectionStateEffectiveLocation | VPQH15SecurityProtectionState | Effective location |
+| VPQH15SecurityProtectionStateInvalidLocation | VPQH15SecurityProtectionState | Invalid location |
+| VPQH15SecurityProtectionStatePoorSignal | VPQH15SecurityProtectionState | Poor signal |
+| VPQH15SecurityProtectionStateNoPermission | VPQH15SecurityProtectionState | No permission |
+
+### Sample Code
+
+```swift
+/// Set the security protection switch
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SetProtectionOpen(sw.isOn) { ack in
+    if ack == .success {
+        print("success")
+    }
+}
+```
+
+```swift
+/// Monitor the security protection state notification (recommended to call when the device connects successfully)
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15ProtectionResultSubscribe {[weak self] open, time in
+    guard let weakSelf = self else { return }
+    weakSelf.stateSwitch?.isOn = open
+}
+```
+
+```swift
+/// Monitor the GNSS real-time location data notification
+/// type == .req the App should obtain system location and send it back via the send interface.
+/// type == .push means the device pushes real-time location; just display it.
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SecurityProtectionLocationResultSubscribe {[weak self] (type, model) in
+    guard let weakSelf = self, let model = model else { return }
+    if type == .req {
+        weakSelf.reqRssiRaw = Int(model.rssi)
+        let status = CLLocationManager.authorizationStatus()
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            weakSelf.locationManager?.requestLocation()
+        } else {
+            let sendModel = VPQH15SecurityProtectionModel()
+            sendModel.rssi = Int32(weakSelf.reqRssiRaw)
+            sendModel.gnssState = .noPermission
+            VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SendSecurityProtectionLocation(sendModel)
+        }
+    } else {
+        weakSelf.locationLabel?.text = "Location: latitude(\(model.location.latitude)) longitude(\(model.location.longitude))"
+    }
+}
+```
+
+```swift
+/// Send real-time location to the device after obtaining system location
+func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    guard let loc = locations.last else { return }
+    var stateRaw: UInt8 = 0x01
+    if loc.horizontalAccuracy < 0 {
+        stateRaw = 0x02
+    } else if loc.horizontalAccuracy > 30 {
+        stateRaw = 0x03
+    }
+    let model = VPQH15SecurityProtectionModel()
+    model.rssi = Int32(reqRssiRaw)
+    model.gnssState = VPQH15SecurityProtectionState(rawValue: stateRaw)!
+    model.location = CLLocationCoordinate2D(latitude: round(loc.coordinate.latitude * 100000) / 100000.0,
+                                            longitude: round(loc.coordinate.longitude * 100000) / 100000.0)
+    model.alt = Int32(Int(loc.altitude))
+    VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SendSecurityProtectionLocation(model)
 }
 ```

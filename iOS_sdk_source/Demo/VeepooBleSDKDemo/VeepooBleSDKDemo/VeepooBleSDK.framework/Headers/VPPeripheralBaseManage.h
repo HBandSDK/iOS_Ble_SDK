@@ -53,7 +53,7 @@
 #import "VPDeviceSportControlModel.h"
 #import "VPDeviceSportWithGPSModel.h"
 #import "VPDeviceSportModel.h"
-#import "VPQH15GNSSLocationModel.h"
+#import "VPQH15SecurityProtectionModel.h"
 
 
 #import "VPQX17PublicDefine.h"
@@ -1384,12 +1384,6 @@
 ///     - result: callback
 - (void)veepooSDK_QH15SetProtectionOpen:(BOOL)isOpen callBack:(void(^_Nullable)(VPQH15SetProtectionFuncAckState ackState))result;
 
-/// 设置GNSS实时位置数据
-/// - Parameters:
-///     - model: 位置数据
-///     - type: 请求/推送
-- (void)veepooSDK_QH15SetGNSSRealTimeData:(VPQH15GNSSLocationModel *_Nullable)model type:(VPQH15SPType)type;
-
 /// 监听安全守护状态通知
 /// - Parameters:
 ///     - result: callback
@@ -1398,9 +1392,14 @@
 /// 监听GNSS实时位置数据通知
 /// - Parameters:
 ///     - result: callback
-- (void)veepooSDK_QH15GNSSLocationResultSubscribe:(void(^_Nullable)(VPQH15SPType funcType, VPQH15GNSSLocationModel * _Nullable locationModel))result;
+- (void)veepooSDK_QH15SecurityProtectionLocationResultSubscribe:(void(^_Nullable)(VPQH15SPType type, VPQH15SecurityProtectionModel * _Nullable locationModel))result;
 
-/// JE136P定制中医数据下发
+/// 辅助信息配置，用以提升设备定位速度与精准度
+/// - Parameter model: 位置模型
+- (void)veepooSDK_QH15SendSecurityProtectionLocation:(VPQH15SecurityProtectionModel * _Nullable)model;
+
+#pragma mark JE136P定制中医数据下发
+
 /// Parameters:
 ///     - model: 下发的数据模型
 ///     - result: callback
@@ -1468,7 +1467,7 @@
 - (void)zkReceiveData:(void(^_Nullable)(NSData * _Nullable data))receive zkCanSendNextAction:(void(^_Nullable)(void))canSend zkDidEnable:(void(^_Nullable)(void))enable;
 
 
-/// QH15定制健康数据下发
+#pragma mark QH15定制健康数据下发
 /// - Parameters:
 ///   - model : 健康数据
 ///   - callback : 结果回调

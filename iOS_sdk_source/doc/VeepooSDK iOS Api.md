@@ -32,6 +32,7 @@
 | 1.2.7 | 新增星历数据读取，下载和传输                                 | 2026.08.28 |
 | 1.2.8 | 新增定制JH76SN码设置                                         | 2026.09.23 |
 | 1.2.9 | 新增YM23PRO定制佩戴状态上报与测试状态功能                    | 2026.09.24 |
+| 1.3.0 | 新增QH15定制亲情守护功能接口                                 | 2026.09.29 |
 
 # SDK初始化
 
@@ -8817,5 +8818,143 @@ VPBleCentralManage.sharedBleManager().peripheralManage?.veepooSDK_YM23ProSendTes
     // ack: 0不支持 1成功 2失败；currentStatus 为设备实际状态（见 VPM23ProTestStatus）
     guard let weakSelf = self else { return }
     weakSelf.testResultLabel.text = "应答结果：ack=\(ack)，设备状态=\(currentStatus)"
+}
+```
+
+# QH15 亲情守护功能
+
+### 前提
+
+需要设备支持：peripheralModel.securityProtection != 0。
+
+### 类名
+
+VPPeripheralBaseManage，可参考 Demo 中 VPQH15SecurityProtectionViewController 的实现
+
+### 接口
+
+```objective-c
+/// 设置安全守护状态
+/// - Parameters:
+///   - isOpen: YES:开启 NO:关闭
+///   - result: callback
+- (void)veepooSDK_QH15SetProtectionOpen:(BOOL)isOpen callBack:(void(^_Nullable)(VPQH15SetProtectionFuncAckState ackState))result;
+```
+
+```objective-c
+/// 监听安全守护状态通知
+/// - Parameters:
+///   - result: callback
+- (void)veepooSDK_QH15ProtectionResultSubscribe:(void(^_Nullable)(BOOL isOpen, uint32_t time))result;
+```
+
+```objective-c
+/// 监听GNSS实时位置数据通知（含设备请求实时位置与设备推送实时位置，通过 type 区分）
+/// - Parameters:
+///   - result: callback
+- (void)veepooSDK_QH15SecurityProtectionLocationResultSubscribe:(void(^_Nullable)(VPQH15SPType type, VPQH15SecurityProtectionModel * _Nullable locationModel))result;
+```
+
+```objective-c
+/// 辅助信息配置，用以提升设备定位速度与精准度
+/// - Parameter model: 位置模型
+- (void)veepooSDK_QH15SendSecurityProtectionLocation:(VPQH15SecurityProtectionModel * _Nullable)model;
+```
+
+### 参数解释
+
+VPQH15SetProtectionFuncAckState
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| VPQH15SetProtectionFuncAckStateSuccess | VPQH15SetProtectionFuncAckState | 成功 |
+| VPQH15SetProtectionFuncAckStateLowBattery | VPQH15SetProtectionFuncAckState | 手表电量过低无法开启 |
+| VPQH15SetProtectionFuncAckStateLocationMalfunction | VPQH15SetProtectionFuncAckState | 定位模块异常 |
+
+VPQH15SPType
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| VPQH15SPTypeReq | VPQH15SPType | 请求获取实时位置 |
+| VPQH15SPTypePush | VPQH15SPType | 推送实时位置数据 |
+
+VPQH15SecurityProtectionModel
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| rssi | int | 蓝牙RSSI |
+| location | CLLocationCoordinate2D | 经纬度(保留小数点后5位) |
+| gnssState | VPQH15SecurityProtectionState | GNSS状态 |
+| alt | int | 海拔 |
+
+VPQH15SecurityProtectionState
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| VPQH15SecurityProtectionStateNone | VPQH15SecurityProtectionState | 无指令 |
+| VPQH15SecurityProtectionStateEffectiveLocation | VPQH15SecurityProtectionState | 有效定位 |
+| VPQH15SecurityProtectionStateInvalidLocation | VPQH15SecurityProtectionState | 无效定位 |
+| VPQH15SecurityProtectionStatePoorSignal | VPQH15SecurityProtectionState | 信号差 |
+| VPQH15SecurityProtectionStateNoPermission | VPQH15SecurityProtectionState | 无权限 |
+
+### 示例代码
+
+```swift
+/// 设置安全守护开关
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SetProtectionOpen(sw.isOn) { ack in
+    if ack == .success {
+        print("成功")
+    }
+}
+```
+
+```swift
+/// 监听安全守护状态通知（建议在设备蓝牙连接成功时调用）
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15ProtectionResultSubscribe {[weak self] open, time in
+    guard let weakSelf = self else { return }
+    weakSelf.stateSwitch?.isOn = open
+}
+```
+
+```swift
+/// 监听 GNSS 实时位置数据通知
+/// type == .req 需取到系统定位后通过下发接口回推；
+/// type == .push 表示设备推送实时位置，直接展示即可
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SecurityProtectionLocationResultSubscribe {[weak self] (type, model) in
+    guard let weakSelf = self, let model = model else { return }
+    if type == .req {
+        weakSelf.reqRssiRaw = Int(model.rssi)
+        let status = CLLocationManager.authorizationStatus()
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            weakSelf.locationManager?.requestLocation()
+        } else {
+            let sendModel = VPQH15SecurityProtectionModel()
+            sendModel.rssi = Int32(weakSelf.reqRssiRaw)
+            sendModel.gnssState = .noPermission
+            VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SendSecurityProtectionLocation(sendModel)
+        }
+    } else {
+        weakSelf.locationLabel?.text = "位置信息: latitude(\(model.location.latitude)) longitude(\(model.location.longitude))"
+    }
+}
+```
+
+```swift
+/// 取到系统定位后下发实时位置给设备（用于快速定位）
+func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    guard let loc = locations.last else { return }
+    var stateRaw: UInt8 = 0x01
+    if loc.horizontalAccuracy < 0 {
+        stateRaw = 0x02
+    } else if loc.horizontalAccuracy > 30 {
+        stateRaw = 0x03
+    }
+    let model = VPQH15SecurityProtectionModel()
+    model.rssi = Int32(reqRssiRaw)
+    model.gnssState = VPQH15SecurityProtectionState(rawValue: stateRaw)!
+    model.location = CLLocationCoordinate2D(latitude: round(loc.coordinate.latitude * 100000) / 100000.0,
+                                            longitude: round(loc.coordinate.longitude * 100000) / 100000.0)
+    model.alt = Int32(Int(loc.altitude))
+    VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SendSecurityProtectionLocation(model)
 }
 ```
