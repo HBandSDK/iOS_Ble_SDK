@@ -33,6 +33,7 @@
 | 1.2.8 | 新增定制JH76SN码设置                                         | 2026.09.23 |
 | 1.2.9 | 新增YM23PRO定制佩戴状态上报与测试状态功能                    | 2026.09.24 |
 | 1.3.0 | 新增QH15定制亲情守护功能接口                                 | 2026.09.29 |
+| 1.3.1 | 新增JH151 ECG单导测量时长设置和读取                          | 2026.10.22 |
 
 # SDK初始化
 
@@ -8956,5 +8957,77 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
                                             longitude: round(loc.coordinate.longitude * 100000) / 100000.0)
     model.alt = Int32(Int(loc.altitude))
     VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SendSecurityProtectionLocation(model)
+}
+```
+
+# JH151 ECG单导测量时长
+
+### 前提
+
+JH151定制功能，设备支持ECG单导测量（`VPBleCentralManage.sharedBleManager().peripheralModel.ecgType != 0`）。
+
+### 类名
+
+`VPPeripheralBaseManage`，可参考Demo中`VPJH151ECGSingleLeadDurationVC`的实现
+
+### 接口
+
+```objective-c
+/// JH151-设置ECG单导测量时长
+/// - Parameters:
+///   - duration : 单导测量时长，单位秒（2字节，范围 0~65535，如 30/60/180）
+///   - result : 结果回调，success 为设置是否成功，duration 为设备回显的当前值
+- (void)veepooSDK_JH151SetECGSingleLeadTestDuration:(NSUInteger)duration callBack:(void(^_Nullable)(BOOL success, NSUInteger duration))result;
+```
+
+```objective-c
+/// JH151-读取ECG单导测量时长
+/// - Parameters:
+///   - result : 结果回调，success 为读取是否成功，duration 为当前单导测量时长（秒）
+- (void)veepooSDK_JH151ReadECGSingleLeadTestDuration:(void(^_Nullable)(BOOL success, NSUInteger duration))result;
+```
+
+### 参数解释
+
+duration
+
+| 参数     | 参数类型   | 备注                                                        |
+| -------- | ---------- | ----------------------------------------------------------- |
+| duration | NSUInteger | 单导测量时长，单位秒，2字节，范围 0~65535，常见值 30/60/180 |
+
+回调
+
+| 参数     | 参数类型   | 备注                                   |
+| -------- | ---------- | -------------------------------------- |
+| success  | BOOL       | 设置/读取是否成功                      |
+| duration | NSUInteger | 设备回显的当前单导测量时长，单位秒     |
+
+### 示例代码
+
+```swift
+/// 设置
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH151SetECGSingleLeadTestDuration(180) { [weak self] success, duration in
+    guard let self = self else { return }
+    if success {
+        // 设置成功，duration 为设备回显的当前时长（秒）
+        print("设置成功，当前时长：\(duration)秒")
+    } else {
+        // 设置失败
+        print("设置失败")
+    }
+}
+```
+
+```swift
+/// 读取
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH151ReadECGSingleLeadTestDuration { [weak self] success, duration in
+    guard let self = self else { return }
+    if success {
+        // duration 为当前单导测量时长（秒）
+        print("当前时长：\(duration)秒")
+    } else {
+        // 读取失败
+        print("读取失败")
+    }
 }
 ```

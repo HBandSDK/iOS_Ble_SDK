@@ -33,6 +33,7 @@
 | 1.2.8   | Add SN Code Setting （JH76）                                 | 2026.09.23        |
 | 1.2.9   | Add YM23PRO customized wearing status reporting and testing status function | 2026.09.24        |
 | 1.3.0   | Add QH15 customized family care (security protection) interfaces | 2026.09.29        |
+| 1.3.1   | Add JH151 ECG single-lead measurement duration setting and reading | 2026.10.22      |
 
 # SDK initialization
 
@@ -8940,5 +8941,77 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
                                             longitude: round(loc.coordinate.longitude * 100000) / 100000.0)
     model.alt = Int32(Int(loc.altitude))
     VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_QH15SendSecurityProtectionLocation(model)
+}
+```
+
+# JH151 ECG Single-Lead Measurement Duration
+
+### Precondition
+
+JH151 customization function. The device must support single-lead ECG measurement (`VPBleCentralManage.sharedBleManager().peripheralModel.ecgType != 0`).
+
+### Class Name
+
+`VPPeripheralBaseManage`, refer to the implementation of `VPJH151ECGSingleLeadDurationVC` in the Demo
+
+### Interfaces
+
+```objective-c
+/// JH151-Set the single-lead ECG measurement duration
+/// - Parameters:
+///   - duration : Single-lead measurement duration in seconds (2 bytes, range 0~65535, e.g. 30/60/180)
+///   - result : Result callback. success indicates whether the setting succeeded, duration is the current value echoed by the device
+- (void)veepooSDK_JH151SetECGSingleLeadTestDuration:(NSUInteger)duration callBack:(void(^_Nullable)(BOOL success, NSUInteger duration))result;
+```
+
+```objective-c
+/// JH151-Read the single-lead ECG measurement duration
+/// - Parameters:
+///   - result : Result callback. success indicates whether the read succeeded, duration is the current single-lead measurement duration (seconds)
+- (void)veepooSDK_JH151ReadECGSingleLeadTestDuration:(void(^_Nullable)(BOOL success, NSUInteger duration))result;
+```
+
+### Parameter Explanation
+
+duration
+
+| Parameter | Parameter Type | Remark                                                                                       |
+| --------- | -------------- | -------------------------------------------------------------------------------------------- |
+| duration  | NSUInteger     | Single-lead measurement duration in seconds, 2 bytes, range 0~65535, common values 30/60/180 |
+
+Callback
+
+| Parameter | Parameter Type | Remark                                                                                     |
+| --------- | -------------- | ------------------------------------------------------------------------------------------ |
+| success   | BOOL           | Whether the setting/read succeeded                                                         |
+| duration  | NSUInteger     | Current single-lead measurement duration echoed by the device, in seconds                  |
+
+### Sample Code
+
+```swift
+/// Set
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH151SetECGSingleLeadTestDuration(180) { [weak self] success, duration in
+    guard let self = self else { return }
+    if success {
+        // Set succeeded, duration is the current value echoed by the device (seconds)
+        print("Set succeeded, current duration: \(duration)s")
+    } else {
+        // Set failed
+        print("Set failed")
+    }
+}
+```
+
+```swift
+/// Read
+VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH151ReadECGSingleLeadTestDuration { [weak self] success, duration in
+    guard let self = self else { return }
+    if success {
+        // duration is the current single-lead measurement duration (seconds)
+        print("Current duration: \(duration)s")
+    } else {
+        // Read failed
+        print("Read failed")
+    }
 }
 ```

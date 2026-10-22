@@ -1549,6 +1549,20 @@
 - (void)veepooSDKListenHealthLightStatus:(void(^_Nullable)(VPHealthLightStatusType type))result;
 
 
+#pragma mark JH151 ECG 单导测试时长
+
+/// JH151-设置ECG单导测量时长
+/// - Parameters:
+///   - duration : 单导测量时长，单位秒（2字节，范围 0~65535，如 30/60/180）
+///   - result : 结果回调，success 为设置是否成功，duration 为设备回显的当前值
+- (void)veepooSDK_JH151SetECGSingleLeadTestDuration:(NSUInteger)duration callBack:(void(^_Nullable)(BOOL success, NSUInteger duration))result;
+
+/// JH151-读取ECG单导测量时长
+/// - Parameters:
+///   - result : 结果回调，success 为读取是否成功，duration 为当前单导测量时长（秒）
+- (void)veepooSDK_JH151ReadECGSingleLeadTestDuration:(void(^_Nullable)(BOOL success, NSUInteger duration))result;
+
+
 #pragma mark SN码
 
 /// 读取SN码

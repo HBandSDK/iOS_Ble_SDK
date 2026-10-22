@@ -140,6 +140,8 @@
 		FEB398AC2FE23222002DAC2D /* VPReminderEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB398AB2FE23222002DAC2D /* VPReminderEventVC.swift */; };
 		FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */; };
 		FECB0D9D289CF58A00D434D2 /* VPBloodGlucoseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */; };
+		FECD2D33308A0A7E00E58DA7 /* VPJH151ECGSingleLeadDurationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECD2D32308A0A7E00E58DA7 /* VPJH151ECGSingleLeadDurationVC.swift */; };
+		FECD2D35308A0B0500E58DA7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECD2D34308A0B0500E58DA7 /* SceneDelegate.swift */; };
 		FECF31FA2AFC846B00012184 /* VPDeviceContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF31F92AFC846B00012184 /* VPDeviceContactsViewController.swift */; };
 		FECF31FD2AFC8DB900012184 /* VPContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECF31FB2AFC8DB900012184 /* VPContactCell.swift */; };
 		FECF31FE2AFC8DB900012184 /* VPContactCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECF31FC2AFC8DB900012184 /* VPContactCell.xib */; };
@@ -322,6 +324,8 @@
 		FEB398AB2FE23222002DAC2D /* VPReminderEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPReminderEventVC.swift; sourceTree = "<group>"; };
 		FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPBloodGlucoseViewController.swift; sourceTree = "<group>"; };
 		FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPBloodGlucoseViewController.xib; sourceTree = "<group>"; };
+		FECD2D32308A0A7E00E58DA7 /* VPJH151ECGSingleLeadDurationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPJH151ECGSingleLeadDurationVC.swift; sourceTree = "<group>"; };
+		FECD2D34308A0B0500E58DA7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FECF31F92AFC846B00012184 /* VPDeviceContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDeviceContactsViewController.swift; sourceTree = "<group>"; };
 		FECF31FB2AFC8DB900012184 /* VPContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPContactCell.swift; sourceTree = "<group>"; };
 		FECF31FC2AFC8DB900012184 /* VPContactCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPContactCell.xib; sourceTree = "<group>"; };
@@ -598,6 +602,7 @@
 				67CA3B701EF3774700203D20 /* VPTabelViewCells */,
 				679A218A1EF103A200518B15 /* VeepooViews */,
 				67CB1CAA1E52D26E00805649 /* AppDelegate.swift */,
+				FECD2D34308A0B0500E58DA7 /* SceneDelegate.swift */,
 				044ECB1725E3A358002D090C /* VPPath.swift */,
 				678368AA1E58361400C3BCB8 /* VeepooExtension */,
 				67CB1CB11E52D26E00805649 /* Assets.xcassets */,
@@ -906,6 +911,7 @@
 			isa = PBXGroup;
 			children = (
 				FEE8F12030189BE400268B4B /* VPECGTestVC.swift */,
+				FECD2D32308A0A7E00E58DA7 /* VPJH151ECGSingleLeadDurationVC.swift */,
 			);
 			path = ECG;
 			sourceTree = "<group>";
@@ -1118,6 +1124,8 @@
 				FE03AEF32F0E8576008C1C73 /* VP4GViewController.swift in Sources */,
 				FE03AEF42F0E8576008C1C73 /* VPGSRViewController.swift in Sources */,
 				FE03AEF52F0E8576008C1C73 /* VPDeviceSportViewController.swift in Sources */,
+				FECD2D35308A0B0500E58DA7 /* SceneDelegate.swift in Sources */,
+				FECD2D33308A0A7E00E58DA7 /* VPJH151ECGSingleLeadDurationVC.swift in Sources */,
 				FE03AEF62F0E8576008C1C73 /* VPHealthFuncAssessmentViewController.swift in Sources */,
 				FE03AEF72F0E8576008C1C73 /* VPHealthGlanceViewController.swift in Sources */,
 				FE6C1C132A834691007276E6 /* VPCustomScanManage.swift in Sources */,

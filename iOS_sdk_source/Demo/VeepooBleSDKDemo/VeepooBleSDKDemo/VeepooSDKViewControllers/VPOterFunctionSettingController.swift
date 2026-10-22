@@ -85,7 +85,8 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("ECG", "VPECGTestVC"),
         .init("星历", "VPAGPSViewController"),
         .init("SN码(JH76定制)", "VPSNCodeVC"),
-        .init("YM23PRO 佩戴/测试状态", "VPYM23ProVC")
+        .init("YM23PRO 佩戴/测试状态", "VPYM23ProVC"),
+        .init("JH151-ECG单导测量时长", "VPJH151ECGSingleLeadDurationVC")
     ]
     
     override func viewDidLoad() {
