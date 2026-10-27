@@ -115,6 +115,8 @@
 		FE722C0A25F5D41900EA675E /* VPFindDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */; };
 		FE722C2A25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */; };
 		FE722C2B25F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */; };
+		FE75DB713090583900F1D850 /* VPWearVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE75DB6F3090583900F1D850 /* VPWearVC.swift */; };
+		FE75DB723090583900F1D850 /* VPMotorVibrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE75DB6D3090583900F1D850 /* VPMotorVibrationVC.swift */; };
 		FE776C222C2575F1003CEA82 /* VPDevicePulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE776C202C2575F1003CEA82 /* VPDevicePulseViewController.swift */; };
 		FE776C232C2575F1003CEA82 /* VPDevicePulseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE776C212C2575F1003CEA82 /* VPDevicePulseViewController.xib */; };
 		FE7AF3D430653AB800134B31 /* VPYM23ProVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7AF3D230653AB800134B31 /* VPYM23ProVC.swift */; };
@@ -300,6 +302,8 @@
 		FE722C0825F5D41900EA675E /* VPFindDeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPFindDeviceViewController.xib; sourceTree = "<group>"; };
 		FE722C2825F9E5FA00EA675E /* VPSettingDeviceGPSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPSettingDeviceGPSViewController.swift; sourceTree = "<group>"; };
 		FE722C2925F9E5FA00EA675E /* VPSettingDeviceGPSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPSettingDeviceGPSViewController.xib; sourceTree = "<group>"; };
+		FE75DB6D3090583900F1D850 /* VPMotorVibrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMotorVibrationVC.swift; sourceTree = "<group>"; };
+		FE75DB6F3090583900F1D850 /* VPWearVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPWearVC.swift; sourceTree = "<group>"; };
 		FE776C202C2575F1003CEA82 /* VPDevicePulseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPDevicePulseViewController.swift; sourceTree = "<group>"; };
 		FE776C212C2575F1003CEA82 /* VPDevicePulseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VPDevicePulseViewController.xib; sourceTree = "<group>"; };
 		FE7AF3D230653AB800134B31 /* VPYM23ProVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPYM23ProVC.swift; sourceTree = "<group>"; };
@@ -396,6 +400,8 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE75DB6E3090583900F1D850 /* 马达震动 */,
+				FE75DB703090583900F1D850 /* 佩戴方式 */,
 				FE7AF3D330653AB800134B31 /* YM23PRO */,
 				FE6AB7C83063D57300F54BEC /* SN码 */,
 				FE1707B630413A1800E3185E /* 星历 */,
@@ -776,6 +782,22 @@
 			path = "SN码";
 			sourceTree = "<group>";
 		};
+		FE75DB6E3090583900F1D850 /* 马达震动 */ = {
+			isa = PBXGroup;
+			children = (
+				FE75DB6D3090583900F1D850 /* VPMotorVibrationVC.swift */,
+			);
+			path = "马达震动";
+			sourceTree = "<group>";
+		};
+		FE75DB703090583900F1D850 /* 佩戴方式 */ = {
+			isa = PBXGroup;
+			children = (
+				FE75DB6F3090583900F1D850 /* VPWearVC.swift */,
+			);
+			path = "佩戴方式";
+			sourceTree = "<group>";
+		};
 		FE7AF3D330653AB800134B31 /* YM23PRO */ = {
 			isa = PBXGroup;
 			children = (
@@ -1142,6 +1164,8 @@
 				67CA3B581EF25AB500203D20 /* VPDeviceCountDownController.swift in Sources */,
 				6757E2842196D1BD0019E8B4 /* VPTapTestViewController.swift in Sources */,
 				FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */,
+				FE75DB713090583900F1D850 /* VPWearVC.swift in Sources */,
+				FE75DB723090583900F1D850 /* VPMotorVibrationVC.swift in Sources */,
 				679A21901EF1044100518B15 /* VPFemaleSelectView.swift in Sources */,
 				FE47C4B52EB38F4A0038B3BE /* VPTextImageTransmissionViewController.swift in Sources */,
 				FE89AA1E2AEBBB7C00DF290A /* VPBodyCompositionViewController.swift in Sources */,

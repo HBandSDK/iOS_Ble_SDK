@@ -299,6 +299,15 @@
 //健康灯类型 非0支持,0不支持
 @property (nonatomic, assign) NSInteger healthLightType;
 
+//马达震动类型 非0支持, 0不支持
+@property (nonatomic, assign) NSInteger motorVibrationType;
+
+//佩戴方式
+@property (nonatomic, assign) NSInteger wearType;
+
+//是否支持设置佩戴方式设置
+@property (nonatomic, assign) BOOL isSupportWearSet;
+
 #pragma mark - Property value obtained when new firmware is found 发现新固件的时候获得的属性值
 //Device network upgrade version, when the user receives a new firmware version, tell the user what version of the upgrade is
 //设备网络升级版本，当用户收到有新固件版本的时候，告知用户升级的版本是多少

@@ -1607,6 +1607,26 @@
 ///   - result: 应答回调 (ack: 0不支持 1成功 2失败; currentStatus: 设备实际状态)
 - (void)veepooSDK_YM23ProSendTest:(VPM23ProTestStatus)status callBack:(void(^_Nullable)(NSInteger ack, NSInteger currentStatus))result;
 
+#pragma mark 佩戴方式
+
+/// 读取佩戴方式
+/// - result: 返回当前佩戴手 type(0不支持, 1 左手,2 右手)
+- (void)veepooSDK_readWearConfig:(void(^_Nullable)(NSInteger type))result;
+
+/// 设置佩戴方式
+/// - type: 1 左手,2 右手
+- (void)veepooSDK_setWearConfig:(int)type callBack:(void(^_Nullable)(BOOL success))result;
+
+#pragma mark 马达震动
+
+/// 读取马达震动强度
+/// - result: 返回当前马达震动强度 type(1:弱, 2:中,3:强)
+- (void)veepooSDK_readMotorVibrationType:(void(^_Nullable)(NSInteger type))result;
+
+/// 设置马达震动强度
+/// - type: 1:弱, 2:中,3:强
+- (void)veepooSDK_setMotorVibrationType:(NSInteger)type callBack:(void(^_Nullable)(BOOL success))result;
+
 @end
 
 

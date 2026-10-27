@@ -19,7 +19,8 @@ typedef NS_ENUM(NSUInteger, VPAutoMonitTestType) {
     VPAutoMonitTestTypeBodyTemperature,     // 体温
     VPAutoMonitTestTypeLorentz,             // 洛伦兹
     VPAutoMonitTestTypeHRV,                 // HRV
-    VPAutoMonitTestTypeBloodComponents      // 血液成分
+    VPAutoMonitTestTypeBloodComponents,      // 血液成分
+    VPAutoMonitTestTypeFallReminder,      // 跌倒提醒
 };
 
 /// 自动测量模型
@@ -53,6 +54,17 @@ typedef NS_ENUM(NSUInteger, VPAutoMonitTestType) {
 /// 当前的结束测量时间
 @property (nonatomic, assign) uint8_t endHour;
 @property (nonatomic, assign) uint8_t endMinute;
+
+/// 跌倒灵敏度
+@property (nonatomic, assign) uint8_t sensitivity;
+
+/// 低氧开关
+@property (nonatomic, assign) BOOL lowOxyOpen;
+
+@property (nonatomic, assign) BOOL isSupLowOxy;
+
+/// 不需要管作用,但是下发时要保证和读取的值一致
+@property (nonatomic, assign) BOOL haveD8;
 
 #pragma mark - 内部函数
 

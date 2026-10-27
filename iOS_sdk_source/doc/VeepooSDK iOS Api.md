@@ -34,6 +34,7 @@
 | 1.2.9 | 新增YM23PRO定制佩戴状态上报与测试状态功能                    | 2026.09.24 |
 | 1.3.0 | 新增QH15定制亲情守护功能接口                                 | 2026.09.29 |
 | 1.3.1 | 新增JH151 ECG单导测量时长设置和读取                          | 2026.10.22 |
+| 1.3.2 | 新增佩戴方式和马达震动强度设置接口，自动测量里新增跌倒监测和低氧提醒 | 2026.10.27 |
 
 # SDK初始化
 
@@ -5087,6 +5088,7 @@ typedef NS_ENUM(NSUInteger, VPAutoMonitTestType) {
     VPAutoMonitTestTypeLorentz,             // 洛伦兹
     VPAutoMonitTestTypeHRV,                 // HRV
     VPAutoMonitTestTypeBloodComponents      // 血液成分
+    VPAutoMonitTestTypeFallReminder,      // 跌倒提醒
 };
 ```
 
@@ -5107,6 +5109,9 @@ VPAutoMonitTestModel
 | startMinute      | uint8_t             | 当前的开始测量时间-分钟  |
 | endHour          | uint8_t             | 当前的结束测量时间-小时  |
 | endMinute        | uint8_t             | 当前的结束测量时间-分钟  |
+| sensitivity      | uint8_t             | 跌倒感应的灵敏度         |
+| lowOxyOpen       | BOOL                | 低氧提醒开关状态         |
+| isSupLowOxy      | BOOL                | 是否支持低氧提醒         |
 
 ### 示例代码
 
@@ -9028,6 +9033,134 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH151ReadECGSin
     } else {
         // 读取失败
         print("读取失败")
+    }
+}
+```
+# 佩戴方式
+
+### 前提
+
+需要设备支持设置佩戴方式，通过 peripheralModel.isSupportWearSet 判断设备是否支持。
+
+### 类名
+
+VPPeripheralBaseManage，可参考 Demo 中 VPWearVC 的实现
+
+### 接口
+
+```objective-c
+/// 读取佩戴方式
+/// - Parameter result: 回调返回当前佩戴手 type（0 不支持，1 左手，2 右手）
+- (void)veepooSDK_readWearConfig:(void(^_Nullable)(NSInteger type))result;
+```
+
+```objective-c
+/// 设置佩戴方式
+/// - Parameters:
+///   - type: 佩戴手 1 左手，2 右手
+///   - result: 回调返回是否设置成功
+- (void)veepooSDK_setWearConfig:(int)type callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+### 参数解释
+
+veepooSDK_readWearConfig 回调参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| type | NSInteger | 佩戴手：0 不支持，1 左手，2 右手 |
+
+veepooSDK_setWearConfig 参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| type | int | 佩戴手：1 左手，2 右手 |
+| success（回调） | BOOL | 是否设置成功 |
+
+### 示例代码
+
+```swift
+// 判断是否支持设置佩戴方式
+let isSupport = VPBleCentralManage.sharedBleManager().peripheralModel.isSupportWearSet
+
+let peripheralManage = VPBleCentralManage.sharedBleManager().peripheralManage
+
+// 1. 读取佩戴方式（type: 1 左手，2 右手；UI 段控件索引从 0 开始，故减 1）
+peripheralManage?.veepooSDK_readWearConfig { type in
+    if type != 0 {
+        self.segControl?.selectedSegmentIndex = type - 1
+    }
+}
+
+// 2. 设置佩戴方式（段控件选中索引 + 1 即 type：1 左手，2 右手）
+@objc func setWearState() {
+    let index = (self.segControl?.selectedSegmentIndex ?? 0) + 1
+    peripheralManage?.veepooSDK_setWearConfig(Int32(index)) { success in
+        // success: 是否设置成功
+    }
+}
+```
+# 马达震动
+
+### 前提
+
+需要设备支持马达震动强度设置，通过 peripheralModel.motorVibrationType != 0 判断（非 0 支持，0 不支持）。
+
+### 类名
+
+VPPeripheralBaseManage，可参考 Demo 中 VPMotorVibrationVC 的实现
+
+### 接口
+
+```objective-c
+/// 读取马达震动强度
+/// - Parameter result: 回调返回当前马达震动强度 type（1 弱，2 中，3 强）
+- (void)veepooSDK_readMotorVibrationType:(void(^_Nullable)(NSInteger type))result;
+```
+
+```objective-c
+/// 设置马达震动强度
+/// - Parameters:
+///   - type: 震动强度 1 弱，2 中，3 强
+///   - result: 回调返回是否设置成功
+- (void)veepooSDK_setMotorVibrationType:(NSInteger)type callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+### 参数解释
+
+veepooSDK_readMotorVibrationType 回调参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| type | NSInteger | 马达震动强度：1 弱，2 中，3 强 |
+
+veepooSDK_setMotorVibrationType 参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| type | NSInteger | 马达震动强度：1 弱，2 中，3 强 |
+| success（回调） | BOOL | 是否设置成功 |
+
+### 示例代码
+
+```swift
+// 判断是否支持马达震动强度设置（motorVibrationType 非 0 支持）
+let isSupport = VPBleCentralManage.sharedBleManager().peripheralModel.motorVibrationType != 0
+
+let peripheralManage = VPBleCentralManage.sharedBleManager().peripheralManage
+
+// 1. 读取马达震动强度（type: 1 弱，2 中，3 强；UI 段控件索引从 0 开始，故减 1）
+peripheralManage?.veepooSDK_readMotorVibrationType { type in
+    if type != 0 {
+        self.segControl?.selectedSegmentIndex = type - 1
+    }
+}
+
+// 2. 设置马达震动强度（段控件选中索引 + 1 即 type：1 弱，2 中，3 强）
+@objc func setMotorVibrationState() {
+    let index = (self.segControl?.selectedSegmentIndex ?? 0) + 1
+    peripheralManage?.veepooSDK_setMotorVibrationType(index) { success in
+        // success: 是否设置成功
     }
 }
 ```

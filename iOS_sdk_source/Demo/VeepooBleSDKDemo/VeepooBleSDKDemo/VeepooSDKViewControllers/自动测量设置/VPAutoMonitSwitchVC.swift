@@ -264,7 +264,46 @@ class VPAutoMonitSwitchVC: UIViewController {
     private var dataSource: [VPAutoMonitTestModel] = []
     private var tableView: UITableView!
     private var currentEditingIndex: IndexPath?
-    
+
+    private enum Row {
+        case monitor(index: Int)
+        case lowOxy(index: Int)
+        case sensitivity(index: Int)
+    }
+
+    // 列表行：功能项按顺序展开，低氧提醒、灵敏度作为子项紧跟各自功能项
+    private var rows: [Row] {
+        var result: [Row] = []
+        for (index, model) in dataSource.enumerated() {
+            result.append(.monitor(index: index))
+            if model.type == .bloodOxygen, model.isSupLowOxy {
+                result.append(.lowOxy(index: index))
+            }
+            if model.type == .fallReminder {
+                result.append(.sensitivity(index: index))
+            }
+        }
+        return result
+    }
+
+    private func row(forMonitorIndex index: Int) -> Int? {
+        return rows.firstIndex { row in
+            if case .monitor(let i) = row {
+                return i == index
+            }
+            return false
+        }
+    }
+
+    private func sensitivityText(_ value: UInt8) -> String {
+        switch value {
+        case 1: return "低"
+        case 2: return "标准"
+        case 3: return "高"
+        default: return "标准"
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubViews()
@@ -278,9 +317,38 @@ extension VPAutoMonitSwitchVC {
             guard let someModels = models else {
                 return
             }
-            self?.dataSource = someModels
             print(">>> \(someModels.count)")
+            self?.dataSource = someModels
             self?.tableView.reloadData()
+        }
+    }
+}
+
+extension VPAutoMonitSwitchVC {
+    private func showSensitivityPicker(for model: VPAutoMonitTestModel, at indexPath: IndexPath) {
+        let alert = UIAlertController(title: "灵敏度", message: nil, preferredStyle: .actionSheet)
+        for value in 1...3 {
+            let title = "\(value) \(sensitivityText(UInt8(value)))"
+            alert.addAction(UIAlertAction(title: title, style: .default) { [weak self] _ in
+                self?.updateSensitivity(UInt8(value), for: model, at: indexPath)
+            })
+        }
+        alert.addAction(UIAlertAction(title: "取消", style: .cancel))
+        alert.popoverPresentationController?.sourceView = tableView
+        alert.popoverPresentationController?.sourceRect = tableView.rectForRow(at: indexPath)
+        present(alert, animated: true)
+    }
+
+    private func updateSensitivity(_ value: UInt8, for model: VPAutoMonitTestModel, at indexPath: IndexPath) {
+        let oldValue = model.sensitivity
+        model.sensitivity = value
+
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetAutoMonitSwitch(with: model) { [weak self] success, _ in
+            guard let self = self else { return }
+            if !success {
+                model.sensitivity = oldValue
+            }
+            self.tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
 }
@@ -294,6 +362,8 @@ extension VPAutoMonitSwitchVC {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AutoMonitSwitchCell.self, forCellReuseIdentifier: "AutoMonitCell")
+        tableView.register(LowOxySwitchCell.self, forCellReuseIdentifier: "LowOxyCell")
+        tableView.register(SensitivityCell.self, forCellReuseIdentifier: "SensitivityCell")
         view.addSubview(tableView)
     }
 }
@@ -332,14 +402,19 @@ class AutoMonitSwitchCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var titleOffsetConstraint: NSLayoutConstraint?
+
     private func setupUI() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(timeLabel)
         contentView.addSubview(switchControl)
-        
+
+        let titleOffset = titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -10)
+        titleOffsetConstraint = titleOffset
+
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -10),
+            titleOffset,
             
             timeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             timeLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
@@ -350,47 +425,178 @@ class AutoMonitSwitchCell: UITableViewCell {
     }
     
     func configure(with model: VPAutoMonitTestModel) {
+        let hidesTime = model.type == .fallReminder
         titleLabel.text = model.displayText
-        timeLabel.text = "间隔: \(model.timeInterval)分钟"
+        timeLabel.isHidden = hidesTime
+        timeLabel.text = hidesTime ? nil : "间隔: \(model.timeInterval)分钟"
+        titleOffsetConstraint?.constant = hidesTime ? 0 : -10
         switchControl.isOn = model.on
+    }
+}
+
+// MARK: - 低氧提醒开关Cell（独立行，无时间间隔设置）
+class LowOxySwitchCell: UITableViewCell {
+
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    let switchControl: UISwitch = {
+        let sw = UISwitch()
+        sw.translatesAutoresizingMaskIntoConstraints = false
+        return sw
+    }()
+
+    var switchChanged: ((Bool) -> Void)?
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupUI()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupUI() {
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(switchControl)
+        switchControl.addTarget(self, action: #selector(switchToggled(_:)), for: .valueChanged)
+
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+
+            switchControl.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            switchControl.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+    }
+
+    @objc private func switchToggled(_ sender: UISwitch) {
+        switchChanged?(sender.isOn)
+    }
+}
+
+// MARK: - 灵敏度设置Cell（右侧显示当前灵敏度，点击选择）
+class SensitivityCell: UITableViewCell {
+
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    let valueLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textColor = .gray
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        accessoryType = .disclosureIndicator
+        setupUI()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    private func setupUI() {
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(valueLabel)
+
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+
+            valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            valueLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            valueLabel.leadingAnchor.constraint(greaterThanOrEqualTo: titleLabel.trailingAnchor, constant: 8)
+        ])
     }
 }
 
 // MARK: - TableView DataSource & Delegate
 extension VPAutoMonitSwitchVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return rows.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AutoMonitCell", for: indexPath) as! AutoMonitSwitchCell
-        let model = dataSource[indexPath.row]
-        cell.configure(with: model)
-        
-        // 为Switch添加事件
-        cell.switchControl.tag = indexPath.row
-        cell.switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
-        
-        return cell
+        switch rows[indexPath.row] {
+        case .monitor(let index):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AutoMonitCell", for: indexPath) as! AutoMonitSwitchCell
+            let model = dataSource[index]
+            cell.configure(with: model)
+
+            cell.switchControl.tag = index
+            cell.switchControl.addTarget(self, action: #selector(switchValueChanged(_:)), for: .valueChanged)
+
+            return cell
+
+        case .lowOxy(let index):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LowOxyCell", for: indexPath) as! LowOxySwitchCell
+            let model = dataSource[index]
+            cell.titleLabel.text = "低氧提醒"
+            cell.switchControl.isOn = model.lowOxyOpen
+            cell.switchChanged = { [weak tableView] isOn in
+                model.lowOxyOpen = isOn
+                VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetAutoMonitSwitch(with: model) { success, _ in
+                    if !success {
+                        model.lowOxyOpen = !isOn
+                        DispatchQueue.main.async {
+                            tableView?.reloadRows(at: [indexPath], with: .none)
+                        }
+                    }
+                }
+            }
+            return cell
+
+        case .sensitivity(let index):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SensitivityCell", for: indexPath) as! SensitivityCell
+            let model = dataSource[index]
+            cell.titleLabel.text = "灵敏度"
+            cell.valueLabel.text = sensitivityText(model.sensitivity)
+            return cell
+        }
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let model = dataSource[indexPath.row]
-        if model.type == .lorentz {
+
+        switch rows[indexPath.row] {
+        case .lowOxy:
             return
+
+        case .sensitivity(let index):
+            showSensitivityPicker(for: dataSource[index], at: indexPath)
+
+        case .monitor(let index):
+            let model = dataSource[index]
+            if model.type == .lorentz || model.type == .fallReminder {
+                return
+            }
+            
+            currentEditingIndex = indexPath
+            
+            // 获取步长值，如果minStepValue为0则使用默认值1
+            let stepValue = model.minStepValue == 0 ? 0 : model.minStepValue
+            
+            // 创建并显示时间选择器
+            let timePicker = TimePickerViewController(defaultTime: Int(model.timeInterval), stepValue: Int(stepValue))
+            timePicker.delegate = self
+            present(timePicker, animated: true)
         }
-        
-        currentEditingIndex = indexPath
-        
-        // 获取步长值，如果minStepValue为0则使用默认值1
-        let stepValue = model.minStepValue == 0 ? 0 : model.minStepValue
-        
-        // 创建并显示时间选择器
-        let timePicker = TimePickerViewController(defaultTime: Int(model.timeInterval), stepValue: Int(stepValue))
-        timePicker.delegate = self
-        present(timePicker, animated: true)
     }
     
     @objc private func switchValueChanged(_ sender: UISwitch) {
@@ -398,9 +604,12 @@ extension VPAutoMonitSwitchVC: UITableViewDataSource, UITableViewDelegate {
         let model = dataSource[index]
         model.on = sender.isOn
         
-        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetAutoMonitSwitch(with: model) { [weak self] success, model in
+        VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDKSetAutoMonitSwitch(with: model) { [weak self] success, _ in
+            guard let self = self else { return }
             if success {
-                self?.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+                if let row = self.row(forMonitorIndex: index) {
+                    self.tableView.reloadRows(at: [IndexPath(row: row, section: 0)], with: .none)
+                }
             } else {
                 // 如果设置失败，恢复Switch状态
                 sender.isOn = !sender.isOn
@@ -412,9 +621,11 @@ extension VPAutoMonitSwitchVC: UITableViewDataSource, UITableViewDelegate {
 // MARK: - TimePickerDelegate
 extension VPAutoMonitSwitchVC: TimePickerDelegate {
     func timePickerDidConfirm(selectedTime: Int) {
-        guard let indexPath = currentEditingIndex else { return }
+        guard let indexPath = currentEditingIndex,
+              indexPath.row < rows.count,
+              case .monitor(let index) = rows[indexPath.row] else { return }
         
-        let model = dataSource[indexPath.row]
+        let model = dataSource[index]
         model.timeInterval = UInt16(selectedTime)
         model.on = true // 设置时间时自动开启
         
@@ -452,6 +663,8 @@ extension VPAutoMonitTestModel {
             return "HRV自动监测"
         case .bloodComponents:
             return "血液成分监测"
+        case .fallReminder:
+            return "跌倒感应"
         }
     }
     

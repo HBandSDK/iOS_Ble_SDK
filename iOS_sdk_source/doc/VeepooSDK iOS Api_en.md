@@ -34,6 +34,7 @@
 | 1.2.9   | Add YM23PRO customized wearing status reporting and testing status function | 2026.09.24        |
 | 1.3.0   | Add QH15 customized family care (security protection) interfaces | 2026.09.29        |
 | 1.3.1   | Add JH151 ECG single-lead measurement duration setting and reading | 2026.10.22      |
+| 1.3.2   | Add wearing mode (hand) setting，motor vibration intensity interfaces。Added fall monitoring and low oxygen reminder in automatic measurement | 2026.10.27      |
 
 # SDK initialization
 
@@ -5069,6 +5070,7 @@ typedef NS_ENUM(NSUInteger, VPAutoMonitTestType) {
     VPAutoMonitTestTypeLorentz,             // Lorentz
     VPAutoMonitTestTypeHRV,                 // HRV
     VPAutoMonitTestTypeBloodComponents      // Blood components
+     VPAutoMonitTestTypeFallReminder,      // Fall Reminder
 };
 ```
 
@@ -5093,6 +5095,9 @@ VPAutoMonitTestModel
 | startMinute      | uint8_t             | Current start measurement time - minute  |
 | endHour          | uint8_t             | Current end measurement time - hour      |
 | endMinute        | uint8_t             | Current end measurement time - minute    |
+| sensitivity      | uint8_t             | Sensitivity of fall detection            |
+| lowOxyOpen       | BOOL                | Low oxygen warning switch status         |
+| isSupLowOxy      | BOOL                | Is low oxygen alert supported            |
 
 ### Sample Code
 
@@ -9012,6 +9017,134 @@ VPBleCentralManage.sharedBleManager().peripheralManage.veepooSDK_JH151ReadECGSin
     } else {
         // Read failed
         print("Read failed")
+    }
+}
+```
+# Wearing Mode (Hand)
+
+### Prerequisite
+
+The device must support wearing mode setting, determined by peripheralModel.isSupportWearSet.
+
+### Class
+
+VPPeripheralBaseManage, refer to VPWearVC in the Demo for implementation
+
+### Interfaces
+
+```objective-c
+/// Read the wearing mode
+/// - Parameter result: callback returns the current wearing hand type (0 not supported, 1 left hand, 2 right hand)
+- (void)veepooSDK_readWearConfig:(void(^_Nullable)(NSInteger type))result;
+```
+
+```objective-c
+/// Set the wearing mode
+/// - Parameters:
+///   - type: wearing hand 1 left hand, 2 right hand
+///   - result: callback returns whether the setting succeeded
+- (void)veepooSDK_setWearConfig:(int)type callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+### Parameters
+
+veepooSDK_readWearConfig callback parameter
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| type | NSInteger | Wearing hand: 0 not supported, 1 left hand, 2 right hand |
+
+veepooSDK_setWearConfig parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| type | int | Wearing hand: 1 left hand, 2 right hand |
+| success (callback) | BOOL | Whether the setting succeeded |
+
+### Sample Code
+
+```swift
+// Check whether the device supports wearing mode setting
+let isSupport = VPBleCentralManage.sharedBleManager().peripheralModel.isSupportWearSet
+
+let peripheralManage = VPBleCentralManage.sharedBleManager().peripheralManage
+
+// 1. Read wearing mode (type: 1 left hand, 2 right hand; UI segment index starts at 0, so subtract 1)
+peripheralManage?.veepooSDK_readWearConfig { type in
+    if type != 0 {
+        self.segControl?.selectedSegmentIndex = type - 1
+    }
+}
+
+// 2. Set wearing mode (segment selected index + 1 is the type: 1 left hand, 2 right hand)
+@objc func setWearState() {
+    let index = (self.segControl?.selectedSegmentIndex ?? 0) + 1
+    peripheralManage?.veepooSDK_setWearConfig(Int32(index)) { success in
+        // success: whether the setting succeeded
+    }
+}
+```
+# Motor Vibration
+
+### Prerequisite
+
+The device must support motor vibration intensity setting, determined by peripheralModel.motorVibrationType != 0 (non-zero supported, 0 not supported).
+
+### Class
+
+VPPeripheralBaseManage, refer to VPMotorVibrationVC in the Demo for implementation
+
+### Interfaces
+
+```objective-c
+/// Read the motor vibration intensity
+/// - Parameter result: callback returns the current motor vibration intensity type (1 weak, 2 medium, 3 strong)
+- (void)veepooSDK_readMotorVibrationType:(void(^_Nullable)(NSInteger type))result;
+```
+
+```objective-c
+/// Set the motor vibration intensity
+/// - Parameters:
+///   - type: vibration intensity 1 weak, 2 medium, 3 strong
+///   - result: callback returns whether the setting succeeded
+- (void)veepooSDK_setMotorVibrationType:(NSInteger)type callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+### Parameters
+
+veepooSDK_readMotorVibrationType callback parameter
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| type | NSInteger | Motor vibration intensity: 1 weak, 2 medium, 3 strong |
+
+veepooSDK_setMotorVibrationType parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| type | NSInteger | Motor vibration intensity: 1 weak, 2 medium, 3 strong |
+| success (callback) | BOOL | Whether the setting succeeded |
+
+### Sample Code
+
+```swift
+// Check whether the device supports motor vibration intensity setting (motorVibrationType non-zero supported)
+let isSupport = VPBleCentralManage.sharedBleManager().peripheralModel.motorVibrationType != 0
+
+let peripheralManage = VPBleCentralManage.sharedBleManager().peripheralManage
+
+// 1. Read motor vibration intensity (type: 1 weak, 2 medium, 3 strong; UI segment index starts at 0, so subtract 1)
+peripheralManage?.veepooSDK_readMotorVibrationType { type in
+    if type != 0 {
+        self.segControl?.selectedSegmentIndex = type - 1
+    }
+}
+
+// 2. Set motor vibration intensity (segment selected index + 1 is the type: 1 weak, 2 medium, 3 strong)
+@objc func setMotorVibrationState() {
+    let index = (self.segControl?.selectedSegmentIndex ?? 0) + 1
+    peripheralManage?.veepooSDK_setMotorVibrationType(index) { success in
+        // success: whether the setting succeeded
     }
 }
 ```
