@@ -140,6 +140,7 @@
 		FEA6587B2D22879A00FB7469 /* ABParTool.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FEA658742D2286ED00FB7469 /* ABParTool.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FEB398AA2FE23219002DAC2D /* VPMotionStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB398A92FE23219002DAC2D /* VPMotionStateVC.swift */; };
 		FEB398AC2FE23222002DAC2D /* VPReminderEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB398AB2FE23222002DAC2D /* VPReminderEventVC.swift */; };
+		FEB932A3309DBDD00031F59E /* VPGameControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB932A1309DBDD00031F59E /* VPGameControlVC.swift */; };
 		FECB0D9C289CF58A00D434D2 /* VPBloodGlucoseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */; };
 		FECB0D9D289CF58A00D434D2 /* VPBloodGlucoseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */; };
 		FECD2D33308A0A7E00E58DA7 /* VPJH151ECGSingleLeadDurationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECD2D32308A0A7E00E58DA7 /* VPJH151ECGSingleLeadDurationVC.swift */; };
@@ -326,6 +327,7 @@
 		FEA658782D22872100FB7469 /* VeepooBleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VeepooBleSDK.framework; sourceTree = "<group>"; };
 		FEB398A92FE23219002DAC2D /* VPMotionStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPMotionStateVC.swift; sourceTree = "<group>"; };
 		FEB398AB2FE23222002DAC2D /* VPReminderEventVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPReminderEventVC.swift; sourceTree = "<group>"; };
+		FEB932A1309DBDD00031F59E /* VPGameControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPGameControlVC.swift; sourceTree = "<group>"; };
 		FECB0D9A289CF58A00D434D2 /* VPBloodGlucoseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPBloodGlucoseViewController.swift; sourceTree = "<group>"; };
 		FECB0D9B289CF58A00D434D2 /* VPBloodGlucoseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VPBloodGlucoseViewController.xib; sourceTree = "<group>"; };
 		FECD2D32308A0A7E00E58DA7 /* VPJH151ECGSingleLeadDurationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPJH151ECGSingleLeadDurationVC.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 		675052231E553F12008D45BC /* VeepooSDKViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FEB932A2309DBDD00031F59E /* 游戏控制 */,
 				FE75DB6E3090583900F1D850 /* 马达震动 */,
 				FE75DB703090583900F1D850 /* 佩戴方式 */,
 				FE7AF3D330653AB800134B31 /* YM23PRO */,
@@ -879,6 +882,14 @@
 			path = "运动状态";
 			sourceTree = "<group>";
 		};
+		FEB932A2309DBDD00031F59E /* 游戏控制 */ = {
+			isa = PBXGroup;
+			children = (
+				FEB932A1309DBDD00031F59E /* VPGameControlVC.swift */,
+			);
+			path = "游戏控制";
+			sourceTree = "<group>";
+		};
 		FECB0D97289CF3F000D434D2 /* 血糖 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1232,6 +1243,7 @@
 				67640D531E56D248008D9D71 /* VPSyncPersonalInformationController.swift in Sources */,
 				FE65720E25B930AD00672A8B /* VPPhotoDialViewController.swift in Sources */,
 				FEE777BB2FA08746003C8733 /* VPQX17ViewController.swift in Sources */,
+				FEB932A3309DBDD00031F59E /* VPGameControlVC.swift in Sources */,
 				67640D601E57E346008D9D71 /* VPAlarmClockSettingController.swift in Sources */,
 				67640D4F1E56CA04008D9D71 /* VPOterFunctionSettingController.swift in Sources */,
 				67CA3B5B1EF2649700203D20 /* VPCountDownSelectView.swift in Sources */,

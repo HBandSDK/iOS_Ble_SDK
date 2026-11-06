@@ -54,6 +54,7 @@
 #import "VPDeviceSportWithGPSModel.h"
 #import "VPDeviceSportModel.h"
 #import "VPQH15SecurityProtectionModel.h"
+#import "VPGameClockModel.h"
 
 
 #import "VPQX17PublicDefine.h"
@@ -1626,6 +1627,51 @@
 /// 设置马达震动强度
 /// - type: 1:弱, 2:中,3:强
 - (void)veepooSDK_setMotorVibrationType:(NSInteger)type callBack:(void(^_Nullable)(BOOL success))result;
+
+#pragma mark ZT79定制项目适用，非该项目调用下方接口无回调
+
+/// ZT79定制-读取游戏控制信息(总开关+时段列表)
+/// - Parameters:
+///   - mainSwitch: 宿主侧已知的总开关状态(0关/1开)，从未同步过传nil
+///   - clockArr: 宿主侧当前持有的时段列表(用于与设备端数据一致性校验，首次传@[])
+///   - result: readState见VPGameClockReadState；mainSwitch为设备侧总开关；
+///             clockArr在FullData时为设备侧数据、Synced时原样返回入参、Empty时为@[]
+- (void)veepooSDK_ZT79ReadGameClock:(NSNumber * _Nullable)mainSwitch
+                           clockArr:(NSArray<VPGameClockModel *> * _Nonnull)clockArr
+                             result:(void(^_Nullable)(VPGameClockReadState readState, NSInteger mainSwitch, NSArray<VPGameClockModel *> * _Nonnull clockArr))result;
+
+/// ZT79定制-设置游戏控制总开关
+/// - Parameters:
+///   - state: 目标总开关状态
+///   - temporary: 临时游戏时段，可为nil(crcClockArr需包含它)
+///   - crcClockArr: 操作生效后的全量时段列表，用于与设备端数据一致性校验(本SDK不做持久化，状态由宿主维护)
+///   - result: 设备应答(YES成功/NO失败)
+- (void)veepooSDK_ZT79SetGameClockMainSwitch:(BOOL)state
+                                   temporary:(VPGameClockModel * _Nullable)temporary
+                                 crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                                    callBack:(void(^_Nullable)(BOOL success))result;
+
+/// ZT79定制-设置、添加、修改游戏控制时段(支持批量)
+/// - Parameters:
+///   - setArr: 本次设置的时段条目(可单条可批量)
+///   - mainSwitch: 宿主侧已知的总开关状态(0关/1开)，从未同步过传nil
+///   - crcClockArr: 操作生效后的全量时段列表(需含setArr内容)，用于与设备端数据一致性校验
+///   - result: 设备应答(YES成功/NO失败)
+- (void)veepooSDK_ZT79SetGameClocks:(NSArray<VPGameClockModel *> * _Nonnull)setArr
+                         mainSwitch:(NSNumber * _Nullable)mainSwitch
+                        crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                           callBack:(void(^_Nullable)(BOOL success))result;
+
+/// ZT79定制-删除游戏控制时段(支持批量按id删除)
+/// - Parameters:
+///   - idArr: 待删除的clockID数组(1~10)
+///   - mainSwitch: 宿主侧已知的总开关状态(0关/1开)，从未同步过传nil
+///   - crcClockArr: 删除后剩余的时段列表，用于与设备端数据一致性校验
+///   - result: 设备应答(YES成功/NO失败)
+- (void)veepooSDK_ZT79DeleteGameClocksWithIDs:(NSArray<NSNumber *> * _Nonnull)idArr
+                                   mainSwitch:(NSNumber * _Nullable)mainSwitch
+                                  crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                                     callBack:(void(^_Nullable)(BOOL success))result;
 
 @end
 

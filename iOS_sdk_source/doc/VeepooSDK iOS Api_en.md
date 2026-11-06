@@ -35,6 +35,7 @@
 | 1.3.0   | Add QH15 customized family care (security protection) interfaces | 2026.09.29        |
 | 1.3.1   | Add JH151 ECG single-lead measurement duration setting and reading | 2026.10.22      |
 | 1.3.2   | Add wearing mode (hand) setting，motor vibration intensity interfaces。Added fall monitoring and low oxygen reminder in automatic measurement | 2026.10.27      |
+| 1.3.3   | Add ZT79 customized game control interfaces | 2026.11.06      |
 
 # SDK initialization
 
@@ -1657,7 +1658,9 @@ How to get it：**VPBleCentralManage.sharedBleManager().peripheralManage.periphe
 
 `0` represents normal sleep
 
-`1、3` represents precise sleep
+`2` unsupported sleep
+
+`other` represents precise sleep
 
 ```objective-c
 @property (nonatomic, assign) NSInteger sleepType;
@@ -9145,6 +9148,271 @@ peripheralManage?.veepooSDK_readMotorVibrationType { type in
     let index = (self.segControl?.selectedSegmentIndex ?? 0) + 1
     peripheralManage?.veepooSDK_setMotorVibrationType(index) { success in
         // success: whether the setting succeeded
+    }
+}
+```
+
+# Game Control (ZT79 customized)
+
+### Prerequisite
+
+The device must support this function (ZT79 custom), determined by peripheralModel.gameType != 0 (non-zero supported, 0 not supported).
+
+Note: the interfaces of this feature do not persist data. The main switch state and the full clock list are maintained by the host App and passed in on every call (used for data consistency check with the device); the recommended sequence is: update the host-side state first → send the command → roll back on failure.
+
+### Class
+
+VPPeripheralBaseManage, refer to VPGameControlVC in the Demo for implementation
+
+### Interfaces
+
+```objective-c
+/// Read the game control information (main switch + clock list)
+/// - Parameters:
+///   - mainSwitch: the main switch state known by the host (0 off, 1 on), pass nil if never synchronized
+///   - clockArr: the clock list currently held by the host (used for data consistency check with the device, pass an empty array for the first time)
+///   - result: callback returns the read state readState (see VPGameClockReadState), the device-side main switch mainSwitch, and the clock list clockArr
+- (void)veepooSDK_ZT79ReadGameClock:(NSNumber * _Nullable)mainSwitch
+                       clockArr:(NSArray<VPGameClockModel *> * _Nonnull)clockArr
+                         result:(void(^_Nullable)(VPGameClockReadState readState, NSInteger mainSwitch, NSArray<VPGameClockModel *> * _Nonnull clockArr))result;
+```
+
+```objective-c
+/// Set the game control main switch
+/// - Parameters:
+///   - state: target main switch state (YES on / NO off)
+///   - temporary: temporary game clock entry, nullable (crcClockArr must contain it when passed)
+///   - crcClockArr: the full clock list after the operation takes effect, used for data consistency check with the device
+///   - result: callback returns whether the setting succeeded
+- (void)veepooSDK_ZT79SetGameClockMainSwitch:(BOOL)state
+                              temporary:(VPGameClockModel * _Nullable)temporary
+                            crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                               callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+```objective-c
+/// Set, add or modify game control clock entries (batch supported)
+/// - Parameters:
+///   - setArr: the clock entries to set this time (single or batch)
+///   - mainSwitch: the main switch state known by the host (0 off, 1 on), pass nil if never synchronized
+///   - crcClockArr: the full clock list after the operation takes effect (must contain the setArr content), used for data consistency check with the device
+///   - result: callback returns whether the setting succeeded
+- (void)veepooSDK_ZT79SetGameClocks:(NSArray<VPGameClockModel *> * _Nonnull)setArr
+                     mainSwitch:(NSNumber * _Nullable)mainSwitch
+                    crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                       callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+```objective-c
+/// Delete game control clock entries (batch delete by id)
+/// - Parameters:
+///   - idArr: the clockID array to delete (1~10)
+///   - mainSwitch: the main switch state known by the host (0 off, 1 on), pass nil if never synchronized
+///   - crcClockArr: the remaining clock list after deletion, used for data consistency check with the device
+///   - result: callback returns whether the deletion succeeded
+- (void)veepooSDK_ZT79DeleteGameClocksWithIDs:(NSArray<NSNumber *> * _Nonnull)idArr
+                               mainSwitch:(NSNumber * _Nullable)mainSwitch
+                              crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                                 callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+```objective-c
+/// A single game control clock entry
+@interface VPGameClockModel : NSObject<NSCopying>
+
+/// Clock id: 1~10 (starting from 1, up to 10 entries)
+@property (nonatomic, assign) uint8_t clockID;
+
+/// Clock entry type (see the VPGameClockType enum: 1 weekly repeat, 2 single (no repeat), 3 temporary)
+@property (nonatomic, assign) VPGameClockType clockType;
+
+/// Year/month/day, only valid for single/temporary entries. Year is a single byte, actual year - 2000; all 0 for weekly repeat
+@property (nonatomic, assign) uint8_t clockYear;
+@property (nonatomic, assign) uint8_t clockMonth;
+@property (nonatomic, assign) uint8_t clockDay;
+
+/// Repeat weekdays (see VPGameClockWeekday: bit0~bit6 for Monday~Sunday, VPGameClockWeekdayEveryDay for every day); VPGameClockWeekdayNone for single/temporary
+@property (nonatomic, assign) VPGameClockWeekday clockRepeat;
+
+/// Start hour, minute, second
+@property (nonatomic, assign) uint8_t clockHour;
+@property (nonatomic, assign) uint8_t clockMinute;
+@property (nonatomic, assign) uint8_t clockSecond;
+
+/// Duration in minutes (no less than 5)
+@property (nonatomic, assign) uint16_t clockDuration;
+
+/// Switch state, 0 off, 1 on
+@property (nonatomic, assign) uint8_t clockState;
+
+/// Remaining time (seconds) of a single (no-repeat) entry, returns 0 once expired
+- (NSInteger)getGameModelRemainTimeValue;
+
+@end
+```
+
+### Parameters
+
+veepooSDK_ZT79ReadGameClock parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| mainSwitch | NSNumber (nullable) | The main switch known by the host: 0 off, 1 on; pass nil if never synchronized |
+| clockArr | `NSArray<VPGameClockModel *>` | The clock list currently held by the host, used for consistency check; pass an empty array for the first time |
+| readState (callback) | VPGameClockReadState | Read response state, see the enum table below |
+| mainSwitch (callback) | NSInteger | Device-side main switch: 0 off, 1 on |
+| clockArr (callback) | `NSArray<VPGameClockModel *>` | FullData: device-side data; Synced: the input array returned as-is; Empty: empty array |
+
+veepooSDK_ZT79SetGameClockMainSwitch parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| state | BOOL | Target main switch state: YES on / NO off |
+| temporary | VPGameClockModel (nullable) | Temporary game clock entry, nullable; crcClockArr must contain it when passed |
+| crcClockArr | `NSArray<VPGameClockModel *>` | The full clock list after the operation takes effect, used for consistency check |
+| success (callback) | BOOL | Whether the setting succeeded |
+
+veepooSDK_ZT79SetGameClocks parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| setArr | `NSArray<VPGameClockModel *>` | The clock entries to set this time, single or batch |
+| mainSwitch | NSNumber (nullable) | The main switch known by the host: 0 off, 1 on; pass nil if never synchronized |
+| crcClockArr | `NSArray<VPGameClockModel *>` | The full clock list after the operation takes effect (must contain the setArr content), used for consistency check |
+| success (callback) | BOOL | Whether the setting succeeded |
+
+veepooSDK_ZT79DeleteGameClocksWithIDs parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| idArr | `NSArray<NSNumber *>` | The clockID array to delete (1~10) |
+| mainSwitch | NSNumber (nullable) | The main switch known by the host: 0 off, 1 on; pass nil if never synchronized |
+| crcClockArr | `NSArray<VPGameClockModel *>` | The remaining clock list after deletion, used for consistency check |
+| success (callback) | BOOL | Whether the deletion succeeded |
+
+VPGameClockModel fields
+
+| Field | Type | Note |
+| --- | --- | --- |
+| clockID | uint8_t | Clock id: 1~10 (starting from 1, up to 10 entries) |
+| clockType | VPGameClockType | Clock entry type, see the VPGameClockType enum table |
+| clockYear / clockMonth / clockDay | uint8_t | Year/month/day, only valid for single/temporary; year = actual year - 2000, all 0 for weekly repeat |
+| clockRepeat | VPGameClockWeekday | Repeat weekdays, see the VPGameClockWeekday enum table; VPGameClockWeekdayNone for single/temporary |
+| clockHour / clockMinute / clockSecond | uint8_t | Start hour, minute, second |
+| clockDuration | uint16_t | Duration in minutes, no less than 5 |
+| clockState | uint8_t | 0 off, 1 on |
+
+VPGameClockType (clock entry type)
+
+| Enum value | Type | Note |
+| --- | --- | --- |
+| VPGameClockTypeWeeklyRepeat | VPGameClockType | Weekly repeat (1) |
+| VPGameClockTypeSingle | VPGameClockType | Single, no repeat (2) |
+| VPGameClockTypeTemporary | VPGameClockType | Temporary (3) |
+
+VPGameClockWeekday (repeat weekdays)
+
+| Enum value | Type | Note |
+| --- | --- | --- |
+| VPGameClockWeekdayNone | VPGameClockWeekday | None, used for single/temporary (0) |
+| VPGameClockWeekdayMonday | VPGameClockWeekday | Monday (bit0) |
+| VPGameClockWeekdayTuesday | VPGameClockWeekday | Tuesday (bit1) |
+| VPGameClockWeekdayWednesday | VPGameClockWeekday | Wednesday (bit2) |
+| VPGameClockWeekdayThursday | VPGameClockWeekday | Thursday (bit3) |
+| VPGameClockWeekdayFriday | VPGameClockWeekday | Friday (bit4) |
+| VPGameClockWeekdaySaturday | VPGameClockWeekday | Saturday (bit5) |
+| VPGameClockWeekdaySunday | VPGameClockWeekday | Sunday (bit6) |
+| VPGameClockWeekdayEveryDay | VPGameClockWeekday | Every day (0x7F) |
+
+VPGameClockReadState (read response state)
+
+| Enum value | Type | Note |
+| --- | --- | --- |
+| VPGameClockReadStateFullData | VPGameClockReadState | The device returned the full data, clockArr is the device-side data (0) |
+| VPGameClockReadStateSynced | VPGameClockReadState | The device data matches the data passed by the host, not retransmitted; the host keeps its own data (1) |
+| VPGameClockReadStateEmpty | VPGameClockReadState | The device has no clock entries, only the main switch is returned (2) |
+
+### Sample Code
+
+```swift
+// Check whether the device supports game control (gameType non-zero supported)
+let isSupport = VPBleCentralManage.sharedBleManager().peripheralModel.gameType != 0
+
+let peripheralManage = VPBleCentralManage.sharedBleManager().peripheralManage
+
+// Host-side state (the SDK does not persist data; maintained by the host): main switch nil means never synchronized
+var mainSwitchState: Int?
+var clockList: [VPGameClockModel] = []
+```
+
+```swift
+/// Read the game control information (pass the host-held state for consistency check)
+peripheralManage?.veepooSDK_ZT79ReadGameClock(mainSwitchState.map { NSNumber(value: $0) }, clockArr: clockList) { [weak self] readState, mainSwitch, clockArr in
+    guard let weakSelf = self else { return }
+    switch readState {
+    case .fullData:
+        // The device returned the full data
+        weakSelf.mainSwitchState = mainSwitch
+        weakSelf.clockList = clockArr
+    case .synced:
+        // The device data matches the host data; keep the host-held data
+        break
+    case .empty:
+        // The device has no clock entries, only the main switch is returned
+        weakSelf.mainSwitchState = mainSwitch
+        weakSelf.clockList = []
+    @unknown default:
+        break
+    }
+}
+```
+
+```swift
+/// Set the main switch (update the host-side state first, then send; roll back on failure)
+let newState = true
+let oldState = mainSwitchState
+mainSwitchState = newState ? 1 : 0
+peripheralManage?.veepooSDK_ZT79SetGameClockMainSwitch(newState, temporary: nil, crcClockArr: clockList) { [weak self] success in
+    guard let weakSelf = self else { return }
+    if !success {
+        // Roll back on failure
+        weakSelf.mainSwitchState = oldState
+    }
+}
+```
+
+```swift
+/// Add a clock entry (weekly repeat, every day from 12:00:00, 30 minutes, on; update locally first, roll back on failure)
+let model = VPGameClockModel()
+model.clockID = 1            // The smallest unused id (1~10)
+model.clockType = .weeklyRepeat
+model.clockRepeat = .everyDay
+model.clockHour = 12
+model.clockMinute = 0
+model.clockSecond = 0
+model.clockDuration = 30
+model.clockState = 1
+
+clockList.append(model)
+peripheralManage?.veepooSDK_ZT79SetGameClocks([model], mainSwitch: mainSwitchState.map { NSNumber(value: $0) }, crcClockArr: clockList) { [weak self] success in
+    guard let weakSelf = self else { return }
+    if !success {
+        // Roll back on failure
+        weakSelf.clockList.removeAll { $0.clockID == model.clockID }
+    }
+}
+```
+
+```swift
+/// Delete all clock entries (update locally first, then send; restore on failure)
+let ids = clockList.map { NSNumber(value: $0.clockID) }
+let previousList = clockList
+clockList = []
+peripheralManage?.veepooSDK_ZT79DeleteGameClocks(withIDs: ids, mainSwitch: mainSwitchState.map { NSNumber(value: $0) }, crcClockArr: clockList) { [weak self] success in
+    guard let weakSelf = self else { return }
+    if !success {
+        // Restore on failure
+        weakSelf.clockList = previousList
     }
 }
 ```

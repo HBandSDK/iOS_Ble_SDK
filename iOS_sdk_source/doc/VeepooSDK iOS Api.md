@@ -35,6 +35,7 @@
 | 1.3.0 | 新增QH15定制亲情守护功能接口                                 | 2026.09.29 |
 | 1.3.1 | 新增JH151 ECG单导测量时长设置和读取                          | 2026.10.22 |
 | 1.3.2 | 新增佩戴方式和马达震动强度设置接口，自动测量里新增跌倒监测和低氧提醒 | 2026.10.27 |
+| 1.3.3 | 新增ZT79定制游戏控制接口 | 2026.11.06 |
 
 # SDK初始化
 
@@ -1667,7 +1668,9 @@ public func getHRVDataFromDB(date: Date) -> [[String : Any]] {
 
 `0`代表普通睡眠  
 
-`1/3`代表精准睡眠
+`2`代表无睡眠  
+
+`其它`代表精准睡眠
 
 ```objective-c
 @property (nonatomic, assign) NSInteger sleepType;
@@ -9161,6 +9164,271 @@ peripheralManage?.veepooSDK_readMotorVibrationType { type in
     let index = (self.segControl?.selectedSegmentIndex ?? 0) + 1
     peripheralManage?.veepooSDK_setMotorVibrationType(index) { success in
         // success: 是否设置成功
+    }
+}
+```
+
+# 游戏控制（ZT79定制）
+
+### 前提
+
+需要设备支持（ZT79 定制功能），通过 peripheralModel.gameType != 0 判断（非 0 支持，0 不支持）。
+
+注意：本功能接口不做数据持久化，总开关状态与全量时段列表由宿主 App 自行维护，并在每次下发时传入（用于与设备端数据一致性校验）；推荐时序为先更新宿主侧状态 → 下发 → 失败回滚。
+
+### 类名
+
+VPPeripheralBaseManage，可参考 Demo 中 VPGameControlVC 的实现
+
+### 接口
+
+```objective-c
+/// 读取游戏控制信息（总开关+时段列表）
+/// - Parameters:
+///   - mainSwitch: 宿主侧已知的总开关状态（0 关，1 开），从未同步过传 nil
+///   - clockArr: 宿主侧当前持有的时段列表（用于与设备端数据一致性校验，首次传空数组）
+///   - result: 回调返回读取状态 readState（见 VPGameClockReadState）、设备侧总开关 mainSwitch、时段列表 clockArr
+- (void)veepooSDK_ZT79ReadGameClock:(NSNumber * _Nullable)mainSwitch
+                       clockArr:(NSArray<VPGameClockModel *> * _Nonnull)clockArr
+                         result:(void(^_Nullable)(VPGameClockReadState readState, NSInteger mainSwitch, NSArray<VPGameClockModel *> * _Nonnull clockArr))result;
+```
+
+```objective-c
+/// 设置游戏控制总开关
+/// - Parameters:
+///   - state: 目标总开关状态（YES 开 / NO 关）
+///   - temporary: 临时游戏时段，可为 nil（传入时 crcClockArr 需包含它）
+///   - crcClockArr: 操作生效后的全量时段列表，用于与设备端数据一致性校验
+///   - result: 回调返回是否设置成功
+- (void)veepooSDK_ZT79SetGameClockMainSwitch:(BOOL)state
+                              temporary:(VPGameClockModel * _Nullable)temporary
+                            crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                               callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+```objective-c
+/// 设置、添加、修改游戏控制时段（支持批量）
+/// - Parameters:
+///   - setArr: 本次设置的时段条目（可单条可批量）
+///   - mainSwitch: 宿主侧已知的总开关状态（0 关，1 开），从未同步过传 nil
+///   - crcClockArr: 操作生效后的全量时段列表（需含 setArr 内容），用于与设备端数据一致性校验
+///   - result: 回调返回是否设置成功
+- (void)veepooSDK_ZT79SetGameClocks:(NSArray<VPGameClockModel *> * _Nonnull)setArr
+                     mainSwitch:(NSNumber * _Nullable)mainSwitch
+                    crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                       callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+```objective-c
+/// 删除游戏控制时段（支持批量按 id 删除）
+/// - Parameters:
+///   - idArr: 待删除的 clockID 数组（1~10）
+///   - mainSwitch: 宿主侧已知的总开关状态（0 关，1 开），从未同步过传 nil
+///   - crcClockArr: 删除后剩余的时段列表，用于与设备端数据一致性校验
+///   - result: 回调返回是否删除成功
+- (void)veepooSDK_ZT79DeleteGameClocksWithIDs:(NSArray<NSNumber *> * _Nonnull)idArr
+                               mainSwitch:(NSNumber * _Nullable)mainSwitch
+                              crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
+                                 callBack:(void(^_Nullable)(BOOL success))result;
+```
+
+```objective-c
+/// 游戏控制单条时段数据
+@interface VPGameClockModel : NSObject<NSCopying>
+
+/// 时段 id：1~10（从 1 开始，最多 10 个）
+@property (nonatomic, assign) uint8_t clockID;
+
+/// 时段类型（见 VPGameClockType 枚举：1 星期重复，2 单次不重复，3 临时）
+@property (nonatomic, assign) VPGameClockType clockType;
+
+/// 年月日，仅在单次/临时数据有效。年使用单字节表示，实际年份 - 2000，星期重复时全 0
+@property (nonatomic, assign) uint8_t clockYear;
+@property (nonatomic, assign) uint8_t clockMonth;
+@property (nonatomic, assign) uint8_t clockDay;
+
+/// 重复星期（见 VPGameClockWeekday：bit0~bit6 对应周一~周日，VPGameClockWeekdayEveryDay 为每天）；单次/临时时为 VPGameClockWeekdayNone
+@property (nonatomic, assign) VPGameClockWeekday clockRepeat;
+
+/// 开始时、分、秒
+@property (nonatomic, assign) uint8_t clockHour;
+@property (nonatomic, assign) uint8_t clockMinute;
+@property (nonatomic, assign) uint8_t clockSecond;
+
+/// 持续时长，单位分钟（不小于 5）
+@property (nonatomic, assign) uint16_t clockDuration;
+
+/// 开关状态，0 关，1 开
+@property (nonatomic, assign) uint8_t clockState;
+
+/// 单次时段的剩余时间（秒），过期后返回 0
+- (NSInteger)getGameModelRemainTimeValue;
+
+@end
+```
+
+### 参数解释
+
+veepooSDK_ZT79ReadGameClock 参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| mainSwitch | NSNumber（可空） | 宿主侧已知的总开关：0 关，1 开；从未同步过传 nil |
+| clockArr | `NSArray<VPGameClockModel *>` | 宿主侧当前持有的时段列表，用于一致性校验；首次传空数组 |
+| readState（回调） | VPGameClockReadState | 读取应答状态，见下方枚举表 |
+| mainSwitch（回调） | NSInteger | 设备侧总开关：0 关，1 开 |
+| clockArr（回调） | `NSArray<VPGameClockModel *>` | FullData 时为设备侧数据；Synced 时原样返回入参；Empty 时为空数组 |
+
+veepooSDK_ZT79SetGameClockMainSwitch 参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| state | BOOL | 目标总开关状态：YES 开 / NO 关 |
+| temporary | VPGameClockModel（可空） | 临时游戏时段，可为 nil；传入时 crcClockArr 需包含它 |
+| crcClockArr | `NSArray<VPGameClockModel *>` | 操作生效后的全量时段列表，用于一致性校验 |
+| success（回调） | BOOL | 是否设置成功 |
+
+veepooSDK_ZT79SetGameClocks 参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| setArr | `NSArray<VPGameClockModel *>` | 本次设置的时段条目，可单条可批量 |
+| mainSwitch | NSNumber（可空） | 宿主侧已知的总开关：0 关，1 开；从未同步过传 nil |
+| crcClockArr | `NSArray<VPGameClockModel *>` | 操作生效后的全量时段列表（需含 setArr 内容），用于一致性校验 |
+| success（回调） | BOOL | 是否设置成功 |
+
+veepooSDK_ZT79DeleteGameClocksWithIDs 参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| idArr | `NSArray<NSNumber *>` | 待删除的 clockID 数组（1~10） |
+| mainSwitch | NSNumber（可空） | 宿主侧已知的总开关：0 关，1 开；从未同步过传 nil |
+| crcClockArr | `NSArray<VPGameClockModel *>` | 删除后剩余的时段列表，用于一致性校验 |
+| success（回调） | BOOL | 是否删除成功 |
+
+VPGameClockModel 字段说明
+
+| 字段 | 类型 | 备注 |
+| --- | --- | --- |
+| clockID | uint8_t | 时段 id：1~10（从 1 开始，最多 10 个） |
+| clockType | VPGameClockType | 时段类型，见 VPGameClockType 枚举表 |
+| clockYear / clockMonth / clockDay | uint8_t | 年月日，仅单次/临时有效；年 = 实际年份 - 2000，星期重复时全 0 |
+| clockRepeat | VPGameClockWeekday | 重复星期，见 VPGameClockWeekday 枚举表；单次/临时为 VPGameClockWeekdayNone |
+| clockHour / clockMinute / clockSecond | uint8_t | 开始时、分、秒 |
+| clockDuration | uint16_t | 持续时长，单位分钟，不小于 5 |
+| clockState | uint8_t | 0 关，1 开 |
+
+VPGameClockType（时段类型）
+
+| 枚举值 | 参数类型 | 备注 |
+| --- | --- | --- |
+| VPGameClockTypeWeeklyRepeat | VPGameClockType | 星期重复（1） |
+| VPGameClockTypeSingle | VPGameClockType | 单次不重复（2） |
+| VPGameClockTypeTemporary | VPGameClockType | 临时（3） |
+
+VPGameClockWeekday（重复星期）
+
+| 枚举值 | 参数类型 | 备注 |
+| --- | --- | --- |
+| VPGameClockWeekdayNone | VPGameClockWeekday | 无，单次/临时时使用（0） |
+| VPGameClockWeekdayMonday | VPGameClockWeekday | 周一（bit0） |
+| VPGameClockWeekdayTuesday | VPGameClockWeekday | 周二（bit1） |
+| VPGameClockWeekdayWednesday | VPGameClockWeekday | 周三（bit2） |
+| VPGameClockWeekdayThursday | VPGameClockWeekday | 周四（bit3） |
+| VPGameClockWeekdayFriday | VPGameClockWeekday | 周五（bit4） |
+| VPGameClockWeekdaySaturday | VPGameClockWeekday | 周六（bit5） |
+| VPGameClockWeekdaySunday | VPGameClockWeekday | 周日（bit6） |
+| VPGameClockWeekdayEveryDay | VPGameClockWeekday | 每天（0x7F） |
+
+VPGameClockReadState（读取应答状态）
+
+| 枚举值 | 参数类型 | 备注 |
+| --- | --- | --- |
+| VPGameClockReadStateFullData | VPGameClockReadState | 设备回传了全量数据，clockArr 为设备侧数据（0） |
+| VPGameClockReadStateSynced | VPGameClockReadState | 设备数据与宿主传入数据一致，未重传，宿主沿用自己持有的数据（1） |
+| VPGameClockReadStateEmpty | VPGameClockReadState | 设备无时段数据，仅回传总开关（2） |
+
+### 示例代码
+
+```swift
+// 判断是否支持游戏控制（gameType 非 0 支持）
+let isSupport = VPBleCentralManage.sharedBleManager().peripheralModel.gameType != 0
+
+let peripheralManage = VPBleCentralManage.sharedBleManager().peripheralManage
+
+// 宿主侧状态（SDK 不做持久化，由宿主维护）：总开关 nil 表示从未同步过
+var mainSwitchState: Int?
+var clockList: [VPGameClockModel] = []
+```
+
+```swift
+/// 读取游戏控制信息（传入宿主当前持有的状态用于一致性校验）
+peripheralManage?.veepooSDK_ZT79ReadGameClock(mainSwitchState.map { NSNumber(value: $0) }, clockArr: clockList) { [weak self] readState, mainSwitch, clockArr in
+    guard let weakSelf = self else { return }
+    switch readState {
+    case .fullData:
+        // 设备回传全量数据
+        weakSelf.mainSwitchState = mainSwitch
+        weakSelf.clockList = clockArr
+    case .synced:
+        // 设备数据与宿主一致，沿用宿主持有的数据
+        break
+    case .empty:
+        // 设备无时段数据，仅回传总开关
+        weakSelf.mainSwitchState = mainSwitch
+        weakSelf.clockList = []
+    @unknown default:
+        break
+    }
+}
+```
+
+```swift
+/// 设置总开关（先更新宿主侧状态再下发，失败回滚）
+let newState = true
+let oldState = mainSwitchState
+mainSwitchState = newState ? 1 : 0
+peripheralManage?.veepooSDK_ZT79SetGameClockMainSwitch(newState, temporary: nil, crcClockArr: clockList) { [weak self] success in
+    guard let weakSelf = self else { return }
+    if !success {
+        // 失败回滚
+        weakSelf.mainSwitchState = oldState
+    }
+}
+```
+
+```swift
+/// 添加一条时段（周重复，每天 12:00:00 起，30 分钟，开启；先改本地再下发，失败回滚）
+let model = VPGameClockModel()
+model.clockID = 1            // 取现有 id 之外的最小空缺 id（1~10）
+model.clockType = .weeklyRepeat
+model.clockRepeat = .everyDay
+model.clockHour = 12
+model.clockMinute = 0
+model.clockSecond = 0
+model.clockDuration = 30
+model.clockState = 1
+
+clockList.append(model)
+peripheralManage?.veepooSDK_ZT79SetGameClocks([model], mainSwitch: mainSwitchState.map { NSNumber(value: $0) }, crcClockArr: clockList) { [weak self] success in
+    guard let weakSelf = self else { return }
+    if !success {
+        // 失败回滚
+        weakSelf.clockList.removeAll { $0.clockID == model.clockID }
+    }
+}
+```
+
+```swift
+/// 删除全部时段（先改本地再下发，失败恢复）
+let ids = clockList.map { NSNumber(value: $0.clockID) }
+let previousList = clockList
+clockList = []
+peripheralManage?.veepooSDK_ZT79DeleteGameClocks(withIDs: ids, mainSwitch: mainSwitchState.map { NSNumber(value: $0) }, crcClockArr: clockList) { [weak self] success in
+    guard let weakSelf = self else { return }
+    if !success {
+        // 失败恢复
+        weakSelf.clockList = previousList
     }
 }
 ```

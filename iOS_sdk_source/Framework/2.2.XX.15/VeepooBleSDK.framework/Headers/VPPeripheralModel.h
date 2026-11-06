@@ -218,6 +218,9 @@
 //世界时钟类型，0表示不支持
 @property (nonatomic, assign) NSUInteger worldClockType;
 
+//游戏控制(ZT79定制)，0表示不支持
+@property (nonatomic, assign) NSUInteger gameType;
+
 //自动测量范围时间设置类型，0为不支持
 @property (nonatomic, assign) NSUInteger autoMonitSwitchType;
 

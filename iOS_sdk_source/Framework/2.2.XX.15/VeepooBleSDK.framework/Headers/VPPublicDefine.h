@@ -836,3 +836,30 @@ typedef NS_ENUM(NSInteger, VPM23ProTestStatus) {
     VPM23ProTestStatusDetectPaused = 5,    // 检测暂停
     VPM23ProTestStatusRepairPaused = 6,    // 修复暂停
 };
+
+// ZT79定制项目-读取游戏控制信息的应答类型
+typedef NS_ENUM(NSInteger, VPGameClockReadState) {
+    VPGameClockReadStateFullData = 0,  // 设备回传了全量数据, clockArr为设备侧数据
+    VPGameClockReadStateSynced = 1,    // 设备数据与宿主传入数据一致, 未重传, 宿主沿用自己持有的数据(clockArr原样返回请求时入参)
+    VPGameClockReadStateEmpty = 2,     // 设备无时段数据, 仅回传总开关(clockArr为空)
+};
+
+// ZT79定制项目-游戏时段类型
+typedef NS_ENUM(uint8_t, VPGameClockType) {
+    VPGameClockTypeWeeklyRepeat = 1,  // 星期重复
+    VPGameClockTypeSingle,            // 单次不重复
+    VPGameClockTypeTemporary,         // 临时
+};
+
+// ZT79定制项目-游戏时段重复星期（bit0~bit6 对应周一~周日）
+typedef NS_OPTIONS(uint8_t, VPGameClockWeekday) {
+    VPGameClockWeekdayNone      = 0,
+    VPGameClockWeekdayMonday    = 1 << 0,
+    VPGameClockWeekdayTuesday   = 1 << 1,
+    VPGameClockWeekdayWednesday = 1 << 2,
+    VPGameClockWeekdayThursday  = 1 << 3,
+    VPGameClockWeekdayFriday    = 1 << 4,
+    VPGameClockWeekdaySaturday  = 1 << 5,
+    VPGameClockWeekdaySunday    = 1 << 6,
+    VPGameClockWeekdayEveryDay  = 0x7F, // 每天
+};

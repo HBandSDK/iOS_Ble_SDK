@@ -88,7 +88,8 @@ class VPOterFunctionSettingController: UIViewController   , UITableViewDelegate 
         .init("YM23PRO 佩戴/测试状态", "VPYM23ProVC"),
         .init("JH151-ECG单导测量时长", "VPJH151ECGSingleLeadDurationVC"),
         .init("佩戴方式", "VPWearVC"),
-        .init("马达震动", "VPMotorVibrationVC")
+        .init("马达震动", "VPMotorVibrationVC"),
+        .init("游戏控制(ZT79定制)", "VPGameControlVC")
     ]
     
     override func viewDidLoad() {
