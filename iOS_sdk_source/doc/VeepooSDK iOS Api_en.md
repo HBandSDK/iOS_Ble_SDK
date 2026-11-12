@@ -36,6 +36,7 @@
 | 1.3.1   | Add JH151 ECG single-lead measurement duration setting and reading | 2026.10.22      |
 | 1.3.2   | Add wearing mode (hand) setting，motor vibration intensity interfaces。Added fall monitoring and low oxygen reminder in automatic measurement | 2026.10.27      |
 | 1.3.3   | Add ZT79 customized game control interfaces | 2026.11.06      |
+| 1.3.4   | Add custom protocol data interfaces | 2026.11.12      |
 
 # SDK initialization
 
@@ -9415,4 +9416,116 @@ peripheralManage?.veepooSDK_ZT79DeleteGameClocks(withIDs: ids, mainSwitch: mainS
         weakSelf.clockList = previousList
     }
 }
+```
+
+# Custom Protocol Data
+
+### Prerequisite
+
+For customer-specific features only: used for private protocol data passthrough agreed between the host App and the embedded firmware; regular applications do not need it.
+Data format (each packet): 0x04 (fixed header) + protocol number (1 byte) + custom content. The protocol number and content format are agreed between the customer and the embedded team.
+Custom protocol data reported by the device is delivered by source channel: the standard data channel goes to veepooCustomDataReceiveBlock, and the ADC channel goes to veepooCustomDataADCReceiveBlock. Data is returned as-is (including the 0x04 header + protocol number).
+
+Note: The SDK only validates the header and length, and does not parse content. The send interface takes a packet list and validates packet by packet (each packet length ≥ 2, starting with 0x04, single packet ≤ device MTU, 20-byte fallback, including header); if any packet fails validation, the whole batch is rejected and not sent. Multiple packets are sent one by one by the SDK with a 0.02s interval; packet splitting (the protocol's total-package/packet-number fields) still needs to be assembled by the App according to the agreed protocol. Data is not sent when the device is disconnected or in DFU/resource transfer mode. The SDK has no timeout/retry mechanism; it is recommended that the App add a timeout fallback (e.g. treat as failure if no response within 10 seconds).
+
+### Class name
+
+VPPeripheralBaseManage
+
+### Interfaces
+
+```objective-c
+/// Receives custom protocol data reported by the device on the standard data channel, returned as-is (including the 0x04 header + protocol number). Parse the content according to the protocol format agreed with the embedded team.
+@property (nonatomic, copy) void(^ _Nullable veepooCustomDataReceiveBlock)(NSData * _Nullable customData);
+```
+
+```objective-c
+/// Receives custom protocol data reported by the device on the ADC channel, returned as-is (including the 0x04 header + protocol number). Requires enabling the channel notification via veepooSDKSetCustomDataADCNotify: first.
+@property (nonatomic, copy) void(^ _Nullable veepooCustomDataADCReceiveBlock)(NSData * _Nullable customData);
+```
+
+```objective-c
+/// Sends custom protocol data (packet list), for customer-specific features only
+/// Multiple packets are sent one by one by the SDK with a 0.02s interval; if any packet fails validation, the whole batch is rejected and not sent
+/// - Parameter dataArr: The full packet list to send (each packet including header), validated packet by packet; Success is called back after all packets pass validation and are written
+/// - Parameter result: The send result callback
+- (void)veepooSDKSendCustomData:(NSArray<NSData *> *_Nullable)dataArr result:(void(^_Nullable)(VPCustomDataSendResult result))result;
+```
+
+```objective-c
+/// Enables/disables the notification of the custom protocol ADC data channel
+/// Used when custom features need ADC data (e.g. raw waveform): after enabling, the firmware can report on the ADC channel in the same format (0x04 + protocol number + custom content), delivered to veepooCustomDataADCReceiveBlock (independent of veepooCustomDataReceiveBlock on the standard data channel)
+/// Usage is the same as veepooSDKTestGSensorADCStart:testResult:: enable before sending the start command, disable after finishing
+/// - Parameter enable: YES to enable, NO to disable
+- (void)veepooSDKSetCustomDataADCNotify:(BOOL)enable;
+```
+
+### Parameters
+
+veepooSDKSendCustomData parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| dataArr | NSArray<NSData *> | The full packet list to send (each packet including header); packet-by-packet validation: length ≥ 2, starts with 0x04, single packet ≤ device MTU (20-byte fallback, including header); if any packet fails validation, the whole batch is not sent |
+| result (callback) | VPCustomDataSendResult | The send result; see the VPCustomDataSendResult description below |
+
+veepooCustomDataReceiveBlock callback parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| customData (callback) | NSData | Custom protocol data reported by the device on the standard data channel, returned as-is (including the 0x04 header + protocol number) |
+
+veepooCustomDataADCReceiveBlock callback parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| customData (callback) | NSData | Custom protocol data reported by the device on the ADC channel, returned as-is (including the 0x04 header + protocol number); requires enabling the channel notification via veepooSDKSetCustomDataADCNotify: first |
+
+veepooSDKSetCustomDataADCNotify parameters
+
+| Parameter | Type | Note |
+| --- | --- | --- |
+| enable | BOOL | YES to enable, NO to disable |
+
+VPCustomDataSendResult (send result)
+
+| Enum value | Type | Note |
+| --- | --- | --- |
+| VPCustomDataSendResultSuccess | VPCustomDataSendResult | Sent (the whole batch of packets written) (0) |
+| VPCustomDataSendResultInvalidData | VPCustomDataSendResult | Invalid data: the list is empty, or some packet does not start with 0x04 + protocol number / is too short; the whole batch was not sent (1) |
+| VPCustomDataSendResultTooLong | VPCustomDataSendResult | Data too long: some packet exceeds the maximum single-packet length (including header, by device MTU); the whole batch was not sent (2) |
+| VPCustomDataSendResultNotConnected | VPCustomDataSendResult | Device not connected, not sent (3) |
+| VPCustomDataSendResultInDFUMode | VPCustomDataSendResult | Device in DFU/resource transfer mode, not sent (4) |
+
+### Sample Code
+
+```swift
+let peripheralManage = VPBleCentralManage.sharedBleManager().peripheralManage
+
+// 1. Set the receive callback on the standard data channel (data returned as-is, including the 0x04 header + protocol number)
+peripheralManage?.veepooCustomDataReceiveBlock = { customData in
+    guard let data = customData, data.count >= 2 else { return }
+    let protocolNumber = [UInt8](data)[1]
+    // Filter by protocol number, then parse the content according to the protocol format agreed with the embedded team
+}
+
+// 2. Assemble packets (0x04 fixed header + protocol number + custom content; protocol number 0x01 as an example)
+let protocolNumber: UInt8 = 0x01
+var packet1 = Data([0x04, protocolNumber])
+packet1.append(contentsOf: [0x01, 0x02]) // custom content
+var packet2 = Data([0x04, protocolNumber])
+packet2.append(contentsOf: [0x03, 0x04]) // custom content
+
+// 3. Send (packet list input; the protocol's total-package/packet-number fields are assembled into each packet per the agreed protocol; the SDK sends packet by packet with a 0.02s interval)
+peripheralManage?.veepooSDKSendCustomData([packet1, packet2]) { result in
+    if result != .success {
+        // The whole batch was not sent; troubleshoot by error code (see the VPCustomDataSendResult description)
+    }
+}
+
+// 4. When ADC channel data (e.g. raw waveform) is needed: enable the notification before sending the start command, disable after finishing (data goes to veepooCustomDataADCReceiveBlock)
+peripheralManage?.veepooSDKSetCustomDataADCNotify(true)
+// peripheralManage?.veepooSDKSetCustomDataADCNotify(false)
+
+// 5. The SDK has no timeout/retry mechanism; it is recommended to add a timeout fallback (e.g. treat as failure if no response within 10 seconds)
 ```

@@ -36,6 +36,7 @@
 | 1.3.1 | 新增JH151 ECG单导测量时长设置和读取                          | 2026.10.22 |
 | 1.3.2 | 新增佩戴方式和马达震动强度设置接口，自动测量里新增跌倒监测和低氧提醒 | 2026.10.27 |
 | 1.3.3 | 新增ZT79定制游戏控制接口 | 2026.11.06 |
+| 1.3.4 | 新增自定义协议数据接口 | 2026.11.12 |
 
 # SDK初始化
 
@@ -9431,4 +9432,116 @@ peripheralManage?.veepooSDK_ZT79DeleteGameClocks(withIDs: ids, mainSwitch: mainS
         weakSelf.clockList = previousList
     }
 }
+```
+
+# 自定义协议数据
+
+### 前提
+
+客户定制功能专用：用于宿主 App 与嵌入式约定的私有协议数据透传，常规应用无需使用。
+数据格式（每个包）：0x04(固定包头) + 协议编号(1字节) + 自定义内容，协议编号与内容格式由客户与嵌入式约定。
+设备上报的自定义协议数据按来源通道回调：标准数据通道走 veepooCustomDataReceiveBlock，ADC 通道走 veepooCustomDataADCReceiveBlock，数据均原样返回（含包头 0x04 + 协议编号）。
+
+注意：SDK 只校验包头与长度，不做内容解析；发送接口入参为分包列表，逐包校验（每包长度 ≥ 2、以 0x04 开头、单包 ≤ 设备MTU，保底20字节，含包头），任一包校验失败则整批拦截不发送；多包由 SDK 内部按 0.02s 间隔逐包下发，分包（协议的总包数/包号字段）仍需 App 按约定协议自行组包；设备未连接或处于 DFU/资源传输模式时数据不会发送；SDK 无超时重试机制，建议 App 自行添加超时兜底（如 10 秒未收到应答按失败处理）。
+
+### 类名
+
+VPPeripheralBaseManage
+
+### 接口
+
+```objective-c
+/// 接收设备在标准数据通道上报的自定义协议数据，原样返回（含包头 0x04 + 协议编号），App根据协议编号和与嵌入式约定的协议格式解析
+@property (nonatomic, copy) void(^ _Nullable veepooCustomDataReceiveBlock)(NSData * _Nullable customData);
+```
+
+```objective-c
+/// 接收设备在ADC通道上报的自定义协议数据，原样返回（含包头 0x04 + 协议编号），需先经 veepooSDKSetCustomDataADCNotify: 开启通道通知
+@property (nonatomic, copy) void(^ _Nullable veepooCustomDataADCReceiveBlock)(NSData * _Nullable customData);
+```
+
+```objective-c
+/// 发送自定义协议数据（分包列表），仅用于客户定制功能
+/// 多包由SDK内部按 0.02s 间隔逐包下发，任一包校验失败则整批拦截不发送
+/// - Parameter dataArr: 要发送的完整分包列表（每包含包头），逐包校验，全部校验通过并逐包写入后回调 Success
+/// - Parameter result: 发送结果回调
+- (void)veepooSDKSendCustomData:(NSArray<NSData *> *_Nullable)dataArr result:(void(^_Nullable)(VPCustomDataSendResult result))result;
+```
+
+```objective-c
+/// 开启/关闭自定义协议的ADC数据通道通知
+/// 自定义功能需要ADC数据（如原始波形）时使用：开启后固件可在ADC通道上以相同格式（0x04 + 协议编号 + 自定义内容）上报，SDK路由到 veepooCustomDataADCReceiveBlock（与标准数据通道的 veepooCustomDataReceiveBlock 相互独立）
+/// 用法同 veepooSDKTestGSensorADCStart:testResult:：发送开始指令前开启，结束后关闭
+/// - Parameter enable: YES开启 NO关闭
+- (void)veepooSDKSetCustomDataADCNotify:(BOOL)enable;
+```
+
+### 参数解释
+
+veepooSDKSendCustomData 参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| dataArr | NSArray<NSData *> | 要发送的完整分包列表（每包含包头）；逐包校验：长度 ≥ 2、以 0x04 开头、单包 ≤ 设备MTU（保底20字节，含包头），任一包校验失败整批不发送 |
+| result（回调） | VPCustomDataSendResult | 发送结果，枚举见下方 VPCustomDataSendResult 说明 |
+
+veepooCustomDataReceiveBlock 回调参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| customData（回调） | NSData | 设备在标准数据通道上报的自定义协议数据，原样返回（含包头 0x04 + 协议编号） |
+
+veepooCustomDataADCReceiveBlock 回调参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| customData（回调） | NSData | 设备在ADC通道上报的自定义协议数据，原样返回（含包头 0x04 + 协议编号），需先经 veepooSDKSetCustomDataADCNotify: 开启通道通知 |
+
+veepooSDKSetCustomDataADCNotify 参数
+
+| 参数 | 参数类型 | 备注 |
+| --- | --- | --- |
+| enable | BOOL | YES开启 NO关闭 |
+
+VPCustomDataSendResult（发送结果）
+
+| 枚举值 | 参数类型 | 备注 |
+| --- | --- | --- |
+| VPCustomDataSendResultSuccess | VPCustomDataSendResult | 已发送（整批分包全部写入）（0） |
+| VPCustomDataSendResultInvalidData | VPCustomDataSendResult | 数据无效：列表为空，或存在包不以 0x04 + 协议编号 开头/长度不足，整批未发送（1） |
+| VPCustomDataSendResultTooLong | VPCustomDataSendResult | 数据超长：存在包超过单包最大长度（含包头，按设备MTU），整批未发送（2） |
+| VPCustomDataSendResultNotConnected | VPCustomDataSendResult | 设备未连接，未发送（3） |
+| VPCustomDataSendResultInDFUMode | VPCustomDataSendResult | 设备处于DFU/资源传输模式，未发送（4） |
+
+### 示例代码
+
+```swift
+let peripheralManage = VPBleCentralManage.sharedBleManager().peripheralManage
+
+// 1. 设置标准数据通道的接收回调（数据原样返回，含包头 0x04 + 协议编号）
+peripheralManage?.veepooCustomDataReceiveBlock = { customData in
+    guard let data = customData, data.count >= 2 else { return }
+    let protocolNumber = [UInt8](data)[1]
+    // 按协议编号过滤，再按 App 与嵌入式约定的协议格式解析内容
+}
+
+// 2. 组包（0x04 固定包头 + 协议编号 + 自定义内容，以协议编号 0x01 为例）
+let protocolNumber: UInt8 = 0x01
+var packet1 = Data([0x04, protocolNumber])
+packet1.append(contentsOf: [0x01, 0x02]) // 自定义内容
+var packet2 = Data([0x04, protocolNumber])
+packet2.append(contentsOf: [0x03, 0x04]) // 自定义内容
+
+// 3. 发送（分包列表入参；协议自身的总包数/包号字段按约定协议组进每个包，SDK按 0.02s 间隔逐包下发）
+peripheralManage?.veepooSDKSendCustomData([packet1, packet2]) { result in
+    if result != .success {
+        // 整批未发送，按错误码排查（见 VPCustomDataSendResult 说明）
+    }
+}
+
+// 4. 需要ADC通道数据（如原始波形）时：发送开始指令前开启通知，结束后关闭（数据走 veepooCustomDataADCReceiveBlock）
+peripheralManage?.veepooSDKSetCustomDataADCNotify(true)
+// peripheralManage?.veepooSDKSetCustomDataADCNotify(false)
+
+// 5. SDK 无超时重试机制，建议自行添加超时兜底（如 10 秒未收到应答按失败处理）
 ```

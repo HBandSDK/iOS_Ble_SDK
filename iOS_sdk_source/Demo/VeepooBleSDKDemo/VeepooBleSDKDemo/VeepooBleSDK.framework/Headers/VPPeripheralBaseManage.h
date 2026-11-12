@@ -1673,6 +1673,42 @@
                                   crcClockArr:(NSArray<VPGameClockModel *> * _Nonnull)crcClockArr
                                      callBack:(void(^_Nullable)(BOOL success))result;
 
+#pragma mark - 自定义协议数据（客户定制功能专用）
+
+//Receive custom protocol data reported by the device on the standard data channel, the data is returned as-is with the header (0x04 + protocol number) included
+//接收设备在标准数据通道上报的自定义协议数据，原样返回（含包头 0x04 + 协议编号），App根据协议编号和与嵌入式约定的协议格式解析
+@property (nonatomic, copy) void(^ _Nullable veepooCustomDataReceiveBlock)(NSData * _Nullable customData);
+
+//Receive custom protocol data reported by the device on the ADC channel, the data is returned as-is with the header (0x04 + protocol number) included
+//接收设备在ADC通道上报的自定义协议数据，原样返回（含包头 0x04 + 协议编号），需先经 veepooSDKSetCustomDataADCNotify: 开启通道通知
+@property (nonatomic, copy) void(^ _Nullable veepooCustomDataADCReceiveBlock)(NSData * _Nullable customData);
+
+/**
+ Send custom protocol data, only for customer-specific features 发送自定义协议数据（分包列表），仅用于客户定制功能
+
+ Data format 数据格式（每个包）: 0x04(固定包头) + 协议编号(1字节) + 自定义内容
+ - 入参为分包列表，逐包校验（防止误发标准协议指令导致设备异常）：每包长度 ≥ 2、必须以 0x04 开头、单包 ≤ 设备MTU（保底20字节，含包头，见 VPPeripheralModel.mtu）；任一包校验失败则整批拦截不发送，并回调对应错误码
+ - 多包由SDK内部按 0.02s 间隔逐包下发（BLE单连接连发易丢包），宿主无需自行加间隔；分包（含协议的总包数/包号字段）仍由宿主按各端约定的协议自行组包
+ - 全部校验通过并逐包写入后回调 Success；校验失败回调对应错误码（nil/空数组回调 VPCustomDataSendResultInvalidData）
+ - 设备回复的数据按通道回调（原样返回，含包头）：标准通道走 veepooCustomDataReceiveBlock，ADC通道走 veepooCustomDataADCReceiveBlock
+ - 具体协议内容由客户与嵌入式约定，SDK只校验包头，不做内容解析
+
+ @param dataArr 要发送的完整分包列表（每包含包头） the full packets with header
+ @param result 发送结果回调 the send result callback
+ */
+- (void)veepooSDKSendCustomData:(NSArray<NSData *> *_Nullable)dataArr result:(void(^_Nullable)(VPCustomDataSendResult result))result;
+
+/**
+ Enable/disable the notification of the custom protocol ADC data channel
+ 开启/关闭自定义协议的ADC数据通道通知
+ 自定义功能需要ADC数据（如原始波形）时使用：开启后固件可在ADC通道上以相同格式（0x04 + 协议编号 + 自定义内容）上报，
+ SDK路由到 {@link veepooCustomDataADCReceiveBlock}（与标准数据通道的 {@link veepooCustomDataReceiveBlock} 相互独立）。
+ 用法同 {@link veepooSDKTestGSensorADCStart:testResult:}：发送开始指令前开启，结束后关闭
+ @param enable YES开启 NO关闭
+ */
+- (void)veepooSDKSetCustomDataADCNotify:(BOOL)enable;
+
+
 @end
 
 

@@ -863,3 +863,14 @@ typedef NS_OPTIONS(uint8_t, VPGameClockWeekday) {
     VPGameClockWeekdaySunday    = 1 << 6,
     VPGameClockWeekdayEveryDay  = 0x7F, // 每天
 };
+
+#pragma mark - 自定义协议数据（客户定制功能专用）
+
+// 自定义协议数据发送结果，协议格式为 0x04(固定包头) + 协议编号(1字节) + 自定义内容；接口入参为分包列表，逐包校验（任一包失败整批不发送），单包最大长度按设备MTU计算（含包头），MTU不可用时保底20字节
+typedef NS_ENUM(NSUInteger, VPCustomDataSendResult) {
+    VPCustomDataSendResultSuccess = 0,      //已发送（整批分包全部写入）
+    VPCustomDataSendResultInvalidData = 1,  //数据无效：列表为空，或存在包不以 0x04 + 协议编号 开头/长度不足，整批未发送
+    VPCustomDataSendResultTooLong = 2,      //数据超长：存在包超过单包最大长度（含包头，按设备MTU），整批未发送
+    VPCustomDataSendResultNotConnected = 3, //设备未连接，未发送
+    VPCustomDataSendResultInDFUMode = 4,    //设备处于DFU/资源传输模式，未发送
+};
